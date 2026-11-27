@@ -37,6 +37,11 @@ aside h2{margin:0 0 4px;font-size:calc(18px*var(--fs))}
 .rel.rumor{border-style:dashed}
 .imp{border:1px solid #7f1d1d;background:rgba(248,113,113,.08);border-radius:8px;padding:9px 11px;font-size:calc(12.5px*var(--fs));line-height:1.7;margin-top:10px}
 .imp b{color:#fca5a5}
+[data-theme="light"] .imp b{color:#b91c1c}
+.lvb{display:inline-block;font-size:calc(11.5px*var(--fs));font-weight:700;padding:1px 9px;border-radius:999px;color:#fff;white-space:nowrap}
+.lvb3{background:#dc2626}.lvb2{background:#b45309}.lvb1{background:#15803d}.lvb0{background:#475569}
+.imp b.lvt3{color:#fca5a5}.imp b.lvt2{color:#fcd34d}.imp b.lvt1{color:#86efac}.imp b.lvt0{color:#cbd5e1}
+[data-theme="light"] .imp b.lvt3{color:#b91c1c}[data-theme="light"] .imp b.lvt2{color:#92400e}[data-theme="light"] .imp b.lvt1{color:#166534}[data-theme="light"] .imp b.lvt0{color:#475569}
 svg text{font-family:inherit}
 .nlab{fill:var(--text);font-size:11px;pointer-events:none;paint-order:stroke;stroke:var(--bg);stroke-width:3px}
 .elab{fill:var(--text);font-size:13px;font-weight:700;pointer-events:none;paint-order:stroke;stroke:var(--bg);stroke-width:4px}
@@ -187,11 +192,11 @@ function side(k){
  const cnt=[3,2,1,0].map(v=>[v,rows.filter(r=>r.lv===v).length]).filter(x=>x[1]);
  IMP={k,rows,tot,what};
  html+=`<div class="imp" id="impBox"><div class="impx" style="display:flex;gap:4px;flex-wrap:nowrap;align-items:center;margin:0 0 8px;padding-bottom:8px;border-bottom:1px dashed var(--line)"><span class="hint" style="margin-right:auto;white-space:nowrap">資料輸出</span>${['CSV','Excel','JSON','Markdown','PNG'].map(f=>`<button class="btn" data-x="${f}" style="padding:2px 7px;font-size:calc(11.5px*var(--fs))" title="輸出這個區塊為 ${f}">${f}</button>`).join('')}</div><div><b>⚠️ 若「${esc(k)}」出事（違約、斷供、監管、估值重挫）</b></div>
- 直接受影響 <b>${rows.length}</b> 家：${cnt.map(([v,n])=>`<b style="color:${LV[v][1]}">${LV[v][0]} ${n}</b>`).join('、')||'—'}
+ 直接受影響 <b>${rows.length}</b> 家：${cnt.map(([v,n])=>`<b class="lvt${v}">${LV[v][0]} ${n}</b>`).join('、')||'—'}
  <span class="hint">｜證據強度最高 ${best!=='—'?gb(best):'—'}${rumor?`，${rumor} 筆為傳聞／未定案`:''}</span>
- ${rows.map(r=>`<div style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><b style="color:${ENT[r.e].accent}">${esc(r.e)}</b><span class="tag" style="border-color:${LV[r.lv][1]};color:${LV[r.lv][1]};margin:0">影響程度：${LV[r.lv][0]}</span></div>
+ ${rows.map(r=>`<div style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><b style="color:${ENT[r.e].accent}">${esc(r.e)}</b><span class="lvb lvb${r.lv}">影響程度：${LV[r.lv][0]}</span></div>
   ${r.L.map(x=>{const l=x.l;return `<div style="margin-top:4px">${l.dir==='in'?'↙':'↗'} <b>${l.amt!=null?esc(l.short):(/^[—\-]?$|^未揭露$|^金額未揭露$/.test(l.short||'')?'金額未揭露':esc(l.short))}</b> <span class="hint">${l.amt!=null?(AMT[l.amtType]||'')+(l.per?'・每年':'')+'｜':''}${esc(l.type)}${l.rumor?'｜傳聞／未定案':''}</span><br>
-   <span class="hint">${x.sh!=null?`占 ${esc(r.e)} 同類${l.dir==='in'?'流入':'流出'}金額 <b style="color:${LV[x.lv][1]}">${x.sh>=.995?'100':(x.sh*100).toFixed(x.sh<.1?1:0)}%</b>`:'無法計算占比'}${l.val!=null?`｜持股現值 ${fmtB(l.val)}`:''}｜${what(l)}</span></div>`;}).join('')}</div>`).join('')}
+   <span class="hint">${x.sh!=null?`占 ${esc(r.e)} 同類${l.dir==='in'?'流入':'流出'}金額 <b class="lvt${x.lv}">${x.sh>=.995?'100':(x.sh*100).toFixed(x.sh<.1?1:0)}%</b>`:'無法計算占比'}${l.val!=null?`｜持股現值 ${fmtB(l.val)}`:''}｜${what(l)}</span></div>`;}).join('')}</div>`).join('')}
  <div class="hint" style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)">合計（依口徑，不跨口徑相加）：${Object.entries(tot).map(([t,v])=>`${AMT[t]} ${fmtB(v)}`).join('｜')||'皆未揭露'}<br>
  影響程度的算法：這筆金額占該公司 Dashboard 中「同口徑、同方向」已揭露金額的比例，≥30% 為高、10–30% 為中、&lt;10% 為低；一家有多筆時取最高。這是暴露範圍的估計，不代表實際損失。</div></div>
  <h2 style="margin-top:14px;font-size:15px">關係明細與來源</h2>`;
@@ -219,7 +224,7 @@ function impExport(f){if(!IMP)return;const R=impRows(),nm=`若出事_${IMP.k.rep
  if(f==='PNG'){const el=$('#impBox'),w=Math.ceil(el.getBoundingClientRect().width),c=el.cloneNode(true);c.querySelector('.impx').remove();
   const cs=getComputedStyle(document.documentElement),vars=[...document.styleSheets].flatMap(s=>{try{return [...s.cssRules]}catch(e){return []}}).filter(r=>r.selectorText===':root').flatMap(r=>[...r.style]).filter(p=>p.startsWith('--')).map(p=>`${p}:${cs.getPropertyValue(p)}`).join(';');
   const css=[...document.querySelectorAll('style')].map(s=>s.textContent).join('\n').replace(/@import[^;]+;/g,'');
-  const wrap=document.createElement('div');wrap.setAttribute('xmlns','http://www.w3.org/1999/xhtml');wrap.setAttribute('style',`${vars};width:${w}px;padding:10px;box-sizing:border-box;background:${getComputedStyle(document.body).backgroundColor};color:${getComputedStyle(document.body).color};font-family:${getComputedStyle(document.body).fontFamily};font-size:${getComputedStyle(el).fontSize};line-height:${getComputedStyle(el).lineHeight}`);
+  const wrap=document.createElement('div');wrap.setAttribute('xmlns','http://www.w3.org/1999/xhtml');if(document.body.dataset.theme)wrap.setAttribute('data-theme',document.body.dataset.theme);wrap.setAttribute('style',`${vars};width:${w}px;padding:10px;box-sizing:border-box;background:${getComputedStyle(document.body).backgroundColor};color:${getComputedStyle(document.body).color};font-family:${getComputedStyle(document.body).fontFamily};font-size:${getComputedStyle(el).fontSize};line-height:${getComputedStyle(el).lineHeight}`);
   const st=document.createElement('style');st.textContent=css;wrap.appendChild(st);c.style.margin='0';wrap.appendChild(c);
   document.body.appendChild(wrap);wrap.style.position='absolute';wrap.style.left='-99999px';const h=Math.ceil(wrap.getBoundingClientRect().height);wrap.style.position='';wrap.style.left='';wrap.remove();
   const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><foreignObject x="0" y="0" width="${w}" height="${h}">${new XMLSerializer().serializeToString(wrap)}</foreignObject></svg>`;
