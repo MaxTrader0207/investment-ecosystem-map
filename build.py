@@ -136,6 +136,13 @@ def validate(d):
             if k not in S: err.append(f"dues[{i}] 引用不存在的來源 {k}")
             used.add(k)
         if not x.get("src"): err.append(f"dues[{i}] 需要來源")
+    if d.get("paySched") is not None:                   # 公司揭露的逐年付款義務表：{y:{"2027":US$十億,…}, after:[金額, 攤到哪一年], note, src}
+        ps = d["paySched"] or {}
+        if not isinstance(ps.get("y"), dict) or not ps["y"]: err.append("paySched.y 需為 {年: 金額} 的對照表")
+        if not ps.get("src"): err.append("paySched 需要來源")
+        for k in ps.get("src", []):
+            if k not in S: err.append(f"paySched 引用不存在的來源 {k}")
+            used.add(k)
     for n in d["nodes"]:
         t = n.get("term")
         if t is not None and not (isinstance(t, dict) and isinstance(t.get("s"), int) and isinstance(t.get("e"), int) and t["s"] <= t["e"]): err.append(f"節點 {n['id']}：term 需為 {{s:起始年,e:結束年}}")

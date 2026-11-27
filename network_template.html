@@ -150,7 +150,7 @@ footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs)
 <div class="brief" id="riskBox"></div>
 <div class="sec">💧 循環融資與現金缺口（把多年期合約換算成每年金額，再和年營收比較）</div>
 <div class="tablewrap" style="padding-bottom:6px"><table id="cashT"></table><div class="hint" id="cashN" style="margin-top:8px;line-height:1.7"></div></div>
-<div class="sec">🧱 付款時程（各年度已承諾要付的金額，依付款方堆疊）</div>
+<div class="sec">🧱 付款時程（各年度已承諾要付的金額，依付款方堆疊）　<select id="wallM"><option value="flat">沒有逐年表的合約：平均攤提</option><option value="ramp">沒有逐年表的合約：前低後高（假設）</option></select></div>
 <div class="brief" id="wall"></div>
 <div class="brief" id="due"></div>
 <div class="sec" id="s-scen">🧪 情境試算：選一個事件，看各家每年的曝險金額　<select id="scE"></select>　<span id="scKw"><select id="scK"></select>　</span><span id="scHl">付款減少</span> <select id="scH"></select></div>
@@ -331,6 +331,7 @@ function risk(k){
     <div style="display:flex;gap:16px;align-items:center"><div class="rlight" aria-hidden="true"><i class="${lv===3?'on3':''}"></i><i class="${lv===2?'on2':''}"></i><i class="${lv===1?'on1':''}"></i></div><div class="rnum rc${lv}">${r.total}</div></div>
     <div class="rc${lv}" style="font-size:calc(17px*var(--fs));font-weight:700">${RLN[lv]}度風險（${RLAMP[lv]}）</div>
     <div class="rrank">${r.of} 間公司中排名第 ${r.rank} 高</div>
+    ${(e.phy||[]).length?`<div class="hint" style="line-height:1.7">受影響的實體瓶頸（未計入分數）：${e.phy.map(p=>`<span class="rc${p[1]}">${esc(p[0])}</span>`).join('、')}</div>`:''}
     ${r.alert.length?`<div class="ralert"><b>單項警示</b>（單一面向 85 分以上）<br>${r.alert.map(a=>esc(a[0])+' '+a[1]).join('、')}${r.light>r.base?`<br>總分 ${r.total} 原為${RLAMP[r.base]}，因單項警示升為${RLAMP[r.light]}`:''}</div>`:''}
     <div class="hint" style="line-height:1.7">${cnt[2]} 個面向紅燈、${cnt[1]} 個黃燈、${cnt[0]} 個綠燈${miss.length?`、${miss.length} 個待補`:''}${nas.length?`、${nas.length} 個不適用`:''}<br>最大來源：${top?esc(top.n)+'（'+top.s+' 分）':'—'}${r.cov<100?`<br>目前依權重 ${r.cov}% 的面向計算`:''}</div></div>
    <div class="rcard rradar">${svg}</div>
@@ -541,19 +542,23 @@ build(); side(null); table(); cmp();
  document.querySelectorAll('#cashT a[data-k]').forEach(a=>a.onclick=ev=>{ev.preventDefault();brief(a.dataset.k);$('#brief').scrollIntoView({behavior:'smooth',block:'center'})});
  const noTerm=DATA.links.filter(l=>l.amtType==='contract'&&l.amt!=null&&!l.term&&!l.annual&&!l.excl).length;
  $('#cashN').innerHTML=`「被投資方每年回頭付的錢」＝這家公司入股的對象，每年依合約付給它的金額，是循環融資最直接的量化。每年金額＝合約總額 ÷ 合約年數（平均攤提，實際付款多半前低後高）；已揭露實際年金額的用實際值。「每年缺口」＝每年承諾支出 − 年營收，大於零代表光靠營收付不完，需要靠募資或舉債。只納入有揭露年期的 ${F.length} 筆合約；另有 ${noTerm} 筆合約沒有揭露年期，沒有計入，所以支出與缺口是下限。晶片商收到的多半是客戶向雲端業者付款後的間接採購，金額沒有逐家揭露；有標「估計」的是依公開數字加假設推出的區間，明細與假設列在表格下方。「缺口靠誰補」列出現金（或近 12 個月的募資與舉債）可以支應幾年的缺口。`;
- // 付款時程
+ // 付款時程：有逐年表的付款方依揭露的形狀分配；其餘依選單平均攤提，或假設逐年等差遞增（第 i 年權重 i）
  const Y=[];for(let y=2026;y<=2036;y++)Y.push(y);
  const payers=[...new Set(F.filter(f=>f.s).map(f=>f.from))].map(k=>({k,t:F.filter(f=>f.from===k&&f.s).reduce((a,f)=>a+f.total,0)})).sort((a,b)=>b.t-a.t);
  const PAL=['#a78bfa','#38bdf8','#fb923c','#f472b6','#2dd4bf','#facc15','#94a3b8','#4ade80','#f87171','#60a5fa'];
  const col=k=>ENT[k]?ENT[k].accent:PAL[payers.findIndex(p=>p.k===k)%PAL.length];
- const amt=(k,y)=>F.filter(f=>f.from===k&&f.s&&y>=f.s&&y<=f.e).reduce((a,f)=>a+f.total/(f.e-f.s+1),0);
+ let WM='flat';const yv=(f,y)=>{if(!f.s||y<f.s||y>f.e)return 0;if(f.sched)return f.sched[y]||0;const n=f.e-f.s+1;return WM==='ramp'?f.total*(y-f.s+1)/(n*(n+1)/2):f.total/n};
+ const amt=(k,y)=>F.filter(f=>f.from===k).reduce((a,f)=>a+yv(f,y),0);
+ const wallDraw=()=>{WM=$('#wallM').value;
  const tot=Y.map(y=>payers.reduce((a,p)=>a+amt(p.k,y),0)), mx=Math.max(...tot,1), W=1000,H=260,bw=W/Y.length*.62;
  let svg=`<svg viewBox="0 0 ${W} ${H+40}" style="width:100%;height:auto" role="img" aria-label="各年度承諾付款金額">`;
  Y.forEach((y,i)=>{let x=i*(W/Y.length)+(W/Y.length-bw)/2,y0=H;payers.forEach(p=>{const v=amt(p.k,y);if(!v)return;const h=v/mx*(H-30);y0-=h;svg+=`<rect x="${x}" y="${y0}" width="${bw}" height="${h}" fill="${col(p.k)}"><title>${y}｜${nm(p.k)}：${bn(v)}</title></rect>`});
   svg+=`<text x="${x+bw/2}" y="${y0-6}" text-anchor="middle" fill="var(--text)" font-size="13" font-weight="700">${tot[i]?bn(tot[i]):''}</text><text x="${x+bw/2}" y="${H+18}" text-anchor="middle" fill="var(--muted)" font-size="13">${y}</text>`});
  svg+='</svg>';
  $('#wall').innerHTML=`<div class="rcard">${svg}<div class="legend" style="margin-top:6px">${payers.map(p=>`<span><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${col(p.k)};margin-right:4px"></i>${esc(nm(p.k))}（合計 ${bn(p.t)}）</span>`).join('')}</div>
-  <div class="hint" style="margin-top:8px;line-height:1.7">每年金額為合約總額平均攤到合約年數；滑鼠移到色塊可看金額。${Y.map((y,i)=>[y,tot[i]]).sort((a,b)=>b[1]-a[1]).slice(0,1).map(([y,v])=>`付款高峰在 ${y} 年，約 ${bn(v)}。`).join('')}沒有揭露年期的合約與公司債到期未納入。</div></div>`;
+  <div class="hint" style="margin-top:8px;line-height:1.7">${[...new Set(F.filter(f=>f.sched).map(f=>nm(f.from)))].map(n=>`${esc(n)} 依公司揭露的逐年義務表分配（合約總額不變）；`).join('')}其餘合約${WM==='ramp'?'假設付款逐年等差遞增（前低後高），這是假設不是揭露數字':'把合約總額平均攤到合約年數，實際多半前低後高'}。滑鼠移到色塊可看金額。${Y.map((y,i)=>[y,tot[i]]).sort((a,b)=>b[1]-a[1]).slice(0,1).map(([y,v])=>`付款高峰在 ${y} 年，約 ${bn(v)}。`).join('')}沒有揭露年期的合約與公司債到期未納入。</div></div>`;};
+ wallDraw();$('#wallM').onchange=wallDraw;
+ document.addEventListener('click',ev=>{const a=ev.target.closest&&ev.target.closest('a[data-pk]');if(!a)return;ev.preventDefault();brief(a.dataset.pk);$('#brief').scrollIntoView({behavior:'smooth',block:'center'})});
  // 未來 36 個月到期事項：合約付款、債務到期、尚未解除的擔保
  {const y0=+DATA.asOf.slice(0,4)+1,Y3=[y0,y0+1,y0+2],DU=DATA.due||[],GU=DATA.guar||[];
   const rowsY=Y3.map(y=>{const ps=payers.map(p=>[p.k,amt(p.k,y)]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]),tt=ps.reduce((a,x)=>a+x[1],0),ds=DU.filter(d=>d.y===y);
@@ -645,7 +650,7 @@ build(); side(null); table(); cmp();
    <div class="hint" style="margin-top:8px;line-height:1.7">只統計資料檔中已建立節點、且日期在近 24 個月內的募資與舉債，依節點名稱與型態自動分類；營運現金沒有對應節點，所以看不到「用自己賺的錢付」的部分，自有現金充裕的公司（例如 Microsoft、Google、Samsung）不會出現在表中。私募信貸與表外工具（SPV、合資、售後回租、擔保貸款）的揭露最少，實際規模多半高於這裡的數字。</div></div>`}
  // 實體瓶頸
  {const B=(DATA.extras&&DATA.extras.bottlenecks)||[];
-  $('#phyB').innerHTML=B.length?`<div class="wgrid">${B.map(w=>`<div class="wcard w${w.light}"><b>${esc(w.n)} <span class="rc${w.light}" style="float:right">● ${['無資料','緩解','偏緊','嚴重'][w.light]}</span></b><div class="wv">${esc(w.v)}</div><div class="hint" style="line-height:1.6">${esc(w.detail)}</div><div class="hint" style="margin-top:4px">影響：${esc(w.affects)}</div><div class="hint" style="margin-top:4px">${(w.src||[]).map(s=>`<a href="${esc(s[1])}" target="_blank" rel="noopener">${esc(s[0])}</a>`).join('；')}</div></div>`).join('')}</div><div class="hint" style="margin-top:8px">這一區由人工查證後維護，不會隨每週自動更新而改變；燈號是整理者的判斷。</div>`:'<div class="hint">尚無資料。</div>'}
+  $('#phyB').innerHTML=B.length?`<div class="wgrid">${B.map(w=>`<div class="wcard w${w.light}"><b>${esc(w.n)} <span class="rc${w.light}" style="float:right">● ${['無資料','緩解','偏緊','嚴重'][w.light]}</span></b><div class="wv">${esc(w.v)}</div><div class="hint" style="line-height:1.6">${esc(w.detail)}</div><div class="hint" style="margin-top:4px">影響：${esc(w.affects)}</div>${(w.hit||[]).length?`<div class="hint" style="margin-top:4px;line-height:1.9">對應到已建檔的公司：${w.hit.map(h=>`<a href="#" data-pk="${esc(h[0])}">${esc(h[1])}</a>`).join('、')}</div>`:''}<div class="hint" style="margin-top:4px">${(w.src||[]).map(s=>`<a href="${esc(s[1])}" target="_blank" rel="noopener">${esc(s[0])}</a>`).join('；')}</div></div>`).join('')}</div><div class="hint" style="margin-top:8px">這一區由人工查證後維護，不會隨每週自動更新而改變；燈號是整理者的判斷。</div>`:'<div class="hint">尚無資料。</div>'}
  // 主權與政策層
  {const P=DATA.policy||[],cats=[...new Set(P.map(p=>p.cat))];
   $('#polB').innerHTML=P.length?`<div class="rcard"><div class="legend" style="margin-bottom:8px">${cats.map(c=>`<span><b>${esc(c)}</b> ${P.filter(p=>p.cat===c).length} 則</span>`).join('')}</div>

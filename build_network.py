@@ -78,7 +78,7 @@ for fp in FILES:
                    "pol":[[str(d0),nm0,tx0[:150],(S[sk[0]][1] if sk and sk[0] in S else "")] for d0,nm0,tx0,sk in [(n.get("date",""),n["name"],n.get("amtText","") or n.get("status",""),n.get("src",[])) for n in D["nodes"]]+[(v.get("d",""),v.get("t",""),v.get("x",""),v.get("src",[])) for v in D.get("events",[])]+[(M["asOf"],"地緣政治面向",((D.get("macro") or {}).get("geo") or {}).get("basis",""),((D.get("macro") or {}).get("geo") or {}).get("src",[]))]],
                    "fs":[[n["name"],n["amt"],str(n.get("date","")),n.get("amtType"),n.get("type","")] for n in D["nodes"] if n.get("amt") is not None and not re.search("股東|持股|採購|銷售|客戶",n.get("type","")) and ((n.get("direction")=="in" and n.get("amtType")=="liability") or (n.get("direction")=="in" and n.get("amtType") in ("inflow","equity") and re.search("募資|輪|IPO|增資|發行|配售|股權|入股|特別股|認購|投資|ADR|基金|可轉|債|貸款|融資",n.get("type","")+n["name"])) or (n.get("amtType")=="project" and re.search("SPV|特殊目的|合資|JV|融資平台|售後回租",n.get("type","")+n["name"]) and re.search("債|融資|貸款|信貸|Blue Owl|PIMCO|Apollo|Blackstone",n.get("amtText","")+n.get("type","")+n["name"])))],
                    "rates":[[n.get("date",""),n["name"],n["rate"]] for n in D["nodes"] if isinstance(n.get("rate"),(int,float))],
-                   "txt":[[str(n.get("date","")),n["name"],(n.get("status","")+"｜"+n.get("amtText",""))[:240]] for n in D["nodes"]]+[[str(v.get("d","")),v.get("t",""),v.get("x","")[:240]] for v in D.get("events",[])]},
+                   "txt":[[str(n.get("date","")),n["name"],(n.get("status","")+"｜"+n.get("amtText",""))[:240],n.get("sig")] for n in D["nodes"]]+[[str(v.get("d","")),v.get("t",""),v.get("x","")[:240],v.get("sig")] for v in D.get("events",[])],"ps":D.get("paySched")},
               "macro":{mk:dict(mv,src=[[S[x][0],S[x][1]] for x in mv.get("src",[]) if x in S]) for mk,mv in (D.get("macro") or {}).items() if isinstance(mv,dict)}}})
     for n in D["nodes"]:
         if n["cat"] not in cats: continue
@@ -265,6 +265,15 @@ for i,e in enumerate(_rank): e["risk"]["rank"]=1+sum(1 for x in _rank if x["risk
 cycles=cycles[:40]
 # ---------- 年化金流：有揭露年期（term）或實際年金額（annual）的合約 → 付款方→收款方的每年金額 ----------
 # 用於「循環融資占營收」「每年現金缺口」「付款時程」「情境試算」。同一對付款方／收款方兩邊檔案都有時，以付款方那份為準。
+# 付款分布：付款方若揭露了逐年義務表（data.json 的 paySched），就用它的形狀分配各合約的金額；否則留給前端選擇平均攤提或前低後高
+_PS={e["key"]:(e.get("xx") or {}).get("ps") for e in ents}
+def _sched(payer,tot,s,e_):
+    ps=_PS.get(payer)
+    if not ps or not tot or not s: return None
+    yy=ps.get("y",{}); last=max(int(k) for k in yy); af=ps.get("after") or [0,last]
+    w={y:(yy.get(str(y)) if str(y) in yy else (af[0]/max(1,af[1]-last) if last<y<=af[1] else 0)) for y in range(s,e_+1)}
+    sw=sum(w.values())
+    return {str(y):round(tot*v/sw,2) for y,v in w.items()} if sw else None
 _fl={}
 for l in links:
     if l["amtType"] not in ("contract","commitment") or l["amt"] is None or not (l.get("term") or l.get("annual")): continue
@@ -272,6 +281,8 @@ for l in links:
     payer,payee=(l["cp"],l["ent"]) if l["dir"]=="in" else (l["ent"],l["cp"])
     t=l.get("term") or {}; tot=t.get("firm",l["amt"]); yrs=(t["e"]-t["s"]+1) if t else None
     f={"from":payer,"to":payee,"annual":round(l["annual"] if l.get("annual") else tot/yrs,2),"total":tot if t else None,"s":t.get("s"),"e":t.get("e"),"name":l["name"],"short":l["short"],"by":l["ent"],"src":l["src"][:1],"actual":bool(l.get("annual"))}
+    _sc=_sched(payer,tot if t else None,t.get("s"),t.get("e"))
+    if _sc: f["sched"]=_sc
     k=(payer,payee)
     if k not in _fl or (l["ent"]==payer and _fl[k]["by"]!=payer): _fl[k]=f
 flows=sorted(_fl.values(),key=lambda f:-f["annual"])
@@ -321,17 +332,32 @@ policy.sort(key=lambda p:(p["cat"],p["d"]),reverse=True)
 # 實體瓶頸與歷史對照：人工維護的 extras.json（與 changelog.json 同一層）；現況比率由資料計算
 _EXF=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(FILES[0]))),"extras.json")
 extras=json.load(open(_EXF,encoding="utf-8")) if os.path.exists(_EXF) else {}
+# 實體瓶頸對應到公司：affects 文字裡點名的已建檔公司
+for e in ents: e["phy"]=[]
+for _b in extras.get("bottlenecks",[]):
+    _a=_b.get("affects","").replace("xAI","SpaceX"); _b["hit"]=[]
+    for e in ents:
+        _tk=[x for x in re.split(r"[ ／（）()]+",e["key"]+" "+e["entity"]) if len(x)>=2 and x not in ("Group","Alphabet")]
+        if any(x in _a for x in _tk):
+            _b["hit"].append([e["key"],e["entity"]]); e["phy"].append([_b["n"],_b.get("light",0)])
 vfnow=sorted([{"ent":e["entity"],"key":e["key"],"fin":_X[e["key"]]["gonly"],"rev":(e.get("fin") or {}).get("rev")} for e in ents if _X[e["key"]]["gonly"]>0 and (e.get("fin") or {}).get("rev")],key=lambda x:-x["fin"]/x["rev"])
 due=[dict(x,ent=e["entity"],key=e["key"]) for e in ents for x in e.pop("dues",[])]
 guar=sorted([{"ent":_name[k],"key":k,"name":g[0],"amt":g[1],"status":g[2],"date":g[3],"end":g[4]} for k,v in _X.items() for g in v["guar"]],key=lambda g:-(g["amt"] or 0))
 _yrs=list(range(int(ASOF[:4]),int(ASOF[:4])+11))
-_tot={y:sum(f["total"]/(f["e"]-f["s"]+1) for f in flows if f.get("s") and f["s"]<=y<=f["e"]) for y in _yrs}
+_tot={y:sum((f["sched"].get(str(y),0) if f.get("sched") else f["total"]/(f["e"]-f["s"]+1)) for f in flows if f.get("s") and f["s"]<=y<=f["e"]) for y in _yrs}
 _pk=max(_tot.values()) if _tot else 0; _pky=[y for y in _yrs if _pk and _tot[y]>=0.95*_pk]
 _gap=sorted([(e["cash"]["out"]/e["cash"]["rev"],e) for e in ents if e["cash"]["rev"] and e["cash"]["out"]],key=lambda x:-x[0])
 _circ=sorted([(e["cash"]["circIn"]/e["cash"]["rev"],e) for e in ents if e["cash"]["rev"] and e["cash"]["circIn"]],key=lambda x:-x[0])
-_recent=[(k,d,n,x) for k,v in _X.items() for d,n,x in v["txt"] if 0<=_days(d)<=120]
-_RE_CUT=re.compile("(募資|輪|承諾|合約|訂單|投資|資本支出|估值|收購|專案|建廠).{0,24}(下修|降至|縮減|削減|延後|展延|暫停|終止|否決)|(下修|縮減|削減|延後|展延|暫停).{0,12}(募資|承諾|合約|訂單|投資|資本支出|專案)"); _RE_WAR=re.compile("(權證|擔保|保證|備援承購).{0,14}(修改|調整|重訂|觸發|追加|擴大)")
-_cut=[(k,d,n) for k,d,n,x in _recent if _RE_CUT.search(n+x)]; _war=[(k,d,n) for k,d,n,x in _recent if _RE_WAR.search(n+x)]
+_recent=[(k,d,n,x,s) for k,v in _X.items() for d,n,x,s in v["txt"] if 0<=_days(d)<=120]
+_RE_CUT=re.compile("(募資|輪|承諾|合約|訂單|投資|資本支出|估值|收購|專案|建廠).{0,24}(下修|降至|縮減|削減|延後|展延|暫停|終止|否決)|(下修|縮減|削減|延後|展延|暫停).{0,12}(募資|承諾|合約|訂單|投資|資本支出|專案)"); _RE_WAR=re.compile("(權證|擔保|保證|質押|備援承購).{0,18}(修改|調整|重訂|觸發|追加|擴大|增額|提高)")
+# 節點或事件的 sig 欄位是人工確認的結果："cut"＝募資或承諾下修、展延，"terms"＝權證、擔保或質押條件變動，"none"＝確認不是。只有確認過的才計數；文字比對到但還沒標記的另列為待確認。同一家同一天只算一則
+def _sig(kind,RE):
+    ok,cand={},{}
+    for k,d,n,x,s in _recent:
+        if s==kind: ok.setdefault((k,d),n)
+        elif s is None and RE.search(n+x): cand.setdefault((k,d),n)
+    return [(k,d,n) for (k,d),n in ok.items()],[(k,d,n) for (k,d),n in cand.items() if (k,d) not in ok]
+(_cut,_cutq),(_war,_warq)=_sig("cut",_RE_CUT),_sig("terms",_RE_WAR)
 _rates=sorted([(r,_name[k],n,d) for k,v in _X.items() for d,n,r in v["rates"] if 0<=_days(d)<=365],reverse=True)
 _gtot=round(sum(v["gonly"] for v in _X.values()),1); _reds=[e for e in ents if e["risk"]["light"]==3]
 def _lt(v,red,yel): return 3 if v>=red else 2 if v>=yel else 1
@@ -340,8 +366,8 @@ if _gap: g,ge=_gap[0]; watch.append({"n":"承諾支出相對營收","v":f"{ge['e
 if _circ: c,ce=_circ[0]; watch.append({"n":"循環收入占營收","v":f"{ce['entity']} {c*100:.0f}%","x":round(c*100,1),"light":_lt(c,0.2,0.1),"rule":"最高者達 20% 亮紅燈、10% 亮黃燈","detail":"、".join(f"{e['entity']} {r*100:.0f}%" for r,e in _circ[:3])})
 if _pky: yl=_pky[0]-int(ASOF[:4]); watch.append({"n":"距離付款高峰","v":f"{_pky[0]}–{_pky[-1]} 年" if len(_pky)>1 else f"{_pky[0]} 年","x":yl,"dir":-1,"light":3 if yl<=1 else 2 if yl<=3 else 1,"rule":"高峰在 1 年內亮紅燈、3 年內亮黃燈","detail":f"高峰每年約 {fmtb(_pk)}（只含有揭露年期的合約）"})
 watch.append({"n":"新債票息","v":f"{_rates[0][0]:g}%（{_rates[0][1]}）" if _rates else "尚無資料","x":(_rates[0][0] if _rates else None),"light":(_lt(_rates[0][0],9,7) if _rates else 0),"rule":"近 12 個月新債最高票息達 9% 亮紅燈、7% 亮黃燈","detail":"；".join(f"{a} {n} {r:g}%" for r,a,n,d in _rates[:3]) if _rates else "負債節點尚未填入票息（rate 欄位）"})
-watch.append({"n":"募資或承諾下修、展延","v":f"{len(_cut)} 則","x":len(_cut),"light":_lt(len(_cut),3,1),"rule":"近 120 天達 3 則亮紅燈、1 則亮黃燈（以節點與事件文字比對）","detail":"；".join(f"{_name[k]}：{n}" for k,d,n in sorted(_cut,key=lambda x:x[1],reverse=True)[:4]) or "未偵測到"})
-watch.append({"n":"權證或擔保條件變動","v":f"{len(_war)} 則","x":len(_war),"light":_lt(len(_war),2,1),"rule":"近 120 天達 2 則亮紅燈、1 則亮黃燈（以節點與事件文字比對）","detail":"；".join(f"{_name[k]}：{n}" for k,d,n in _war[:4]) or "未偵測到"})
+watch.append({"n":"募資或承諾下修、展延","v":f"{len(_cut)} 則"+(f"（另 {len(_cutq)} 則待確認）" if _cutq else ""),"x":len(_cut),"light":_lt(len(_cut),3,1),"rule":"近 120 天人工確認過的達 3 則亮紅燈、1 則亮黃燈；同一家同一天算一則，文字比對到但未確認的不計","detail":("；".join(f"{_name[k]}：{n}" for k,d,n in sorted(_cut,key=lambda x:x[1],reverse=True)[:4]) or "沒有確認過的事件")+("｜待確認："+"；".join(f"{_name[k]}：{n}" for k,d,n in _cutq[:3]) if _cutq else "")})
+watch.append({"n":"權證或擔保條件變動","v":f"{len(_war)} 則"+(f"（另 {len(_warq)} 則待確認）" if _warq else ""),"x":len(_war),"light":_lt(len(_war),2,1),"rule":"近 120 天人工確認過的達 2 則亮紅燈、1 則亮黃燈；含質押與保證金貸款條件，文字比對到但未確認的不計","detail":("；".join(f"{_name[k]}：{n}" for k,d,n in _war[:4]) or "沒有確認過的事件")+("｜待確認："+"；".join(f"{_name[k]}：{n}" for k,d,n in _warq[:3]) if _warq else "")})
 # 變動紀錄：與上一期的狀態比較（同一期重建不會覆蓋比較基準）
 def _snap(D0):
     return {"ents":{e["key"]:{"n":e["entity"],"t":e["risk"]["total"] if e.get("risk") else None,"l":e["risk"]["light"] if e.get("risk") else None,"nodes":e["nodes"],"cap":(e.get("mkt") or {}).get("cap"),

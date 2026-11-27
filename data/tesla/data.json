@@ -365,7 +365,8 @@
    "amtType": "capex",
    "direction": "out",
    "netSkip": true,
-   "verified": "2026-11-26"
+   "verified": "2026-11-26",
+   "sig": "cut"
   },
   {
    "id": "sdi",
@@ -782,7 +783,8 @@
    "src": [
     "ts_q3",
     "ts_q3c"
-   ]
+   ],
+   "sig": "cut"
   },
   {
    "d": "2026-10",

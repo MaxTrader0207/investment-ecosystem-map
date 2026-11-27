@@ -5,7 +5,7 @@
    "v": "約 128 週",
    "light": 3,
    "detail": "美國標準電力變壓器平均交期約 128 週，發電機升壓變壓器約 144 週，約為 2021 年的兩倍。",
-   "affects": "所有新建資料中心",
+   "affects": "所有新建資料中心（Amazon、Microsoft、Meta、Google、Oracle、CoreWeave、OpenAI、Anthropic、xAI）",
    "src": [
     [
      "Core Insights Review｜Data Center Power Capacity 2026（引 Wood Mackenzie）",
@@ -61,7 +61,7 @@
    "v": "2027 年已售罄",
    "light": 3,
    "detail": "Samsung 表示 2027 年 HBM 供應已依議定價格售罄，客戶仍在追加；SK hynix 的 HBM4 已量產。",
-   "affects": "NVIDIA、Broadcom、AMD 及所有 AI 加速器買方",
+   "affects": "NVIDIA、Broadcom、AMD，以及向它們採購加速器的雲端業者（Amazon、Microsoft、Meta、Google、Oracle、CoreWeave）；供應方為 SK hynix、Samsung",
    "src": [
     [
      "Investing.com｜Samsung Q3 簡報：2027 年 HBM 已售罄",

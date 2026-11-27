@@ -290,6 +290,14 @@
   "mktcap": [
    "StockAnalysis｜Anthropic (ANT) 市值",
    "https://stockanalysis.com/stocks/ant/market-cap/"
+  ],
+  "gap_sched": [
+   "Fidelity｜Anthropic S-1/A：合約義務逐年表（2026/9/30）",
+   "https://www.fidelity.com/bin-public/600_Fidelity_Institutional/fidelityinstitutional/Application/AP154833/documents/clients/ANTLLV/ANTLLVred.pdf"
+  ],
+  "gap_sched2": [
+   "FourWeekMBA｜Anthropic S-1/A 合約義務表在 2029 年達高峰",
+   "https://fourweekmba.com/ai-anthropics-s-1-a-obligations-table-peaks-at-47-8b-in-2029/"
   ]
  },
  "categories": [
@@ -1834,5 +1842,23 @@
   ],
   "pxTk": "ANT",
   "note": "11/25 收盤 $82.79；完全稀釋口徑較高（上市首日 $97 時約 $1.76–1.8 兆）"
+ },
+ "paySched": {
+  "y": {
+   "2026": 5.053,
+   "2027": 28.424,
+   "2028": 43.473,
+   "2029": 46.901,
+   "2030": 44.214
+  },
+  "after": [
+   145.754,
+   2036
+  ],
+  "note": "S-1/A 採購承諾逐年表（9/30，合計 $3,138 億，只含已開始的合約）；2031 年以後的 $1,458 億平均攤到 2031–2036。用來決定各合約的付款分布形狀，合約總額不變",
+  "src": [
+   "gap_sched",
+   "gap_sched2"
+  ]
  }
 }

@@ -592,7 +592,8 @@
    ],
    "amtType": "none",
    "direction": "out",
-   "verified": "2026-11-26"
+   "verified": "2026-11-26",
+   "sig": "cut"
   },
   {
    "id": "avatr",
