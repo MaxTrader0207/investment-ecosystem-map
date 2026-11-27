@@ -256,9 +256,9 @@
    "CarNewsChina｜CATL 2025 年報：全年營收 RMB 4,237 億、Q4 RMB 1,406.3 億（2026-03-10）",
    "https://carnewschina.com/2026/03/10/catl-reports-record-breaking-financial-results-in-2025-with-10-billion-usd-net-profit/"
   ],
-  "cash_fy": [
-   "KrASIA｜CATL 2025 年底貨幣資金 RMB 3,335 億",
-   "https://amp.kr-asia.com/catls-business-is-broadening-but-ev-batteries-still-drive-profit"
+  "cash_q3": [
+   "24TopNews｜CATL 2026 前三季：期末貨幣資金 RMB 3,698.14 億、交易性金融資產 RMB 627.80 億",
+   "https://24topnews.com/news/company/catl-2026-nine-month-revenue-up-56-19-net-profit-up-31-60-d35a30a6"
   ]
  },
  "categories": [
@@ -1830,12 +1830,12 @@
    "note": "前一年同期四季合計約 RMB 3,860 億，由 2025 全年與前三季的年增率反推；公司單季數字未取得，右欄為前三季累計年增",
    "est": true
   },
-  "cash": 49.4,
+  "cash": 54.8,
   "cashSrc": [
-   "cash_fy"
+   "cash_q3"
   ],
-  "cashNote": "2025 年底貨幣資金 RMB 3,335 億，以 ¥6.75／$1 換算；2026 年 9/30 的數字未取得，前三季營業現金流年減 23.6%",
-  "cashDate": "2025-12-31",
+  "cashNote": "貨幣資金 RMB 3,698.14 億（9/30），以 ¥6.75／$1 換算；另有交易性金融資產 RMB 627.80 億未計入。同日短期借款 RMB 399 億、應付債券 RMB 527 億",
+  "cashDate": "2026-09-30",
   "revRun": 97.91,
   "revRunLabel": "2026 Q3 × 4",
   "rep": {

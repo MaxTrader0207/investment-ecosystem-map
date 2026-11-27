@@ -150,6 +150,10 @@
    "Yahoo Finance｜PLTR 2026-11-25 收盤 163.59",
    "https://finance.yahoo.com/quote/PLTR",
    "B"
+  ],
+  "geo_cn": [
+   "Palantir｜FY2025 10-K：不與中國共產黨往來、不在中國架設平台",
+   "https://investors.palantir.com/files/2025%20FY%20PLTR%2010-K.pdf?mod=article_inline"
   ]
  },
  "categories": [
@@ -1164,7 +1168,11 @@
  },
  "macro": {
   "geo": {
-   "basis": "待補資料：未取得中國相關營收占比（公司不在中國營運）"
+   "cn": 0,
+   "basis": "不適用：年報明示不與中國共產黨往來、不在中國架設平台，並限制在中國存取其平台，沒有可計分的中國營收占比，這個面向不計入總分",
+   "src": [
+    "geo_cn"
+   ]
   },
   "fx": {
    "score": 26,

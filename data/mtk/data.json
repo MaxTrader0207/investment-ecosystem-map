@@ -195,10 +195,6 @@
    "Quartr｜MediaTek 2026 Q3 法說摘要",
    "https://quartr.com/events/mediatek-2454-q3-2026_F96vz9IM"
   ],
-  "cash_q2": [
-   "Twelve Data｜MediaTek 資產負債表：2026 年 6 月底現金及約當現金 NT$1,890 億",
-   "https://twelvedata.com/markets/735915/stock/twse/2454/financials/balance-sheet?period=quarterly"
-  ],
   "px_auto_3661_TW": [
    "Yahoo Finance｜3661.TW 2026-11-27 收盤 3595.0",
    "https://finance.yahoo.com/quote/3661.TW",
@@ -208,6 +204,10 @@
    "Yahoo Finance｜2454.TW 2026-11-27 收盤 3680.0",
    "https://finance.yahoo.com/quote/2454.TW",
    "B"
+  ],
+  "cash_q3": [
+   "MediaTek｜2026 Q3 財報新聞稿：季底現金及流動金融資產 NT$2,783.2 億（2026-10-30）",
+   "https://www.mediatek.com/hubfs/MediaTek-Assets/Pdfs/Quarterly%20Earnings%20Release/2026/Quarterly%20Earnings%20Release-2026Q3/Press%20Release.pdf"
   ]
  },
  "categories": [
@@ -1316,12 +1316,12 @@
    "note": "前一年同期四季合計約 NT$5,838 億，由 2025 全年 NT$5,960 億與 Q4 年增率、季增率反推",
    "est": true
   },
-  "cash": 5.82,
+  "cash": 8.57,
   "cashSrc": [
-   "cash_q2"
+   "cash_q3"
   ],
-  "cashNote": "6/30 現金及約當現金 NT$1,890 億，以 NT$32.47／$1 換算；Q3 發行 $39 億海外可轉債後現金增加，但 9/30 的數字未取得",
-  "cashDate": "2026-06-30",
+  "cashNote": "現金及流動金融資產 NT$2,783.2 億（9/30），以 NT$32.47／$1 換算；上季 NT$1,984 億，增加主要來自 $39 億海外可轉債。Q3 營業現金流為流出 NT$42.6 億",
+  "cashDate": "2026-09-30",
   "revRun": 20.7,
   "revRunLabel": "2026 Q3 × 4",
   "rep": {

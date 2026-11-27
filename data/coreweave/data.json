@@ -159,6 +159,10 @@
    "Yahoo Finance｜CRWV 2026-11-25 收盤 42.57",
    "https://finance.yahoo.com/quote/CRWV",
    "B"
+  ],
+  "cx_q3": [
+   "Xenospectrum｜CoreWeave 2026 Q3：公司口徑資本支出 $145.1 億、實際支付設備款 $94.4 億",
+   "https://xenospectrum.com/en/coreweave-q3-capex-cash-spending/"
   ]
  },
  "categories": [
@@ -1036,14 +1040,15 @@
   },
   "infl": {
    "score": 100,
-   "basis": "最近四季資本支出未取得完整四季，僅 2025 Q4 $82 億與 2026 Q2 $94 億兩季合計 $176 億，就已是最近四季營收 $98.9 億的 178%；負債本金 $475 億 ÷ 營收＝480%，兩項都達上限",
+   "basis": "最近四季資本支出取得三季：2025 Q4 $82 億＋2026 Q2 $94 億＋2026 Q3 $145 億（公司口徑，含尚未付現的部分）＝$321 億，2026 Q1 未取得；三季合計已是最近四季營收 $98.9 億的 325%。負債本金 $475 億 ÷ 營收＝480%，兩項都達上限",
    "src": [
     "q3",
     "debt930",
     "ttm_sa",
     "ttm_9m",
     "cx_q4",
-    "cx_q2"
+    "cx_q2",
+    "cx_q3"
    ]
   },
   "ceo": {

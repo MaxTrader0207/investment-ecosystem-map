@@ -117,6 +117,14 @@
    "Yahoo Finance｜005930.KS 2026-11-27 收盤 179100.0",
    "https://finance.yahoo.com/quote/005930.KS",
    "B"
+  ],
+  "cx_plan": [
+   "Korea Herald｜Samsung 2026 年設備投資計畫 ₩84.4 兆，隨 Q3 財報於 2026-10-29 公布",
+   "https://biz.heraldcorp.com/article/10918720"
+  ],
+  "cx_fy25": [
+   "Samsung IR｜2025 年設備投資實績約 ₩52.7 兆（2026-01-29）",
+   "https://www.samsung.com/global/ir/reports-disclosures/public-disclosure-view.84547/"
   ]
  },
  "categories": [
@@ -788,12 +796,14 @@
    ]
   },
   "infl": {
-   "score": 13,
-   "basis": "前三季資本支出 ₩56.9 兆 ÷ 同期營收約 ₩500.6 兆＝11%，×2＝23；現金 ₩214.8 兆 − 淨現金 ₩197.6 兆＝有息負債約 ₩17.2 兆，÷ 最近四季營收約 ₩594.4 兆＝3%；兩項平均",
+   "score": 16,
+   "basis": "2026 全年設備投資計畫 ₩84.4 兆（前三季已執行 ₩56.9 兆；2025 年實績 ₩52.7 兆）÷ 最近四季營收約 ₩594.4 兆＝14%，×2＝28。最近四季實際數需要 2025 Q4 單季金額，未取得，所以用全年計畫代替；現金 ₩214.8 兆 − 淨現金 ₩197.6 兆＝有息負債約 ₩17.2 兆，÷ 營收＝3%；兩項平均",
    "src": [
     "q3call",
     "q3sl",
-    "ttm_q4"
+    "ttm_q4",
+    "cx_plan",
+    "cx_fy25"
    ]
   },
   "ceo": {
@@ -830,7 +840,10 @@
    "est": true
   },
   "revRun": 0.59,
-  "revRunLabel": "2026 Q3 × 4"
+  "revRunLabel": "2026 Q3 × 4",
+  "rep": {
+   "last": "2026-10-29"
+  }
  },
  "mkt": {
   "cap": 1004.5,

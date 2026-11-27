@@ -174,6 +174,10 @@
    "Yahoo Finance｜AVGO 2026-11-25 收盤 300.86",
    "https://finance.yahoo.com/quote/AVGO",
    "B"
+  ],
+  "cx_ttm": [
+   "StockAnalysis｜Broadcom 現金流量表（各期最近四季資本支出）",
+   "https://stockanalysis.com/stocks/avgo/financials/cash-flow-statement/?p=trailing"
   ]
  },
  "categories": [
@@ -955,10 +959,11 @@
   },
   "infl": {
    "score": 36,
-   "basis": "資本支出極低（Q3 $5 億 ÷ 營收 $295.9 億＝1.8%，×2＝4）；債務本金 $611 億 ÷ 最近四季營收約 $891 億＝69%；兩項平均",
+   "basis": "資本支出極低：FY2025 Q4 $2.37 億、FY2026 Q1 $2.5 億，截至 FY2026 Q2 的最近四季合計 $8.6 億，加計 Q3 約 $5 億後最近四季約 $12 億（估），÷ 最近四季營收約 $891 億＝1.3%，×2＝3；債務本金 $611 億 ÷ 營收＝69%；兩項平均",
    "src": [
     "q3k",
-    "secapi"
+    "secapi",
+    "cx_ttm"
    ]
   },
   "ceo": {

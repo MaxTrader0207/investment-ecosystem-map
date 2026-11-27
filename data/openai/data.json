@@ -237,6 +237,10 @@
   "geo_cn": [
    "France 24／AFP｜OpenAI 的 ChatGPT 等產品未在中國提供（2025-09-05）",
    "https://www.france24.com/en/live-news/20250905-us-ai-giant-anthropic-bars-chinese-owned-entities"
+  ],
+  "rev_2024": [
+   "Exploding Topics｜OpenAI 2024 年營收 $37 億、2025 年 $130.7 億",
+   "https://explodingtopics.com/blog/openai-revenue"
   ]
  },
  "categories": [
@@ -1480,7 +1484,8 @@
    "rev_q3b",
    "ttm_q",
    "ttm_h1",
-   "ttm_yoy"
+   "ttm_yoy",
+   "rev_2024"
   ],
   "burnNote": "公司內部預估 2026–2030 年自由現金流為負 $2,780 億；現金餘額未揭露",
   "burnSrc": [
@@ -1488,10 +1493,10 @@
   ],
   "period": "2026-09-30",
   "growth": {
-   "ttm": null,
+   "ttm": 210.0,
    "q": 186.0,
    "qLabel": "2026 Q3",
-   "note": "2024 Q4 單季營收未取得，無法計算最近四季年增；最新一季年增由「約為去年同期的近三倍」換算，為估計值",
+   "note": "最近四季約 $276 億，對前一年同期四季約 $89 億（2024 Q4 約 $10 億為估計，公司稱 2024 年底每季約 $10 億；加 2025 上半年 $43 億與 Q3 約 $35 億），年增約 2.1 倍，為估計值；最新一季年增由「約為去年同期的近三倍」換算",
    "est": true
   },
   "cash": 73.0,

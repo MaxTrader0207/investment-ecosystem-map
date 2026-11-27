@@ -314,6 +314,10 @@
    "Yahoo Finance｜ABSI 2026-11-25 收盤 9.0",
    "https://finance.yahoo.com/quote/ABSI",
    "B"
+  ],
+  "rep_dt": [
+   "AMD IR｜2026 Q3 財報於 2026-11-03 公布",
+   "https://ir.amd.com/news-events/press-releases/detail/1303/amd-reports-third-quarter-2026-financial-results"
   ]
  },
  "categories": [
@@ -1890,7 +1894,13 @@
    "est": false
   },
   "revRun": 53.52,
-  "revRunLabel": "2026 Q3 × 4"
+  "revRunLabel": "2026 Q3 × 4",
+  "rep": {
+   "last": "2026-11-03",
+   "src": [
+    "rep_dt"
+   ]
+  }
  },
  "mkt": {
   "cap": 906.8,
