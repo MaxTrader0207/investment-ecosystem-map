@@ -358,7 +358,11 @@
      "auto": true
     }
    ],
-   "unconfirmed": true
+   "unconfirmed": true,
+   "term": {
+    "s": 2026,
+    "e": 2026
+   }
   },
   {
    "id": "huawei",
@@ -1307,5 +1311,12 @@
     "ceo_2026"
    ]
   }
+ },
+ "fin": {
+  "rev": 240.0,
+  "note": "2026 上半年 $1,200 億 × 2 年化",
+  "src": [
+   "tn_1h"
+  ]
  }
 }

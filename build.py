@@ -111,6 +111,12 @@ def validate(d):
     if d.get("loopNote"): chk_src("loopNote", d["loopNote"].get("src"), need=False)
     for c in cats.values():
         if not any(n.get("cat") == c["id"] for n in d["nodes"]): warn.append(f"類別 {c['id']} 沒有任何節點")
+    for k in (d.get("fin") or {}).get("src", []):       # 年營收（循環融資占比、現金缺口、情境試算用）
+        if k not in S: err.append(f"fin 引用不存在的來源 {k}")
+        used.add(k)
+    for n in d["nodes"]:
+        t = n.get("term")
+        if t is not None and not (isinstance(t, dict) and isinstance(t.get("s"), int) and isinstance(t.get("e"), int) and t["s"] <= t["e"]): err.append(f"節點 {n['id']}：term 需為 {{s:起始年,e:結束年}}")
     for mk, mv in (d.get("macro") or {}).items():      # 風險總覽的總體面向（地緣政治／匯率／通膨利率）
         if not isinstance(mv, dict): err.append(f"macro.{mk} 必須是物件"); continue
         if mv.get("score") is not None and not (isinstance(mv["score"], (int, float)) and 0 <= mv["score"] <= 100): err.append(f"macro.{mk}.score 必須是 0–100")

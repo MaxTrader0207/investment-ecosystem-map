@@ -58,6 +58,7 @@ for fp in FILES:
             st["skip"].setdefault(t,{"und":0,"per":0,"excl":0})[k]+=1
     st["top"]=[[n["name"],n.get("short",""),AMT.get(n.get("amtType","none"),"")] for n in sorted([n for n in D["nodes"] if n.get("amt") is not None and not cats.get(n["cat"],{}).get("counterparty") and not n.get("excludeFromSum")],key=lambda n:-n["amt"])[:3]]
     ents.append({"key":ek,"entity":M["entity"],"ticker":M.get("ticker",""),"accent":M.get("accent","#888"),"file":f,"asOf":M["asOf"],"nodes":len(D["nodes"]),"st":st,"sub":M.get("subtitle",""),"thesis":(D.get("ic") or {}).get("thesis","") if isinstance(D.get("ic"),dict) else "",
+        "fin":(dict(D["fin"],src=[[S[x][0],S[x][1]] for x in D["fin"].get("src",[]) if x in S]) if isinstance(D.get("fin"),dict) else None),
         "rk":{"n":sum(1 for n in D["nodes"] if not cats.get(n["cat"],{}).get("counterparty")),
               "eq":[n["amt"] for n in D["nodes"] if not cats.get(n["cat"],{}).get("counterparty") and n.get("amtType","equity")=="equity" and n.get("direction","out")!="in" and n.get("amt") is not None and not n.get("excludeFromSum") and not n.get("per")],
               "dep":[l.get("dep") for l in D.get("loops",[]) if l.get("dep")],
@@ -79,7 +80,7 @@ for fp in FILES:
           "amtType":n.get("amtType","none"),"dir":n.get("direction","out"),"amt":n.get("amt"),"short":n.get("short",""),"date":n.get("date",""),
           "status":n.get("status",""),"grade":g,"rumor":bool(n.get("unconfirmed")) or g=="D","excl":bool(n.get("excludeFromSum") or n.get("per")),"risks":[r["k"] for r in n.get("risks",[])],
           "src":[[S[s][0],S[s][1]] for s in n["src"] if s in S][:3],
-          "val":n.get("val"),"valDate":n.get("valDate",""),"xnote":n.get("xnote",""),"per":n.get("per","")})
+          "val":n.get("val"),"valDate":n.get("valDate",""),"xnote":n.get("xnote",""),"per":n.get("per",""),"term":n.get("term"),"annual":n.get("annual")})
 entkeys={e["key"] for e in ents}
 from collections import defaultdict
 by=defaultdict(list)
@@ -242,7 +243,26 @@ for e in ents:
 _rank=sorted([e for e in ents if e["risk"]["total"] is not None],key=lambda e:-e["risk"]["total"])
 for i,e in enumerate(_rank): e["risk"]["rank"]=1+sum(1 for x in _rank if x["risk"]["total"]>e["risk"]["total"]); e["risk"]["of"]=len(_rank)
 cycles=cycles[:40]
-data={"asOf":max(e["asOf"] for e in ents),"ents":ents,"links":links,"hubs":hubs,"amt":AMT,"checks":checks,"cycles":cycles}
+# ---------- 年化金流：有揭露年期（term）或實際年金額（annual）的合約 → 付款方→收款方的每年金額 ----------
+# 用於「循環融資占營收」「每年現金缺口」「付款時程」「情境試算」。同一對付款方／收款方兩邊檔案都有時，以付款方那份為準。
+_fl={}
+for l in links:
+    if l["amtType"] not in ("contract","commitment") or l["amt"] is None or not (l.get("term") or l.get("annual")): continue
+    if _INV.search(l["type"]) and not _NOTINV.search(l["type"]): continue
+    payer,payee=(l["cp"],l["ent"]) if l["dir"]=="in" else (l["ent"],l["cp"])
+    t=l.get("term") or {}; tot=t.get("firm",l["amt"]); yrs=(t["e"]-t["s"]+1) if t else None
+    f={"from":payer,"to":payee,"annual":round(l["annual"] if l.get("annual") else tot/yrs,2),"total":tot if t else None,"s":t.get("s"),"e":t.get("e"),"name":l["name"],"short":l["short"],"by":l["ent"],"src":l["src"][:1],"actual":bool(l.get("annual"))}
+    k=(payer,payee)
+    if k not in _fl or (l["ent"]==payer and _fl[k]["by"]!=payer): _fl[k]=f
+flows=sorted(_fl.values(),key=lambda f:-f["annual"])
+_inv={(l["ent"],l["cp"]) for l in links if l["dir"]!="in" and l["amt"] is not None and not _DEAD.search(l["type"]) and (l["amtType"]=="equity" or (l["amtType"] in ("commitment","project") and _INV.search(l["type"]) and not _NOTINV.search(l["type"])))}
+_inv|={(l["cp"],l["ent"]) for l in links if l["dir"]=="in" and l["amt"] is not None and l["amtType"] in ("equity","inflow") and _INV.search(l["type"])}
+for e in ents:
+    k=e["key"]; rev=(e.get("fin") or {}).get("rev")
+    cin=[f for f in flows if f["to"]==k and (k,f["from"]) in _inv]; out=[f for f in flows if f["from"]==k]; inn=[f for f in flows if f["to"]==k]
+    e["cash"]={"rev":rev,"circIn":round(sum(f["annual"] for f in cin),2),"circFrom":[[f["from"],f["annual"]] for f in cin],"in":round(sum(f["annual"] for f in inn),2),
+               "out":round(sum(f["annual"] for f in out),2),"outTo":[[f["to"],f["annual"]] for f in out]}
+data={"asOf":max(e["asOf"] for e in ents),"ents":ents,"links":links,"hubs":hubs,"amt":AMT,"checks":checks,"cycles":cycles,"flows":flows}
 # 使用者指引：network template 旁邊若有 guide_template.html，就一併產生 guide.html（公司清單隨資料更新）
 GT=os.path.join(os.path.dirname(os.path.abspath(TPL)),"guide_template.html")
 if os.path.exists(GT):

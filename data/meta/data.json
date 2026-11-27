@@ -498,7 +498,11 @@
      "x": "執行中 Meta 是 CoreWeave 最大客戶之一",
      "auto": true
     }
-   ]
+   ],
+   "term": {
+    "s": 2026,
+    "e": 2032
+   }
   },
   {
    "id": "nebius",
@@ -518,7 +522,11 @@
    ],
    "amtType": "commitment",
    "direction": "out",
-   "verified": "2026-11-26"
+   "verified": "2026-11-26",
+   "term": {
+    "s": 2026,
+    "e": 2031
+   }
   },
   {
    "id": "gcp",
@@ -1533,5 +1541,12 @@
     "ceo_org"
    ]
   }
+ },
+ "fin": {
+  "rev": 200.97,
+  "note": "2025",
+  "src": [
+   "mc_rev"
+  ]
  }
 }

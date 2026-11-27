@@ -315,7 +315,8 @@
      ]
     }
    ],
-   "verified": "2026-11-26"
+   "verified": "2026-11-26",
+   "annual": 24.1
   },
   {
    "id": "softbank",
@@ -507,7 +508,11 @@
    ],
    "amtType": "contract",
    "direction": "out",
-   "verified": "2026-11-26"
+   "verified": "2026-11-26",
+   "term": {
+    "s": 2026,
+    "e": 2033
+   }
   },
   {
    "id": "oracle",
@@ -537,7 +542,11 @@
      ]
     }
    ],
-   "verified": "2026-11-26"
+   "verified": "2026-11-26",
+   "term": {
+    "s": 2027,
+    "e": 2031
+   }
   },
   {
    "id": "coreweave",
@@ -1426,5 +1435,13 @@
     "ceo_org"
    ]
   }
+ },
+ "fin": {
+  "rev": 26.8,
+  "note": "2026 Q2 營收 $67 億 × 4 年化",
+  "src": [
+   "kc_q2",
+   "kc_q2b"
+  ]
  }
 }

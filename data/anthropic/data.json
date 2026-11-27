@@ -346,6 +346,10 @@
    "terms": {
     "vote": false,
     "auto": true
+   },
+   "term": {
+    "s": 2026,
+    "e": 2033
    }
   },
   {
@@ -370,7 +374,11 @@
    ],
    "amtType": "commitment",
    "direction": "out",
-   "verified": "2026-11-26"
+   "verified": "2026-11-26",
+   "term": {
+    "s": 2026,
+    "e": 2036
+   }
   },
   {
    "id": "microsoft",
@@ -392,7 +400,11 @@
    ],
    "amtType": "commitment",
    "direction": "out",
-   "verified": "2026-11-26"
+   "verified": "2026-11-26",
+   "term": {
+    "s": 2027,
+    "e": 2033
+   }
   },
   {
    "id": "broadcom",
@@ -425,6 +437,10 @@
    "terms": {
     "sec": "普通股",
     "auto": true
+   },
+   "term": {
+    "s": 2027,
+    "e": 2031
    }
   },
   {
@@ -457,7 +473,12 @@
      "auto": true
     }
    ],
-   "xnote": "兩份 S-1 數字不同：SpaceX 稱總額近 $450 億，Anthropic 列最多 $1,205 億，較早報導為 $845 億"
+   "xnote": "兩份 S-1 數字不同：SpaceX 稱總額近 $450 億，Anthropic 列最多 $1,205 億，較早報導為 $845 億",
+   "term": {
+    "s": 2026,
+    "e": 2029,
+    "firm": 45
+   }
   },
   {
    "id": "fluidstack",
@@ -1762,5 +1783,13 @@
     "ceo_since"
    ]
   }
+ },
+ "fin": {
+  "rev": 47.0,
+  "note": "2026/5 年化營收 run-rate",
+  "src": [
+   "series_h",
+   "yh_h"
+  ]
  }
 }

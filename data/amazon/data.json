@@ -271,7 +271,11 @@
    ],
    "amtType": "contract",
    "direction": "in",
-   "verified": "2026-11-26"
+   "verified": "2026-11-26",
+   "term": {
+    "s": 2026,
+    "e": 2036
+   }
   },
   {
    "id": "oai_eq",
@@ -333,7 +337,11 @@
      ]
     }
    ],
-   "verified": "2026-11-26"
+   "verified": "2026-11-26",
+   "term": {
+    "s": 2026,
+    "e": 2033
+   }
   },
   {
    "id": "capex",
@@ -1119,5 +1127,12 @@
     "ceo_bezos"
    ]
   }
+ },
+ "fin": {
+  "rev": 716.9,
+  "note": "2025",
+  "src": [
+   "mc_fy25"
+  ]
  }
 }
