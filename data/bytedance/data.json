@@ -165,6 +165,14 @@
   "kr_bd400": [
    "36Kr｜字節以約 $4,000 億估值回購最多 $60 億（2026-11-13）",
    "https://eu.36kr.com/en/p/4067760793704065"
+  ],
+  "ceo_liang": [
+   "Human Resources Online｜張一鳴交棒，由共同創辦人梁汝波接任 CEO",
+   "https://www.humanresourcesonline.net/bytedance-founder-set-to-pass-the-ceo-baton-to-hr-head-chi"
+  ],
+  "ceo_2026": [
+   "澎湃新聞｜字節跳動 2026 年中全員會：CEO 梁汝波出席（2026-08-06）",
+   "https://www.thepaper.cn/newsDetail_forward_33730197"
   ]
  },
  "categories": [
@@ -1292,7 +1300,12 @@
    ]
   },
   "ceo": {
-   "basis": "待補資料：尚未查證現任執行長、是否兼任董事長與接班安排"
+   "score": 50,
+   "basis": "共同創辦人梁汝波擔任執行長，創辦人張一鳴仍對內發聲（＋25）；未取得執行長是否兼任董事長的來源，暫不計分（＋0）；未查到公開的二號人物或接班安排（＋25）；2021 年接任，任期未滿 15 年（＋0）",
+   "src": [
+    "ceo_liang",
+    "ceo_2026"
+   ]
   }
  }
 }

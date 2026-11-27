@@ -235,6 +235,18 @@
    "VNET Group 20-F（FY2025）｜每 ADS 代表 6 股 Class A 普通股",
    "https://www.sec.gov/Archives/edgar/data/1508475/000110465926044361/vnet-20251231x20f.htm",
    "A"
+  ],
+  "ceo_zeng": [
+   "鳳凰網科技／科創板日報｜寧德時代董事長兼 CEO 曾毓群（2026-08-17）",
+   "https://tech.ifeng.com/c/8vex12zJBTF"
+  ],
+  "ceo_founder": [
+   "鳳凰網科技｜寧德時代創始人兼董事長曾毓群（2026-06-23）",
+   "https://tech.ifeng.com/c/8u9KEpsHLSy"
+  ],
+  "ceo_board": [
+   "同花順｜寧德時代高管：聯席董事長潘健、副董事長周佳與李平",
+   "https://basic.10jqka.com.cn/176/HK3750/manager.html"
   ]
  },
  "categories": [
@@ -1781,7 +1793,13 @@
    "basis": "待補資料：未取得資本支出與有息負債"
   },
   "ceo": {
-   "basis": "待補資料：尚未查證現任執行長、是否兼任董事長與接班安排"
+   "score": 40,
+   "basis": "創辦人曾毓群擔任執行長（＋25）；兼任董事長（＋15）；設有聯席董事長與兩位副董事長（＋0）；未取得年齡來源，暫不計分（＋0）",
+   "src": [
+    "ceo_zeng",
+    "ceo_founder",
+    "ceo_board"
+   ]
   }
  }
 }

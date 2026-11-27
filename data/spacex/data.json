@@ -201,6 +201,14 @@
   "amd_w247_spx": [
    "24/7 Wall St｜AMD 持 SpaceX 約 330 萬股、$5.66 億（2026-08-15）",
    "https://247wallst.com/investing/2026/08/15/amds-566-million-spacex-stake-raises-a-bigger-question-than-ai-chip-orders/"
+  ],
+  "ceo_gov": [
+   "Morningstar｜SpaceX IPO 治理：Musk 兼 CEO、CTO 與董事長並握有表決控制權；Shotwell 為總裁兼營運長",
+   "https://www.morningstar.com/stocks/spacex-ipo-investors-long-list-unfriendly-shareholder-policies"
+  ],
+  "ceo_tc": [
+   "TechCrunch｜SpaceX S-1 持股：Musk 為創辦人、CEO、CTO 兼董事長（2026-05-21）",
+   "https://techcrunch.com/2026/05/21/who-will-benefit-most-from-spacex-ipo-mostly-elon-and-a-few-from-his-inner-circle/"
   ]
  },
  "categories": [
@@ -1386,7 +1394,12 @@
    "basis": "待補資料：未取得資本支出與有息負債"
   },
   "ceo": {
-   "basis": "待補資料：尚未查證現任執行長、是否兼任董事長與接班安排"
+   "score": 40,
+   "basis": "創辦人 Musk 擔任執行長並握有表決控制權（＋25）；兼任董事長與技術長（＋15）；Gwynne Shotwell 任總裁兼營運長（＋0）；未取得任期的明確來源，暫不計分（＋0）",
+   "src": [
+    "ceo_gov",
+    "ceo_tc"
+   ]
   }
  }
 }

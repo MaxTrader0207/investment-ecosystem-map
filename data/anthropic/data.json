@@ -265,6 +265,14 @@
   "finimize_ant": [
    "Finimize｜ANT：前五大客戶占前 9 月營收 25%；12/11 可能納入 Russell 1000",
    "https://finimize.com/content/ant-asset-snapshot"
+  ],
+  "ceo_lead": [
+   "Anthropic｜Leadership：Dario Amodei 為共同創辦人兼 CEO；Daniela Amodei 為總裁並任董事會主席",
+   "https://www.anthropic.com/company/leadership"
+  ],
+  "ceo_since": [
+   "UnifyGTM｜Dario Amodei 自 2021/2 起任 CEO",
+   "https://www.unifygtm.com/insights/executives/anthropic-ceo"
   ]
  },
  "categories": [
@@ -1747,7 +1755,12 @@
    "basis": "待補資料：未取得可比較的資本支出與負債"
   },
   "ceo": {
-   "basis": "待補資料：尚未查證現任執行長、是否兼任董事長與接班安排"
+   "score": 25,
+   "basis": "共同創辦人 Dario Amodei 擔任執行長（＋25）；董事會主席由總裁 Daniela Amodei 擔任，執行長未兼任（＋0）；總裁負責日常營運並管理高階團隊，有明確的二號人物（＋0）；2021 年起任執行長，任期未滿 15 年（＋0）",
+   "src": [
+    "ceo_lead",
+    "ceo_since"
+   ]
   }
  }
 }
