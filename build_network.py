@@ -58,7 +58,10 @@ for fp in FILES:
             st["skip"].setdefault(t,{"und":0,"per":0,"excl":0})[k]+=1
     st["top"]=[[n["name"],n.get("short",""),AMT.get(n.get("amtType","none"),"")] for n in sorted([n for n in D["nodes"] if n.get("amt") is not None and not cats.get(n["cat"],{}).get("counterparty") and not n.get("excludeFromSum")],key=lambda n:-n["amt"])[:3]]
     ents.append({"key":ek,"entity":M["entity"],"ticker":M.get("ticker",""),"accent":M.get("accent","#888"),"file":f,"asOf":M["asOf"],"nodes":len(D["nodes"]),"st":st,"sub":M.get("subtitle",""),"thesis":(D.get("ic") or {}).get("thesis","") if isinstance(D.get("ic"),dict) else "",
-        "fin":(dict(D["fin"],src=[[S[x][0],S[x][1]] for x in D["fin"].get("src",[]) if x in S]) if isinstance(D.get("fin"),dict) else None),
+        "fin":(dict(D["fin"],src=[[S[x][0],S[x][1]] for x in D["fin"].get("src",[]) if x in S],
+                    cashSrc=[[S[x][0],S[x][1]] for x in D["fin"].get("cashSrc",[]) if x in S],burnSrc=[[S[x][0],S[x][1]] for x in D["fin"].get("burnSrc",[]) if x in S],
+                    circEst=(dict(D["fin"]["circEst"],src=[[S[x][0],S[x][1]] for x in D["fin"]["circEst"].get("src",[]) if x in S]) if isinstance(D["fin"].get("circEst"),dict) else None)) if isinstance(D.get("fin"),dict) else None),
+        "dues":[dict(x,src=[[S[k][0],S[k][1]] for k in x.get("src",[]) if k in S]) for x in D.get("dues",[])],
         "rk":{"n":sum(1 for n in D["nodes"] if not cats.get(n["cat"],{}).get("counterparty")),
               "eq":[n["amt"] for n in D["nodes"] if not cats.get(n["cat"],{}).get("counterparty") and n.get("amtType","equity")=="equity" and n.get("direction","out")!="in" and n.get("amt") is not None and not n.get("excludeFromSum") and not n.get("per")],
               "dep":[l.get("dep") for l in D.get("loops",[]) if l.get("dep")],
@@ -69,6 +72,8 @@ for fp in FILES:
               "x":{"cn":((D.get("macro") or {}).get("geo") or {}).get("cn"),
                    "capex":round(sum(n["amt"] for n in D["nodes"] if n.get("amtType")=="capex" and n.get("amt") is not None and (n.get("per")=="year" or n["id"]=="capex")),2) or None,
                    "gonly":round(sum((n.get("guarAmt") if n.get("guarAmt") is not None else (n.get("amt") or 0)) for n in D["nodes"] if not n.get("excludeFromSum") and n.get("amtType")!="liability" and (n.get("guarAmt") is not None or n.get("guarantee") or "擔保" in n.get("type",""))),2),
+                   "guar":[[n["name"],(n.get("guarAmt") if n.get("guarAmt") is not None else n.get("amt")),n.get("status",""),str(n.get("date","")),(n.get("term") or {}).get("e")] for n in D["nodes"] if n.get("amtType")!="liability" and (n.get("guarAmt") is not None or n.get("guarantee") or "擔保" in n.get("type",""))],
+                   "fund":[[n["name"],n["amt"],str(n.get("date","")),n.get("amtType")] for n in D["nodes"] if n.get("direction")=="in" and n.get("amtType") in ("inflow","liability","equity") and n.get("amt") is not None and not n.get("excludeFromSum")],
                    "rates":[[n.get("date",""),n["name"],n["rate"]] for n in D["nodes"] if isinstance(n.get("rate"),(int,float))],
                    "txt":[[str(n.get("date","")),n["name"],(n.get("status","")+"｜"+n.get("amtText",""))[:240]] for n in D["nodes"]]+[[str(v.get("d","")),v.get("t",""),v.get("x","")[:240]] for v in D.get("events",[])]},
               "macro":{mk:dict(mv,src=[[S[x][0],S[x][1]] for x in mv.get("src",[]) if x in S]) for mk,mv in (D.get("macro") or {}).items() if isinstance(mv,dict)}}})
@@ -284,6 +289,11 @@ def _days(d):
 _X={}
 for e in ents: _X[e["key"]]=e.pop("xx")
 for e in ents: e["scen"]={"cn":_X[e["key"]]["cn"],"capex":_X[e["key"]]["capex"]}
+for e in ents:    # 缺口靠誰補：近 12 個月的募資與舉債；到期事項與擔保
+    fu=sorted([f for f in _X[e["key"]]["fund"] if 0<=_days(f[2])<=365],key=lambda f:-f[1])
+    e["fund"]={"tot":round(sum(f[1] for f in fu),1),"top":[[f[0],f[1],f[3]] for f in fu[:3]]}
+due=[dict(x,ent=e["entity"],key=e["key"]) for e in ents for x in e.pop("dues",[])]
+guar=sorted([{"ent":_name[k],"key":k,"name":g[0],"amt":g[1],"status":g[2],"date":g[3],"end":g[4]} for k,v in _X.items() for g in v["guar"]],key=lambda g:-(g["amt"] or 0))
 _yrs=list(range(int(ASOF[:4]),int(ASOF[:4])+11))
 _tot={y:sum(f["total"]/(f["e"]-f["s"]+1) for f in flows if f.get("s") and f["s"]<=y<=f["e"]) for y in _yrs}
 _pk=max(_tot.values()) if _tot else 0; _pky=[y for y in _yrs if _pk and _tot[y]>=0.95*_pk]
@@ -360,7 +370,7 @@ if _entry["from"]:
     for a in _auto: _cnt[a["t"]]=_cnt.get(a["t"],0)+1
     _new=[a["e"] for a in _auto if a["t"]=="新增公司"]; _lc=[a["e"]+"（"+a["x"].split("，")[-1]+"）" for a in _auto if a["t"]=="燈號變動"]
     head.append(f"與上一期（{_entry['from']}）相比："+("；".join(filter(None,[("新增 "+"、".join(_new)) if _new else "",("燈號變動 "+"、".join(_lc[:4])) if _lc else "",f"金額更新 {_cnt.get('金額更新',0)} 筆、新增節點 {_cnt.get('新增節點',0)} 個" if _cnt.get('金額更新') or _cnt.get('新增節點') else ""])) or "沒有數字變動")+"。")
-data={"asOf":ASOF,"ents":ents,"links":links,"hubs":hubs,"amt":AMT,"checks":checks,"cycles":cycles,"flows":flows,"watch":watch,"head":head,"chg":[{k:x[k] for k in ("d","from","auto","notes")} for x in _log["log"][:8]]}
+data={"asOf":ASOF,"ents":ents,"links":links,"hubs":hubs,"amt":AMT,"checks":checks,"cycles":cycles,"flows":flows,"watch":watch,"head":head,"due":due,"guar":guar,"chg":[{k:x[k] for k in ("d","from","auto","notes")} for x in _log["log"][:8]]}
 # 使用者指引：network template 旁邊若有 guide_template.html，就一併產生 guide.html（公司清單隨資料更新）
 GT=os.path.join(os.path.dirname(os.path.abspath(TPL)),"guide_template.html")
 if os.path.exists(GT):

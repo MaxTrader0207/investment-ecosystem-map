@@ -410,6 +410,29 @@
   "skh_nv": [
    "Seoul Economic Daily｜SK hynix 前三季對 NVIDIA 營收約 ₩35 兆（$240 億）（2026-11-17）",
    "https://en.sedaily.com/business/2026/11/17/sk-hynix-nvidia-sales-double-to-35-trillion-won-on-hbm4-ramp"
+  ],
+  "q3fy27": [
+   "NVIDIA IR｜FY2027 Q3：營收 $1,158 億，Q4 指引 $1,300 億（2026-11）",
+   "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2027/",
+   "A"
+  ],
+  "q2fy27": [
+   "NVIDIA IR｜FY2027 Q2：營收 $962 億，季增 18%",
+   "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Second-Quarter-Fiscal-2027/",
+   "A"
+  ],
+  "q2fy27q": [
+   "SEC 10-Q｜NVIDIA FY2027 Q2：一家 AI 研究與部署公司透過多家客戶採購雲端服務，貢獻可觀營收",
+   "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000075/nvda-20260726.htm",
+   "A"
+  ],
+  "cw_capex": [
+   "Pulse 2.0｜CoreWeave 2026 資本支出指引 $370–390 億",
+   "https://pulse2.com/coreweave-record-q3-revenue-reaches-3-66-billion-as-backlog-grows-to-132-5-billion/"
+  ],
+  "oai600": [
+   "AppleScoop｜黃仁勳稱 OpenAI 至 2030 年的計畫約需 $6,000 億 NVIDIA 算力",
+   "https://applescoop.org/story/ai-circular-money-nvidia-openai-deals-explained"
   ]
  },
  "categories": [
@@ -2501,10 +2524,35 @@
   }
  },
  "fin": {
-  "rev": 215.9,
-  "note": "FY2026",
+  "rev": 423.5,
+  "note": "FY2027 估計：Q2、Q3 實績＋Q4 指引，Q1 由 Q2 季增 18% 反推",
   "src": [
-   "mc_fy26"
-  ]
+   "q3fy27",
+   "q2fy27"
+  ],
+  "circEst": {
+   "lo": 19.0,
+   "hi": 146.6,
+   "note": "NVIDIA 沒有揭露來自被投資公司的營收，以下是依公開數字加上假設推出的區間，不是實際數字。下限只算 CoreWeave；上限把 OpenAI 的長期計畫平均攤到每年，多數尚未發生，而且是經雲端業者間接採購。",
+   "parts": [
+    {
+     "k": "CoreWeave",
+     "lo": 19.0,
+     "hi": 26.6,
+     "basis": "2026 資本支出指引中值 $380 億 × 假設 50%–70% 用於 NVIDIA 系統（比例是本表的假設，沒有公開數字）"
+    },
+    {
+     "k": "OpenAI",
+     "lo": 0,
+     "hi": 120.0,
+     "basis": "10-Q 只說貢獻「可觀」營收、未給數字，下限記 0；上限取黃仁勳所稱至 2030 年約 $6,000 億的計畫，平均每年 $1,200 億"
+    }
+   ],
+   "src": [
+    "cw_capex",
+    "q2fy27q",
+    "oai600"
+   ]
+  }
  }
 }

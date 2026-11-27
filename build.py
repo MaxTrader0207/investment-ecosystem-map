@@ -121,6 +121,15 @@ def validate(d):
     for k in (d.get("fin") or {}).get("cashSrc", []):
         if k not in S: err.append(f"fin.cashSrc 引用不存在的來源 {k}")
         used.add(k)
+    for k in ((d.get("fin") or {}).get("circEst") or {}).get("src", []) + (d.get("fin") or {}).get("burnSrc", []):   # 循環收入估計區間、燒錢預估
+        if k not in S: err.append(f"fin 的估計來源 {k} 不存在")
+        used.add(k)
+    for i, x in enumerate(d.get("dues", [])):          # 未來到期事項：{y:年, amt:US$十億或 null, kind, what, src}
+        if not isinstance(x.get("y"), int) or not x.get("what"): err.append(f"dues[{i}] 需要 y（年）與 what（說明）")
+        for k in x.get("src", []):
+            if k not in S: err.append(f"dues[{i}] 引用不存在的來源 {k}")
+            used.add(k)
+        if not x.get("src"): err.append(f"dues[{i}] 需要來源")
     for n in d["nodes"]:
         t = n.get("term")
         if t is not None and not (isinstance(t, dict) and isinstance(t.get("s"), int) and isinstance(t.get("e"), int) and t["s"] <= t["e"]): err.append(f"節點 {n['id']}：term 需為 {{s:起始年,e:結束年}}")

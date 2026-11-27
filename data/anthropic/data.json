@@ -273,6 +273,19 @@
   "ceo_since": [
    "UnifyGTM｜Dario Amodei 自 2021/2 起任 CEO",
    "https://www.unifygtm.com/insights/executives/anthropic-ceo"
+  ],
+  "s1a": [
+   "SEC S-1/A｜Anthropic 9/30 現金與短期投資 $1,318 億",
+   "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm",
+   "A"
+  ],
+  "pf": [
+   "BigGo Finance｜Anthropic 最終公開說明書：上市後擬制現金與短期投資 $2,446 億",
+   "https://finance.biggo.com/news/30d76f7c-818d-49ef-b2ce-90752d090f1e"
+  ],
+  "due12": [
+   "tldr.money｜Anthropic S-1：承諾約 $9,009 億，其中 $707 億在未來 12 個月到期",
+   "https://www.tldr.money/articles/ipo/anthropic-ipo-financials-s1"
   ]
  },
  "categories": [
@@ -1790,6 +1803,23 @@
   "src": [
    "series_h",
    "yh_h"
-  ]
- }
+  ],
+  "cash": 244.6,
+  "cashSrc": [
+   "pf",
+   "s1a"
+  ],
+  "cashNote": "上市後擬制現金與短期投資（9/30 實際為 $1,318 億）"
+ },
+ "dues": [
+  {
+   "y": 2027,
+   "amt": 70.7,
+   "kind": "承諾付款",
+   "what": "S-1 揭露的全部承諾中，未來 12 個月內到期的部分（與上方合約付款有重疊）",
+   "src": [
+    "due12"
+   ]
+  }
+ ]
 }

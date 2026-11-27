@@ -205,6 +205,10 @@
   "ceo_org": [
    "Creately｜OpenAI 組織：創辦人主導、Altman 直接管轄多數部門",
    "https://creately.com/org-chart/major-startups/openai"
+  ],
+  "burn": [
+   "Reuters／Investing.com｜FT：OpenAI 預估 2026–2030 年燒掉 $2,780 億現金",
+   "https://www.investing.com/news/economy-news/openai-expects-to-burn-through-almost-280-billion-by-2030-ft-reports-4907970"
   ]
  },
  "categories": [
@@ -1442,6 +1446,10 @@
   "src": [
    "kc_q2",
    "kc_q2b"
+  ],
+  "burnNote": "公司內部預估 2026–2030 年自由現金流為負 $2,780 億；現金餘額未揭露",
+  "burnSrc": [
+   "burn"
   ]
  }
 }
