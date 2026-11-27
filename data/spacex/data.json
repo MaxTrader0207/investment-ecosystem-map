@@ -229,6 +229,10 @@
   "ttm_sw": [
    "Simply Wall St｜SpaceX Q3：最近四季營收 $320.4 億",
    "https://simplywall.st/stocks/us/telecom/nasdaq-spcx/space-exploration-technologies/news/spacex-spcx-stock-shrugs-off-q3-results-as-profit-jumps"
+  ],
+  "bs_q3": [
+   "Cestrian Capital Research｜SpaceX 9/30：現金 $512.9 億、有價證券 $385.6 億、負債與融資租賃 $388.4 億",
+   "https://www.cestriancapitalresearch.com/spacex-spcx-stock-rating-after-q3-fy26-earnings/"
   ]
  },
  "categories": [
@@ -1420,7 +1424,12 @@
    "basis": "待補資料：未取得地區營收占比"
   },
   "infl": {
-   "basis": "待補資料：未取得資本支出與有息負債"
+   "score": 100,
+   "basis": "最近四季資本支出 $550 億 ÷ 最近四季營收 $320 億＝172%；負債與融資租賃 $388 億（9/30）÷ 營收＝121%，兩項都達上限。帳上現金與有價證券 $899 億，高於負債",
+   "src": [
+    "ttm_sa",
+    "bs_q3"
+   ]
   },
   "ceo": {
    "score": 40,
@@ -1439,7 +1448,20 @@
    "ttm_sa",
    "ttm_sw"
   ],
-  "period": "2026-09-30"
+  "period": "2026-09-30",
+  "growth": {
+   "ttm": 83.1,
+   "q": 161.4,
+   "qLabel": "2026 Q3",
+   "note": "最近四季年增率引自 Simply Wall St 的整理",
+   "est": false
+  },
+  "cash": 89.9,
+  "cashSrc": [
+   "bs_q3"
+  ],
+  "cashNote": "現金 $512.9 億＋有價證券 $385.6 億（9/30）；Q4 資本支出指引 $350–400 億",
+  "cashDate": "2026-09-30"
  },
  "mkt": {
   "cap": 1880,

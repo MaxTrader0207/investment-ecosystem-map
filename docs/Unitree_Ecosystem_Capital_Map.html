@@ -802,6 +802,7 @@ verify:[['Markdown',()=>download(`${PFX}_資料校驗紀錄_${STAMP}.md`,'## 資
  const rows=[], csv=[['項目','數值','說明']];
  const add=(l,v,n,s)=>{rows.push(card(l,v,n,s));csv.push([l,v,n||''])};
  add('年營收',B(F.rev),F.rev==null?'沒有公開的營收數字':F.note,F.src);
+ if(F.growth){const g=F.growth,pp=v=>v==null?'未取得':(v>=0?'+':'')+(Math.abs(v)>=100?Math.round(v).toLocaleString():v.toFixed(1))+'%';add('營收年增率','最近四季 '+pp(g.ttm)+'｜'+(g.qLabel||'最新一期')+' '+pp(g.q),(g.est?'含估計；':'')+(g.note||''),F.src)}
  add('帳上現金',B(F.cash),F.cash==null?'尚未建檔或未揭露':F.cashNote,F.cashSrc);
  add('市值／估值',B(M.cap),M.cap==null?'未上市或尚未建檔':((M.date||'')+(M.note?'；'+M.note:'')+(M.hand?'；'+M.hand:'')),M.src);
  if(M.cap&&F.rev) add('市值 ÷ 年營收',(M.cap/F.rev).toFixed(1)+' 倍','市值與營收的日期口徑不同，僅供比較');
