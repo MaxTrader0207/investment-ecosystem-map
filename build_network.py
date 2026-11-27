@@ -27,6 +27,7 @@ def grade(t,u):
     if re.search(r"reuters|bloomberg|wsj\.com|ft\.com|cnbc|caixinglobal|nikkei|cna\.com\.tw|udn\.com|ctee\.com|technews|economist|theinformation|techcrunch|scmp\.com|aljazeera|fortune\.com|digitimes|trendforce|jiemian|cls\.cn|wallstreetcn|yicai|stheadline|apnews|anuenews|theregister|tomshardware|datacenterdynamics|36kr\.com|chinatimes|ltn\.com|barrons|axios|nytimes|washingtonpost|theverge|wired|businessinsider|insidermonkey|seekingalpha|thenextweb|siliconangle|finance\.yahoo|aol\.com|marketwatch|techrepublic|electrive|engadget|nownews|ifeng|sina\.c|eastmoney|mining\.com|world-nuclear-news|ans\.org|verdict\.co|energytrend|businesstoday|business-standard|livemint|heise\.de|calcalistech|timesofisrael|ynetnews",u) or re.search(r"Reuters|Bloomberg|路透|彭博|AP（|WSJ",t): return "B"
     if re.search(r"新聞稿|Newsroom|官方公告|重大訊息|10-Q|8-K|10-K|20-F|press release|Reports (First|Second|Third|Fourth)",t,re.I): return "A"
     return "C"
+def fmtb(v): return ("$%s億"%format(round(v*10),",")) if v>=1 else ("$%.1f億"%(v*10))
 AMT={"equity":"股權成本","capex":"自建投資","commitment":"承諾上限","contract":"合約價值","project":"專案總額","inflow":"流入資金","disposal":"處分回收","return":"股東回饋","liability":"會計負債","none":"未揭露"}
 ents=[];links=[];allpairs=set()
 if len(sys.argv)<4: sys.exit(__doc__)
@@ -56,7 +57,13 @@ for fp in FILES:
             k="und" if n.get("amt") is None else ("per" if n.get("per") else "excl")
             st["skip"].setdefault(t,{"und":0,"per":0,"excl":0})[k]+=1
     st["top"]=[[n["name"],n.get("short",""),AMT.get(n.get("amtType","none"),"")] for n in sorted([n for n in D["nodes"] if n.get("amt") is not None and not cats.get(n["cat"],{}).get("counterparty") and not n.get("excludeFromSum")],key=lambda n:-n["amt"])[:3]]
-    ents.append({"key":ek,"entity":M["entity"],"ticker":M.get("ticker",""),"accent":M.get("accent","#888"),"file":f,"asOf":M["asOf"],"nodes":len(D["nodes"]),"st":st,"sub":M.get("subtitle",""),"thesis":(D.get("ic") or {}).get("thesis","") if isinstance(D.get("ic"),dict) else ""})
+    ents.append({"key":ek,"entity":M["entity"],"ticker":M.get("ticker",""),"accent":M.get("accent","#888"),"file":f,"asOf":M["asOf"],"nodes":len(D["nodes"]),"st":st,"sub":M.get("subtitle",""),"thesis":(D.get("ic") or {}).get("thesis","") if isinstance(D.get("ic"),dict) else "",
+        "rk":{"n":sum(1 for n in D["nodes"] if not cats.get(n["cat"],{}).get("counterparty")),
+              "eq":[n["amt"] for n in D["nodes"] if not cats.get(n["cat"],{}).get("counterparty") and n.get("amtType","equity")=="equity" and n.get("direction","out")!="in" and n.get("amt") is not None and not n.get("excludeFromSum") and not n.get("per")],
+              "dep":[l.get("dep") for l in D.get("loops",[]) if l.get("dep")],
+              "guar":sum(1 for n in D["nodes"] if not cats.get(n["cat"],{}).get("counterparty") and (n.get("guarantee") or "擔保" in n.get("type","") or n.get("amtType")=="liability" or any(r["k"]=="fin" for r in n.get("risks",[])))),
+              "unc":sum(1 for n in D["nodes"] if not cats.get(n["cat"],{}).get("counterparty") and (n.get("unconfirmed") or any(r["k"]=="exec" for r in n.get("risks",[])))),
+              "macro":D.get("macro") or {}}})
     for n in D["nodes"]:
         if n["cat"] not in cats: continue
         c=cats[n["cat"]]
@@ -163,7 +170,52 @@ def walk(start,path):
             cycles.append({"path":list(path),"edges":es,"min":es[mi]["amt"],"minIdx":mi,"len":len(path),"ents":sum(1 for x in path if x in entkeys),"rumor":any(e["rumor"] for e in es),"und":any(e["amt"] is None for e in es)})
         elif v not in path and len(path)<4 and v>start: walk(start,path+[v])
 for s in sorted(G): walk(s,[s])
-cycles.sort(key=lambda c:(c["und"],-c["min"],c["len"])); cycles=cycles[:40]
+cycles.sort(key=lambda c:(c["und"],-c["min"],c["len"]))
+# ---------- 風險總覽：每個實體 10 個面向（0–100）× 權重 → 總風險值與燈號 ----------
+# 前 7 個面向由現有資料依固定公式換算；地緣政治、匯率、通膨／物價／利率需要 data.json 的 macro 欄位
+# （macro:{"geo":{"score":0-100,"basis":"…","src":["key"]},"fx":{…},"infl":{…}}），沒有就標示待補、不計入總分。
+RISK_DIMS=[("geo","地緣政治／出口管制",15),("inv","對外投資集中度",15),("loop","循環融資依賴",15),("fin","擔保與或有負債",10),("conc","客戶與對手集中",10),
+           ("infl","通膨／物價／利率",10),("reg","監管與治理",10),("fx","匯率",5),("exec","執行／未定案",5),("info","資訊可信度",5)]
+_INV=re.compile("股權|特別股|普通股|收購|入股|增資|參與|輪|可轉|認股|權證|認購|配售|PIPE|股東|合資|基金|LP|投資|技術授權|持股")
+_NOTINV=re.compile("採購|雲端|合約|租|代工|資本支出|計畫|投資承諾|發債|公司債|回購|貸款|籌資|訴訟|競爭"); _DEAD=re.compile("撤銷|終止|取消|出清|出售")
+def _cap(v): return int(round(max(0,min(100,v))))
+for e in ents:
+    rk=e.pop("rk"); st=e["st"]; n=max(rk["n"],15); k=e["key"]; R={}   # 節點少於 15 個時以 15 計，避免資料少的公司占比被放大
+    # 與「投資簡覽」相同的認定：股權成本，加上屬於入股／收購／合資性質的承諾
+    eq=[l["amt"] for l in links if l["ent"]==k and l["dir"]!="in" and l["amt"] is not None and not l["excl"] and not _DEAD.search(l["type"]) and (l["amtType"]=="equity" or (l["amtType"] in ("commitment","project") and _INV.search(l["type"]) and not _NOTINV.search(l["type"])))]
+    tot=sum(eq)
+    if eq and tot>0:
+        hhi=sum((x/tot)**2 for x in eq); sc=min(1,tot/10)
+        R["inv"]=(_cap(hhi*100*sc),f"共 {len(eq)} 筆股權類投資、合計 {fmtb(tot)}；最大單筆占 {max(eq)/tot*100:.0f}%（集中度 {hhi*100:.0f} × 規模係數 {sc:.2f}）")
+    else: R["inv"]=(0,"沒有已揭露金額的對外股權投資")
+    dv={"high":100,"mid":60,"low":20}; ds=[dv[d] for d in rk["dep"] if d in dv]
+    nc=sum(1 for c in cycles if k in c["path"])
+    R["loop"]=(_cap(0.7*(sum(ds)/len(ds) if ds else 0)+0.3*min(100,nc*10)),f"{len(ds)} 條資金循環的依賴程度平均（高 {rk['dep'].count('high')}、中 {rk['dep'].count('mid')}、低 {rk['dep'].count('low')}）；參與 {nc} 個跨實體閉環")
+    R["fin"]=(_cap(rk["guar"]/n/0.20*100),f"{rk['guar']}／{rk['n']} 個節點涉及擔保、負債或財務風險旗標（占 {rk['guar']/n*100:.0f}%，達 20% 為滿分）")
+    cl=[l for l in links if l["ent"]==k and l["amtType"] in ("contract","commitment","inflow","project") and l["amt"] is not None and not l["excl"]]
+    bycp={}
+    for l in cl: bycp[l["cp"]]=bycp.get(l["cp"],0)+l["amt"]
+    ct=sum(bycp.values()); top=max(bycp.items(),key=lambda x:x[1]) if bycp else None
+    cf=st["risk"].get("conc",0)
+    R["conc"]=(_cap(0.5*min(100,cf/n/0.15*100)+0.5*(top[1]/ct*100 if top and len(bycp)>1 else (100 if top else 0))),
+               (f"合約與承諾金額最大對手 {top[0]} 占 {top[1]/ct*100:.0f}%（共 {len(bycp)} 個對手）；" if top else "沒有已揭露金額的合約；")+f"{cf} 個節點有集中度旗標")
+    rf=st["risk"].get("reg",0)
+    R["reg"]=(_cap(rf/n/0.15*100),f"{rf}／{rk['n']} 個節點有監管或治理旗標（占 {rf/n*100:.0f}%，達 15% 為滿分）")
+    R["exec"]=(_cap(rk["unc"]/n/0.25*100),f"{rk['unc']}／{rk['n']} 個節點未定案或有執行風險旗標（占 {rk['unc']/n*100:.0f}%，達 25% 為滿分）")
+    low=st["grade"]["C"]+st["grade"]["D"]+st["stale"]
+    R["info"]=(_cap(low/n/0.40*100),f"{st['grade']['C']+st['grade']['D']} 個節點來源等級為 C 或 D、{st['stale']} 個待重新查證（占 {low/n*100:.0f}%，達 40% 為滿分）")
+    for mk in ("geo","fx","infl"):
+        m=rk["macro"].get(mk)
+        if isinstance(m,dict) and isinstance(m.get("score"),(int,float)): R[mk]=(_cap(m["score"]),m.get("basis",""),m.get("src",[]))
+    dims=[]
+    for key,name,w in RISK_DIMS:
+        r=R.get(key)
+        dims.append({"k":key,"n":name,"w":w,"s":r[0] if r else None,"b":r[1] if r else "待補資料：需要另外查證公開數據後才能評分","src":list(r[2]) if r and len(r)>2 else []})
+    cov=sum(d["w"] for d in dims if d["s"] is not None)
+    e["risk"]={"dims":dims,"cov":cov,"total":int(round(sum(d["s"]*d["w"] for d in dims if d["s"] is not None)/cov)) if cov else None}
+_rank=sorted([e for e in ents if e["risk"]["total"] is not None],key=lambda e:-e["risk"]["total"])
+for i,e in enumerate(_rank): e["risk"]["rank"]=1+sum(1 for x in _rank if x["risk"]["total"]>e["risk"]["total"]); e["risk"]["of"]=len(_rank)
+cycles=cycles[:40]
 data={"asOf":max(e["asOf"] for e in ents),"ents":ents,"links":links,"hubs":hubs,"amt":AMT,"checks":checks,"cycles":cycles}
 # 使用者指引：network template 旁邊若有 guide_template.html，就一併產生 guide.html（公司清單隨資料更新）
 GT=os.path.join(os.path.dirname(os.path.abspath(TPL)),"guide_template.html")

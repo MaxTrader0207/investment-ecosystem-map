@@ -67,6 +67,29 @@ tr:hover td{background:var(--panel2)}
 .bcol td.ba{white-space:nowrap;text-align:right;font-family:Consolas,monospace;font-weight:700}
 .bcol td.ba small{display:block;font-weight:400;color:var(--muted);font-family:inherit}
 .bcol .bn{font-weight:700}.bcol .bi{color:var(--muted);font-size:calc(11.5px*var(--fs));line-height:1.55;margin-top:2px}
+.rgrid{display:grid;grid-template-columns:270px 1fr;gap:14px}
+@media (max-width:900px){.rgrid{grid-template-columns:1fr}}
+.rcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.rtot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
+.rlight{background:#05080c;border:1px solid var(--line);border-radius:22px;padding:11px 9px;display:flex;flex-direction:column;gap:9px}
+.rlight i{width:32px;height:32px;border-radius:50%;display:block;background:#2a3038}
+.rlight i.on3{background:#ef4444;box-shadow:0 0 16px #ef4444}.rlight i.on2{background:#f59e0b;box-shadow:0 0 16px #f59e0b}.rlight i.on1{background:#22c55e;box-shadow:0 0 16px #22c55e}
+.rnum{font-size:calc(70px*var(--fs));font-weight:800;line-height:1}
+.rc3{color:#f87171}.rc2{color:#fbbf24}.rc1{color:#4ade80}.rc0{color:var(--muted)}
+[data-theme="light"] .rc3{color:#b91c1c}[data-theme="light"] .rc2{color:#92400e}[data-theme="light"] .rc1{color:#166534}
+.rf3{fill:#ef4444}.rf2{fill:#f59e0b}.rf1{fill:#22c55e}.rf0{fill:#64748b}
+.rrank{font-size:calc(13.5px*var(--fs));font-weight:700;border:1px solid var(--line);border-radius:999px;padding:3px 12px;background:var(--panel2)}
+.rradar{display:flex;justify-content:center;align-items:center;overflow:auto}
+.rradar text{fill:var(--text);font-size:12.5px}.rradar text.m{fill:var(--muted)}
+.rradar text.t3{fill:#f87171;font-weight:700}.rradar text.t2{fill:#fbbf24;font-weight:700}.rradar text.t1{fill:#4ade80;font-weight:700}
+[data-theme="light"] .rradar text.t3{fill:#b91c1c}[data-theme="light"] .rradar text.t2{fill:#92400e}[data-theme="light"] .rradar text.t1{fill:#166534}
+.rpeers{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin-top:10px}
+@media (max-width:1100px){.rpeers{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:640px){.rpeers{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.rpeer{display:flex;align-items:center;gap:7px;padding:7px 9px;border-radius:8px;background:var(--panel2);border:1px solid var(--line);color:var(--text);font-family:inherit;font-size:calc(12.5px*var(--fs));cursor:pointer;text-align:left;line-height:1.35}
+.rpeer:hover{border-color:var(--acc)}.rpeer.on{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc) inset}
+.rpeer i{width:12px;height:12px;border-radius:50%;flex:none}.rpeer span{flex:1;overflow-wrap:anywhere}.rpeer b{flex:none}
+.rb3{background:#ef4444}.rb2{background:#f59e0b}.rb1{background:#22c55e}.rb0{background:#64748b}
 .bx{display:flex;gap:4px;align-items:center;padding:6px 10px;border-bottom:1px dashed var(--line)}.bx .hint{margin-right:auto;white-space:nowrap}.bx .btn{padding:2px 7px;font-size:calc(11.5px*var(--fs))}
 .bcol .bempty{padding:14px 12px;color:var(--muted);font-size:calc(12.5px*var(--fs))}
 footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs));line-height:1.7;border-top:1px solid var(--line)}
@@ -109,6 +132,8 @@ footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs)
 </div>
 <div class="sec">🧾 投資簡覽（點選圖上的公司，或從這裡選擇）　<select id="briefSel"></select></div>
 <div class="brief" id="brief"></div>
+<div class="sec">🚦 風險總覽（跟著上方選擇的公司切換）</div>
+<div class="brief" id="riskBox"></div>
 <div class="sec">⚖️ 多實體比較（勾選 2–3 家並排）</div>
 <div class="toolbar" id="cmpPick"></div>
 <div class="tablewrap"><table id="cmp"></table></div>
@@ -238,7 +263,41 @@ function brief(k){
  </div>
  <div class="hint" style="margin-top:8px">只計入有揭露金額的股權類項目（股權、特別股、可轉債、權證、收購、合資與入股承諾），依金額由大到小排列；採購、雲端與租約等合約不算投資，請看右側明細或各家 Dashboard。金額統一換算成美元比較，「≈」後為換算值。兩家都有 Dashboard 時，同一筆關係只列一次，並以出資方那份的金額（投入成本）為準；有現值時另行標示。</div>`;
  B.querySelectorAll('.bx button').forEach(x=>x.onclick=()=>briefExport(x.dataset.w,x.dataset.x));
+ risk(k);
  B.querySelectorAll('a[data-k]').forEach(a=>a.onclick=ev=>{ev.preventDefault();selected=a.dataset.k;$('#q').value='';if(!NODES.find(n=>n.id===selected)){$('#minDeg').value='1';build();}draw();side(selected)});
+}
+/* ---------- 風險總覽：左＝總風險值與燈號、右＝雷達圖、下＝全部公司一覽 ---------- */
+const RLV=v=>v==null?0:v>=60?3:v>=40?2:1, RLN=['待補','低','中','高'], RLAMP=['—','綠燈','黃燈','紅燈'];
+function risk(k){
+ const X=$('#riskBox'), e=ENT[k];
+ const peers=DATA.ents.filter(x=>x.risk&&x.risk.total!=null).sort((a,b)=>b.risk.total-a.risk.total||a.key.localeCompare(b.key,'zh-Hant'));
+ const strip=`<div class="rcard" style="margin-top:14px"><b>全部公司一覽</b> <span class="hint">依總風險值由高到低；點選可切換公司</span>
+  <div class="rpeers">${peers.map(p=>`<button class="rpeer${p.key===k?' on':''}" data-k="${esc(p.key)}" title="${esc(p.entity)}：總風險值 ${p.risk.total}（${RLAMP[RLV(p.risk.total)]}）"><i class="rb${RLV(p.risk.total)}"></i><span>${esc(p.entity)}</span><b class="rc${RLV(p.risk.total)}">${p.risk.total}</b></button>`).join('')}</div></div>`;
+ const foot=`<div class="hint" style="margin-top:8px;line-height:1.7">總風險值＝各面向分數（0–100）× 權重後相加，再依已有資料的權重換算成 0–100。燈號：60 以上紅燈（高）、40–59 黃燈（中）、39 以下綠燈（低）。雷達圖上的紅色虛線是 60 分。分數只反映各家 Dashboard 記錄到的投資與資金循環結構，不是公司整體的信用或經營風險；滑鼠移到雷達圖的圓點可看計算依據。非投資建議。</div>`;
+ if(!e||!e.risk||e.risk.total==null){X.innerHTML=`<div class="rcard"><b>${esc(k)}</b> <span class="hint">尚未建立專屬 Dashboard，沒有足夠資料計算風險值。請從下方選擇已建 Dashboard 的公司。</span></div>${strip}${foot}`;}
+ else{
+  const r=e.risk, lv=RLV(r.total), D=r.dims, n=D.length, R=150;
+  const cnt=[1,2,3].map(v=>D.filter(d=>RLV(d.s)===v).length), miss=D.filter(d=>d.s==null);
+  const top=D.filter(d=>d.s!=null).sort((a,b)=>b.s*b.w-a.s*a.w)[0];
+  const pt=(i,rr)=>{const a=-Math.PI/2+i*2*Math.PI/n;return [+(Math.cos(a)*rr).toFixed(1),+(Math.sin(a)*rr).toFixed(1)]};
+  const ring=v=>D.map((d,i)=>pt(i,R*v/100).join(',')).join(' ');
+  const col=['#64748b','#22c55e','#f59e0b','#ef4444'][lv];
+  const svg=`<svg viewBox="-310 -212 620 424" width="620" height="424" style="max-width:100%;height:auto" role="img" aria-label="${esc(e.entity)} 各風險面向雷達圖">
+   ${[25,50,75,100].map(v=>`<polygon points="${ring(v)}" fill="none" stroke="var(--line)" stroke-width="1"/>`).join('')}
+   <polygon points="${ring(60)}" fill="none" stroke="#ef4444" stroke-width="1" stroke-dasharray="4 4"/>
+   ${D.map((d,i)=>{const p=pt(i,R);return `<line x1="0" y1="0" x2="${p[0]}" y2="${p[1]}" stroke="var(--line)" stroke-width="1"${d.s==null?' stroke-dasharray="2 4"':''}/>`}).join('')}
+   <polygon points="${D.map((d,i)=>pt(i,R*(d.s||0)/100).join(',')).join(' ')}" fill="${col}" fill-opacity=".18" stroke="${col}" stroke-width="2"/>
+   ${D.map((d,i)=>{const v=RLV(d.s),p=pt(i,R*(d.s||0)/100),l=pt(i,R+20),an=Math.abs(l[0])<20?'middle':l[0]>0?'start':'end';
+    return `<g><title>${esc(d.n)}（權重 ${d.w}%）：${d.s==null?'待補':d.s+' 分'}\n${esc(d.b)}</title>${d.s==null?'':`<circle cx="${p[0]}" cy="${p[1]}" r="6.5" class="rf${v}" stroke="var(--panel)" stroke-width="2"/>`}
+    <text x="${l[0]}" y="${l[1]-2}" text-anchor="${an}"${d.s==null?' class="m"':''}>${esc(d.n)}</text><text x="${l[0]}" y="${l[1]+14}" text-anchor="${an}" class="${d.s==null?'m':'t'+v}">${d.s==null?'待補資料':d.s+'・'+RLN[v]}</text></g>`}).join('')}</svg>`;
+  X.innerHTML=`<div class="rgrid">
+   <div class="rcard rtot"><div class="hint">${esc(e.entity)}｜總風險值</div>
+    <div style="display:flex;gap:16px;align-items:center"><div class="rlight" aria-hidden="true"><i class="${lv===3?'on3':''}"></i><i class="${lv===2?'on2':''}"></i><i class="${lv===1?'on1':''}"></i></div><div class="rnum rc${lv}">${r.total}</div></div>
+    <div class="rc${lv}" style="font-size:calc(17px*var(--fs));font-weight:700">${RLN[lv]}度風險（${RLAMP[lv]}）</div>
+    <div class="rrank">${r.of} 間公司中排名第 ${r.rank} 高</div>
+    <div class="hint" style="line-height:1.7">${cnt[2]} 個面向紅燈、${cnt[1]} 個黃燈、${cnt[0]} 個綠燈${miss.length?`、${miss.length} 個待補`:''}<br>最大來源：${top?esc(top.n)+'（'+top.s+' 分）':'—'}${r.cov<100?`<br>目前依權重 ${r.cov}% 的面向計算`:''}</div></div>
+   <div class="rcard rradar">${svg}</div></div>${strip}${foot}`;}
+ X.querySelectorAll('.rpeer').forEach(b=>b.onclick=()=>brief(b.dataset.k));
 }
 /* ---- 「投資簡覽」兩欄輸出：CSV／Excel／JSON／Markdown／PNG（檔案含全部排名，PNG 為畫面上的前 5 大） ---- */
 function briefExport(w,f){const k=briefK,rs=briefRows(k,w),out=w==='out',who=out?'被投資方':'投資方',ttl=out?'對外投資':'被投資';
