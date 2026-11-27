@@ -67,6 +67,7 @@ tr:hover td{background:var(--panel2)}
 .bcol td.ba{white-space:nowrap;text-align:right;font-family:Consolas,monospace;font-weight:700}
 .bcol td.ba small{display:block;font-weight:400;color:var(--muted);font-family:inherit}
 .bcol .bn{font-weight:700}.bcol .bi{color:var(--muted);font-size:calc(11.5px*var(--fs));line-height:1.55;margin-top:2px}
+.bx{display:flex;gap:4px;align-items:center;padding:6px 10px;border-bottom:1px dashed var(--line)}.bx .hint{margin-right:auto;white-space:nowrap}.bx .btn{padding:2px 7px;font-size:calc(11.5px*var(--fs))}
 .bcol .bempty{padding:14px 12px;color:var(--muted);font-size:calc(12.5px*var(--fs))}
 footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs));line-height:1.7;border-top:1px solid var(--line)}
 .hact{margin-left:auto;align-self:flex-start;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
@@ -228,13 +229,29 @@ function brief(k){
    <td>${esc(l.date||'—')}<div class="bi">${esc(l.status||'')}</div><div class="bi">${gb(l.grade)}${l.rumor?' <span class="tag">傳聞／未定案</span>':''} ${l.src&&l.src[0]?`<a href="${esc(l.src[0][1])}" target="_blank" rel="noopener">來源 ↗</a>`:''}</div></td></tr>`}).join('')}</tbody></table>`
   :`<div class="bempty">目前的資料中沒有已揭露金額的項目。</div>`;
  const cap=rs=>rs.length?`共 ${rs.length} 個對象，顯示前 ${Math.min(5,rs.length)}；前 ${Math.min(5,rs.length)} 筆合計約 ${fmtB(sum(rs.slice(0,5)))}（不同口徑，僅供比較大小）`:'';
+ const nmK=e?e.entity:k;
+ const xrow=(w,rs)=>rs.length?`<div class="bx"><span class="hint">資料輸出</span>${['CSV','Excel','JSON','Markdown','PNG'].map(f=>`<button class="btn" data-w="${w}" data-x="${f}" title="輸出這個區塊為 ${f}">${f}</button>`).join('')}</div>`:'';
  B.innerHTML=`<div class="bintro" style="--c:${c}">${intro}</div>
  <div class="bgrid">
-  <div class="bcol"><h4>↗ 對外投資前 5 大<small>${cap(out)}</small></h4>${tbl(out,'被投資方')}</div>
-  <div class="bcol"><h4>↙ 被投資前 5 大<small>${cap(inn)}</small></h4>${tbl(inn,'投資方')}</div>
+  <div class="bcol" id="briefOut">${xrow('out',out)}<h4>↗ ${esc(nmK)} 對外投資前 5 大<small>${cap(out)}</small></h4>${tbl(out,'被投資方')}</div>
+  <div class="bcol" id="briefIn">${xrow('in',inn)}<h4>↙ ${esc(nmK)} 被投資前 5 大<small>${cap(inn)}</small></h4>${tbl(inn,'投資方')}</div>
  </div>
  <div class="hint" style="margin-top:8px">只計入有揭露金額的股權類項目（股權、特別股、可轉債、權證、收購、合資與入股承諾），依金額由大到小排列；採購、雲端與租約等合約不算投資，請看右側明細或各家 Dashboard。金額統一換算成美元比較，「≈」後為換算值。兩家都有 Dashboard 時，同一筆關係只列一次，並以出資方那份的金額（投入成本）為準；有現值時另行標示。</div>`;
+ B.querySelectorAll('.bx button').forEach(x=>x.onclick=()=>briefExport(x.dataset.w,x.dataset.x));
  B.querySelectorAll('a[data-k]').forEach(a=>a.onclick=ev=>{ev.preventDefault();selected=a.dataset.k;$('#q').value='';if(!NODES.find(n=>n.id===selected)){$('#minDeg').value='1';build();}draw();side(selected)});
+}
+/* ---- 「投資簡覽」兩欄輸出：CSV／Excel／JSON／Markdown／PNG（檔案含全部排名，PNG 為畫面上的前 5 大） ---- */
+function briefExport(w,f){const k=briefK,rs=briefRows(k,w),out=w==='out',who=out?'被投資方':'投資方',ttl=out?'對外投資':'被投資';
+ const HEAD=['排名','公司',who,who+'代號',who+'資訊','投資項目','交易型態','金額','金額（US$十億）','口徑','持股現值（US$十億）','日期','狀態','傳聞／未定案','來源等級','資料出處','不計入加總','來源'];
+ const R=rs.map((r,i)=>{const l=r.l,o=ENT[r.o];return [i+1,ENT[k]?ENT[k].entity:k,o?o.entity:r.o,o?o.ticker||'':'',o?(o.sub||''):(r.own?l.cat:''),l.name||'',l.type||'',l.short||'',l.amt,AMT[l.amtType]||'',l.val==null?'':l.val,l.date||'',l.status||'',l.rumor?'是':'',l.grade||'',(r.own?(ENT[k]?ENT[k].entity:k):(o?o.entity:r.o))+' 的 Dashboard',l.excl?'是':'',l.src.map(x=>x[1]).join(' ')];});
+ const nm=`投資簡覽_${ttl}_${k.replace(/[\\/:*?"<>|／\s]+/g,'_')}_${DATA.asOf}`,q=v=>`"${String(v).replace(/"/g,'""')}"`;
+ const note='只計入有揭露金額的股權類項目（股權、特別股、可轉債、權證、收購、合資與入股承諾），依金額由大到小排列；採購、雲端與租約等合約不算投資。金額統一換算成美元比較；同一筆關係兩家都有記載時，以出資方那份的投入成本為準。不同口徑的金額不宜直接相加；非投資建議。';
+ if(f==='CSV') return saveAs(nm+'.csv',[HEAD,...R].map(r=>r.map(q).join(',')).join('\r\n'),'text/csv');
+ if(f==='JSON') return saveAs(nm+'.json',JSON.stringify({company:k,section:ttl,asOf:DATA.asOf,note,rows:R.map(r=>Object.fromEntries(HEAD.map((h,i)=>[h,r[i]])))},null,1),'application/json');
+ if(f==='Excel') return saveAs(nm+'.xlsx',makeXLSX([{name:ttl+'_'+k,head:HEAD,rows:R,styleOf:r=>r[0]<=5?(out?3:2):0},{name:'說明',head:['項目','內容'],rows:[['公司',ENT[k]?ENT[k].entity:k],['區塊',ttl+'（依金額由大到小）'],['資料截至',DATA.asOf],['底色','前 5 大以底色標示（對外投資淺橘、被投資淺綠）'],['筆數',R.length],['計算方式',note]]}]));
+ if(f==='Markdown'){const H=['排名',who,'交易型態','金額','口徑','日期','狀態','來源等級'],I=[0,2,6,7,9,11,12,14],c=v=>String(v===''?'—':v).replace(/\|/g,'｜');
+  return saveAs(nm+'.md',`# ${ENT[k]?ENT[k].entity:k}｜${ttl}（共 ${R.length} 個對象，資料截至 ${DATA.asOf}）\n\n| ${H.join(' | ')} |\n|${H.map(()=>'---').join('|')}|\n`+R.map(r=>'| '+I.map(i=>c(r[i])).join(' | ')+' |').join('\n')+`\n\n> ${note}\n`,'text/markdown');}
+ if(f==='PNG') return elToPNG($(out?'#briefOut':'#briefIn'),nm,'.bx');
 }
 /* ---------- 側欄：影響面 ---------- */
 function side(k){
@@ -326,7 +343,10 @@ function impExport(f){if(!IMP)return;const R=impRows(),nm=`若出事_${IMP.k.rep
  if(f==='Excel') return saveAs(nm+'.xlsx',makeXLSX([{name:'若出事_'+IMP.k,head:IMP_HEAD,rows:R,styleOf:r=>r[3]==='流入'?2:3},{name:'說明',head:['項目','內容'],styleOf:r=>r[0]==='流入（淺綠底）'?2:r[0]==='流出（淺橘底）'?3:0,rows:[['出事對象',IMP.k],['資料截至',DATA.asOf],['流入（淺綠底）','它投入該公司的資金，或該公司從它收到的營收'],['流出（淺橘底）','該公司對它的出資、採購或承諾'],...Object.entries(IMP.tot).map(([k,v])=>['合計・'+AMT[k]+'（US$十億）',+v.toFixed(3)]),['影響程度的算法',note]]}]));
  if(f==='Markdown'){const H=['受影響公司','影響程度','方向','項目','金額','口徑','占比%','可能影響'],I=[1,2,3,4,6,8,9,11],c=v=>String(v===''?'—':v).replace(/\|/g,'｜');
   return saveAs(nm+'.md',`# 若「${IMP.k}」出事：直接受影響 ${IMP.rows.length} 家（資料截至 ${DATA.asOf}）\n\n| ${H.join(' | ')} |\n|${H.map(()=>'---').join('|')}|\n`+R.map(r=>'| '+I.map(i=>c(r[i])).join(' | ')+' |').join('\n')+`\n\n合計（依口徑，不跨口徑相加）：${Object.entries(IMP.tot).map(([t,v])=>`${AMT[t]} ${fmtB(v)}`).join('｜')||'皆未揭露'}\n\n> ${note}\n`,'text/markdown');}
- if(f==='PNG'){const el=$('#impBox'),w=Math.ceil(el.getBoundingClientRect().width),c=el.cloneNode(true);c.querySelector('.impx').remove();
+ if(f==='PNG') return elToPNG($('#impBox'),nm,'.impx');
+}
+/* 把頁面上一個區塊輸出成 PNG（失敗時改存 SVG）；rm＝輸出前要拿掉的子元素選擇器 */
+function elToPNG(el,nm,rm){const w=Math.ceil(el.getBoundingClientRect().width),c=el.cloneNode(true);if(rm)c.querySelectorAll(rm).forEach(x=>x.remove());
   const cs=getComputedStyle(document.documentElement),vars=[...document.styleSheets].flatMap(s=>{try{return [...s.cssRules]}catch(e){return []}}).filter(r=>r.selectorText===':root').flatMap(r=>[...r.style]).filter(p=>p.startsWith('--')).map(p=>`${p}:${cs.getPropertyValue(p)}`).join(';');
   const css=[...document.querySelectorAll('style')].map(s=>s.textContent).join('\n').replace(/@import[^;]+;/g,'');
   const wrap=document.createElement('div');wrap.setAttribute('xmlns','http://www.w3.org/1999/xhtml');if(document.body.dataset.theme)wrap.setAttribute('data-theme',document.body.dataset.theme);wrap.setAttribute('style',`${vars};width:${w}px;padding:10px;box-sizing:border-box;background:${getComputedStyle(document.body).backgroundColor};color:${getComputedStyle(document.body).color};font-family:${getComputedStyle(document.body).fontFamily};font-size:${getComputedStyle(el).fontSize};line-height:${getComputedStyle(el).lineHeight}`);
@@ -334,7 +354,7 @@ function impExport(f){if(!IMP)return;const R=impRows(),nm=`若出事_${IMP.k.rep
   document.body.appendChild(wrap);wrap.style.position='absolute';wrap.style.left='-99999px';const h=Math.ceil(wrap.getBoundingClientRect().height);wrap.style.position='';wrap.style.left='';wrap.remove();
   const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><foreignObject x="0" y="0" width="${w}" height="${h}">${new XMLSerializer().serializeToString(wrap)}</foreignObject></svg>`;
   const img=new Image(),sc=2;img.onload=()=>{try{const cv=document.createElement('canvas');cv.width=w*sc;cv.height=h*sc;const g=cv.getContext('2d');g.scale(sc,sc);g.drawImage(img,0,0);cv.toBlob(b=>b?saveAs(nm+'.png',b):saveAs(nm+'.svg',svg,'image/svg+xml'),'image/png');}catch(e){saveAs(nm+'.svg',svg,'image/svg+xml');}};
-  img.onerror=()=>saveAs(nm+'.svg',svg,'image/svg+xml');img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);}
+  img.onerror=()=>saveAs(nm+'.svg',svg,'image/svg+xml');img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
 }
 /* ---------- 排行表 ---------- */
 let sortK='deg',sortD=-1;
