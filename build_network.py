@@ -11,7 +11,7 @@ ALIAS=[("NVIDIA",r"nvidia|輝達"),("AMD",r"^amd\b|^amd（|超微"),("Google／A
 ("BlackRock",r"blackrock"),("Apollo",r"apollo"),("Silver Lake",r"silver lake"),("SoftBank",r"softbank|軟銀"),("Samsung",r"samsung|三星"),("Qualcomm",r"qualcomm|高通"),
 ("Huawei",r"huawei|華為"),("CoreWeave",r"coreweave"),("Nebius",r"nebius"),("Ayar Labs",r"ayar"),("Cerebras",r"cerebras"),("Crusoe",r"crusoe"),("Fluidstack",r"fluidstack"),
 ("Mobileye",r"mobileye"),("Terafab",r"terafab"),("Tesla",r"^tesla"),("Stellantis",r"stellantis"),("Ford",r"^ford"),("Scale AI",r"scale ai"),("EssilorLuxottica",r"essilor"),
-("字節跳動 ByteDance",r"字節|bytedance"),("寧德時代 CATL",r"寧德|catl"),("聯發科 MediaTek",r"聯發科|mediatek"),("宇樹 Unitree",r"宇樹|unitree"),("美團 Meituan",r"美團|meituan"),("紅杉 Sequoia",r"紅杉|sequoia"),("HUMAIN",r"humain"),("MGX",r"mgx"),("Valor",r"valor"),("Cursor",r"cursor"),("Vistra",r"vistra"),("SK hynix",r"hynix")]
+("字節跳動 ByteDance",r"字節|bytedance"),("寧德時代 CATL",r"寧德|catl"),("聯發科 MediaTek",r"聯發科|mediatek"),("宇樹 Unitree",r"宇樹|unitree"),("美團 Meituan",r"美團|meituan"),("紅杉 Sequoia",r"紅杉|sequoia"),("HUMAIN",r"humain"),("MGX",r"mgx"),("Valor",r"valor"),("Cursor",r"cursor"),("Vistra",r"vistra"),("SK hynix",r"hynix"),("PIF",r"\bpif\b|public investment fund|公共投資基金")]
 def canon(name,tk="",skip=None):
     s=name.strip(); low=s.lower()
     for lab,rx in ALIAS:

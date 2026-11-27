@@ -209,6 +209,10 @@
   "ceo_tc": [
    "TechCrunch｜SpaceX S-1 持股：Musk 為創辦人、CEO、CTO 兼董事長（2026-05-21）",
    "https://techcrunch.com/2026/05/21/who-will-benefit-most-from-spacex-ipo-mostly-elon-and-a-few-from-his-inner-circle/"
+  ],
+  "pif_q3": [
+   "Arab News｜PIF 9/30 持有 SpaceX 約 $232.5 億，占其美股申報部位約 80%",
+   "https://www.arabnews.com/finance/spacex-makes-up-80-of-saudi-sovereign-wealth-funds-us-stock-investments-3012450"
   ]
  },
  "categories": [
@@ -562,18 +566,19 @@
    "tk": "—",
    "cat": "fin",
    "type": "股東",
-   "amt": 26.3,
-   "short": "~$263億",
-   "date": "2026-06-30",
-   "amtText": "Q2 13F 新申報約 1.542 億股；以 6/30 收盤 $170.86 推算約 $263 億（本表自行計算）。",
+   "amt": 23.25,
+   "short": "~$233億（9/30）",
+   "date": "2026-09-30",
+   "amtText": "Q3 13F 申報 1.541 億股，9/30 市值約 $232.5 億，股數與 Q2 相同（Q2 申報時以 6/30 收盤推算約 $263 億）。取得方式未經證實。",
    "status": "持有中",
    "flow": "主權基金。",
    "src": [
-    "cb_13f"
+    "cb_13f",
+    "pif_q3"
    ],
    "amtType": "inflow",
    "direction": "in",
-   "verified": "2026-11-26"
+   "verified": "2026-11-27"
   },
   {
    "id": "musk",
