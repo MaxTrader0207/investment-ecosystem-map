@@ -186,7 +186,7 @@ function side(k){
    return {e,L,lv:Math.max(...L.map(x=>x.lv)),amt:Math.max(0,...L.map(x=>x.l.amt||0))};}).sort((a,b)=>b.lv-a.lv||b.amt-a.amt);
  const cnt=[3,2,1,0].map(v=>[v,rows.filter(r=>r.lv===v).length]).filter(x=>x[1]);
  IMP={k,rows,tot,what};
- html+=`<div class="imp" id="impBox"><div class="impx" style="float:right;margin:0 0 6px 8px;display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end">${['CSV','Excel','JSON','Markdown','PNG'].map(f=>`<button class="btn" data-x="${f}" style="padding:2px 7px;font-size:calc(11.5px*var(--fs))" title="輸出這個區塊為 ${f}">${f}</button>`).join('')}</div><b>⚠️ 若「${esc(k)}」出事（違約、斷供、監管、估值重挫）</b><br>
+ html+=`<div class="imp" id="impBox"><div class="impx" style="display:flex;gap:4px;flex-wrap:nowrap;align-items:center;margin:0 0 8px;padding-bottom:8px;border-bottom:1px dashed var(--line)"><span class="hint" style="margin-right:auto;white-space:nowrap">資料輸出</span>${['CSV','Excel','JSON','Markdown','PNG'].map(f=>`<button class="btn" data-x="${f}" style="padding:2px 7px;font-size:calc(11.5px*var(--fs))" title="輸出這個區塊為 ${f}">${f}</button>`).join('')}</div><div><b>⚠️ 若「${esc(k)}」出事（違約、斷供、監管、估值重挫）</b></div>
  直接受影響 <b>${rows.length}</b> 家：${cnt.map(([v,n])=>`<b style="color:${LV[v][1]}">${LV[v][0]} ${n}</b>`).join('、')||'—'}
  <span class="hint">｜證據強度最高 ${best!=='—'?gb(best):'—'}${rumor?`，${rumor} 筆為傳聞／未定案`:''}</span>
  ${rows.map(r=>`<div style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><b style="color:${ENT[r.e].accent}">${esc(r.e)}</b><span class="tag" style="border-color:${LV[r.lv][1]};color:${LV[r.lv][1]};margin:0">影響程度：${LV[r.lv][0]}</span></div>
