@@ -10,6 +10,7 @@
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;font-size:calc(14px*var(--fs))}
 a{color:#7dd3fc;text-decoration:none}a:hover{text-decoration:underline}
+[data-theme="light"] a{color:#0369a1}
 header{padding:16px 22px 10px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-end}
 h1{margin:0;font-size:calc(20px*var(--fs))}h1 b{color:var(--acc)}
 .sub{color:var(--muted);font-size:calc(12px*var(--fs));margin-top:4px}
@@ -53,6 +54,20 @@ th,td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertic
 th{background:var(--panel2);position:sticky;top:0;cursor:pointer;white-space:nowrap}
 tr:hover td{background:var(--panel2)}
 .sec{padding:14px 22px 0;font-weight:700;font-size:calc(15px*var(--fs))}
+.brief{padding:10px 22px 6px}
+.bintro{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c,var(--acc));border-radius:10px;padding:11px 14px;line-height:1.7;font-size:calc(13px*var(--fs))}
+.bintro h3{margin:0 0 4px;font-size:calc(17px*var(--fs))}.bintro h3 small{font-weight:400;color:var(--muted);font-size:calc(12px*var(--fs));margin-left:6px}
+.bgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+@media (max-width:1100px){.bgrid{grid-template-columns:1fr}}
+.bcol{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.bcol h4{margin:0;padding:9px 12px;font-size:calc(14px*var(--fs));background:var(--panel2);border-bottom:1px solid var(--line)}
+.bcol h4 small{font-weight:400;color:var(--muted);font-size:calc(11.5px*var(--fs));margin-left:6px}
+.bcol table th{position:static;cursor:default}
+.bcol td.rk{font-weight:700;color:var(--muted);text-align:center;width:28px}
+.bcol td.ba{white-space:nowrap;text-align:right;font-family:Consolas,monospace;font-weight:700}
+.bcol td.ba small{display:block;font-weight:400;color:var(--muted);font-family:inherit}
+.bcol .bn{font-weight:700}.bcol .bi{color:var(--muted);font-size:calc(11.5px*var(--fs));line-height:1.55;margin-top:2px}
+.bcol .bempty{padding:14px 12px;color:var(--muted);font-size:calc(12.5px*var(--fs))}
 footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs));line-height:1.7;border-top:1px solid var(--line)}
 .hact{margin-left:auto;align-self:flex-start;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
 .gbtn{display:inline-flex;align-items:center;gap:9px;background:var(--acc);color:#111;border-radius:10px;padding:7px 14px 7px 11px;text-decoration:none;line-height:1.25;box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 28%,transparent);transition:transform .12s,box-shadow .12s}
@@ -91,6 +106,8 @@ footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs)
 <svg id="g" viewBox="-560 -420 1120 840"></svg>
 <aside id="side"></aside>
 </div>
+<div class="sec">🧾 投資簡覽（點選圖上的公司，或從這裡選擇）　<select id="briefSel"></select></div>
+<div class="brief" id="brief"></div>
 <div class="sec">⚖️ 多實體比較（勾選 2–3 家並排）</div>
 <div class="toolbar" id="cmpPick"></div>
 <div class="tablewrap"><table id="cmp"></table></div>
@@ -171,9 +188,57 @@ function draw(){
   gg.onclick=ev=>{ev.stopPropagation();selected=selected===n.id?null:n.id;draw();side(selected);};});
  g.onclick=()=>{selected=null;draw();side(null)};
 }
+/* ---------- 投資簡覽：對外投資前 5 大／被投資前 5 大 ---------- */
+const INV_RE=/股權|特別股|普通股|收購|入股|增資|參與|輪|可轉|認股|權證|認購|配售|PIPE|股東|合資|基金|LP|投資|技術授權|持股/;
+const NOTINV_RE=/採購|雲端|合約|租|代工|資本支出|計畫|投資承諾|發債|公司債|回購|貸款|籌資|訴訟|競爭/, DEAD_RE=/撤銷|終止|取消|出清|出售/;
+const invOk=(l,types)=>l.amt!=null&&!l.per&&!DEAD_RE.test(l.type)&&!/已撤銷|已終止|已取消|已出清/.test(l.status||'')&&(l.amtType==='equity'||(types.includes(l.amtType)&&INV_RE.test(l.type)&&!NOTINV_RE.test(l.type)));
+const isInvOut=l=>invOk(l,['commitment','project']);
+const isInvIn=l=>invOk(l,['inflow','commitment','project']);
+function briefRows(k,want){ // want='out'：k 投資別人；'in'：別人投資 k。兩邊檔案都看，同一對象取金額最大的一筆
+ const rows=[];
+ DATA.links.forEach(l=>{
+  if(l.ent===k&&l.cp!==k){ if(want==='out'?(l.dir!=='in'&&isInvOut(l)&&!l.excl):(l.dir==='in'&&isInvIn(l))) rows.push({o:l.cp,l,own:true}); }
+  else if(l.cp===k&&l.ent!==k){ if(want==='out'?(l.dir==='in'&&isInvIn(l)):(l.dir!=='in'&&isInvOut(l)&&!l.excl)) rows.push({o:l.ent,l,own:false}); }});
+ // 同一對象兩邊檔案都有時，以「出資方」那份為準（成本口徑）；同一份檔案內多筆取金額最大
+ const pref=r=>want==='out'?r.own:!r.own, best={};
+ rows.forEach(r=>{const b=best[r.o]; if(!b){best[r.o]=Object.assign({n:1},r);return;}
+  if(pref(r)===pref(b)){b.n++; if(r.l.amt>b.l.amt){const n=b.n;best[r.o]=Object.assign({n},r);}}
+  else if(pref(r)) best[r.o]=Object.assign({n:1},r);});
+ return Object.values(best).sort((a,b)=>b.l.amt-a.l.amt);
+}
+let briefK=null;
+function brief(k){
+ briefK=k; const B=$('#brief'), sel=$('#briefSel'); if(sel.value!==k) sel.value=k;
+ const e=ENT[k], h=HUB[k], c=e?e.accent:'var(--acc)';
+ const out=briefRows(k,'out'), inn=briefRows(k,'in');
+ const sum=rs=>rs.reduce((a,r)=>a+r.l.amt,0);
+ const intro=e?`<h3>${esc(e.entity)}<small>${esc(e.ticker||'')}</small></h3>
+   <div>${esc(e.thesis||e.sub||'')}</div>
+   <div class="hint" style="margin-top:4px">${e.sub&&e.thesis?'涵蓋範圍：'+esc(e.sub.replace(/^涵蓋/,''))+'｜':''}資料截至 ${esc(e.asOf)}｜${e.nodes} 個節點｜<a href="${e.file}" target="_blank" rel="noopener">開啟完整 Dashboard ↗</a></div>`
+  :`<h3>${esc(k)}<small>尚未建立專屬 Dashboard</small></h3>
+   <div>以下內容只能從其他 ${h?h.deg:0} 家實體的 Dashboard 反推（${h?esc(h.ents.join('、')):''}），因此只會出現與這些實體有關的投資，不代表它的全部投資。</div>`;
+ const info=r=>{const o=ENT[r.o],l=r.l;
+  const a=o?`${esc(o.ticker||'')}${o.ticker?'｜':''}${esc((o.sub||'').replace(/^涵蓋/,'業務涵蓋')).slice(0,46)}${(o.sub||'').length>44?'…':''}`:(r.own?esc(l.cat):'');
+  return a;};
+ const tbl=(rs,who)=>rs.length?`<table><thead><tr><th>#</th><th>${who}</th><th>投資項目</th><th style="text-align:right">金額</th><th>日期／狀態</th></tr></thead><tbody>${rs.slice(0,5).map((r,i)=>{const l=r.l,o=ENT[r.o];
+   return `<tr><td class="rk">${i+1}</td>
+   <td><div class="bn"><a href="#" data-k="${esc(r.o)}">${esc(o?o.entity:r.o)}</a>${o?` <a href="${o.file}" target="_blank" rel="noopener" title="開啟 Dashboard">↗</a>`:''}</div><div class="bi">${info(r)}</div></td>
+   <td>${esc(l.type||'—')}<div class="bi">${r.own||!o?'':'（依 '+esc(o.entity)+' 的 Dashboard）'}${l.name&&l.name!==r.o&&r.own?esc(l.name):''}${r.n>1?` <span class="tag">同對象共 ${r.n} 筆，取最大</span>`:''}</div></td>
+   <td class="ba">${esc(l.short||fmtB(l.amt))}<small>≈ ${fmtB(l.amt)}・${AMT[l.amtType]||''}${l.excl?'・不計入加總':''}</small>${l.val!=null?`<small>現值 ${fmtB(l.val)}</small>`:''}</td>
+   <td>${esc(l.date||'—')}<div class="bi">${esc(l.status||'')}</div><div class="bi">${gb(l.grade)}${l.rumor?' <span class="tag">傳聞／未定案</span>':''} ${l.src&&l.src[0]?`<a href="${esc(l.src[0][1])}" target="_blank" rel="noopener">來源 ↗</a>`:''}</div></td></tr>`}).join('')}</tbody></table>`
+  :`<div class="bempty">目前的資料中沒有已揭露金額的項目。</div>`;
+ const cap=rs=>rs.length?`共 ${rs.length} 個對象，顯示前 ${Math.min(5,rs.length)}；前 ${Math.min(5,rs.length)} 筆合計約 ${fmtB(sum(rs.slice(0,5)))}（不同口徑，僅供比較大小）`:'';
+ B.innerHTML=`<div class="bintro" style="--c:${c}">${intro}</div>
+ <div class="bgrid">
+  <div class="bcol"><h4>↗ 對外投資前 5 大<small>${cap(out)}</small></h4>${tbl(out,'被投資方')}</div>
+  <div class="bcol"><h4>↙ 被投資前 5 大<small>${cap(inn)}</small></h4>${tbl(inn,'投資方')}</div>
+ </div>
+ <div class="hint" style="margin-top:8px">只計入有揭露金額的股權類項目（股權、特別股、可轉債、權證、收購、合資與入股承諾），依金額由大到小排列；採購、雲端與租約等合約不算投資，請看右側明細或各家 Dashboard。金額統一換算成美元比較，「≈」後為換算值。兩家都有 Dashboard 時，同一筆關係只列一次，並以出資方那份的金額（投入成本）為準；有現值時另行標示。</div>`;
+ B.querySelectorAll('a[data-k]').forEach(a=>a.onclick=ev=>{ev.preventDefault();selected=a.dataset.k;$('#q').value='';if(!NODES.find(n=>n.id===selected)){$('#minDeg').value='1';build();}draw();side(selected)});
+}
 /* ---------- 側欄：影響面 ---------- */
 function side(k){
- const S=$('#side');
+ const S=$('#side'); if(k) brief(k);
  if(!k){S.innerHTML=`<h2>如何閱讀</h2><ul class="hint" style="line-height:1.8;margin:6px 0 0;padding-left:1.3em">
   <li><b>外圈大圓</b>：已建 Dashboard 的實體。</li>
   <li><b>中間小圓</b>：兩個以上實體共同往來的交易對手；括號內數字＝涉及的實體數。</li>
@@ -330,6 +395,11 @@ function cmp(){
  $('#cmp').innerHTML=`<thead><tr><th>項目</th>${E.map(e=>`<th><a href="${e.file}" target="_blank" style="color:${e.accent}">${esc(e.entity)}</a> <span class="hint">${e.asOf}</span></th>`).join('')}</tr></thead><tbody>${R.map(([l,v])=>`<tr><td>${l}</td>${v.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody>`;
 }
 build(); side(null); table(); cmp();
+(function(){const sel=$('#briefSel');
+ const es=DATA.ents.map(e=>e.key).sort((a,b)=>a.localeCompare(b,'zh-Hant')), hs=DATA.hubs.filter(h=>!h.isEntity&&h.deg>=2).sort((a,b)=>b.deg-a.deg||a.key.localeCompare(b.key,'zh-Hant')).map(h=>h.key);
+ sel.innerHTML=`<optgroup label="已建 Dashboard 的實體">${es.map(k=>`<option value="${esc(k)}">${esc(ENT[k].entity)}</option>`).join('')}</optgroup><optgroup label="其他樞紐（尚未建 Dashboard）">${hs.map(k=>`<option value="${esc(k)}">${esc(k)}</option>`).join('')}</optgroup>`;
+ sel.onchange=()=>brief(sel.value);
+ brief((TOPH.find(h=>h.isEntity)||{key:es[0]}).key);})();
 </script>
 </body>
 </html>
