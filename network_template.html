@@ -6,9 +6,12 @@
 <title>跨實體投資生態總網路圖｜系統性樞紐與影響面</title>
 <style>
 :root{--bg:#0a0e13;--panel:#11171f;--panel2:#161e28;--line:#243041;--text:#e6edf3;--muted:#8b9bb0;--acc:#facc15;--in:#4ade80;--fs:1}
+[data-theme="graphite"]{--bg:#18181b;--panel:#222226;--panel2:#2a2a2f;--line:#3a3a42;--text:#f4f4f5;--muted:#a1a1aa}
+[data-theme="navy"]{--bg:#0b1628;--panel:#10203a;--panel2:#152a4a;--line:#24406a;--text:#e8f0ff;--muted:#93a8c8}
+[data-theme="black"]{--bg:#000;--panel:#0a0a0a;--panel2:#121212;--line:#262626;--text:#fafafa;--muted:#a3a3a3}
 [data-theme="light"]{--bg:#f5f7fa;--panel:#fff;--panel2:#eef2f6;--line:#d5dde7;--text:#111827;--muted:#5b6b80;--acc:#b45309;--in:#15803d}
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;font-size:calc(15px*var(--fs))}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;font-size:calc(14px*var(--fs))}
 a{color:#7dd3fc;text-decoration:none}a:hover{text-decoration:underline}
 [data-theme="light"] a{color:#0369a1}
 header{padding:16px 22px 10px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-end}
@@ -16,7 +19,7 @@ h1{margin:0;font-size:calc(20px*var(--fs))}h1 b{color:var(--acc)}
 .sub{color:var(--muted);font-size:calc(13px*var(--fs));margin-top:4px}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;padding:12px 22px}
 .kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
-.kpi .v{font-size:calc(21px*var(--fs));font-weight:700;color:var(--acc);font-family:Consolas,monospace}
+.kpi .v{font-size:calc(20px*var(--fs));font-weight:700;color:var(--acc);font-family:Consolas,monospace}
 .kpi .l{color:var(--muted);font-size:calc(13px*var(--fs));margin-top:2px}
 .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:8px 22px;border-top:1px solid var(--line)}
 select,input[type=search]{background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:6px;padding:5px 8px;font-family:inherit;font-size:calc(14px*var(--fs))}
@@ -26,8 +29,8 @@ label{font-size:calc(14px*var(--fs));color:var(--muted);display:inline-flex;gap:
 .wrap{display:grid;grid-template-columns:1fr 420px;border-top:1px solid var(--line)}
 #g{width:100%;height:calc(100vh - 150px);min-height:640px;display:block}
 aside{border-left:1px solid var(--line);background:var(--panel);padding:16px;overflow:auto;max-height:calc(100vh - 150px);min-height:640px}
-aside h2{margin:0 0 4px;font-size:calc(18px*var(--fs))}
-.tag{display:inline-block;font-size:calc(12.5px*var(--fs));padding:1px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);margin:2px 4px 2px 0}
+aside h2{margin:0 0 4px;font-size:calc(20px*var(--fs))}
+.tag{display:inline-block;font-size:calc(12px*var(--fs));padding:1px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);margin:2px 4px 2px 0}
 .gb{display:inline-block;min-width:15px;text-align:center;font-size:calc(12px*var(--fs));font-weight:700;padding:0 4px;border-radius:4px;color:#0a0e13;font-family:Consolas,monospace}
 .gA{background:#4ade80}.gB{background:#38bdf8}.gC{background:#fbbf24}.gD{background:#f87171}
 .at{display:inline-block;font-size:calc(12px*var(--fs));padding:0 5px;border-radius:4px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
@@ -39,7 +42,7 @@ aside h2{margin:0 0 4px;font-size:calc(18px*var(--fs))}
 .imp{border:1px solid #7f1d1d;background:rgba(248,113,113,.08);border-radius:8px;padding:9px 11px;font-size:calc(14px*var(--fs));line-height:1.7;margin-top:10px}
 .imp b{color:#fca5a5}
 [data-theme="light"] .imp b{color:#b91c1c}
-.lvb{display:inline-block;font-size:calc(12.5px*var(--fs));font-weight:700;padding:1px 9px;border-radius:999px;color:#fff;white-space:nowrap}
+.lvb{display:inline-block;font-size:calc(12px*var(--fs));font-weight:700;padding:1px 9px;border-radius:999px;color:#fff;white-space:nowrap}
 .lvb3{background:#dc2626}.lvb2{background:#b45309}.lvb1{background:#15803d}.lvb0{background:#475569}
 .imp b.lvt3{color:#fca5a5}.imp b.lvt2{color:#fcd34d}.imp b.lvt1{color:#86efac}.imp b.lvt0{color:#cbd5e1}
 [data-theme="light"] .imp b.lvt3{color:#b91c1c}[data-theme="light"] .imp b.lvt2{color:#a67c00}[data-theme="light"] .imp b.lvt1{color:#166534}[data-theme="light"] .imp b.lvt0{color:#475569}
@@ -58,22 +61,22 @@ tr:hover td{background:var(--panel2)}
 .sec{scroll-margin-top:46px;padding:14px 22px 0;font-weight:700;font-size:calc(16px*var(--fs))}
 .brief{padding:10px 22px 6px}
 .bintro{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c,var(--acc));border-radius:10px;padding:11px 14px;line-height:1.7;font-size:calc(14px*var(--fs))}
-.bintro h3{margin:0 0 4px;font-size:calc(17px*var(--fs))}.bintro h3 small{font-weight:400;color:var(--muted);font-size:calc(13px*var(--fs));margin-left:6px}
+.bintro h3{margin:0 0 4px;font-size:calc(16px*var(--fs))}.bintro h3 small{font-weight:400;color:var(--muted);font-size:calc(13px*var(--fs));margin-left:6px}
 .bgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
 @media (max-width:1100px){.bgrid{grid-template-columns:1fr}}
 .bcol{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
-.bcol h4{margin:0;padding:9px 12px;font-size:calc(15px*var(--fs));background:var(--panel2);border-bottom:1px solid var(--line)}
-.bcol h4 small{font-weight:400;color:var(--muted);font-size:calc(12.5px*var(--fs));margin-left:6px}
+.bcol h4{margin:0;padding:9px 12px;font-size:calc(14px*var(--fs));background:var(--panel2);border-bottom:1px solid var(--line)}
+.bcol h4 small{font-weight:400;color:var(--muted);font-size:calc(12px*var(--fs));margin-left:6px}
 .bcol table th{position:static;cursor:default}
 .bcol td.rk{font-weight:700;color:var(--muted);text-align:center;width:28px}
 .bcol td.ba{white-space:nowrap;text-align:right;font-family:Consolas,monospace;font-weight:700}
 .bcol td.ba small{display:block;font-weight:400;color:var(--muted);font-family:inherit}
-.bcol .bn{font-weight:700}.bcol .bi{color:var(--muted);font-size:calc(12.5px*var(--fs));line-height:1.55;margin-top:2px}
+.bcol .bn{font-weight:700}.bcol .bi{color:var(--muted);font-size:calc(12px*var(--fs));line-height:1.55;margin-top:2px}
 .rgrid{display:grid;grid-template-columns:270px minmax(0,1fr) 350px;gap:14px}
 @media (max-width:1250px){.rgrid{grid-template-columns:270px minmax(0,1fr)}.rside{grid-column:1/-1;flex-direction:row!important}.rside>.rcard{flex:1}}
 @media (max-width:900px){.rgrid{grid-template-columns:1fr}.rside{flex-direction:column!important}}
 .rside{display:flex;flex-direction:column;gap:14px}
-.rtop{display:flex;gap:10px;align-items:flex-start;margin-top:10px;font-size:calc(14.5px*var(--fs))}.rtop i{width:14px;height:14px;border-radius:50%;flex:none;margin-top:3px}.rtop .hint{line-height:1.55;margin-top:2px}
+.rtop{display:flex;gap:10px;align-items:flex-start;margin-top:10px;font-size:calc(14px*var(--fs))}.rtop i{width:14px;height:14px;border-radius:50%;flex:none;margin-top:3px}.rtop .hint{line-height:1.55;margin-top:2px}
 .rrow{display:flex;align-items:center;gap:8px;margin-top:7px;font-size:calc(14px*var(--fs))}.rrow i{width:13px;height:13px;border-radius:50%;flex:none}.rrow span:nth-child(2){flex:1}.rrow b{width:34px;text-align:right}
 .rcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
 .rtot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
@@ -81,11 +84,11 @@ tr:hover td{background:var(--panel2)}
 .rlight i{width:32px;height:32px;border-radius:50%;display:block;background:#2a3038}
 .rlight i.on3{background:#ef4444;box-shadow:0 0 16px #ef4444}.rlight i.on2{background:#eab308;box-shadow:0 0 16px #eab308}.rlight i.on1{background:#22c55e;box-shadow:0 0 16px #22c55e}
 .rnum{font-size:calc(70px*var(--fs));font-weight:800;line-height:1}
-.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}.wcard{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--muted);border-radius:10px;padding:10px 12px}.wcard.w3{border-left-color:#ef4444}.wcard.w2{border-left-color:#eab308}.wcard.w1{border-left-color:#22c55e}.wcard b{display:block}.wv{font-size:calc(17px*var(--fs));font-weight:700;margin:2px 0}.topl{margin:0;padding-left:20px;line-height:1.9;font-size:calc(15.5px*var(--fs))}.chgt td,.chgt th{font-size:calc(14px*var(--fs))}
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}.wcard{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--muted);border-radius:10px;padding:10px 12px}.wcard.w3{border-left-color:#ef4444}.wcard.w2{border-left-color:#eab308}.wcard.w1{border-left-color:#22c55e}.wcard b{display:block}.wv{font-size:calc(16px*var(--fs));font-weight:700;margin:2px 0}.topl{margin:0;padding-left:20px;line-height:1.9;font-size:calc(16px*var(--fs))}.chgt td,.chgt th{font-size:calc(14px*var(--fs))}
 .rc3{color:#f87171}.rc2{color:#fbbf24}.rc1{color:#4ade80}.rc0{color:var(--muted)}
 [data-theme="light"] .rc3{color:#b91c1c}[data-theme="light"] .rc2{color:#a67c00}[data-theme="light"] .rc1{color:#166534}
 .rf3{fill:#ef4444}.rf2{fill:#eab308}.rf1{fill:#22c55e}.rf0{fill:#64748b}
-.rrank{font-size:calc(14.5px*var(--fs));font-weight:700;border:1px solid var(--line);border-radius:999px;padding:3px 12px;background:var(--panel2)}
+.rrank{font-size:calc(14px*var(--fs));font-weight:700;border:1px solid var(--line);border-radius:999px;padding:3px 12px;background:var(--panel2)}
 .rradar{display:flex;justify-content:center;align-items:center;overflow:auto}
 .rradar text{fill:var(--text);font-size:12.5px}.rradar text.m{fill:var(--muted)}
 .rradar text.t3{fill:#f87171;font-weight:700}.rradar text.t2{fill:#fbbf24;font-weight:700}.rradar text.t1{fill:#4ade80;font-weight:700}
@@ -99,15 +102,15 @@ tr:hover td{background:var(--panel2)}
 .rwarn{display:inline-block;min-width:1.25em;text-align:center;border-radius:999px;background:#ef4444;color:#fff;font-size:.85em;line-height:1.25em}
 .ralert{border:1px solid #ef4444;border-radius:8px;padding:6px 10px;font-size:calc(14px*var(--fs));line-height:1.6;color:var(--text);background:color-mix(in srgb,#ef4444 12%,transparent)}
 .rb3{background:#ef4444}.rb2{background:#eab308}.rb1{background:#22c55e}.rb0{background:#64748b}
-.bx{display:flex;gap:4px;align-items:center;padding:6px 10px;border-bottom:1px dashed var(--line)}.bx .hint{margin-right:auto;white-space:nowrap}.bx .btn{padding:2px 7px;font-size:calc(12.5px*var(--fs))}
+.bx{display:flex;gap:4px;align-items:center;padding:6px 10px;border-bottom:1px dashed var(--line)}.bx .hint{margin-right:auto;white-space:nowrap}.bx .btn{padding:2px 7px;font-size:calc(12px*var(--fs))}
 .bcol .bempty{padding:14px 12px;color:var(--muted);font-size:calc(14px*var(--fs))}
-footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(12.5px*var(--fs));line-height:1.7;border-top:1px solid var(--line)}
+footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(12px*var(--fs));line-height:1.7;border-top:1px solid var(--line)}
 .hact{margin-left:auto;align-self:flex-start;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
 .gbtn{display:inline-flex;align-items:center;gap:9px;background:var(--acc);color:#111;border-radius:10px;padding:7px 14px 7px 11px;text-decoration:none;line-height:1.25;box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 28%,transparent);transition:transform .12s,box-shadow .12s}
 .gbtn:hover{text-decoration:none;transform:translateY(-1px);box-shadow:0 0 0 5px color-mix(in srgb,var(--acc) 35%,transparent)}
-.gbtn .gi{font-size:calc(22px*var(--fs))}.gbtn b{display:block;font-size:calc(15px*var(--fs))}.gbtn small{display:block;font-size:calc(12.5px*var(--fs));opacity:.8}
+.gbtn .gi{font-size:calc(20px*var(--fs))}.gbtn b{display:block;font-size:calc(14px*var(--fs))}.gbtn small{display:block;font-size:calc(12px*var(--fs));opacity:.8}
 [data-theme="light"] .gbtn{color:#fff}
-.legend{flex-basis:100%;display:flex;flex-wrap:wrap;gap:14px;font-size:calc(12.5px*var(--fs));color:var(--muted);align-items:center}
+.legend{flex-basis:100%;display:flex;flex-wrap:wrap;gap:14px;font-size:calc(12px*var(--fs));color:var(--muted);align-items:center}
 .legend i{display:inline-block;width:22px;height:0;border-top:2px solid;vertical-align:middle;margin-right:4px}
 @media (max-width:1000px){.wrap{grid-template-columns:1fr}aside{border-left:none;max-height:none}}
 
@@ -131,13 +134,32 @@ input[type=checkbox],input[type=radio]{width:20px;height:20px;vertical-align:mid
 @media print{.tocw{display:none}}
 /* —— 手機：表格在區塊內左右捲動，不撐寬整頁 —— */
 @media (max-width:900px){.rcard,.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}.rcard{padding:12px}.rcard table{min-width:520px}.rgrid>*,.wgrid>*{min-width:0}}
+
+/* —— 區塊收合 —— */
+.sec{cursor:pointer;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.secx{flex:none;width:28px;min-height:28px;padding:0;border:1px solid var(--line);border-radius:6px;background:var(--panel2);color:var(--text);cursor:pointer;font-family:inherit;font-size:14px;line-height:1}
+.sec.closed{padding-bottom:12px;border-bottom:1px solid var(--line);color:var(--muted)}.sec.closed:hover{color:var(--text)}
+.sec.closed select,.sec.closed #scKw,.sec.closed #scHl{display:none}
+@media print{.secbody[hidden]{display:block!important;content-visibility:visible!important}}
+.wrule summary{cursor:pointer;color:var(--muted);font-size:calc(12px*var(--fs));margin-top:6px;list-style:none;display:inline-flex;align-items:center;min-height:28px}.wrule summary::-webkit-details-marker{display:none}.wrule summary:hover{color:var(--text)}
+#g line{transition:stroke-opacity .12s}
+
+/* —— 顯示設定（各頁共用同一組，存在 ecomap_prefs_v1） —— */
+.pref{position:relative;display:inline-block}
+.prefp{display:none;position:absolute;right:0;top:calc(100% + 6px);z-index:96;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 12px;min-width:280px;box-shadow:0 8px 24px rgba(0,0,0,.35);text-align:left;font-weight:400;color:var(--text)}
+.prefp.on{display:block}.pref.l .prefp{right:auto;left:0}
+.prow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:5px 0;white-space:nowrap}
+.prow .lbl{color:var(--muted)}.prow input[type=color]{width:40px;height:30px;padding:0;border:1px solid var(--line);border-radius:6px;background:none;cursor:pointer}
+.fsval{display:inline-block;min-width:48px;text-align:center;font-family:Consolas,monospace}
+@media (max-width:640px){.prefp,.pref.l .prefp{position:fixed;left:12px;right:12px;top:auto;bottom:12px}}
+@media print{.pref{display:none}}
 </style>
 </head>
 <body>
 <header>
 <div><h1><b>跨實體投資生態總網路圖</b>・系統性樞紐與影響面</h1>
 <div class="sub" id="sub"></div></div>
-<div class="hact"><a class="gbtn" id="guideLink" href="guide.html" style="display:none" title="第一次使用？先看這裡：操作方式、符號對照、每個功能在哪裡"><span class="gi">📖</span><span><b>使用指引與功能地圖</b><small>第一次使用？先看這裡</small></span></a><button class="btn" id="theme">🌓 淺色／深色</button></div>
+<div class="hact"><a class="gbtn" id="guideLink" href="guide.html" style="display:none" title="第一次使用？先看這裡：操作方式、符號對照、每個功能在哪裡"><span class="gi">📖</span><span><b>使用指引與功能地圖</b><small>第一次使用？先看這裡</small></span></a><button class="btn" id="secAll" type="button">全部展開</button><span class="pref"><button class="btn" id="prefBtn" type="button" aria-haspopup="true" aria-expanded="false" title="背景與字體大小">⚙ 顯示設定</button><div class="prefp" id="prefPanel"><div class="prow"><span class="lbl">背景</span><select id="themeSel"><option value="">深夜（預設）</option><option value="graphite">石墨灰</option><option value="navy">深海藍</option><option value="black">純黑</option><option value="light">淺色</option></select></div><div class="prow"><span class="lbl">自訂背景色</span><input type="color" id="bgPick" value="#0a0e13" title="自訂背景色"></div><div class="prow"><span class="lbl">字體大小</span><span><button class="btn" id="fsDown" type="button" aria-label="縮小字體">A−</button><span class="fsval" id="fsVal">100%</span><button class="btn" id="fsUp" type="button" aria-label="放大字體">A＋</button></span></div><div class="prow"><span class="hint">記在這台瀏覽器，各頁共用</span><button class="btn" id="prefReset" type="button">還原預設</button></div></div></span></div>
 <div class="legend">
 <span><i style="border-color:#94a3b8"></i>流出（實體出資／採購）</span>
 <span><i style="border-color:var(--in)"></i>流入（對方投入資金）</span>
@@ -153,15 +175,17 @@ input[type=checkbox],input[type=radio]{width:20px;height:20px;vertical-align:mid
 <div class="brief" id="watch"></div>
 <div class="sec" id="s-hist">📉 歷史走勢（每期留一筆，看風險與預警指標往哪個方向走）</div>
 <div class="brief" id="histB"></div>
+<div class="sec" id="s-net">🕸️ 關係網路圖（點圓點看它和誰有關、涉及多少錢）</div>
 <div class="kpis" id="kpis"></div>
 <div class="toolbar">
 <label>顯示交易對手：<select id="minDeg"><option value="2" selected>出現在 ≥2 個實體</option><option value="3">≥3 個實體</option><option value="1">全部（含單一實體）</option></select></label>
 <label>方向：<select id="dirSel"><option value="">全部</option><option value="out">只看流出</option><option value="in">只看流入</option></select></label>
 <label><input type="checkbox" id="cpChk" checked> 含循環對手方（非持股）</label>
+<label><input type="checkbox" id="top10"> 只看前 10 大樞紐</label>
 <input type="search" id="q" placeholder="搜尋公司…">
 <button class="btn" id="reset">重設</button>
 <button class="btn" id="csv">⬇ 樞紐排行 CSV</button>
-<span class="hint">點選圓點看「哪些實體與它有關、涉及多少錢、若它出事影響誰」。</span>
+<span class="hint">滑鼠移到圓點上，只亮出它的關係線；點選圓點看「哪些實體與它有關、涉及多少錢、若它出事影響誰」。</span>
 </div>
 <div class="wrap">
 <svg id="g" viewBox="-560 -420 1120 840"></svg>
@@ -229,12 +253,13 @@ function build(){
  const deg={};L.forEach(l=>{(deg[l.cp]=deg[l.cp]||new Set()).add(l.ent); if(ENT[l.cp]) deg[l.cp].add(l.cp);});
  const keep=new Set(Object.keys(deg).filter(k=>ENT[k]||deg[k].size>=md));
  DATA.ents.forEach(e=>keep.add(e.key));
+ if($('#top10').checked){const T=new Set(TOPH.slice(0,10).map(h=>h.key));[...keep].forEach(k=>{if(!T.has(k))keep.delete(k)});}
  const prev=Object.fromEntries(NODES.map(n=>[n.id,n]));
  NODES=[...keep].map(k=>{const isE=!!ENT[k];const d=deg[k]?deg[k].size:1;const p=prev[k];
   return {id:k,isE,deg:d,r:isE?24:5+d*3.2,x:p?p.x:(Math.cos(hash(k))*300),y:p?p.y:(Math.sin(hash(k)*1.7)*250),vx:0,vy:0};});
  const idx=Object.fromEntries(NODES.map(n=>[n.id,n]));
  const agg={};
- L.forEach(l=>{if(!idx[l.cp]||l.cp===l.ent)return;const k=l.ent+'|'+l.cp;(agg[k]=agg[k]||{s:idx[l.ent],t:idx[l.cp],ls:[]}).ls.push(l);});
+ L.forEach(l=>{if(!idx[l.cp]||!idx[l.ent]||l.cp===l.ent)return;const k=l.ent+'|'+l.cp;(agg[k]=agg[k]||{s:idx[l.ent],t:idx[l.cp],ls:[]}).ls.push(l);});
  EDGES=Object.values(agg).map(e=>{const dirs=new Set(e.ls.map(l=>l.dir));const amt=e.ls.reduce((s,l)=>s+(l.amt&&!l.excl?l.amt:0),0);
   return {...e,dir:dirs.size>1?'both':[...dirs][0],rumor:e.ls.every(l=>l.rumor),amt};});
  simulate(); draw();
@@ -266,11 +291,11 @@ function draw(){
  EDGES.forEach(e=>{const col=e.dir==='in'?getComputedStyle(document.body).getPropertyValue('--in'):e.dir==='both'?'#fbbf24':(ENT[e.s.id]?ENT[e.s.id].accent:'#94a3b8');
   const w=e.amt>0?Math.min(7,1.2+Math.log10(e.amt*10+1)*1.6):1.1;
   const on=selected?(e.s.id===selected||e.t.id===selected):(!q||hit.has(e.s.id)||hit.has(e.t.id));
-  const p=mk('line',{x1:e.s.x,y1:e.s.y,x2:e.t.x,y2:e.t.y,stroke:col,'stroke-width':w,'stroke-opacity':on?.75:.06,'stroke-dasharray':e.rumor?'5 4':''},ge);
+  const p=mk('line',{x1:e.s.x,y1:e.s.y,x2:e.t.x,y2:e.t.y,stroke:col,'stroke-width':w,'stroke-opacity':(selected||q)?(on?.8:.05):.22,'data-o':(selected||q)?(on?.8:.05):.22,'data-s':e.s.id,'data-t':e.t.id,'stroke-dasharray':e.rumor?'5 4':''},ge);
   p.appendChild(document.createElementNS(NS,'title')).textContent=`${e.s.id} ↔ ${e.t.id}：${e.ls.map(l=>`${l.name}｜${AMT[l.amtType]}｜${l.short||'—'}`).join('；')}`;});
  NODES.forEach(n=>{const on=selected?nb.has(n.id):(!q||qnb.has(n.id));   // 有選取時以選取為準，不再被搜尋字串交叉過濾
   const c=n.isE?ENT[n.id].accent:'#94a3b8';
-  const gg=mk('g',{class:'node'+(on?'':' dim'),transform:`translate(${n.x},${n.y})`},gn);
+  const gg=mk('g',{class:'node'+(on?'':' dim'),'data-id':n.id,transform:`translate(${n.x},${n.y})`},gn);gg.onmouseenter=()=>hov(n.id);gg.onmouseleave=()=>hov(null);
   mk('circle',{r:n.r,fill:n.isE?'var(--panel)':c,'fill-opacity':n.isE?1:.85,stroke:n.isE?c:(selected===n.id?'#fff':'var(--bg)'),'stroke-width':n.isE?3:(selected===n.id?2.5:1.2)},gg);
   if(selected===n.id){const s=n.r+9,L=s*.5;mk('path',{d:`M${-s},${-s+L}V${-s}H${-s+L}M${s-L},${-s}H${s}V${-s+L}M${s},${s-L}V${s}H${s-L}M${-s+L},${s}H${-s}V${s-L}`,fill:'none',stroke:'var(--acc)','stroke-width':4,'stroke-linecap':'round','stroke-linejoin':'round'},gg);}   // 被選者用方形對焦框（四個角括號）標記
   else if(q&&hit.has(n.id)) mk('circle',{r:n.r+5,fill:'none',stroke:'var(--acc)','stroke-width':2.5,'stroke-dasharray':'4 3'},gg);
@@ -278,6 +303,10 @@ function draw(){
   gg.onclick=ev=>{ev.stopPropagation();selected=selected===n.id?null:n.id;draw();side(selected);};});
  g.onclick=()=>{selected=null;draw();side(null)};
 }
+// 滑鼠移到圓點：只亮出它的關係線與鄰居（有選取或搜尋時不作用）
+function hov(id){if(selected||$('#q').value.trim())return;const g=$('#g'),nb=new Set();if(id){nb.add(id);EDGES.forEach(e=>{if(e.s.id===id)nb.add(e.t.id);if(e.t.id===id)nb.add(e.s.id)})}
+ g.querySelectorAll('line').forEach(l=>l.setAttribute('stroke-opacity',id?((l.dataset.s===id||l.dataset.t===id)?.9:.04):l.dataset.o));
+ g.querySelectorAll('g.node').forEach(x=>x.classList.toggle('dim',!!id&&!nb.has(x.dataset.id)));}
 /* ---------- 投資簡覽：對外投資前 5 大／被投資前 5 大 ---------- */
 const INV_RE=/股權|特別股|普通股|收購|入股|增資|參與|輪|可轉|認股|權證|認購|配售|PIPE|股東|合資|基金|LP|投資|技術授權|持股/;
 const NOTINV_RE=/採購|雲端|合約|租|代工|資本支出|計畫|投資承諾|發債|公司債|回購|貸款|籌資|訴訟|競爭/, DEAD_RE=/撤銷|終止|取消|出清|出售/;
@@ -328,7 +357,7 @@ function brief(k){
  <div class="hint" style="margin-top:8px">只計入有揭露金額的股權類項目（股權、特別股、可轉債、權證、收購、合資與入股承諾），依金額由大到小排列；採購、雲端與租約等合約不算投資，請看右側明細或各家 Dashboard。金額統一換算成美元比較，「≈」後為換算值。兩家都有 Dashboard 時，同一筆關係只列一次，並以出資方那份的金額（投入成本）為準；有現值時另行標示。</div>`;
  B.querySelectorAll('.bx button').forEach(x=>x.onclick=()=>briefExport(x.dataset.w,x.dataset.x));
  risk(k);
- B.querySelectorAll('a[data-k]').forEach(a=>a.onclick=ev=>{ev.preventDefault();selected=a.dataset.k;$('#q').value='';if(!NODES.find(n=>n.id===selected)){$('#minDeg').value='1';build();}draw();side(selected)});
+ B.querySelectorAll('a[data-k]').forEach(a=>a.onclick=ev=>{ev.preventDefault();selected=a.dataset.k;$('#q').value='';if(!NODES.find(n=>n.id===selected)){$('#minDeg').value='1';$('#top10').checked=false;build();}draw();side(selected)});
 }
 /* ---------- 風險總覽：左＝總風險值與燈號、右＝雷達圖、下＝全部公司一覽 ---------- */
 // 單一面向用 60／40；總風險值是加權平均、分布較集中，門檻改用 45／30
@@ -358,7 +387,7 @@ function risk(k){
   X.innerHTML=`<div class="rgrid">
    <div class="rcard rtot"><div class="hint">${esc(e.entity)}｜總風險值</div>
     <div style="display:flex;gap:16px;align-items:center"><div class="rlight" aria-hidden="true"><i class="${lv===3?'on3':''}"></i><i class="${lv===2?'on2':''}"></i><i class="${lv===1?'on1':''}"></i></div><div class="rnum rc${lv}">${r.total}</div></div>
-    <div class="rc${lv}" style="font-size:calc(17px*var(--fs));font-weight:700">${RLN[lv]}度風險（${RLAMP[lv]}）</div>
+    <div class="rc${lv}" style="font-size:calc(16px*var(--fs));font-weight:700">${RLN[lv]}度風險（${RLAMP[lv]}）</div>
     <div class="rrank">${r.of} 間公司中排名第 ${r.rank} 高</div>
     ${(e.phy||[]).length?`<div class="hint" style="line-height:1.7">受影響的實體瓶頸（未計入分數）：${e.phy.map(p=>`<span class="rc${p[1]}">${esc(p[0])}</span>`).join('、')}</div>`:''}
     ${r.alert.length?`<div class="ralert"><b>單項警示</b>（單一面向 85 分以上）<br>${r.alert.map(a=>esc(a[0])+' '+a[1]).join('、')}${r.light>r.base?`<br>總分 ${r.total} 原為${RLAMP[r.base]}，因單項警示升為${RLAMP[r.light]}`:''}</div>`:''}
@@ -422,7 +451,7 @@ function side(k){
    return {e,L,lv:Math.max(...L.map(x=>x.lv)),amt:Math.max(0,...L.map(x=>x.l.amt||0))};}).sort((a,b)=>b.lv-a.lv||b.amt-a.amt);
  const cnt=[3,2,1,0].map(v=>[v,rows.filter(r=>r.lv===v).length]).filter(x=>x[1]);
  IMP={k,rows,tot,what};
- html+=`<div class="imp" id="impBox"><div class="impx" style="display:flex;gap:4px;flex-wrap:nowrap;align-items:center;margin:0 0 8px;padding-bottom:8px;border-bottom:1px dashed var(--line)"><span class="hint" style="margin-right:auto;white-space:nowrap">資料輸出</span>${['CSV','Excel','JSON','Markdown','PNG'].map(f=>`<button class="btn" data-x="${f}" style="padding:2px 7px;font-size:calc(12.5px*var(--fs))" title="輸出這個區塊為 ${f}">${f}</button>`).join('')}</div><div><b>⚠️ 若「${esc(k)}」出事（違約、斷供、監管、估值重挫）</b></div>
+ html+=`<div class="imp" id="impBox"><div class="impx" style="display:flex;gap:4px;flex-wrap:nowrap;align-items:center;margin:0 0 8px;padding-bottom:8px;border-bottom:1px dashed var(--line)"><span class="hint" style="margin-right:auto;white-space:nowrap">資料輸出</span>${['CSV','Excel','JSON','Markdown','PNG'].map(f=>`<button class="btn" data-x="${f}" style="padding:2px 7px;font-size:calc(12px*var(--fs))" title="輸出這個區塊為 ${f}">${f}</button>`).join('')}</div><div><b>⚠️ 若「${esc(k)}」出事（違約、斷供、監管、估值重挫）</b></div>
  直接受影響 <b>${rows.length}</b> 家：${cnt.map(([v,n])=>`<b class="lvt${v}">${LV[v][0]} ${n}</b>`).join('、')||'—'}
  <span class="hint">｜證據強度最高 ${best!=='—'?gb(best):'—'}${rumor?`，${rumor} 筆為傳聞／未定案`:''}</span>
  ${rows.map(r=>`<div style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><b style="color:${ENT[r.e].accent}">${esc(r.e)}</b><span class="lvb lvb${r.lv}">影響程度：${LV[r.lv][0]}</span></div>
@@ -498,7 +527,7 @@ function table(){
  $('#tbl thead').innerHTML='<tr>'+C.map(([k,l])=>`<th data-k="${k}">${l}${sortK===k?(sortD>0?' ▲':' ▼'):''}</th>`).join('')+'</tr>';
  $('#tbl tbody').innerHTML=rows.map(r=>`<tr><td><a href="#" data-k="${esc(r.k)}"><b>${esc(r.k)}</b></a></td><td>${r.deg}</td><td>${r.links}</td><td>${esc(r.ents)}</td><td>${esc(r.tot)}</td><td>${esc(r.roles)}</td><td>${r.g.map((n,i)=>n?gb('ABCD'[i])+' '+n:'').join(' ')}</td><td>${r.rumor||''}</td></tr>`).join('');
  document.querySelectorAll('#tbl th').forEach(th=>th.onclick=()=>{const k=th.dataset.k;sortD=sortK===k?-sortD:-1;sortK=k;table()});
- document.querySelectorAll('#tbl a[data-k]').forEach(a=>a.onclick=ev=>{ev.preventDefault();selected=a.dataset.k;if(!NODES.find(n=>n.id===selected)){$('#minDeg').value='1';build();}draw();side(selected);window.scrollTo({top:0,behavior:'smooth'})});
+ document.querySelectorAll('#tbl a[data-k]').forEach(a=>a.onclick=ev=>{ev.preventDefault();selected=a.dataset.k;if(!NODES.find(n=>n.id===selected)){$('#minDeg').value='1';$('#top10').checked=false;build();}draw();side(selected);window.scrollTo({top:0,behavior:'smooth'})});
  window._rows=rows;
 }
 $('#csv').onclick=()=>{const rows=window._rows||[];const head=['交易對手','涉及實體數','關係筆數','涉及實體','已揭露金額（依口徑）','主要交易型態','A','B','C','D','傳聞／未定案'];
@@ -507,9 +536,9 @@ $('#csv').onclick=()=>{const rows=window._rows||[];const head=['交易對手','�
 /* CSV 開頭的 BOM 由下一行補上，避免 Excel 中文亂碼 */
 (function(){const B=window.Blob;window.Blob=function(parts,opt){if(opt&&opt.type==='text/csv')parts=[String.fromCharCode(65279),...parts.map(p=>typeof p==='string'?p.replace(/^/,''):p)];return new B(parts,opt)};})();
 if(DATA.guide){$('#guideLink').href=DATA.guide;$('#guideLink').style.display='inline-flex'}
-$('#theme').onclick=()=>{document.body.dataset.theme=document.body.dataset.theme==='light'?'':'light';draw()};
-['#minDeg','#dirSel','#cpChk'].forEach(s=>$(s).onchange=()=>{build();side(selected)});
-$('#q').oninput=draw; $('#reset').onclick=()=>{selected=null;$('#q').value='';$('#minDeg').value='2';$('#dirSel').value='';$('#cpChk').checked=true;build();side(null)};
+window.onPrefs=()=>{try{draw()}catch(e){}};
+['#minDeg','#dirSel','#cpChk','#top10'].forEach(s=>$(s).onchange=()=>{build();side(selected)});
+$('#q').oninput=draw; $('#reset').onclick=()=>{selected=null;$('#q').value='';$('#minDeg').value='2';$('#dirSel').value='';$('#cpChk').checked=true;$('#top10').checked=false;build();side(null)};
 function listify(h){h=h||'';const p=h.split(/（\d+）/);if(p.length<3)return h;let tail='';const last=p[p.length-1],i=last.search(/<br\s*\/?>/i);if(i>=0){tail=last.slice(i).replace(/^(<br\s*\/?>)+/i,'');p[p.length-1]=last.slice(0,i);}
  return `<div>${p[0].replace(/[：:]\s*(<\/b>)?\s*$/,'$1')}</div><ol style="margin:6px 0 8px;padding-left:1.6em;line-height:1.8">${p.slice(1).map(x=>`<li>${x.trim()}</li>`).join('')}</ol>${tail?`<div>${tail}</div>`:''}`;}
 $('#foot').innerHTML=listify(`<b>方法與注意事項：</b>（1）由各實體 Dashboard 的 data.json 自動彙整；同一交易對手以名稱與代號別名合併（例如 Google／Alphabet、台積電／TSMC），可能仍有少數未合併或誤合併。（2）「涉及實體數」含該對手本身若也是已建 Dashboard 的實體。（3）金額依口徑（股權成本、承諾上限、合約價值、流入資金等）分開加總，不跨口徑相加；未揭露金額不計。（4）可信度：${gb('A')} 公司公告／監管申報、${gb('B')} 主流財經媒體、${gb('C')} 其他媒體或彙整、${gb('D')} 傳聞或推估。（5）「若出事」為暴露範圍估計，不代表實際損失。（6）本頁為資訊整理，非投資建議。<br>已納入：${DATA.ents.map(e=>`<a href="${e.file}" target="_blank">${esc(e.entity)}</a>`).join('、')}`);
@@ -720,7 +749,7 @@ build(); side(null); table(); cmp();
  // 本期結論／預警指標／變動紀錄
  $('#topBox').innerHTML=`<div class="rcard"><ol class="topl">${(DATA.head||[]).map(s=>`<li>${esc(s)}</li>`).join('')}</ol><div class="hint" style="margin-top:6px">資料截至 ${esc(DATA.asOf)}，由資料自動產生。細節見 <a href="#s-watch">預警指標</a>、<a href="#s-scen">情境試算</a>、<a href="#s-chg">變動紀錄</a>。非投資建議。</div></div>`;
  const LN=['無資料','綠燈','黃燈','紅燈'];
- $('#watch').innerHTML=`<div class="wgrid">${(DATA.watch||[]).map(w=>`<div class="wcard w${w.light}"><b>${esc(w.n)} <span class="rc${w.light}" style="float:right">● ${LN[w.light]}</span></b><div class="wv">${esc(w.v)}</div><div class="hint" style="line-height:1.6">${esc(w.detail)}</div><div class="hint" style="margin-top:4px">${w.tr==null?'水位 '+LN[w.lvl==null?w.light:w.lvl]+'・上期沒有可比的數值':'水位 '+LN[w.lvl]+'・較上期'+['改善 ↓','持平 →','惡化 ↑'][w.tr+1]+'（上期 '+esc(w.pv||'')+'）'}</div><div class="hint" style="margin-top:4px;opacity:.8">水位規則：${esc(w.rule)}</div></div>`).join('')}</div><div class="hint" style="margin-top:8px;line-height:1.7">燈號怎麼定：先依各卡片的水位規則得到水位，再和上一期的數值比較（變動在 3% 以內視為持平）。比上期惡化就升一級（綠→黃、黃→紅）；紅燈水位但持平，降為黃燈，表示「高檔但沒有再惡化」；比上期改善就降一級。上期沒有可比數值時只看水位。</div>`;
+ $('#watch').innerHTML=`<div class="wgrid">${(DATA.watch||[]).map(w=>`<div class="wcard w${w.light}"><b>${esc(w.n)} <span class="rc${w.light}" style="float:right">● ${LN[w.light]}</span></b><div class="wv">${esc(w.v)}</div><div class="hint" style="line-height:1.6">${esc(w.detail)}</div><div class="hint" style="margin-top:4px">${w.tr==null?'水位 '+LN[w.lvl==null?w.light:w.lvl]+'・上期沒有可比的數值':'水位 '+LN[w.lvl]+'・較上期'+['改善 ↓','持平 →','惡化 ↑'][w.tr+1]+'（上期 '+esc(w.pv||'')+'）'}</div><details class="wrule"><summary>ⓘ 燈號規則</summary><div class="hint">${esc(w.rule)}</div></details></div>`).join('')}</div><div class="hint" style="margin-top:8px;line-height:1.7">燈號怎麼定：先依各卡片的水位規則得到水位，再和上一期的數值比較（變動在 3% 以內視為持平）。比上期惡化就升一級（綠→黃、黃→紅）；紅燈水位但持平，降為黃燈，表示「高檔但沒有再惡化」；比上期改善就降一級。上期沒有可比數值時只看水位。</div>`;
  const TOC=[...document.querySelectorAll('.sec')].map((s,i)=>{if(!s.id)s.id='s-a'+i;let x='';for(const n of s.childNodes){if(n.nodeType===3)x+=n.textContent;else break}return `<a href="#${s.id}">${esc(x.split(/[（：　]/)[0].trim())}</a>`}).join('');
  $('#toc').innerHTML=TOC;
  const CG=DATA.chg||[];
@@ -734,6 +763,52 @@ build(); side(null); table(); cmp();
  sel.innerHTML=`<optgroup label="已建 Dashboard 的實體">${es.map(k=>`<option value="${esc(k)}">${esc(ENT[k].entity)}</option>`).join('')}</optgroup><optgroup label="其他樞紐（尚未建 Dashboard）">${hs.map(k=>`<option value="${esc(k)}">${esc(k)}</option>`).join('')}</optgroup>`;
  sel.onchange=()=>brief(sel.value);
  brief((TOPH.find(h=>h.isEntity)||{key:es[0]}).key);})();
+</script>
+<script id="sec-js">
+(function(){
+ const KEEP=new Set(['s-top','s-watch','s-net']),K='ecomap_sec_v1';let st={};try{st=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){}
+ const all=document.getElementById('secAll'),items=[];
+ const upd=()=>{if(all)all.textContent=items.some(x=>x.body.hasAttribute('hidden'))?'全部展開':'全部收合'};
+ const save=()=>{try{localStorage.setItem(K,JSON.stringify(st))}catch(e){}};
+ [...document.querySelectorAll('.sec')].forEach((s,i)=>{if(!s.id)s.id='s-a'+i;
+  const body=document.createElement('div');body.className='secbody';body.id=s.id+'-body';const mv=[];let n=s.nextElementSibling;
+  while(n&&!n.classList.contains('sec')&&!/^(FOOTER|SCRIPT|STYLE)$/.test(n.tagName)&&n.id!=='toTop'){mv.push(n);n=n.nextElementSibling}
+  s.after(body);mv.forEach(x=>body.appendChild(x));
+  const btn=document.createElement('button');btn.type='button';btn.className='secx';btn.setAttribute('aria-controls',body.id);s.prepend(btn);
+  const it={s,body,set(open,keep){if(open)body.removeAttribute('hidden');else body.setAttribute('hidden','until-found');s.classList.toggle('closed',!open);btn.setAttribute('aria-expanded',open);btn.textContent=open?'▾':'▸';btn.title=btn.ariaLabel=open?'收合這一區':'展開這一區';if(keep){st[s.id]=open?1:0;save()}upd()}};
+  s.addEventListener('click',e=>{if(e.target.closest('select,input,a,label'))return;it.set(body.hasAttribute('hidden'),true)});
+  body.addEventListener('beforematch',()=>it.set(true,false));
+  items.push(it);it.set(s.id in st?!!st[s.id]:KEEP.has(s.id),false);
+ });
+ const openId=id=>{const it=items.find(x=>x.s.id===id);if(it&&it.body.hasAttribute('hidden'))it.set(true,true)};
+ document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#s-"]');if(a)openId(a.getAttribute('href').slice(1))},true);
+ if(location.hash)openId(location.hash.slice(1));
+ if(all)all.onclick=()=>{const o=items.some(x=>x.body.hasAttribute('hidden'));items.forEach(x=>x.set(o,true))};
+})();
+</script>
+<script id="pref-js">
+(function(){const R=document.documentElement,B=document.body,K='ecomap_prefs_v1',g=i=>document.getElementById(i);
+ let p={theme:'',bg:'',fs:1};
+ try{const s=localStorage.getItem(K);if(s)p={...p,...JSON.parse(s)};else if(localStorage.getItem('ecomap-theme')==='light')p.theme='light'}catch(e){}
+ function ap(){
+  [R,B].forEach(x=>{if(p.theme)x.dataset.theme=p.theme;else delete x.dataset.theme;if(p.bg)x.style.setProperty('--bg',p.bg);else x.style.removeProperty('--bg')});
+  R.style.setProperty('--fs',p.fs);
+  g('themeSel').value=p.theme;g('bgPick').value=p.bg||getComputedStyle(B).getPropertyValue('--bg').trim().slice(0,7)||'#0a0e13';g('fsVal').textContent=Math.round(p.fs*100)+'%';
+  try{localStorage.setItem(K,JSON.stringify(p))}catch(e){}
+  if(window.onPrefs)requestAnimationFrame(window.onPrefs);
+ }
+ g('themeSel').onchange=e=>{p.theme=e.target.value;p.bg='';ap()};g('bgPick').oninput=e=>{p.bg=e.target.value;ap()};
+ g('fsDown').onclick=()=>{p.fs=Math.max(.8,Math.round((p.fs-.1)*10)/10);ap()};g('fsUp').onclick=()=>{p.fs=Math.min(1.6,Math.round((p.fs+.1)*10)/10);ap()};
+ g('prefReset').onclick=()=>{p={theme:'',bg:'',fs:1};ap()};
+ ap();
+})();
+</script>
+<script id="pref-toggle">
+(function(){const b=document.getElementById('prefBtn'),p=document.getElementById('prefPanel');if(!b||!p)return;
+ const set=o=>{p.classList.toggle('on',o);b.setAttribute('aria-expanded',o)};
+ b.addEventListener('click',e=>{e.stopPropagation();set(!p.classList.contains('on'))});p.addEventListener('click',e=>e.stopPropagation());
+ document.addEventListener('click',()=>set(false));document.addEventListener('keydown',e=>{if(e.key==='Escape')set(false)});
+})();
 </script>
 <script id="toc-js">
 (function(){
