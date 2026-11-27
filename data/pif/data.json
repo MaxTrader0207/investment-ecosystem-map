@@ -102,6 +102,14 @@
   "gov": [
    "House of Saud｜PIF 治理：董事會主席為王儲 Mohammed bin Salman，總裁 Yasir Al-Rumayyan 自 2015 年在任",
    "https://houseofsaud.com/business/pif/"
+  ],
+  "gap_tr": [
+   "Walkers｜PIF $70 億三檔債券各檔金額",
+   "https://www.walkersglobal.com/en/About-us/News/2026/05/Advising-on-the-Public-Investment-Funds-multi-tranche-bond-issuance"
+  ],
+  "gap_sp": [
+   "Zawya／IFR｜PIF 三檔美元債定價利差",
+   "https://www.zawya.com/en/capital-markets/bonds/saudi-pif-sets-three-part-dollar-bond-spreads-as-demand-tops-21.6bln-342365"
   ]
  },
  "categories": [
@@ -396,12 +404,14 @@
    "amt": 7.0,
    "short": "$70億",
    "date": "2026-05-07",
-   "amtText": "史上最大單次發債 $70 億，訂單 $238 億；為區域衝突開始後首次發債。",
+   "amtText": "史上最大單次發債 $70 億，訂單 $238 億；為區域衝突開始後首次發債。 三檔為三年期 $27.5 億、七年期 $17.5 億、三十年期 $25 億，定價利差分別為美國公債加 95、105、135 個基點；票息未取得。",
    "status": "已發行",
    "flow": "舉債維持開發支出",
    "src": [
     "bond",
-    "cash"
+    "cash",
+    "gap_tr",
+    "gap_sp"
    ],
    "amtType": "liability",
    "direction": "in",
@@ -900,5 +910,25 @@
     "gov"
    ]
   }
- }
+ },
+ "dues": [
+  {
+   "y": 2029,
+   "amt": 2.75,
+   "kind": "債務到期",
+   "what": "2026/5 發行的三年期美元債到期",
+   "src": [
+    "gap_tr"
+   ]
+  },
+  {
+   "y": 2033,
+   "amt": 1.75,
+   "kind": "債務到期",
+   "what": "2026/5 發行的七年期美元債到期",
+   "src": [
+    "gap_tr"
+   ]
+  }
+ ]
 }

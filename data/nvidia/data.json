@@ -445,6 +445,18 @@
   "gap_geo": [
    "Bullfincher｜NVIDIA FY2026 地區營收",
    "https://bullfincher.io/companies/nvidia-corporation/revenue-by-geography"
+  ],
+  "gw40": [
+   "Barchart｜黃仁勳：Vera Rubin 每 GW 約 $400 億營收機會",
+   "https://www.barchart.com/story/news/4383768/jensen-huang-nvidias-vera-rubin-platform-turns-electricity-into-a-40-billion-cash-machine"
+  ],
+  "oai_loi": [
+   "NVIDIA Newsroom｜OpenAI 與 NVIDIA 宣布部署 10 GW 的策略合作（2025-09-22）",
+   "https://nvidianews.nvidia.com/news/openai-and-nvidia-announce-strategic-partnership-to-deploy-10gw-of-nvidia-systems"
+  ],
+  "q3call": [
+   "Motley Fool｜NVIDIA Q3 FY2027 法說會逐字稿",
+   "https://www.fool.com/earnings/call-transcripts/2026/11/18/nvidia-nvda-q3-2027-earnings-call-transcript/"
   ]
  },
  "categories": [
@@ -2549,9 +2561,9 @@
    "q2fy27"
   ],
   "circEst": {
-   "lo": 19.0,
-   "hi": 146.6,
-   "note": "NVIDIA 沒有揭露來自被投資公司的營收，以下是依公開數字加上假設推出的區間，不是實際數字。下限只算 CoreWeave；上限把 OpenAI 的長期計畫平均攤到每年，多數尚未發生，而且是經雲端業者間接採購。",
+   "lo": 59.0,
+   "hi": 115.6,
+   "note": "NVIDIA 沒有揭露來自被投資公司的營收，以下是依公開數字加上假設推出的區間，不是實際數字。OpenAI 改用「每 GW 營收 × 部署進度」估算，取代原本把 2030 年前 $6,000 億計畫平均攤提的做法。如果 OpenAI 首個 GW 延後交付，下限會回到只算 CoreWeave 的 $190 億（約占營收 4%）。OpenAI 的採購多半經雲端業者間接進行，可能與雲端業者的營收重複計算。",
    "parts": [
     {
      "k": "CoreWeave",
@@ -2561,15 +2573,17 @@
     },
     {
      "k": "OpenAI",
-     "lo": 0,
-     "hi": 120.0,
-     "basis": "10-Q 只說貢獻「可觀」營收、未給數字，下限記 0；上限取黃仁勳所稱至 2030 年約 $6,000 億的計畫，平均每年 $1,200 億"
+     "lo": 40.0,
+     "hi": 89.0,
+     "basis": "合作意向書規劃至少 10 GW、首個 GW 於 2026 下半年以 Vera Rubin 部署，Q3 法說會確認 OpenAI 已採用 Vera；公司稱 Vera Rubin 每 GW 約 $400 億營收。下限＝未來一年交付 1 GW（$400 億）；上限＝10 GW 在 2026 下半年至 2030 年平均交付，每年約 2.2 GW（$890 億）。交付進度是假設，沒有公開數字"
     }
    ],
    "src": [
     "cw_capex",
     "q2fy27q",
-    "oai600"
+    "gw40",
+    "oai_loi",
+    "q3call"
    ]
   },
   "cash": 53.5,
