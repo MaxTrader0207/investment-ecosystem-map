@@ -172,12 +172,28 @@ function side(k){
  const rumor=asCp.filter(l=>l.rumor).length;
  const best=asCp.map(l=>l.grade).sort()[0]||'—';
  let html=`<h2>${esc(k)}</h2>${isE?`<span class="tag" style="border-color:${ENT[k].accent};color:${ENT[k].accent}">已建 Dashboard：<a href="${ENT[k].file}" target="_blank">${esc(ENT[k].file)}</a></span>`:''}<span class="tag">被 ${ents.length} 個實體列為交易對手</span><span class="tag">${asCp.length} 筆關係</span>`;
+ // ---- 若出事：逐家列出受影響的項目、金額、占比與影響程度 ----
+ const denom=(e,l)=>DATA.links.filter(x=>x.ent===e&&x.amtType===l.amtType&&x.dir===l.dir&&x.amt!=null&&(x===l||(!x.excl&&!x.per))).reduce((a,x)=>a+x.amt,0);
+ const what=l=>{const buy=l.amtType==='contract'||(l.amtType==='commitment'&&/採購|雲端|算力|合約|供應|代工|租/.test(l.type+l.name));
+  if(/競爭|訴訟/.test(l.type+l.short)) return '競爭或爭議關係，沒有直接金流';
+  if(l.amtType==='none') return l.dir==='in'?'合作／客戶關係可能中斷':'供應或合作關係可能中斷';
+  if(l.dir==='in') return buy?'營收來源可能流失':'資金來源或股東結構可能變動';
+  if(buy) return '供應／算力來源可能中斷，需另找替代';
+  if(l.amtType==='capex'||l.amtType==='project') return '建置或專案可能延宕';
+  return '持股或出資可能減損';};
+ const LV={3:['高','#f87171'],2:['中','#facc15'],1:['低','#4ade80'],0:['無法量化','#94a3b8']};
+ const rows=ents.map(e=>{const L=asCp.filter(l=>l.ent===e).map(l=>{const d=l.amt!=null?denom(e,l):0;const sh=l.amt!=null&&d>0?l.amt/d:null;return {l,sh,lv:sh==null?0:(sh>=.3?3:sh>=.1?2:1)};}).sort((a,b)=>(b.l.amt||0)-(a.l.amt||0));
+   return {e,L,lv:Math.max(...L.map(x=>x.lv)),amt:Math.max(0,...L.map(x=>x.l.amt||0))};}).sort((a,b)=>b.lv-a.lv||b.amt-a.amt);
+ const cnt=[3,2,1,0].map(v=>[v,rows.filter(r=>r.lv===v).length]).filter(x=>x[1]);
  html+=`<div class="imp"><b>⚠️ 若「${esc(k)}」出事（違約、斷供、監管、估值重挫）</b><br>
- 直接受影響：${ents.map(e=>`<b style="color:${ENT[e].accent}">${esc(e)}</b>`).join('、')||'—'}<br>
- ${out.length?`・<b>${out.length}</b> 筆為實體對它的出資／採購／承諾（流出），可能面臨減損或斷供<br>`:''}
- ${inn.length?`・<b>${inn.length}</b> 筆為它投入實體的資金（流入），可能出現資金撤出或股東結構變動<br>`:''}
- 已揭露金額（依口徑，不跨口徑相加）：${Object.entries(tot).map(([t,v])=>`${AMT[t]} ${fmtB(v)}`).join('｜')||'皆未揭露'}<br>
- 證據強度：最高 ${best!=='—'?gb(best):'—'}${rumor?`，其中 ${rumor} 筆為傳聞／未定案`:''}</div>`;
+ 直接受影響 <b>${rows.length}</b> 家：${cnt.map(([v,n])=>`<b style="color:${LV[v][1]}">${LV[v][0]} ${n}</b>`).join('、')||'—'}
+ <span class="hint">｜證據強度最高 ${best!=='—'?gb(best):'—'}${rumor?`，${rumor} 筆為傳聞／未定案`:''}</span>
+ ${rows.map(r=>`<div style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><b style="color:${ENT[r.e].accent}">${esc(r.e)}</b><span class="tag" style="border-color:${LV[r.lv][1]};color:${LV[r.lv][1]};margin:0">影響程度：${LV[r.lv][0]}</span></div>
+  ${r.L.map(x=>{const l=x.l;return `<div style="margin-top:4px">${l.dir==='in'?'↙':'↗'} <b>${l.amt!=null?esc(l.short):(/^[—\-]?$|^未揭露$|^金額未揭露$/.test(l.short||'')?'金額未揭露':esc(l.short))}</b> <span class="hint">${l.amt!=null?(AMT[l.amtType]||'')+(l.per?'・每年':'')+'｜':''}${esc(l.type)}${l.rumor?'｜傳聞／未定案':''}</span><br>
+   <span class="hint">${x.sh!=null?`占 ${esc(r.e)} 同類${l.dir==='in'?'流入':'流出'}金額 <b style="color:${LV[x.lv][1]}">${x.sh>=.995?'100':(x.sh*100).toFixed(x.sh<.1?1:0)}%</b>`:'無法計算占比'}${l.val!=null?`｜持股現值 ${fmtB(l.val)}`:''}｜${what(l)}</span></div>`;}).join('')}</div>`).join('')}
+ <div class="hint" style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)">合計（依口徑，不跨口徑相加）：${Object.entries(tot).map(([t,v])=>`${AMT[t]} ${fmtB(v)}`).join('｜')||'皆未揭露'}<br>
+ 影響程度的算法：這筆金額占該公司 Dashboard 中「同口徑、同方向」已揭露金額的比例，≥30% 為高、10–30% 為中、&lt;10% 為低；一家有多筆時取最高。這是暴露範圍的估計，不代表實際損失。</div></div>
+ <h2 style="margin-top:14px;font-size:15px">關係明細與來源</h2>`;
  html+=asCp.map(l=>`<div class="rel${l.rumor?' rumor':''}" style="--c:${ENT[l.ent].accent}"><div class="h"><b>${esc(l.ent)}</b><span>${gb(l.grade)} <span class="at${IN.has(l.amtType)||l.dir==='in'?' in':''}">${l.dir==='in'?'↙流入':'↗流出'}・${AMT[l.amtType]}</span></span></div>
  <div>${esc(l.name)}｜${esc(l.cat)}｜${esc(l.type)}</div><div><b>${esc(l.short||'—')}</b>　<span class="hint">${esc(l.date)}・${esc(l.status)}</span></div>
  <div class="hint">${l.src.map(s=>`<a href="${s[1]}" target="_blank">${esc(String(s[0]).split('｜')[0])}</a>`).join('　')}　→ <a href="${ENT[l.ent].file}" target="_blank">開啟 ${esc(l.ent)} Dashboard</a></div></div>`).join('');

@@ -12,9 +12,10 @@ ALIAS=[("NVIDIA",r"nvidia|輝達"),("AMD",r"^amd\b|^amd（|超微"),("Google／A
 ("Huawei",r"huawei|華為"),("CoreWeave",r"coreweave"),("Nebius",r"nebius"),("Ayar Labs",r"ayar"),("Cerebras",r"cerebras"),("Crusoe",r"crusoe"),("Fluidstack",r"fluidstack"),
 ("Mobileye",r"mobileye"),("Terafab",r"terafab"),("Tesla",r"^tesla"),("Stellantis",r"stellantis"),("Ford",r"^ford"),("Scale AI",r"scale ai"),("EssilorLuxottica",r"essilor"),
 ("字節跳動 ByteDance",r"字節|bytedance"),("寧德時代 CATL",r"寧德|catl"),("聯發科 MediaTek",r"聯發科|mediatek"),("宇樹 Unitree",r"宇樹|unitree"),("美團 Meituan",r"美團|meituan"),("紅杉 Sequoia",r"紅杉|sequoia"),("HUMAIN",r"humain"),("MGX",r"mgx"),("Valor",r"valor"),("Cursor",r"cursor"),("Vistra",r"vistra"),("SK hynix",r"hynix")]
-def canon(name,tk=""):
+def canon(name,tk="",skip=None):
     s=name.strip(); low=s.lower()
     for lab,rx in ALIAS:
+        if lab==skip: continue      # 節點名稱帶到自家別名（例如 Amazon 檔的「OpenAI（AWS 客戶）」）時，不可歸到自己
         if re.search(rx,low) or (tk and re.search(rx,tk.lower())): return lab
     base=re.sub(r"[（(].*?[)）]","",s).strip()
     return base or s
@@ -60,6 +61,7 @@ for fp in FILES:
         if n["cat"] not in cats: continue
         c=cats[n["cat"]]
         k=canon(n["name"],n.get("tk",""))
+        if k==ek: k=canon(n["name"],n.get("tk",""),skip=ek)
         allpairs.add((ek,k))
         if n.get("netSkip") or n["id"] in SKIP_IDS: continue
         gs=[grade(S[s][0],S[s][1]) if len(S[s])<3 else S[s][2] for s in n["src"] if s in S]
