@@ -218,6 +218,10 @@ input[type=checkbox],input[type=radio]{width:20px;height:20px;vertical-align:mid
 .fsval{display:inline-block;min-width:48px;text-align:center;font-family:Consolas,monospace}
 @media (max-width:640px){.prefp,.pref.l .prefp{position:fixed;left:12px;right:12px;top:auto;bottom:12px}}
 @media print{.pref{display:none}}
+
+/* —— 回頁首按鈕：上緣避開置頂導覽列；觸控裝置固定在右下角 —— */
+body #toTop{transform:translateY(max(64px,var(--ty,70vh)))}
+@media (hover:none){body #toTop{transform:none;top:auto;bottom:24px}}
 </style>
 </head>
 <body>
@@ -871,11 +875,10 @@ applyPrefs();
 <script id="totop-js">
 (function(){
  const b=document.getElementById('toTop'),H=64,PAD=12;let y=null;
- const clamp=v=>Math.max(64,Math.min(innerHeight-H-PAD,v));   // 上緣留 64px，避開置頂的導覽列
+ const clamp=v=>Math.max(PAD,Math.min(innerHeight-H-PAD,v));
  const place=()=>b.style.setProperty('--ty',clamp(y==null?innerHeight-H-28:y)+'px');
  const vis=()=>b.classList.toggle('show',scrollY>300);
  addEventListener('mousemove',e=>{
-  if(matchMedia('(hover:none)').matches)return;   // 觸控裝置的點按也會送出 mousemove，按鈕固定在右下角就好
   if(e.clientX>innerWidth-110)return;   // 滑鼠靠近按鈕時停止移動，避免按鈕在指標下亂跑
   y=e.clientY-H/2;place();
  },{passive:true});
