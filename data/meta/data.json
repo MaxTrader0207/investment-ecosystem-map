@@ -245,6 +245,10 @@
   "ttm_sa": [
    "sec-api.io｜Meta 2026 Q3 財報分析（最近四季營收 $2,416 億）",
    "https://sec-api.io/insights/financial-analysis-of-meta-platforms-meta-q3-2026-earnings"
+  ],
+  "cx_ttm": [
+   "Trefis｜Meta 最近四季（至 2026 年 9 月）資本支出 $1,040 億、占營收 43.2%",
+   "https://www.trefis.com/stock/meta/articles/622625/can-metas-business-pay-for-its-spending/2026-11-04"
   ]
  },
  "categories": [
@@ -1609,13 +1613,14 @@
    ]
   },
   "infl": {
-   "score": 73,
-   "basis": "2026 資本支出指引中值 $1,400 億 ÷ 最近四季營收 $2,416 億＝58%，× 2 後達上限 100；票據面額 $840 億（9/30）加 11 月新發約 $254 億，合計 $1,094 億 ÷ 營收＝45%",
+   "score": 66,
+   "basis": "最近四季資本支出約 $1,040 億 ÷ 最近四季營收 $2,416 億＝43%；票據面額 $840 億（9/30）加 11 月新發約 $254 億，合計 $1,094 億 ÷ 營收＝45%",
    "src": [
     "q3",
     "mc_rev",
     "rev_q3",
-    "ttm_sa"
+    "ttm_sa",
+    "cx_ttm"
    ]
   },
   "ceo": {

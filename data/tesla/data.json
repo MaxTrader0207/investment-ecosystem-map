@@ -140,6 +140,10 @@
   "ttm_sa": [
    "sec-api.io｜Tesla 2026 Q3 財報分析（最近四季營收 $1,036 億）",
    "https://sec-api.io/insights/financial-analysis-of-tesla-tsla-q3-2026-earnings"
+  ],
+  "cx_ttm": [
+   "FourWeekMBA｜Tesla 2026 Q3：最近四季資本支出 $154.1 億",
+   "https://fourweekmba.com/ai-teslas-q3-explained-capex-up-110-as-revenue-stayed-flat/"
   ]
  },
  "categories": [
@@ -917,13 +921,14 @@
    ]
   },
   "infl": {
-   "score": 24,
-   "basis": "2026 資本支出上限 $200 億 ÷ 最近四季營收 $1,036 億＝19%；負債與融資租賃 $95 億 ÷ 營收＝9%",
+   "score": 19,
+   "basis": "最近四季資本支出 $154.1 億 ÷ 最近四季營收 $1,036 億＝15%；負債與融資租賃 $95 億 ÷ 營收＝9%",
    "src": [
     "ts_q3c",
     "mc_fa",
     "rev_q3",
-    "ttm_sa"
+    "ttm_sa",
+    "cx_ttm"
    ]
   },
   "ceo": {

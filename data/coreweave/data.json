@@ -146,6 +146,14 @@
   "ttm_9m": [
    "RTTNews｜CoreWeave 2026 前三季營收 $83.14 億",
    "https://www.rttnews.com/3712745/coreweave-reports-wider-q3-net-loss.aspx"
+  ],
+  "cx_q4": [
+   "DCD｜CoreWeave 2025 Q4 資本支出 $82 億、全年 $149 億",
+   "https://datacenterdynamics.com/en/news/coreweave-aims-to-add-5gw-more-data-center-capacity-by-2030-anticipates-capex-in-2026-to-double"
+  ],
+  "cx_q2": [
+   "Nasdaq／Zacks｜CoreWeave 2026 Q2 資本支出 $94 億",
+   "https://www.nasdaq.com/articles/coreweaves-35-39b-capex-plan-can-ai-demand-justify-spend"
   ]
  },
  "categories": [
@@ -1023,12 +1031,14 @@
   },
   "infl": {
    "score": 100,
-   "basis": "2026 資本支出中值 $380 億 ÷ 最近四季營收 $98.9 億＝384%；負債本金 $475 億 ÷ 營收＝480%，兩項都達上限",
+   "basis": "最近四季資本支出未取得完整四季，僅 2025 Q4 $82 億與 2026 Q2 $94 億兩季合計 $176 億，就已是最近四季營收 $98.9 億的 178%；負債本金 $475 億 ÷ 營收＝480%，兩項都達上限",
    "src": [
     "q3",
     "debt930",
     "ttm_sa",
-    "ttm_9m"
+    "ttm_9m",
+    "cx_q4",
+    "cx_q2"
    ]
   },
   "ceo": {

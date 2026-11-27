@@ -161,6 +161,10 @@
   "ttm_fy": [
    "Oracle IR｜FY2026 Q4 與全年財報：全年營收 $674 億（2026-06-10）",
    "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Record-Q4-and-FY-2026-Results-Driven-by-Cloud-Infrastructure--Cloud-Applications/"
+  ],
+  "cx_q1": [
+   "Zacks｜Oracle FY2027 Q1 資本支出 $285 億（去年同期 $85 億）",
+   "https://www.zacks.com/stock/news/3007007/will-rising-capex-weigh-on-oracle-s-free-cash-flow-outlook"
   ]
  },
  "categories": [
@@ -1107,13 +1111,14 @@
   },
   "infl": {
    "score": 100,
-   "basis": "FY2027 資本支出指引中值 $925 億 ÷ 最近四季營收 $718 億＝129%；借款 $1,253 億（8/31）÷ 營收＝175%，兩項都達上限",
+   "basis": "最近四季資本支出約 $757 億：FY2026 全年約 $557 億（營業現金流 $320 億減自由現金流 −$237 億），減 FY2026 Q1 $85 億，加 FY2027 Q1 $285 億；÷ 最近四季營收 $718 億＝105%；借款 $1,253 億（8/31）÷ 營收＝175%，兩項都達上限",
    "src": [
     "mc_fy26",
     "mc_bs",
     "gap_capex",
     "gap_10q",
-    "ttm_fy"
+    "ttm_fy",
+    "cx_q1"
    ]
   },
   "ceo": {

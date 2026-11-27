@@ -206,6 +206,14 @@
   "ttm_q2": [
    "TSMC 投資人關係｜季度業績與展望表（2Q26 實績 $402.0 億）",
    "https://investor.tsmc.com/schinese/quarterly-results"
+  ],
+  "cx_9m": [
+   "VLSI.kr｜TSMC 2026 Q3：單季資本支出 $138.4 億、前三季 $406.4 億",
+   "https://www.vlsi.kr/en/tsmc-q3-2026-earnings-18-facts-en/"
+  ],
+  "cx_q4": [
+   "Insider Monkey｜TSMC 2025 Q4 法說逐字稿：Q4 資本支出 $115 億、全年 $409 億",
+   "https://www.insidermonkey.com/blog/taiwan-semiconductor-manufacturing-company-limited-nysetsm-q4-2025-earnings-call-transcript-1675955/"
   ]
  },
  "categories": [
@@ -1301,15 +1309,17 @@
    ]
   },
   "infl": {
-   "score": 79,
-   "basis": "2026 資本支出指引中值 $620 億 ÷ 最近四季營收 $1,565.5 億＝40%；未取得有息負債，僅以資本支出計",
+   "score": 67,
+   "basis": "最近四季資本支出 $521 億（2025 Q4 $115 億＋2026 前三季 $406.4 億）÷ 最近四季營收 $1,565.5 億＝33%；未取得有息負債，僅以資本支出計",
    "src": [
     "crn_q3",
     "mc_fy25",
     "rev_q3",
     "ttm_q4",
     "ttm_q1",
-    "ttm_q2"
+    "ttm_q2",
+    "cx_9m",
+    "cx_q4"
    ]
   },
   "ceo": {

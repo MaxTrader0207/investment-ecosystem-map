@@ -221,6 +221,10 @@
   "ttm_sa": [
    "sec-api.io｜Intel 2026 Q3 財報分析（最近四季營收 $599 億）",
    "https://sec-api.io/insights/intel-intc-q3-2026-earnings-sec-filing-analysis"
+  ],
+  "cx_bq": [
+   "BusinessQuant｜Intel 各季資本支出（至 2026 年 6 月的四季合計 $121 億）",
+   "https://businessquant.com/metrics/intc/capital-expenditures"
   ]
  },
  "categories": [
@@ -1385,14 +1389,15 @@
    ]
   },
   "infl": {
-   "score": 71,
-   "basis": "資本支出 $180 億 ÷ 最近四季營收 $599 億＝30%；有息負債 $491 億 ÷ 營收＝82%",
+   "score": 67,
+   "basis": "最近四季資本支出約 $153 億（2026 前三季毛額 $118 億＋2025 Q4 約 $35 億；後者由現金口徑的季度數字反推，兩種口徑略有差異）÷ 最近四季營收 $599 億＝26%；有息負債 $491 億 ÷ 營收＝82%",
    "src": [
     "mc_capex",
     "mc_debt",
     "mc_fy25",
     "rev_q3",
-    "ttm_sa"
+    "ttm_sa",
+    "cx_bq"
    ]
   },
   "ceo": {

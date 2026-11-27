@@ -154,6 +154,14 @@
   "ttm_ar": [
    "Arincen｜Microsoft 營收（最近四季合計 $3,464.5 億）",
    "https://en.arincen.com/instruments/MSFT/revenue"
+  ],
+  "cx_fy": [
+   "DCD｜Microsoft FY2026 各季資本支出（含融資租賃），全年 $1,453 億",
+   "https://www.datacenterdynamics.com/en/news/microsoft-brought-88-data-centers-online-in-fy2026/"
+  ],
+  "cx_q1": [
+   "FourWeekMBA／CNBC｜Microsoft FY2027 Q1 資本支出（含融資租賃）$452 億",
+   "https://fourweekmba.com/ai-microsoft-azure-grows-48-as-free-cash-flow-falls-to-18-6b/"
   ]
  },
  "categories": [
@@ -1047,11 +1055,13 @@
    ]
   },
   "infl": {
-   "score": 38,
-   "basis": "FY2026 資本支出 $1,159 億 ÷ 最近四季營收 $3,464.5 億＝33%（資本支出截至 6 月、營收截至 9 月）；淨負債 $300 億 ÷ 營收＝9%",
+   "score": 49,
+   "basis": "最近四季資本支出（含融資租賃）約 $1,556 億：FY2026 全年 $1,453 億，減 FY2026 Q1 $349 億，加 FY2027 Q1 $452 億；÷ 最近四季營收 $3,464.5 億＝45%。原先用的是不含融資租賃的現金口徑（FY2026 $1,159 億），口徑改變使分數上升；淨負債 $300 億 ÷ 營收＝9%",
    "src": [
     "mc_fa",
-    "ttm_ar"
+    "ttm_ar",
+    "cx_fy",
+    "cx_q1"
    ]
   },
   "ceo": {

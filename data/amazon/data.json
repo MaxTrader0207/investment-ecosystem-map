@@ -191,6 +191,10 @@
   "ttm_q2": [
    "Nasdaq／Amazon 新聞稿｜2026 年第二季財報（2026-07-30）",
    "https://www.nasdaq.com/press-release/amazoncom-announces-second-quarter-results-2026-07-30"
+  ],
+  "cx_ttm": [
+   "Finviz／Business Wire｜Amazon 2026 Q3 財報：最近四季營業現金流 $1,683 億、自由現金流 −$424 億",
+   "https://finviz.com/news/412054/amazoncom-announces-third-quarter-results"
   ]
  },
  "categories": [
@@ -1141,14 +1145,15 @@
    ]
   },
   "infl": {
-   "score": 39,
-   "basis": "2026 年資本支出約 $2,200 億 ÷ 最近四季淨銷售 $7,973 億＝28%；長期債務面額 $1,809 億（9/30）÷ 淨銷售＝23%",
+   "score": 38,
+   "basis": "最近四季資本支出淨額 $2,107 億（營業現金流 $1,683 億減自由現金流 −$424 億）÷ 最近四季淨銷售 $7,973 億＝26%；長期債務面額 $1,809 億（9/30）÷ 淨銷售＝23%",
    "src": [
     "cr_q3",
     "mc_fy25",
     "rev_q3",
     "ttm_q1",
-    "ttm_q2"
+    "ttm_q2",
+    "cx_ttm"
    ]
   },
   "ceo": {

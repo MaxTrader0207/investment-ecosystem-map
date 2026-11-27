@@ -225,6 +225,10 @@
   "ttm_h1": [
    "Investing.com／The Information｜OpenAI 2025 上半年營收 $43 億（2025-09-30）",
    "https://www.investing.com/news/company-news/openai-revenue-hits-43-billion-in-first-half-of-2025-report-93CH-4262638"
+  ],
+  "ttm_yoy": [
+   "Yahoo Finance｜OpenAI 單季營收 $100 億，較去年同期成長近兩倍（2026-11）",
+   "https://finance.yahoo.com/technology/ai/articles/openai-hits-10-billion-quarterly-190211001.html"
   ]
  },
  "categories": [
@@ -1457,13 +1461,14 @@
   }
  },
  "fin": {
-  "rev": 26.8,
-  "note": "最近四季合計（2025 Q4–2026 Q3）約 $268 億，含估算：2026 Q1 $57 億＋Q2 $67 億＋Q3 約 $100 億，2025 Q4 未單獨揭露，以 2025 下半年 $87.7 億（全年 $130.7 億減上半年 $43 億）的一半 $43.9 億估算，可能偏低；公司稱 9 月底的年化營收約 $500 億，口徑不同",
+  "rev": 27.6,
+  "note": "最近四季合計（2025 Q4–2026 Q3）約 $276 億，含估算：2026 Q1 $57 億＋Q2 $67 億＋Q3 約 $100 億＋2025 Q4 約 $52 億。2025 Q4 沒有單季數字，算法是 2025 下半年 $87.7 億（全年 $130.7 億減上半年 $43 億）減 2025 Q3 約 $35 億；後者由「2026 Q3 約為去年同期的近三倍」反推，合理範圍 $33–37 億，對應最近四季 $274–278 億。公司稱 9 月底的年化營收約 $500 億，口徑不同",
   "src": [
    "rev_q3",
    "rev_q3b",
    "ttm_q",
-   "ttm_h1"
+   "ttm_h1",
+   "ttm_yoy"
   ],
   "burnNote": "公司內部預估 2026–2030 年自由現金流為負 $2,780 億；現金餘額未揭露",
   "burnSrc": [

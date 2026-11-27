@@ -327,6 +327,10 @@
   "ttm_sa": [
    "StockAnalysis｜Alphabet 損益表（含最近四季合計）",
    "https://stockanalysis.com/stocks/googl/financials/income-statement/"
+  ],
+  "cx_ttm": [
+   "Quartr｜Alphabet 2026 Q3 摘要：最近四季資本支出 $1,598 億",
+   "https://quartr.com/events/alphabet-goog-q3-2026_3ebmqmdr"
   ]
  },
  "categories": [
@@ -1271,7 +1275,7 @@
     "fwmba_gcloud",
     "n9_q3"
    ],
-   "backNote": "Anthropic 對 Google 最低承諾 ≥$1,213 億（2026/4–2033/7，不論用量）；另有估計 $1,250–1,500 億 TPU 未列固定金額。年均約 $166 億，約占 Alphabet 年化營收（Q3 $1,276 億 × 4）3%，但約占 Google Cloud backlog $5,610 億的 22%（皆自行計算）"
+   "backNote": "Anthropic 對 Google 最低承諾 ≥$1,213 億（2026/4–2033/7，不論用量）；另有估計 $1,250–1,500 億 TPU 未列固定金額。年均約 $166 億，約占 Alphabet 最近四季營收（$4,711 億）3.5%，但約占 Google Cloud backlog $5,610 億的 22%（皆自行計算）"
   },
   {
    "id": "L2",
@@ -1895,14 +1899,15 @@
    ]
   },
   "infl": {
-   "score": 56,
-   "basis": "2026 資本支出指引中值約 $2,000 億 ÷ 最近四季營收 $4,711 億＝42%；債務 $1,261 億（9/30）÷ 營收＝27%",
+   "score": 47,
+   "basis": "最近四季資本支出 $1,598 億 ÷ 最近四季營收 $4,711 億＝34%；債務 $1,261 億（9/30）÷ 營收＝27%",
    "src": [
     "aiw_q3",
     "mc_10q",
     "mc_fy25",
     "rev_q3",
-    "ttm_sa"
+    "ttm_sa",
+    "cx_ttm"
    ]
   },
   "ceo": {
