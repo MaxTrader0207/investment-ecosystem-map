@@ -233,6 +233,10 @@
   "bs_q3": [
    "Cestrian Capital Research｜SpaceX 9/30：現金 $512.9 億、有價證券 $385.6 億、負債與融資租賃 $388.4 億",
    "https://www.cestriancapitalresearch.com/spacex-spcx-stock-rating-after-q3-fy26-earnings/"
+  ],
+  "geo_cn": [
+   "Aardvark Labs｜SpaceX S-1 分析：Starlink 在中國與印度受法規限制",
+   "https://research.aardvarklabs.co/research/spcx/earnings/2026-s1/spcx-2026-s1-analysis"
   ]
  },
  "categories": [
@@ -1418,7 +1422,12 @@
  },
  "macro": {
   "geo": {
-   "basis": "待補資料：未取得地區營收占比"
+   "score": 0,
+   "cn": 0,
+   "basis": "Starlink 因法規限制未在中國提供，中國營收視為 0（× 2＝0）；S-1 有依交易發生地揭露地區營收，但逐國數字未取得，這是依服務範圍推定",
+   "src": [
+    "geo_cn"
+   ]
   },
   "fx": {
    "basis": "待補資料：未取得地區營收占比"

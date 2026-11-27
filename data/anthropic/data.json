@@ -310,6 +310,14 @@
   "s1_bs": [
    "CNBC｜Anthropic S-1：負債 $62 億主要為 Amazon 可轉換票據，淨不動產與設備 $11.9 億（2026-10-26）",
    "https://www.cnbc.com/2026/10/26/anthropic-ipo-live-updates-ai-s-1-filing.html"
+  ],
+  "geo_cn": [
+   "BigGo Finance｜Anthropic 新版支援地區政策 11/12 生效；S-1 揭露近九個月 5%–7% 營收來自事後認定違規的客戶",
+   "https://finance.biggo.com/news/b7798d52-d5c2-499b-9c98-59d53c2b7688"
+  ],
+  "geo_us": [
+   "OfficeChai｜Anthropic S-1：2026 上半年 72.2% 營收來自美國帳單地址",
+   "https://officechai.com/ai/72-of-anthropics-revenue-is-from-american-customers-reveals-s1/"
   ]
  },
  "categories": [
@@ -1804,10 +1812,20 @@
  },
  "macro": {
   "geo": {
-   "basis": "待補資料：未揭露地區營收"
+   "score": 0,
+   "cn": 0,
+   "basis": "中國（含港澳）列為不支援地區，中資控股企業不論註冊地一律禁用，中國營收視為 0（× 2＝0）。S-1 揭露近九個月有 5%–7% 的營收來自事後認定違規的客戶，其中有多少與中國有關未揭露，所以實際曝險可能高於 0",
+   "src": [
+    "geo_cn",
+    "geo_us"
+   ]
   },
   "fx": {
-   "basis": "待補資料：未揭露地區營收"
+   "score": 28,
+   "basis": "2026 上半年美國帳單地址占營收 72.2%，美國以外 27.8%（依帳單地址，不一定是實際使用地）",
+   "src": [
+    "geo_us"
+   ]
   },
   "infl": {
    "score": 12,

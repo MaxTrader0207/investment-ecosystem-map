@@ -110,6 +110,14 @@
   "gap_sp": [
    "Zawya／IFR｜PIF 三檔美元債定價利差",
    "https://www.zawya.com/en/capital-markets/bonds/saudi-pif-sets-three-part-dollar-bond-spreads-as-demand-tops-21.6bln-342365"
+  ],
+  "bond_cp": [
+   "House of Saud｜PIF $70 億三檔美元債：30 年期 $25 億、票面 6.25%（2026-05-22）",
+   "https://houseofsaud.com/pif-7-billion-bond-sovereign-guarantee/"
+  ],
+  "sukuk_cp": [
+   "Longbridge／Zawya｜PIF $20 億 10 年期伊斯蘭債，票面 5.133%（2026-01-22）",
+   "https://longbridge.com/en/news/273322147"
   ]
  },
  "categories": [
@@ -411,7 +419,8 @@
     "bond",
     "cash",
     "gap_tr",
-    "gap_sp"
+    "gap_sp",
+    "bond_cp"
    ],
    "amtType": "liability",
    "direction": "in",
@@ -424,7 +433,8 @@
      ]
     }
    ],
-   "verified": "2026-11-27"
+   "verified": "2026-11-27",
+   "rate": 6.25
   },
   {
    "id": "giga",
@@ -928,6 +938,24 @@
    "what": "2026/5 發行的七年期美元債到期",
    "src": [
     "gap_tr"
+   ]
+  },
+  {
+   "y": 2036,
+   "amt": 2.0,
+   "kind": "債務到期",
+   "what": "2026/1 發行的 10 年期美元伊斯蘭債（票面 5.133%）到期",
+   "src": [
+    "sukuk_cp"
+   ]
+  },
+  {
+   "y": 2056,
+   "amt": 2.5,
+   "kind": "債務到期",
+   "what": "2026/5 發行的 30 年期美元債（票面 6.25%）到期",
+   "src": [
+    "bond_cp"
    ]
   }
  ]

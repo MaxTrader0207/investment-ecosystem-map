@@ -194,6 +194,10 @@
   "ttm_q3": [
    "Quartr｜MediaTek 2026 Q3 法說摘要",
    "https://quartr.com/events/mediatek-2454-q3-2026_F96vz9IM"
+  ],
+  "cash_q2": [
+   "Twelve Data｜MediaTek 資產負債表：2026 年 6 月底現金及約當現金 NT$1,890 億",
+   "https://twelvedata.com/markets/735915/stock/twse/2454/financials/balance-sheet?period=quarterly"
   ]
  },
  "categories": [
@@ -1288,6 +1292,12 @@
    "qLabel": "2026 Q3",
    "note": "前一年同期四季合計約 NT$5,838 億，由 2025 全年 NT$5,960 億與 Q4 年增率、季增率反推",
    "est": true
-  }
+  },
+  "cash": 5.82,
+  "cashSrc": [
+   "cash_q2"
+  ],
+  "cashNote": "6/30 現金及約當現金 NT$1,890 億，以 NT$32.47／$1 換算；Q3 發行 $39 億海外可轉債後現金增加，但 9/30 的數字未取得",
+  "cashDate": "2026-06-30"
  }
 }

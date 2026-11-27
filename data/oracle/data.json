@@ -165,6 +165,10 @@
   "cx_q1": [
    "Zacks｜Oracle FY2027 Q1 資本支出 $285 億（去年同期 $85 億）",
    "https://www.zacks.com/stock/news/3007007/will-rising-capex-weigh-on-oracle-s-free-cash-flow-outlook"
+  ],
+  "geo_cn": [
+   "Foreign Policy Journal｜Tencent 合約約 $14 億/年、約占 Oracle RPO 的 1%（2026-11-13）",
+   "https://www.foreignpolicyjournal.com/2026/11/13/oracle-nyse-orcl-faces-china-chip-rule-at-the-worst-possible-moment-for-its-balance-sheet/"
   ]
  },
  "categories": [
@@ -1100,7 +1104,10 @@
  },
  "macro": {
   "geo": {
-   "basis": "待補資料：年報只揭露美洲、歐非中東、亞太三區，沒有單獨的中國營收"
+   "basis": "待補資料：年報只揭露美洲、歐非中東、亞太三區，沒有單獨的中國營收。已知的中國客戶曝險：Tencent 合約約 $14 億/年（約為最近四季營收的 2%）已因晶片遠端使用限制取消，ByteDance 使用其馬來西亞資料中心；整體中國客戶規模外界無法確認，所以不計分",
+   "src": [
+    "geo_cn"
+   ]
   },
   "fx": {
    "score": 37,

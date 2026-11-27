@@ -148,6 +148,10 @@
   "cash_fy26": [
    "FourWeekMBA｜Apple FY2026 淨現金（依 10-K 資產負債表計算）",
    "https://fourweekmba.com/ai-apples-net-cash-rose-23b-in-the-year-it-dropped-its-target/"
+  ],
+  "q4_yoy": [
+   "9to5Mac｜Apple FY2026 Q4：營收 $1,144.8 億，去年同期 $1,024.7 億",
+   "https://9to5mac.com/?p=1077006"
   ]
  },
  "categories": [
@@ -1160,7 +1164,8 @@
   "rev": 478.8,
   "note": "最近四季合計（FY2026，截至 2026-09-26）$4,788 億；財年剛好等於最近四季",
   "src": [
-   "mc_fy26"
+   "mc_fy26",
+   "q4_yoy"
   ],
   "cash": 136.9,
   "cashSrc": [
@@ -1171,9 +1176,9 @@
   "cashDate": "2026-09-26",
   "growth": {
    "ttm": 15.1,
-   "q": null,
-   "qLabel": "",
-   "note": "FY2026 對 FY2025（$4,162 億）；最新一季年增未建檔",
+   "q": 11.7,
+   "qLabel": "FY2026 Q4",
+   "note": "FY2026 對 FY2025（$4,162 億）；最新一季 $1,144.8 億對去年同期 $1,024.7 億",
    "est": false
   }
  },

@@ -225,6 +225,10 @@
   "cx_bq": [
    "BusinessQuant｜Intel 各季資本支出（至 2026 年 6 月的四季合計 $121 億）",
    "https://businessquant.com/metrics/intc/capital-expenditures"
+  ],
+  "cash_q3": [
+   "sec-api.io｜Intel 2026 Q3：現金與短期投資 $540 億、債務 $501 億",
+   "https://sec-api.io/insights/intel-intc-q3-2026-earnings-sec-filing-analysis"
   ]
  },
  "categories": [
@@ -1422,7 +1426,13 @@
    "qLabel": "2026 Q3",
    "note": "前一年同期四季合計 $534 億",
    "est": false
-  }
+  },
+  "cash": 54.0,
+  "cashSrc": [
+   "cash_q3"
+  ],
+  "cashNote": "現金與短期投資（Q3 季底）；8 月以每股 $95 增資淨募得 $226 億。同日債務 $501 億",
+  "cashDate": "2026-09-26"
  },
  "mkt": {
   "cap": 332.2,
