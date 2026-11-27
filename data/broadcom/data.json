@@ -1,0 +1,953 @@
+{
+ "meta": {
+  "entity": "Broadcom",
+  "ticker": "AVGO",
+  "asOf": "2026-11-27",
+  "tz": "台北",
+  "accent": "#ef4444",
+  "centerLabel": "客製晶片中樞",
+  "fileSlug": "Broadcom",
+  "subtitle": "涵蓋客製 AI 晶片長約、對客戶的融資、第三方融資平台與債務"
+ },
+ "notice": {
+  "title": "近期重大動態",
+  "html": "10/26 四家金融機構宣布 $630 億 SPV，買入 Broadcom 晶片租給 Anthropic；10/1 申報顯示 Broadcom 最多借給 Anthropic $420 億。FY2026 Q4 財報將於 12/9 公布。"
+ },
+ "sources": {
+  "q3": [
+   "Broadcom IR｜FY2026 Q3 財報：營收 $295.9 億、AI 半導體 $167 億、Q4 指引 $348 億（2026-09-02）",
+   "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-third-quarter-fiscal-year-2026-financial",
+   "A"
+  ],
+  "q3k": [
+   "SEC 8-K｜Broadcom FY2026 Q3 新聞稿：自由現金流 $136.7 億",
+   "https://www.sec.gov/Archives/edgar/data/0001730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "A"
+  ],
+  "q3q": [
+   "Broadcom 10-Q（FY2026 Q3）｜剩餘履約義務約 $1,792 億",
+   "https://investors.broadcom.com/static-files/96641754-401f-4090-a4ab-210728c83a28",
+   "A"
+  ],
+  "q3call": [
+   "Yahoo Finance｜Broadcom FY2026 Q3 法說逐字稿：六家 XPU 客戶、現金 $240 億、償還 $56 億債務",
+   "https://finance.yahoo.com/quote/BROA.VI/earnings/BROA.VI-Q3-2026-earnings_call-685349.html"
+  ],
+  "q3hl": [
+   "Yahoo Finance｜Broadcom Q3 法說重點：FY2026 AI 營收指引上調至 $580 億",
+   "https://finance.yahoo.com/technology/ai/articles/broadcom-inc-avgo-q3-2026-110030403.html"
+  ],
+  "fy28": [
+   "Lighthouse Canton｜Broadcom 指引 FY2028 AI 半導體營收約 $2,300 億",
+   "https://www.lighthouse-canton.com/insights/broadcom-q3-fy2026-earnings-recap/"
+  ],
+  "secapi": [
+   "sec-api.io｜Broadcom Q3 FY2026 申報分析：債務本金 $610.8 億、客戶可發行最多 $420 億可轉換票據",
+   "https://sec-api.io/insights/financial-analysis-of-broadcom-q3-fy2026-filings-and-scenarios-to-fy2029"
+  ],
+  "q1": [
+   "SEC 8-K｜Broadcom FY2026 Q1 新聞稿：營收 $193 億",
+   "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000011/avgo-02012026x8kxex99.htm",
+   "A"
+  ],
+  "q2": [
+   "SEC 8-K｜Broadcom FY2026 Q2 新聞稿：營收 $222 億、AI 半導體 $108 億",
+   "https://www.sec.gov/Archives/edgar/data/0001730168/000173016826000051/avgo-05032026x8kxex99.htm",
+   "A"
+  ],
+  "k10": [
+   "SEC 10-K｜Broadcom FY2025：單一經銷商客戶占營收 32%、前五大終端客戶約 40%、中國（含香港）17%",
+   "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000121/avgo-20251102.htm",
+   "A"
+  ],
+  "oai": [
+   "OpenAI｜與 Broadcom 合作部署 10GW 自研加速器（2025-10-13）",
+   "https://openai.com/index/openai-and-broadcom-announce-strategic-collaboration/",
+   "A"
+  ],
+  "oaiwsj": [
+   "Yahoo／Engadget｜OpenAI–Broadcom 協議金額未揭露，WSJ 稱達數十億美元",
+   "https://finance.yahoo.com/news/openai-making-own-ai-chips-142242173.html"
+  ],
+  "ant21": [
+   "Analytics India Magazine｜Broadcom 揭露 Anthropic 為 $210 億 TPU 訂單客戶；AI 積壓訂單 $730 億",
+   "https://analyticsindiamag.com/ai-news-updates/broadcom-reveals-21-billion-google-tpus-order-from-anthropic/"
+  ],
+  "fw_tpu": [
+   "FourWeekMBA｜Broadcom 5 年設備租約 $1,612 億；追加 TPU 約 $1,250–1,500 億",
+   "https://fourweekmba.com/ai-google-tpus-are-44-of-anthropics-644b-named-compute-deals/"
+  ],
+  "star_avgo": [
+   "Reuters／The Star｜Broadcom 最多借給 Anthropic $420 億（可轉換票據）（2026-10-01）",
+   "https://www.thestar.com.my/tech/tech-news/2026/10/01/exclusive-broadcom-to-lend-anthropic-up-to-42-billion-to-lease-its-chips-filing-says"
+  ],
+  "th_tpu": [
+   "Tom's Hardware｜Broadcom 自 2027 供應約 3.5GW Google TPU",
+   "https://www.tomshardware.com/tech-industry/broadcom-expands-anthropic-deal-to-3-5gw-of-google-tpu-capacity-from-2027"
+  ],
+  "fw_place": [
+   "FourWeekMBA｜Anthropic $260 億配售拆分（含 Broadcom $10 億）",
+   "https://fourweekmba.com/ai-nvidia-google-buy-10b-each-of-anthropics-26b-placement/"
+  ],
+  "qz_tpu": [
+   "Quartz／Yahoo｜約 3.5GW TPU；Broadcom 對 Google 供貨保證至 2031",
+   "https://finance.yahoo.com/sectors/technology/articles/anthropic-google-broadcom-tpu-deal-113234906.html"
+  ],
+  "meta": [
+   "Reuters／Yahoo｜Meta 擴大與 Broadcom 的客製晶片協議至 2029，首期逾 1GW（2026-04-14）",
+   "https://finance.yahoo.com/sectors/technology/articles/meta-inks-deal-broadcom-custom-211850754.html"
+  ],
+  "meta2": [
+   "Tom's Hardware｜Broadcom 供應 Meta 多代 MTIA 至 2029，Hock Tan 離開 Meta 董事會",
+   "https://tomshardware.com/tech-industry/artificial-intelligence/broadcom-to-supply-meta-with-custom-silicon-through-2029-broadom-ceo-hock-tan-departs-metas-board"
+  ],
+  "ap_avgo": [
+   "Apple Newsroom｜與 Broadcom 新多年期協議，預期超過 $300 億（2026-07-08）",
+   "https://www.apple.com/newsroom/2026/07/apple-to-increase-spend-with-broadcom-to-produce-billions-more-us-chips/",
+   "A"
+  ],
+  "ap_avgo2": [
+   "Constellation Research｜Broadcom 投入 $15 億擴建 Fort Collins，協議至 2031",
+   "https://www.constellationr.com/insights/news/apple-broadcom-confirm-30-billion-custom-chip-pact"
+  ],
+  "xpv": [
+   "Broadcom IR｜與 Apollo、Blackstone 成立 AI XPV Platform，首期 $350 億（2026-06-09）",
+   "https://investors.broadcom.com/node/64396/pdf",
+   "A"
+  ],
+  "xpv2": [
+   "Quartz／Yahoo｜AI XPV Platform：2028 年前支援逾 20GW，首期供 Anthropic 逾 1GW",
+   "https://finance.yahoo.com/sectors/technology/articles/broadcom-apollo-blackstone-launch-35-144624131.html"
+  ],
+  "spv": [
+   "Blackstone｜美銀、Blackstone、花旗、摩根士丹利 $630 億融資結構（2026-10-26）",
+   "https://www.blackstone.com/news/press/bank-of-america-blackstone-citi-and-morgan-stanley-announce-landmark-63-billion-financing-structure-to-enable-ai-compute/",
+   "A"
+  ],
+  "spv2": [
+   "Secured Finance Network｜$630 億融資：三家銀行安排第一順位，Blackstone 提供第二順位",
+   "https://www.sfnet.com/home/industry-data-publications/the-secured-lender/tsl-express-daily-articles-news/tsl-express-daily-articles-news/2026/10/27/bank-of-america--blackstone--citi-and-morgan-stanley-announce-landmark--63-billion-financing-structure-to-enable-ai-compute-capacity-in-partnership-with-broadcom"
+  ],
+  "tan": [
+   "Benzinga｜Hock Tan 與董事會同意續任執行長至少到 2030（2025-09）",
+   "https://www.benzinga.com/markets/tech/25/09/47514562/hock-tans-ceo-stint-saw-broadcoms-stock-shoot-up-26750-after-listing-now-hes-staying-on-amid-explosive-ai-revenue-gains-nvidia-rivalry"
+  ],
+  "tanpsu": [
+   "Bloomberg｜Hock Tan 的績效股與 FY2030 AI 營收 $900 億目標掛鉤",
+   "https://www.bloomberg.com/news/articles/2025-09-09/broadcom-ceo-poised-for-payout-if-he-reaches-2030-ai-sales-goal"
+  ],
+  "proxy": [
+   "Broadcom 委託書｜董事會持續進行執行長接班規劃",
+   "https://investors.broadcom.com/static-files/b20543ad-6ab6-47a0-b677-e41da8a9fe1e",
+   "A"
+  ],
+  "tanage": [
+   "HyperAI｜72 歲的 Broadcom 執行長續約至 2030",
+   "https://hyper.ai/en/news/47030"
+  ],
+  "q4date": [
+   "Broadcom IR｜FY2026 Q4 財報將於 2026-12-09 公布",
+   "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announce-fourth-quarter-and-fiscal-year-2026",
+   "A"
+  ]
+ },
+ "categories": [
+  {
+   "id": "lab",
+   "name": "客製晶片客戶",
+   "color": "#a78bfa"
+  },
+  {
+   "id": "fin",
+   "name": "對客戶的融資與持股",
+   "color": "#facc15"
+  },
+  {
+   "id": "plat",
+   "name": "第三方融資平台",
+   "color": "#38bdf8",
+   "sumNote": "為外部資金，不是 Broadcom 的投資"
+  },
+  {
+   "id": "debt",
+   "name": "自身債務",
+   "color": "#fb923c"
+  },
+  {
+   "id": "capex",
+   "name": "資本支出",
+   "color": "#2dd4bf"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "anthropic",
+   "name": "Anthropic（TPU 租約）",
+   "tk": "ANT",
+   "cat": "lab",
+   "type": "五年設備租約",
+   "amt": 161.2,
+   "short": "租約 $1,612億",
+   "date": "2026-10-01",
+   "amtText": "Anthropic 與 Broadcom 及融資實體簽五年設備租約，租金合計約 $1,612 億；約 3.5GW Google TPU 自 2027 起上線。2025 年已有 $210 億 TPU 訂單。",
+   "status": "2027 起交付",
+   "flow": "Anthropic 付租金；設備由融資實體向 Broadcom 買入",
+   "src": [
+    "fw_tpu",
+    "th_tpu",
+    "ant21"
+   ],
+   "amtType": "contract",
+   "direction": "in",
+   "term": {
+    "s": 2027,
+    "e": 2031
+   },
+   "risks": [
+    {
+     "k": "conc",
+     "x": "單一客戶租約規模超過 Broadcom 一年營收",
+     "src": [
+      "fw_tpu"
+     ]
+    },
+    {
+     "k": "fin",
+     "x": "客戶付款能力取決於持續募資",
+     "src": [
+      "star_avgo"
+     ]
+    }
+   ],
+   "verified": "2026-11-27"
+  },
+  {
+   "id": "antnote",
+   "name": "Anthropic（可轉換票據融資）",
+   "tk": "ANT",
+   "cat": "fin",
+   "type": "可轉換票據（Broadcom 為貸款人）",
+   "amt": 42,
+   "short": "≤$420億",
+   "date": "2026-10-01",
+   "amtText": "客戶最多可向 Broadcom 發行 $420 億可轉換票據，用於支應租用 Broadcom 參與設計的晶片。",
+   "status": "額度；已動用金額未揭露",
+   "flow": "Broadcom 借錢給客戶，客戶再租用 Broadcom 的晶片",
+   "src": [
+    "star_avgo",
+    "secapi"
+   ],
+   "amtType": "commitment",
+   "direction": "out",
+   "guarantee": true,
+   "guarAmt": 42,
+   "risks": [
+    {
+     "k": "fin",
+     "x": "供應商同時是貸款人，信用風險回到自己身上",
+     "src": [
+      "star_avgo"
+     ]
+    }
+   ],
+   "verified": "2026-11-27"
+  },
+  {
+   "id": "antipo",
+   "name": "Anthropic（IPO 配售）",
+   "tk": "ANT",
+   "cat": "fin",
+   "type": "股權",
+   "amt": 1.0,
+   "short": "$10億",
+   "date": "2026-10",
+   "amtText": "在 Anthropic IPO 同步配售中認購 $10 億。",
+   "status": "已認購",
+   "flow": "成為客戶的股東",
+   "src": [
+    "fw_place"
+   ],
+   "amtType": "equity",
+   "direction": "out",
+   "verified": "2026-11-27"
+  },
+  {
+   "id": "openai",
+   "name": "OpenAI",
+   "tk": "未上市",
+   "cat": "lab",
+   "type": "10GW 自研加速器合作",
+   "amt": null,
+   "short": "未揭露（10GW）",
+   "date": "2025-10-13",
+   "amtText": "共同開發並部署 10GW 自研加速器與網路系統，2026 下半年開始、2029 年底完成；財務條件未揭露，WSJ 稱達數十億美元。",
+   "status": "部署中",
+   "flow": "OpenAI 的晶片採購成為 Broadcom 營收",
+   "src": [
+    "oai",
+    "oaiwsj"
+   ],
+   "amtType": "none",
+   "direction": "in",
+   "risks": [
+    {
+     "k": "fin",
+     "x": "協議公布時未說明 OpenAI 的資金來源",
+     "src": [
+      "oaiwsj"
+     ]
+    }
+   ],
+   "verified": "2026-11-27"
+  },
+  {
+   "id": "google",
+   "name": "Google／Alphabet",
+   "tk": "GOOGL",
+   "cat": "lab",
+   "type": "TPU 共同設計與長期供貨",
+   "amt": null,
+   "short": "未揭露（至 2031）",
+   "date": "2026-04-06",
+   "amtText": "與 Google 共同設計 TPU，並簽有至 2031 年的長期供貨保證協議；金額未揭露。",
+   "status": "執行中",
+   "flow": "Google 的 TPU 採購成為 Broadcom 營收，部分 TPU 再供 Anthropic 使用",
+   "src": [
+    "qz_tpu"
+   ],
+   "amtType": "none",
+   "direction": "in",
+   "verified": "2026-11-27"
+  },
+  {
+   "id": "meta",
+   "name": "Meta",
+   "tk": "META",
+   "cat": "lab",
+   "type": "MTIA 客製晶片協議",
+   "amt": null,
+   "short": "未揭露（>1GW，至 2029）",
+   "date": "2026-04-14",
+   "amtText": "供應多代 MTIA 客製晶片至 2029，首期承諾逾 1GW；金額未揭露。Hock Tan 因此離開 Meta 董事會，改任顧問。",
+   "status": "執行中",
+   "flow": "Meta 的客製晶片採購成為 Broadcom 營收",
+   "src": [
+    "meta",
+    "meta2"
+   ],
+   "amtType": "none",
+   "direction": "in",
+   "verified": "2026-11-27"
+  },
+  {
+   "id": "apple",
+   "name": "Apple",
+   "tk": "AAPL",
+   "cat": "lab",
+   "type": "多年期採購承諾",
+   "amt": 30,
+   "short": ">$300億",
+   "date": "2026-07-08",
+   "amtText": "新多年期協議預期超過 $300 億，在美生產逾 150 億顆晶片，協議至 2031 年。",
+   "status": "執行中",
+   "flow": "Apple 的採購成為 Broadcom 營收，Broadcom 再投入美國產能",
+   "src": [
+    "ap_avgo",
+    "ap_avgo2"
+   ],
+   "amtType": "commitment",
+   "direction": "in",
+   "term": {
+    "s": 2026,
+    "e": 2031
+   },
+   "verified": "2026-11-27"
+  },
+  {
+   "id": "xpv",
+   "name": "AI XPV Platform（Apollo・Blackstone）",
+   "tk": "APO／BX",
+   "cat": "plat",
+   "type": "第三方融資平台",
+   "amt": 35,
+   "short": "首期 $350億",
+   "date": "2026-06-09",
+   "amtText": "Broadcom 與 Apollo、Blackstone 成立的融資平台，目標在 2028 年前支援逾 20GW；首期 $350 億供 Anthropic 逾 1GW 擴建。",
+   "status": "首期已啟動",
+   "flow": "外部資金買下 Broadcom 的 XPU 與網路設備，再租給 AI 實驗室",
+   "src": [
+    "xpv",
+    "xpv2"
+   ],
+   "amtType": "project",
+   "direction": "in",
+   "excludeFromSum": true,
+   "verified": "2026-11-27"
+  },
+  {
+   "id": "spv",
+   "name": "$630億 SPV（美銀・花旗・大摩・Blackstone）",
+   "tk": "BAC／C／MS／BX",
+   "cat": "plat",
+   "type": "特殊目的實體融資",
+   "amt": 63,
+   "short": "$630億",
+   "date": "2026-10-26",
+   "amtText": "新設 SPV 取得承諾融資，買入 Broadcom XPU 與網路設備後租給 Anthropic，2027 年起交付。三家銀行安排第一順位，Blackstone 提供第二順位。",
+   "status": "已宣布",
+   "flow": "銀行與私募信貸出資 → SPV 向 Broadcom 買設備 → 租給 Anthropic",
+   "src": [
+    "spv",
+    "spv2"
+   ],
+   "amtType": "project",
+   "direction": "in",
+   "excludeFromSum": true,
+   "verified": "2026-11-27"
+  },
+  {
+   "id": "debt",
+   "name": "債務本金",
+   "tk": "",
+   "cat": "debt",
+   "type": "優先票據與定期貸款",
+   "amt": 61.1,
+   "short": "$611億（8/2）",
+   "date": "2026-08-02",
+   "amtText": "8/2 債務本金 $610.8 億（42 檔）；Q3 買回 $56 億票據，季後再償還 $15 億。期末現金 $240 億。",
+   "status": "持續下降",
+   "flow": "主要為收購 VMware 時舉借，以自由現金流償還",
+   "src": [
+    "secapi",
+    "q3call"
+   ],
+   "amtType": "liability",
+   "direction": "in",
+   "verified": "2026-11-27"
+  },
+  {
+   "id": "fort",
+   "name": "Fort Collins 廠擴建",
+   "tk": "",
+   "cat": "capex",
+   "type": "美國產能投資",
+   "amt": 1.5,
+   "short": "$15億",
+   "date": "2026-07-08",
+   "amtText": "為 Apple 協議投入 $15 億擴建 Colorado 的 Fort Collins 廠。",
+   "status": "執行中",
+   "flow": "產能投資對應 Apple 的採購承諾",
+   "src": [
+    "ap_avgo2"
+   ],
+   "amtType": "capex",
+   "direction": "out",
+   "verified": "2026-11-27"
+  }
+ ],
+ "flows": [
+  [
+   "xpv",
+   "anthropic",
+   "首期融資供 Anthropic 逾 1GW"
+  ],
+  [
+   "spv",
+   "anthropic",
+   "SPV 買設備租給 Anthropic"
+  ],
+  [
+   "antnote",
+   "anthropic",
+   "借款支應租約"
+  ],
+  [
+   "apple",
+   "fort",
+   "採購承諾對應產能投資"
+  ]
+ ],
+ "kpis": [
+  {
+   "v": "$295.9億",
+   "l": "FY2026 Q3 營收（年增 86%）",
+   "src": [
+    "q3"
+   ]
+  },
+  {
+   "v": "$167億",
+   "l": "Q3 AI 半導體營收（年增 221%）",
+   "src": [
+    "q3"
+   ]
+  },
+  {
+   "v": "$348億",
+   "l": "Q4 營收指引",
+   "src": [
+    "q3"
+   ]
+  },
+  {
+   "v": "$580億",
+   "l": "FY2026 AI 半導體營收指引",
+   "src": [
+    "q3hl"
+   ]
+  },
+  {
+   "v": "$1,792億",
+   "l": "剩餘履約義務（8/2）",
+   "src": [
+    "q3q"
+   ]
+  },
+  {
+   "v": "$136.7億",
+   "l": "Q3 自由現金流（占營收 46%）",
+   "src": [
+    "q3k"
+   ]
+  },
+  {
+   "v": "$611億",
+   "l": "債務本金（8/2）",
+   "src": [
+    "secapi"
+   ]
+  },
+  {
+   "v": "32%",
+   "l": "單一經銷商客戶占 FY2025 營收",
+   "src": [
+    "k10"
+   ]
+  }
+ ],
+ "center": [
+  {
+   "title": "商業模式",
+   "text": "Broadcom 替少數大型客戶設計客製 AI 加速器（XPU）並供應乙太網路晶片。管理層稱目前有六家 XPU 客戶，並指引 FY2028 AI 半導體營收約 $2,300 億。",
+   "src": [
+    "q3call",
+    "fy28"
+   ]
+  },
+  {
+   "title": "從賣晶片到提供融資",
+   "text": "2026 年起 Broadcom 不只賣晶片：它借錢給 Anthropic、入股 Anthropic，並與 Apollo、Blackstone 及銀行搭建融資平台，讓外部資金買下晶片再租給客戶。",
+   "src": [
+    "star_avgo",
+    "xpv",
+    "spv"
+   ]
+  }
+ ],
+ "loops": [
+  {
+   "id": "L1",
+   "title": "① 供應商融資循環",
+   "sub": "借款 → 租約 → 晶片營收",
+   "nodes": [
+    [
+     "Broadcom",
+     "accent"
+    ],
+    [
+     "Anthropic",
+     "lab"
+    ],
+    [
+     "設備租約",
+     "lab"
+    ],
+    [
+     "XPU 營收",
+     "accent"
+    ]
+   ],
+   "edges": [
+    [
+     0,
+     1,
+     "可轉換票據\n≤$420 億"
+    ],
+    [
+     1,
+     2,
+     "五年租約\n$1,612 億"
+    ],
+    [
+     2,
+     3,
+     "設備採購"
+    ],
+    [
+     3,
+     0,
+     "回流營收"
+    ],
+    [
+     0,
+     1,
+     "IPO 配售 $10 億",
+     "chord"
+    ]
+   ],
+   "text": "Broadcom 同時是 Anthropic 的晶片供應商、貸款人與股東。借出去的錢用來租用 Broadcom 參與設計的晶片，營收與信用風險都繫於同一家客戶。",
+   "src": [
+    "star_avgo",
+    "fw_tpu",
+    "fw_place"
+   ],
+   "back": 161.2,
+   "dep": "high",
+   "backSrc": [
+    "fw_tpu"
+   ],
+   "backNote": "租約 $1,612 億，相對於 Broadcom 提供的融資額度 $420 億與入股 $10 億"
+  },
+  {
+   "id": "L2",
+   "title": "② 第三方融資平台循環",
+   "sub": "外部資金 → SPV → 買晶片 → 租給實驗室",
+   "nodes": [
+    [
+     "Apollo・Blackstone\n銀行團",
+     "plat"
+    ],
+    [
+     "SPV／XPV 平台",
+     "plat"
+    ],
+    [
+     "Broadcom",
+     "accent"
+    ],
+    [
+     "Anthropic",
+     "lab"
+    ]
+   ],
+   "edges": [
+    [
+     0,
+     1,
+     "$350 億＋$630 億"
+    ],
+    [
+     1,
+     2,
+     "買 XPU 與網路設備"
+    ],
+    [
+     2,
+     3,
+     "交付設備"
+    ],
+    [
+     3,
+     0,
+     "租金償還"
+    ]
+   ],
+   "text": "外部債權人出資買下晶片，Broadcom 提前收到貨款，租金風險轉給放款人。如果 Anthropic 付不出租金，損失先落在 SPV 的債權人，但 Broadcom 的後續訂單也會中斷。",
+   "src": [
+    "xpv",
+    "spv",
+    "spv2"
+   ],
+   "back": 98,
+   "dep": "high",
+   "backSrc": [
+    "xpv",
+    "spv"
+   ],
+   "backNote": "AI XPV 首期 $350 億＋SPV $630 億（自行相加）；兩者與 $1,612 億租約的重疊程度未揭露"
+  },
+  {
+   "id": "L3",
+   "title": "③ Apple 在美製造循環",
+   "sub": "採購承諾 → 產能投資 → 晶片",
+   "nodes": [
+    [
+     "Apple",
+     "lab"
+    ],
+    [
+     "Broadcom",
+     "accent"
+    ],
+    [
+     "Fort Collins 廠",
+     "capex"
+    ]
+   ],
+   "edges": [
+    [
+     0,
+     1,
+     "採購 >$300 億"
+    ],
+    [
+     1,
+     2,
+     "投資 $15 億"
+    ],
+    [
+     2,
+     0,
+     "交付晶片"
+    ]
+   ],
+   "text": "Apple 的多年期採購承諾對應 Broadcom 的美國產能投資，屬一般供應鏈關係，循環依賴低。",
+   "src": [
+    "ap_avgo",
+    "ap_avgo2"
+   ],
+   "back": 30,
+   "dep": "low",
+   "backSrc": [
+    "ap_avgo"
+   ],
+   "backNote": "Apple 採購承諾逾 $300 億，相對於 Broadcom 投資 $15 億"
+  }
+ ],
+ "loopNote": {
+  "text": "支持者看重 $1,792 億的合約積壓與 46% 的自由現金流率；質疑者指出客戶極度集中，而且 Broadcom 開始用自己的資產負債表與外部信貸替客戶的採購融資。",
+  "src": [
+   "q3q",
+   "q3k",
+   "k10",
+   "star_avgo"
+  ]
+ },
+ "events": [
+  {
+   "d": "2025-09",
+   "t": "Hock Tan 續任至少到 2030",
+   "x": "績效股與 FY2030 AI 營收目標掛鉤。",
+   "cat": "gov",
+   "src": [
+    "tan",
+    "tanpsu"
+   ]
+  },
+  {
+   "d": "2025-10-13",
+   "t": "OpenAI 10GW 合作",
+   "x": "2026 下半年開始部署，2029 年底完成。",
+   "cat": "lab",
+   "src": [
+    "oai"
+   ]
+  },
+  {
+   "d": "2025-12",
+   "t": "揭露 Anthropic $210 億訂單",
+   "x": "兩筆 TPU 訂單合計 $210 億。",
+   "cat": "lab",
+   "src": [
+    "ant21"
+   ]
+  },
+  {
+   "d": "2026-04-06",
+   "t": "Google・Anthropic 擴大 TPU 合作",
+   "x": "約 3.5GW 自 2027 起；對 Google 供貨保證至 2031。",
+   "cat": "lab",
+   "src": [
+    "qz_tpu",
+    "th_tpu"
+   ]
+  },
+  {
+   "d": "2026-04-14",
+   "t": "Meta 協議延長至 2029",
+   "x": "首期逾 1GW；Hock Tan 離開 Meta 董事會。",
+   "cat": "lab",
+   "src": [
+    "meta"
+   ]
+  },
+  {
+   "d": "2026-06-09",
+   "t": "成立 AI XPV Platform",
+   "x": "Apollo 領投首期 $350 億。",
+   "cat": "plat",
+   "src": [
+    "xpv"
+   ]
+  },
+  {
+   "d": "2026-07-08",
+   "t": "Apple 逾 $300 億協議",
+   "x": "協議至 2031；擴建 Fort Collins。",
+   "cat": "lab",
+   "src": [
+    "ap_avgo"
+   ]
+  },
+  {
+   "d": "2026-09-02",
+   "t": "FY2026 Q3 財報",
+   "x": "營收 $295.9 億；FY2026 AI 營收指引上調至 $580 億。",
+   "cat": "gov",
+   "src": [
+    "q3",
+    "q3hl"
+   ]
+  },
+  {
+   "d": "2026-10-01",
+   "t": "最多借給 Anthropic $420 億",
+   "x": "以可轉換票據形式，支應晶片租約。",
+   "cat": "fin",
+   "src": [
+    "star_avgo"
+   ]
+  },
+  {
+   "d": "2026-10-26",
+   "t": "$630 億 SPV 融資",
+   "x": "買入 Broadcom 設備租給 Anthropic。",
+   "cat": "plat",
+   "src": [
+    "spv"
+   ]
+  },
+  {
+   "d": "2026-12-09",
+   "t": "FY2026 Q4 財報（預定）",
+   "x": "Q4 營收指引約 $348 億。",
+   "cat": "gov",
+   "src": [
+    "q4date"
+   ]
+  }
+ ],
+ "verify": [
+  {
+   "tag": "已驗算",
+   "html": "FY2026 營收估計＝Q1 $193.1 億＋Q2 $221.9 億（上半年 $414.98 億）＋Q3 $295.9 億＋Q4 指引 $348 億 ≈ $1,059 億。"
+  },
+  {
+   "tag": "已驗算",
+   "html": "Anthropic 租約 $1,612 億與 Anthropic Dashboard 的記載一致；Apple 逾 $300 億與 Apple Dashboard 一致。"
+  },
+  {
+   "tag": "未定案",
+   "html": "AI XPV 首期 $350 億、SPV $630 億與 $1,612 億租約之間有多少重疊，公開資料未說明，三者不可相加。"
+  },
+  {
+   "tag": "未定案",
+   "html": "$420 億可轉換票據為額度上限，實際動用金額未揭露。"
+  },
+  {
+   "tag": "已補充",
+   "html": "占營收 32% 的經銷商客戶未具名；OpenAI、Google、Meta 的合約金額均未揭露，不估算。"
+  },
+  {
+   "tag": "已補充",
+   "html": "客戶集中度與中國營收占比為 FY2025 年報數字，FY2026 年報尚未公布。"
+  }
+ ],
+ "method": "<b>方法與注意事項：</b>（1）客戶合約為公告或申報的合約總額，不是已認列營收。（2）第三方融資平台是外部資金，不計入 Broadcom 的投資合計。（3）未揭露金額的合約不估算。（4）部分數字取自第三方依 SEC 申報整理的摘要。（5）本 Dashboard 為資訊整理，非投資建議。",
+ "ic": {
+  "thesis": "Broadcom 是客製 AI 晶片的最大受益者，現金流強、債務下降；但營收集中在少數客戶，而且已開始替最大的新客戶 Anthropic 提供融資。",
+  "src": [
+   "q3",
+   "k10",
+   "star_avgo"
+  ],
+  "opps": [
+   {
+    "t": "剩餘履約義務 $1,792 億，FY2028 AI 營收指引約 $2,300 億",
+    "src": [
+     "q3q",
+     "fy28"
+    ]
+   },
+   {
+    "t": "自由現金流占營收 46%，持續償還債務",
+    "src": [
+     "q3k",
+     "q3call"
+    ]
+   }
+  ],
+  "risks": [
+   {
+    "t": "單一經銷商客戶占營收 32%，前五大終端客戶約 40%",
+    "src": [
+     "k10"
+    ]
+   },
+   {
+    "t": "借給 Anthropic 最多 $420 億，供應商兼貸款人",
+    "src": [
+     "star_avgo"
+    ]
+   },
+   {
+    "t": "中國（含香港）占 FY2025 營收 17%",
+    "src": [
+     "k10"
+    ]
+   }
+  ],
+  "triggers": [
+   {
+    "t": "12/9 FY2026 Q4 財報與 FY2027 指引",
+    "src": [
+     "q4date"
+    ]
+   },
+   {
+    "t": "Anthropic 租約 2027 年起交付與付款情況",
+    "src": [
+     "th_tpu"
+    ]
+   }
+  ]
+ },
+ "macro": {
+  "geo": {
+   "score": 34,
+   "basis": "FY2025 中國（含香港）占營收 17% × 2＝34；年報說明終端客戶未必在中國",
+   "src": [
+    "k10"
+   ]
+  },
+  "fx": {
+   "basis": "待補資料：未取得美國以外營收占比"
+  },
+  "infl": {
+   "score": 31,
+   "basis": "資本支出極低（Q3 $5 億 ÷ 營收 $295.9 億＝1.8%，×2＝4）；債務本金 $611 億 ÷ FY2026 營收估計 $1,059 億＝58%；兩項平均",
+   "src": [
+    "q3k",
+    "secapi"
+   ]
+  },
+  "ceo": {
+   "score": 40,
+   "basis": "非創辦人；無公開指名的接班人，委託書僅稱董事會持續規劃（+25）；執行長 72 歲（2025 年報導）且在任超過 15 年（+15）；已承諾續任至少到 2030，近 12 個月無更換。是否兼任董事長未查證，不計分",
+   "src": [
+    "tan",
+    "proxy",
+    "tanage"
+   ]
+  }
+ },
+ "fin": {
+  "rev": 105.9,
+  "note": "FY2026 估計：前三季實績＋Q4 指引",
+  "src": [
+   "q1",
+   "q2",
+   "q3"
+  ]
+ }
+}
