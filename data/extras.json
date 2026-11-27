@@ -1,0 +1,116 @@
+{
+ "bottlenecks": [
+  {
+   "n": "電力變壓器交期",
+   "v": "約 128 週",
+   "light": 3,
+   "detail": "美國標準電力變壓器平均交期約 128 週，發電機升壓變壓器約 144 週，約為 2021 年的兩倍。",
+   "affects": "所有新建資料中心",
+   "src": [
+    [
+     "Core Insights Review｜Data Center Power Capacity 2026（引 Wood Mackenzie）",
+     "https://www.coradvisors.net/2026/09/data-center-power-capacity-2026.html"
+    ]
+   ]
+  },
+  {
+   "n": "併網排隊",
+   "v": "中位約 3 年，北維吉尼亞約 7 年",
+   "light": 3,
+   "detail": "併網時程中位數約三年，北維吉尼亞等負載成長最快的市場約七年；IEA 估計全球 20% 的新資料中心專案有延遲風險。",
+   "affects": "Amazon、Microsoft、Meta、Google、Oracle、CoreWeave",
+   "src": [
+    [
+     "SEC 424B4｜ERock 公開說明書（引 IEA）",
+     "https://www.sec.gov/Archives/edgar/data/0002110029/000119312526265898/d12401d424b4.htm"
+    ]
+   ]
+  },
+  {
+   "n": "燃氣渦輪積壓",
+   "v": "約 100GW",
+   "light": 3,
+   "detail": "2026 年第一季燃氣渦輪訂單積壓達 100GW；ERCOT 大型負載排隊超過 233GW，實際接上約 7.5GW。",
+   "affects": "自建電廠的資料中心（OpenAI Stargate、xAI、Meta）",
+   "src": [
+    [
+     "MMCG Invest｜The U.S. Data Center Census 2026",
+     "https://www.mmcginvest.com/post/the-u-s-data-center-census-2026"
+    ]
+   ]
+  },
+  {
+   "n": "先進封裝 CoWoS",
+   "v": "年底約 12–14 萬片／月，缺口約 10%",
+   "light": 2,
+   "detail": "台積電未公布產能，供應鏈估計 2026 年底每月 12–14 萬片；供需缺口由 6 月約 20% 縮小到年底約 10%，預期 2027 年才緩解。報導稱台積電考慮調漲 CoWoS 價格最多 20%。",
+   "affects": "NVIDIA、Broadcom、AMD、聯發科、TSMC",
+   "src": [
+    [
+     "TrendForce｜TSMC 考慮調漲 CoWoS 價格（2026-10-27）",
+     "https://www.trendforce.com/news/2026/10/27/news-tsmc-reportedly-eyes-20-cowos-price-hike-skips-equipment-price-renegotiations-amid-ai-demand-surge/"
+    ],
+    [
+     "Supercomputing News｜CoWoS 供需缺口（引 TrendForce）",
+     "https://www.supercomputing.news/emerging/advanced-packaging-cowos-emib-t-ai-accelerator-bottleneck"
+    ]
+   ]
+  },
+  {
+   "n": "高頻寬記憶體 HBM",
+   "v": "2027 年已售罄",
+   "light": 3,
+   "detail": "Samsung 表示 2027 年 HBM 供應已依議定價格售罄，客戶仍在追加；SK hynix 的 HBM4 已量產。",
+   "affects": "NVIDIA、Broadcom、AMD 及所有 AI 加速器買方",
+   "src": [
+    [
+     "Investing.com｜Samsung Q3 簡報：2027 年 HBM 已售罄",
+     "https://uk.investing.com/news/stock-market-news/samsung-q3-2026-slides-first-tech-firm-to-top-100t-won-profit-93CH-4939721"
+    ]
+   ]
+  }
+ ],
+ "history": {
+  "note": "2000 年電信設備商借錢給客戶買自家設備；2001 年資本市場關閉後，客戶違約，設備商認列鉅額壞帳。",
+  "rows": [
+   {
+    "who": "Lucent（2000 會計年度）",
+    "fin": 8.1,
+    "rev": 33.8,
+    "x": "承諾額度約四分之一已動用；2001 年提列 $22 億、2002 年再提列 $13 億壞帳，營收由 1999 年的 $380 億降到 2006 年不到 $90 億"
+   },
+   {
+    "who": "Nortel（2000）",
+    "fin": 3.1,
+    "rev": null,
+    "x": "其中 $14 億已動用，分散在 45 筆交易"
+   },
+   {
+    "who": "Cisco（2000）",
+    "fin": 2.4,
+    "rev": null,
+    "x": "承諾的客戶貸款"
+   },
+   {
+    "who": "九家設備商合計（2000 年底）",
+    "fin": 25.6,
+    "rev": null,
+    "x": "McKinsey 事後估計的合計曝險"
+   }
+  ],
+  "src": [
+   [
+    "Nuno Amado Mendes｜The Buyer of Last Resort（Lucent 承諾 $81 億，約為營收 $338 億的 24%）",
+    "https://nunoamadomendes.substack.com/p/the-buyer-of-last-resort"
+   ],
+   [
+    "The Systems Ledger｜How to Tell Whether a Boom Is Being Bought（Lucent 壞帳提列）",
+    "https://thesystemsledger.substack.com/p/how-to-tell-whether-a-boom-is-being"
+   ],
+   [
+    "Michel Johannsen｜Vendor Financing Loops（Nortel、Cisco、九家合計 $256 億）",
+    "https://www.micheljohannsen.com/blog/vendor-financing-loops-1999-vs-2026"
+   ]
+  ]
+ }
+}

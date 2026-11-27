@@ -433,6 +433,10 @@
   "oai600": [
    "AppleScoop｜黃仁勳稱 OpenAI 至 2030 年的計畫約需 $6,000 億 NVIDIA 算力",
    "https://applescoop.org/story/ai-circular-money-nvidia-openai-deals-explained"
+  ],
+  "mktcap": [
+   "SectorAlpha｜美國市值前十大（2026-11 下旬）",
+   "https://www.sectoralpha.in/top-us-companies"
   ]
  },
  "categories": [
@@ -2554,5 +2558,12 @@
     "oai600"
    ]
   }
+ },
+ "mkt": {
+  "cap": 3030,
+  "date": "2026-11",
+  "src": [
+   "mktcap"
+  ]
  }
 }

@@ -140,6 +140,10 @@
   "mc_fy26": [
    "ProPakistani｜Apple FY2026 淨銷售 $4,788 億（2026-11-03）",
    "https://propakistani.pk/2026/11/03/apple-breaks-revenue-records-with-114-5-billion-in-just-3-months/"
+  ],
+  "mktcap": [
+   "SectorAlpha｜美國市值前十大（2026-11 下旬）",
+   "https://www.sectoralpha.in/top-us-companies"
   ]
  },
  "categories": [
@@ -1153,6 +1157,13 @@
   "note": "FY2026",
   "src": [
    "mc_fy26"
+  ]
+ },
+ "mkt": {
+  "cap": 4980,
+  "date": "2026-11",
+  "src": [
+   "mktcap"
   ]
  }
 }

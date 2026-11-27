@@ -178,6 +178,10 @@
   "ceo_bench": [
    "工商時報｜台積電核心接班梯隊浮上檯面：共同營運長秦永沛、米玉傑等（2026-06-05）",
    "https://www.ctee.com.tw/news/20260605700073-430501"
+  ],
+  "mktcap": [
+   "Visual Capitalist｜全球市值前 50 大（2026-11-13 收盤，CompaniesMarketCap）",
+   "https://www.visualcapitalist.com/ranked-worlds-50-most-valuable-companies-anthropic-2026/"
   ]
  },
  "categories": [
@@ -1294,6 +1298,13 @@
   "note": "2025",
   "src": [
    "mc_fy25"
+  ]
+ },
+ "mkt": {
+  "cap": 2068,
+  "date": "2026-11-13",
+  "src": [
+   "mktcap"
   ]
  }
 }

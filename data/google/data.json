@@ -307,6 +307,10 @@
   "ceo_org": [
    "Creately｜Alphabet 組織：CEO 直接管轄 Google 與 Other Bets",
    "https://creately.com/org-chart/fortune-500/alphabet/"
+  ],
+  "mktcap": [
+   "SectorAlpha｜美國市值前十大（2026-11 下旬）",
+   "https://www.sectoralpha.in/top-us-companies"
   ]
  },
  "categories": [
@@ -1876,6 +1880,13 @@
   "note": "2025",
   "src": [
    "mc_fy25"
+  ]
+ },
+ "mkt": {
+  "cap": 3260,
+  "date": "2026-11",
+  "src": [
+   "mktcap"
   ]
  }
 }

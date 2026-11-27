@@ -93,6 +93,10 @@
   "fx": [
    "BigGo Finance｜SK hynix 前三季對 NVIDIA 營收 ₩34.98 兆（約 $262 億）",
    "https://finance.biggo.com/news/40ff34c0-1b24-499b-ac00-8bce03db9511"
+  ],
+  "mktcap": [
+   "VLSI Korea｜全球半導體市值排名 TOP 20（2026-11-26）",
+   "https://www.vlsi.kr/en/global-semiconductor-marketcap-ranking-top20-en/"
   ]
  },
  "categories": [
@@ -872,5 +876,12 @@
    "q3cash"
   ],
   "cashNote": "Q3 底現金 ₩114.5 兆"
+ },
+ "mkt": {
+  "cap": 667.3,
+  "date": "2026-11-26",
+  "src": [
+   "mktcap"
+  ]
  }
 }

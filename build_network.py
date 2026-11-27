@@ -61,6 +61,7 @@ for fp in FILES:
         "fin":(dict(D["fin"],src=[[S[x][0],S[x][1]] for x in D["fin"].get("src",[]) if x in S],
                     cashSrc=[[S[x][0],S[x][1]] for x in D["fin"].get("cashSrc",[]) if x in S],burnSrc=[[S[x][0],S[x][1]] for x in D["fin"].get("burnSrc",[]) if x in S],
                     circEst=(dict(D["fin"]["circEst"],src=[[S[x][0],S[x][1]] for x in D["fin"]["circEst"].get("src",[]) if x in S]) if isinstance(D["fin"].get("circEst"),dict) else None)) if isinstance(D.get("fin"),dict) else None),
+        "mkt":(dict(D["mkt"],src=[[S[k][0],S[k][1]] for k in D["mkt"].get("src",[]) if k in S]) if isinstance(D.get("mkt"),dict) else None),
         "dues":[dict(x,src=[[S[k][0],S[k][1]] for k in x.get("src",[]) if k in S]) for x in D.get("dues",[])],
         "rk":{"n":sum(1 for n in D["nodes"] if not cats.get(n["cat"],{}).get("counterparty")),
               "eq":[n["amt"] for n in D["nodes"] if not cats.get(n["cat"],{}).get("counterparty") and n.get("amtType","equity")=="equity" and n.get("direction","out")!="in" and n.get("amt") is not None and not n.get("excludeFromSum") and not n.get("per")],
@@ -73,7 +74,9 @@ for fp in FILES:
                    "capex":round(sum(n["amt"] for n in D["nodes"] if n.get("amtType")=="capex" and n.get("amt") is not None and (n.get("per")=="year" or n["id"]=="capex")),2) or None,
                    "gonly":round(sum((n.get("guarAmt") if n.get("guarAmt") is not None else (n.get("amt") or 0)) for n in D["nodes"] if not n.get("excludeFromSum") and n.get("amtType")!="liability" and (n.get("guarAmt") is not None or n.get("guarantee") or "擔保" in n.get("type",""))),2),
                    "guar":[[n["name"],(n.get("guarAmt") if n.get("guarAmt") is not None else n.get("amt")),n.get("status",""),str(n.get("date","")),(n.get("term") or {}).get("e")] for n in D["nodes"] if n.get("amtType")!="liability" and (n.get("guarAmt") is not None or n.get("guarantee") or "擔保" in n.get("type",""))],
-                   "fund":[[n["name"],n["amt"],str(n.get("date","")),n.get("amtType")] for n in D["nodes"] if n.get("direction")=="in" and n.get("amtType") in ("inflow","liability","equity") and n.get("amt") is not None and not n.get("excludeFromSum")],
+                   "fund":[[n["name"],n["amt"],str(n.get("date","")),n.get("amtType")] for n in D["nodes"] if n.get("direction")=="in" and n.get("amt") is not None and not n.get("excludeFromSum") and not re.search("股東|持股|採購|銷售|客戶",n.get("type","")) and (n.get("amtType")=="liability" or (n.get("amtType") in ("inflow","equity") and re.search("募資|輪|IPO|增資|發行|配售|股權|入股|特別股|認購|投資|ADR|基金|可轉|債|貸款|融資",n.get("type","")+n["name"])))],
+                   "pol":[[str(d0),nm0,tx0[:150],(S[sk[0]][1] if sk and sk[0] in S else "")] for d0,nm0,tx0,sk in [(n.get("date",""),n["name"],n.get("amtText","") or n.get("status",""),n.get("src",[])) for n in D["nodes"]]+[(v.get("d",""),v.get("t",""),v.get("x",""),v.get("src",[])) for v in D.get("events",[])]+[(M["asOf"],"地緣政治面向",((D.get("macro") or {}).get("geo") or {}).get("basis",""),((D.get("macro") or {}).get("geo") or {}).get("src",[]))]],
+                   "fs":[[n["name"],n["amt"],str(n.get("date","")),n.get("amtType"),n.get("type","")] for n in D["nodes"] if n.get("amt") is not None and not re.search("股東|持股|採購|銷售|客戶",n.get("type","")) and ((n.get("direction")=="in" and n.get("amtType")=="liability") or (n.get("direction")=="in" and n.get("amtType") in ("inflow","equity") and re.search("募資|輪|IPO|增資|發行|配售|股權|入股|特別股|認購|投資|ADR|基金|可轉|債|貸款|融資",n.get("type","")+n["name"])) or (n.get("amtType")=="project" and re.search("SPV|特殊目的|合資|JV|融資平台|售後回租",n.get("type","")+n["name"]) and re.search("債|融資|貸款|信貸|Blue Owl|PIMCO|Apollo|Blackstone",n.get("amtText","")+n.get("type","")+n["name"])))],
                    "rates":[[n.get("date",""),n["name"],n["rate"]] for n in D["nodes"] if isinstance(n.get("rate"),(int,float))],
                    "txt":[[str(n.get("date","")),n["name"],(n.get("status","")+"｜"+n.get("amtText",""))[:240]] for n in D["nodes"]]+[[str(v.get("d","")),v.get("t",""),v.get("x","")[:240]] for v in D.get("events",[])]},
               "macro":{mk:dict(mv,src=[[S[x][0],S[x][1]] for x in mv.get("src",[]) if x in S]) for mk,mv in (D.get("macro") or {}).items() if isinstance(mv,dict)}}})
@@ -292,6 +295,33 @@ for e in ents: e["scen"]={"cn":_X[e["key"]]["cn"],"capex":_X[e["key"]]["capex"]}
 for e in ents:    # 缺口靠誰補：近 12 個月的募資與舉債；到期事項與擔保
     fu=sorted([f for f in _X[e["key"]]["fund"] if 0<=_days(f[2])<=365],key=lambda f:-f[1])
     e["fund"]={"tot":round(sum(f[1] for f in fu),1),"top":[[f[0],f[1],f[3]] for f in fu[:3]]}
+# 資金來源結構：近 24 個月的募資與舉債，依名稱與型態分類
+_FS=[("off","私募信貸與表外",re.compile("DDTL|私募|SPV|特殊目的|售後回租|租約|合資|JV|融資平台|Blue Owl|Apollo|Blackstone|PIMCO|擔保貸款|保證金貸款|過橋|質押")),("conv","可轉債",re.compile("可轉")),
+     ("bond","公開債券",re.compile("債券|票據|公司債|發債")),("loan","其他借款",None),("eq","股權",None)]
+for e in ents:
+    mix={k:0 for k,_,_ in _FS}; items=[]
+    for nm0,a,d0,at,ty in _X[e["key"]]["fs"]:
+        if not (0<=_days(d0)<=730): continue
+        s=nm0+ty; c=("conv" if "可轉" in s else "bond" if re.search("債|票據",s) else "eq") if at in ("inflow","equity") else (next((k for k,_,rx in _FS if rx and rx.search(s)),None) or ("loan" if at=="liability" else "off"))
+        mix[c]+=a; items.append([nm0,a,c])
+    tot=sum(mix.values()); e["fs"]={"tot":round(tot,1),"mix":{k:round(v,1) for k,v in mix.items()},"top":sorted(items,key=lambda x:-x[1])[:4]} if tot>0 else None
+# 主權與政策層：從節點與事件文字歸類
+_POL=[("出口管制與許可",re.compile("出口管制|出口許可|出口限制|許可機制|年度許可|需出口許可|實體清單|禁售|H20|MI308|晶片禁令")),("關稅",re.compile("關稅")),
+      ("政府入股與補助",re.compile("政府入股|政府持股|商務部|CHIPS|晶片法|政府補助|補助款|國家基金|大基金|國資")),
+      ("主權基金入股",re.compile("主權基金|PIF|MGX|Mubadala|QIA|GIC|淡馬錫|Temasek|HUMAIN")),
+      ("國安審查與強制分拆",re.compile("CFIUS|國安|國家安全|強制分拆|分拆成合資|法律允許上限|安全審查"))]
+policy=[]
+for k,v in _X.items():
+    seen=set()
+    for d0,nm0,tx0,u in v["pol"]:
+        for cat,rx in _POL:
+            if cat=="主權基金入股" and re.search("MGX|PIF",k): continue
+            if rx.search(nm0+tx0) and (cat,nm0) not in seen: seen.add((cat,nm0)); policy.append({"cat":cat,"ent":_name[k],"key":k,"d":d0,"n":nm0,"x":tx0,"u":u})
+policy.sort(key=lambda p:(p["cat"],p["d"]),reverse=True)
+# 實體瓶頸與歷史對照：人工維護的 extras.json（與 changelog.json 同一層）；現況比率由資料計算
+_EXF=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(FILES[0]))),"extras.json")
+extras=json.load(open(_EXF,encoding="utf-8")) if os.path.exists(_EXF) else {}
+vfnow=sorted([{"ent":e["entity"],"key":e["key"],"fin":_X[e["key"]]["gonly"],"rev":(e.get("fin") or {}).get("rev")} for e in ents if _X[e["key"]]["gonly"]>0 and (e.get("fin") or {}).get("rev")],key=lambda x:-x["fin"]/x["rev"])
 due=[dict(x,ent=e["entity"],key=e["key"]) for e in ents for x in e.pop("dues",[])]
 guar=sorted([{"ent":_name[k],"key":k,"name":g[0],"amt":g[1],"status":g[2],"date":g[3],"end":g[4]} for k,v in _X.items() for g in v["guar"]],key=lambda g:-(g["amt"] or 0))
 _yrs=list(range(int(ASOF[:4]),int(ASOF[:4])+11))
@@ -370,7 +400,7 @@ if _entry["from"]:
     for a in _auto: _cnt[a["t"]]=_cnt.get(a["t"],0)+1
     _new=[a["e"] for a in _auto if a["t"]=="新增公司"]; _lc=[a["e"]+"（"+a["x"].split("，")[-1]+"）" for a in _auto if a["t"]=="燈號變動"]
     head.append(f"與上一期（{_entry['from']}）相比："+("；".join(filter(None,[("新增 "+"、".join(_new)) if _new else "",("燈號變動 "+"、".join(_lc[:4])) if _lc else "",f"金額更新 {_cnt.get('金額更新',0)} 筆、新增節點 {_cnt.get('新增節點',0)} 個" if _cnt.get('金額更新') or _cnt.get('新增節點') else ""])) or "沒有數字變動")+"。")
-data={"asOf":ASOF,"ents":ents,"links":links,"hubs":hubs,"amt":AMT,"checks":checks,"cycles":cycles,"flows":flows,"watch":watch,"head":head,"due":due,"guar":guar,"chg":[{k:x[k] for k in ("d","from","auto","notes")} for x in _log["log"][:8]]}
+data={"asOf":ASOF,"ents":ents,"links":links,"hubs":hubs,"amt":AMT,"checks":checks,"cycles":cycles,"flows":flows,"watch":watch,"head":head,"due":due,"guar":guar,"policy":policy,"extras":extras,"vfnow":vfnow,"chg":[{k:x[k] for k in ("d","from","auto","notes")} for x in _log["log"][:8]]}
 # 使用者指引：network template 旁邊若有 guide_template.html，就一併產生 guide.html（公司清單隨資料更新）
 GT=os.path.join(os.path.dirname(os.path.abspath(TPL)),"guide_template.html")
 if os.path.exists(GT):

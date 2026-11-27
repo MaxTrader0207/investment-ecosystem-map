@@ -124,6 +124,10 @@
   "ceo_board": [
    "Palantir IR｜董事會：Karp 為共同創辦人、2005 年起任 CEO；Thiel 任董事長；Cohen 任總裁",
    "https://investors.palantir.com/board.html"
+  ],
+  "mktcap": [
+   "Motley Fool｜AI 類股市值（2026-11-25 收盤，只計流通在外的公開股份）",
+   "https://www.fool.com/investing/stock-market/market-sectors/information-technology/ai-stocks/"
   ]
  },
  "categories": [
@@ -1157,6 +1161,13 @@
   "note": "2026 全年指引",
   "src": [
    "aiw_q3"
+  ]
+ },
+ "mkt": {
+  "cap": 394.2,
+  "date": "2026-11-25",
+  "src": [
+   "mktcap"
   ]
  }
 }

@@ -163,6 +163,10 @@
   "ceo_bezos": [
    "Dawn／Reuters｜Bezos 交棒 Andy Jassy、轉任執行董事長（2021-02-04）",
    "https://www.dawn.com/news/amp/1605401"
+  ],
+  "mktcap": [
+   "SectorAlpha｜美國市值前十大（2026-11 下旬）",
+   "https://www.sectoralpha.in/top-us-companies"
   ]
  },
  "categories": [
@@ -1133,6 +1137,13 @@
   "note": "2025",
   "src": [
    "mc_fy25"
+  ]
+ },
+ "mkt": {
+  "cap": 2670,
+  "date": "2026-11",
+  "src": [
+   "mktcap"
   ]
  }
 }

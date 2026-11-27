@@ -128,6 +128,10 @@
   "ceo_founder": [
    "Business Standard｜Tesla 若 Musk 離任將優先由內部接任（Bloomberg）",
    "https://www.business-standard.com/world-news/elon-musk-tesla-1-trillion-pay-package-robyn-denholm-internal-hiring-ceo-125102900302_1.html"
+  ],
+  "mktcap": [
+   "SectorAlpha｜美國市值前十大（2026-11 下旬）",
+   "https://www.sectoralpha.in/top-us-companies"
   ]
  },
  "categories": [
@@ -924,6 +928,13 @@
   "note": "2025",
   "src": [
    "mc_fa"
+  ]
+ },
+ "mkt": {
+  "cap": 1370,
+  "date": "2026-11",
+  "src": [
+   "mktcap"
   ]
  }
 }

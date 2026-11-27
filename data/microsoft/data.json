@@ -134,6 +134,10 @@
   "ceo_althoff": [
    "Cloud Wars｜Nadella 任命 Judson Althoff 為商業事業 CEO（2025-10-07）",
    "https://cloudwars.com/innovation-leadership/satya-nadella-is-going-full-larry-ellison/"
+  ],
+  "mktcap": [
+   "SectorAlpha｜美國市值前十大（2026-11 下旬）",
+   "https://www.sectoralpha.in/top-us-companies"
   ]
  },
  "categories": [
@@ -1038,6 +1042,13 @@
   "note": "FY2026",
   "src": [
    "mc_fa"
+  ]
+ },
+ "mkt": {
+  "cap": 3600,
+  "date": "2026-11",
+  "src": [
+   "mktcap"
   ]
  }
 }

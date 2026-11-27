@@ -130,6 +130,10 @@
    "SEC 10-Q｜CoreWeave 9/30 現金與有價證券 $42 億，另有受限制現金 $23 億",
    "https://www.sec.gov/Archives/edgar/data/0001769628/000176962826000465/crwv-20260930.htm",
    "A"
+  ],
+  "mktcap": [
+   "Motley Fool｜AI 類股市值（2026-11-25 收盤，只計流通在外的公開股份）",
+   "https://www.fool.com/investing/stock-market/market-sectors/information-technology/ai-stocks/"
   ]
  },
  "categories": [
@@ -1046,5 +1050,13 @@
     "debt930"
    ]
   }
- ]
+ ],
+ "mkt": {
+  "cap": 23.7,
+  "date": "2026-11-25",
+  "src": [
+   "mktcap"
+  ],
+  "note": "只計公開流通股份，低於完整市值"
+ }
 }

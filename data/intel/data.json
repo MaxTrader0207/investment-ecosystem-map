@@ -209,6 +209,10 @@
   "ceo_chair": [
    "Intel Newsroom｜Craig Barratt 接任獨立董事長、Lip-Bu Tan 為 CEO（2026-03-03）",
    "https://newsroom.intel.com/corporate/intel-board-chair-frank-d-yeary-to-retire-following-annual-meeting-dr-craig-h-barratt-elected-as-chair"
+  ],
+  "mktcap": [
+   "VLSI Korea｜全球半導體市值排名 TOP 20（2026-11-26）",
+   "https://www.vlsi.kr/en/global-semiconductor-marketcap-ranking-top20-en/"
   ]
  },
  "categories": [
@@ -1394,6 +1398,13 @@
   "note": "2025",
   "src": [
    "mc_fy25"
+  ]
+ },
+ "mkt": {
+  "cap": 332.2,
+  "date": "2026-11-26",
+  "src": [
+   "mktcap"
   ]
  }
 }

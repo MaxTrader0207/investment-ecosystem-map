@@ -154,6 +154,16 @@ footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs)
 <div class="brief" id="scen"></div>
 <div class="sec" id="s-mine">🧮 我的曝險：輸入持有的部位，看穿透後實際押在誰身上（只存在這台瀏覽器，不會上傳）</div>
 <div class="brief" id="mine"></div>
+<div class="sec" id="s-val">💰 估值與風險（市值相對年營收的倍數，對照風險分數）</div>
+<div class="brief" id="valB"></div>
+<div class="sec" id="s-fs">🏦 資金來源結構（近 24 個月的募資與舉債，依工具分類）</div>
+<div class="brief" id="fsB"></div>
+<div class="sec" id="s-phy">🏭 實體瓶頸（資金循環最後卡在哪些實體環節）</div>
+<div class="brief" id="phyB"></div>
+<div class="sec" id="s-pol">🏛️ 主權與政策層（出口許可、政府入股與補助、主權基金入股、國安審查）</div>
+<div class="brief" id="polB"></div>
+<div class="sec" id="s-his">📜 歷史對照：2000 年電信設備商的供應商融資</div>
+<div class="brief" id="hisB"></div>
 <div class="sec" id="s-chg">📝 變動紀錄（每次更新後，與上一期相比哪些數字改了、為什麼）</div>
 <div class="brief" id="chg"></div>
 <div class="sec">⚖️ 多實體比較（勾選 2–3 家並排）</div>
@@ -617,6 +627,36 @@ build(); side(null); table(); cmp();
    $('#pAdd').onclick=()=>{PF.push({k:KEYS.find(k=>!PF.some(p=>p.k===k))||KEYS[0],a:100});save();draw()};
    $('#pClr').onclick=()=>{PF=[];save();draw()}}
   draw()}
+ // 估值與風險：市值 ÷ 年營收，對照風險分數，以中位數切成四個象限
+ {const V=DATA.ents.filter(e=>e.mkt&&e.mkt.cap&&revOf(e.key)&&e.risk).map(e=>({e,ps:e.mkt.cap/revOf(e.key),r:e.risk.total}));
+  const med=a=>{const s=[...a].sort((x,y)=>x-y),m=s.length>>1;return s.length?(s.length%2?s[m]:(s[m-1]+s[m])/2):0},mp=med(V.map(x=>x.ps)),mr=med(V.map(x=>x.r));
+  const Q=x=>x.r>=mr?(x.ps>=mp?['風險高、估值也高',3]:['風險高、估值相對低',2]):(x.ps>=mp?['風險低、估值高',2]:['風險低、估值相對低',1]);
+  V.sort((a,b)=>b.r-a.r||b.ps-a.ps);
+  $('#valB').innerHTML=V.length?`<div class="rcard"><table><thead><tr><th>公司</th><th style="text-align:right">市值或估值</th><th style="text-align:right">年營收</th><th style="text-align:right">市值÷營收</th><th style="text-align:right">風險分數</th><th>位置</th><th>市值日期與來源</th></tr></thead><tbody>${V.map(x=>{const q=Q(x),e=x.e;return `<tr><td><b>${esc(e.entity)}</b></td><td style="text-align:right">${bn(e.mkt.cap)}</td><td style="text-align:right">${bn(revOf(e.key))}</td><td style="text-align:right"><b>${x.ps.toFixed(1)} 倍</b></td><td style="text-align:right"><b class="rc${e.risk.light}">${x.r}</b></td><td><b class="rc${q[1]}">${q[0]}</b></td><td class="hint">${esc(e.mkt.date||'')}${e.mkt.note?'；'+esc(e.mkt.note):''}${e.mkt.src[0]?` <a href="${esc(e.mkt.src[0][1])}" target="_blank" rel="noopener">↗</a>`:''}</td></tr>`}).join('')}</tbody></table>
+   <div class="hint" style="margin-top:8px;line-height:1.7">「位置」以這 ${V.length} 家的中位數切分：市值÷營收中位數 ${mp.toFixed(1)} 倍、風險分數中位數 ${mr}。市值÷營收只是最粗略的估值指標，沒有考慮獲利率與成長率；各家市值取自不同來源與日期，近期股價波動大，同一家公司在不同來源的數字可能相差兩成以上。未上市或未取得市值的公司沒有列入。非投資建議。</div></div>`:'<div class="hint">尚無市值資料。</div>'}
+ // 資金來源結構
+ {const C=[['off','私募信貸與表外','#ef4444'],['loan','其他借款','#fb923c'],['conv','可轉債','#facc15'],['bond','公開債券','#38bdf8'],['eq','股權','#4ade80']];
+  const L=DATA.ents.filter(e=>e.fs).sort((a,b)=>(b.fs.mix.off+b.fs.mix.loan)/b.fs.tot-(a.fs.mix.off+a.fs.mix.loan)/a.fs.tot||b.fs.tot-a.fs.tot);
+  $('#fsB').innerHTML=`<div class="rcard"><div class="legend" style="margin-bottom:8px">${C.map(c=>`<span><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${c[2]};margin-right:4px"></i>${c[1]}</span>`).join('')}</div>
+   <table><thead><tr><th>公司</th><th style="text-align:right">合計</th><th style="width:34%">結構</th><th style="text-align:right">私募信貸與表外占比</th><th>主要項目</th></tr></thead><tbody>${L.map(e=>{const f=e.fs,o=f.mix.off/f.tot;return `<tr><td><b>${esc(e.entity)}</b></td><td style="text-align:right">${bn(f.tot)}</td><td><div style="display:flex;height:14px;border-radius:4px;overflow:hidden;background:var(--line)">${C.map(c=>f.mix[c[0]]?`<div title="${c[1]} ${bn(f.mix[c[0]])}" style="width:${f.mix[c[0]]/f.tot*100}%;background:${c[2]}"></div>`:'').join('')}</div></td><td style="text-align:right"><b class="rc${o>=.3?3:o>0?2:1}">${(o*100).toFixed(0)}%</b></td><td class="hint">${f.top.map(x=>esc(x[0])+' '+bn(x[1])).join('、')}</td></tr>`}).join('')}</tbody></table>
+   <div class="hint" style="margin-top:8px;line-height:1.7">只統計資料檔中已建立節點、且日期在近 24 個月內的募資與舉債，依節點名稱與型態自動分類；營運現金沒有對應節點，所以看不到「用自己賺的錢付」的部分，自有現金充裕的公司（例如 Microsoft、Google、Samsung）不會出現在表中。私募信貸與表外工具（SPV、合資、售後回租、擔保貸款）的揭露最少，實際規模多半高於這裡的數字。</div></div>`}
+ // 實體瓶頸
+ {const B=(DATA.extras&&DATA.extras.bottlenecks)||[];
+  $('#phyB').innerHTML=B.length?`<div class="wgrid">${B.map(w=>`<div class="wcard w${w.light}"><b>${esc(w.n)} <span class="rc${w.light}" style="float:right">● ${['無資料','緩解','偏緊','嚴重'][w.light]}</span></b><div class="wv">${esc(w.v)}</div><div class="hint" style="line-height:1.6">${esc(w.detail)}</div><div class="hint" style="margin-top:4px">影響：${esc(w.affects)}</div><div class="hint" style="margin-top:4px">${(w.src||[]).map(s=>`<a href="${esc(s[1])}" target="_blank" rel="noopener">${esc(s[0])}</a>`).join('；')}</div></div>`).join('')}</div><div class="hint" style="margin-top:8px">這一區由人工查證後維護，不會隨每週自動更新而改變；燈號是整理者的判斷。</div>`:'<div class="hint">尚無資料。</div>'}
+ // 主權與政策層
+ {const P=DATA.policy||[],cats=[...new Set(P.map(p=>p.cat))];
+  $('#polB').innerHTML=P.length?`<div class="rcard"><div class="legend" style="margin-bottom:8px">${cats.map(c=>`<span><b>${esc(c)}</b> ${P.filter(p=>p.cat===c).length} 則</span>`).join('')}</div>
+   <div style="max-height:460px;overflow:auto"><table class="chgt"><thead><tr><th>類別</th><th>公司</th><th>日期</th><th>事項</th><th>內容</th></tr></thead><tbody>${P.map(p=>`<tr><td>${esc(p.cat)}</td><td><b>${esc(p.ent)}</b></td><td style="white-space:nowrap">${esc(p.d)}</td><td>${esc(p.n)}${p.u?` <a href="${esc(p.u)}" target="_blank" rel="noopener">↗</a>`:''}</td><td class="hint">${esc(p.x)}</td></tr>`).join('')}</tbody></table></div>
+   <div class="hint" style="margin-top:8px;line-height:1.7">從各家 Dashboard 的節點、事件與地緣政治說明中，以關鍵字自動歸類；可能有遺漏或誤歸。關稅目前沒有對應資料。</div></div>`:'<div class="hint">尚無資料。</div>'}
+ // 歷史對照
+ {const H=DATA.extras&&DATA.extras.history,N=DATA.vfnow||[];
+  if(H)$('#hisB').innerHTML=`<div class="rgrid" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr)">
+   <div class="rcard"><b>2000 年：電信設備商</b> <span class="hint">供應商融資承諾 ÷ 年營收</span>
+    <table style="margin-top:8px"><thead><tr><th>公司</th><th style="text-align:right">融資承諾</th><th style="text-align:right">年營收</th><th style="text-align:right">比率</th><th>後續</th></tr></thead><tbody>${H.rows.map(r=>`<tr><td><b>${esc(r.who)}</b></td><td style="text-align:right">${bn(r.fin)}</td><td style="text-align:right">${r.rev?bn(r.rev):'—'}</td><td style="text-align:right"><b>${r.rev?(r.fin/r.rev*100).toFixed(0)+'%':'—'}</b></td><td class="hint">${esc(r.x)}</td></tr>`).join('')}</tbody></table>
+    <div class="hint" style="margin-top:6px;line-height:1.6">${esc(H.note)}<br>${H.src.map(s=>`<a href="${esc(s[1])}" target="_blank" rel="noopener">${esc(s[0])}</a>`).join('；')}</div></div>
+   <div class="rcard"><b>現在：AI 供應商與平台</b> <span class="hint">擔保與供應商融資上限 ÷ 年營收</span>
+    <table style="margin-top:8px"><thead><tr><th>公司</th><th style="text-align:right">擔保與融資上限</th><th style="text-align:right">年營收</th><th style="text-align:right">比率</th></tr></thead><tbody>${N.map(r=>{const x=r.fin/r.rev;return `<tr><td><b>${esc(r.ent)}</b></td><td style="text-align:right">${bn(r.fin)}</td><td style="text-align:right">${bn(r.rev)}</td><td style="text-align:right"><b class="rc${x>=.24?3:x>=.1?2:1}">${(x*100).toFixed(x<.1?1:0)}%</b></td></tr>`}).join('')}</tbody></table>
+    <div class="hint" style="margin-top:6px;line-height:1.6">比率達 Lucent 當年的 24% 標紅。兩者不能直接等同：當年是貸款給沒有營收的新進電信商；現在多為擔保或額度上限，尚未動用或未發生付款，對象的營收規模也大得多。但共同點是供應商用自己的資產負債表支撐客戶的採購。明細見上方「尚未解除的擔保與供應商融資」。</div></div></div>`}
  // 本期結論／預警指標／變動紀錄
  $('#topBox').innerHTML=`<div class="rcard"><ol class="topl">${(DATA.head||[]).map(s=>`<li>${esc(s)}</li>`).join('')}</ol><div class="hint" style="margin-top:6px">資料截至 ${esc(DATA.asOf)}，由資料自動產生。細節見 <a href="#s-watch">預警指標</a>、<a href="#s-scen">情境試算</a>、<a href="#s-chg">變動紀錄</a>。非投資建議。</div></div>`;
  const LN=['無資料','綠燈','黃燈','紅燈'];

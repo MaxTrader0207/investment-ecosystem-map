@@ -270,6 +270,10 @@
   "ceo_agm": [
    "Barchart｜AMD 2026 股東會：Chair and CEO Lisa Su",
    "https://www.barchart.com/story/news/1943515/advanced-micro-devices-shareholders-back-board-as-lisa-su-touts-ai-growth"
+  ],
+  "mktcap": [
+   "VLSI Korea｜全球半導體市值排名 TOP 20（2026-11-26）",
+   "https://www.vlsi.kr/en/global-semiconductor-marketcap-ranking-top20-en/"
   ]
  },
  "categories": [
@@ -1799,6 +1803,13 @@
   "note": "2025",
   "src": [
    "mc_fy25"
+  ]
+ },
+ "mkt": {
+  "cap": 906.8,
+  "date": "2026-11-26",
+  "src": [
+   "mktcap"
   ]
  }
 }

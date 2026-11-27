@@ -96,6 +96,10 @@
   "ceo2": [
    "Korea Herald｜共同執行長全永鉉、盧泰文在罷工前呼籲員工（2026-05-07）",
    "https://www.koreaherald.com/article/10733208"
+  ],
+  "mktcap": [
+   "VLSI Korea｜全球半導體市值排名 TOP 20（2026-11-26）",
+   "https://www.vlsi.kr/en/global-semiconductor-marketcap-ranking-top20-en/"
   ]
  },
  "categories": [
@@ -792,5 +796,12 @@
    "q3sl"
   ],
   "cashNote": "Q3 底現金 ₩214.8 兆"
+ },
+ "mkt": {
+  "cap": 1022,
+  "date": "2026-11-26",
+  "src": [
+   "mktcap"
+  ]
  }
 }

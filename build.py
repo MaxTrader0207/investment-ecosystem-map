@@ -124,6 +124,12 @@ def validate(d):
     for k in ((d.get("fin") or {}).get("circEst") or {}).get("src", []) + (d.get("fin") or {}).get("burnSrc", []):   # 循環收入估計區間、燒錢預估
         if k not in S: err.append(f"fin 的估計來源 {k} 不存在")
         used.add(k)
+    if d.get("mkt") is not None:                        # 市值或最新估值（US$ 十億）：{cap, date, src, note?}
+        if not isinstance((d["mkt"] or {}).get("cap"), (int, float)): err.append("mkt.cap 需為數字（US$ 十億）")
+        if not (d["mkt"] or {}).get("src"): err.append("mkt 需要來源")
+        for k in (d["mkt"] or {}).get("src", []):
+            if k not in S: err.append(f"mkt 引用不存在的來源 {k}")
+            used.add(k)
     for i, x in enumerate(d.get("dues", [])):          # 未來到期事項：{y:年, amt:US$十億或 null, kind, what, src}
         if not isinstance(x.get("y"), int) or not x.get("what"): err.append(f"dues[{i}] 需要 y（年）與 what（說明）")
         for k in x.get("src", []):

@@ -209,6 +209,10 @@
   "ceo_org": [
    "Creately｜Meta 高階主管：President & Vice Chairman Dina Powell McCormick",
    "https://creately.com/org-chart/fortune-500/meta/"
+  ],
+  "mktcap": [
+   "SectorAlpha｜美國市值前十大（2026-11 下旬）",
+   "https://www.sectoralpha.in/top-us-companies"
   ]
  },
  "categories": [
@@ -1547,6 +1551,13 @@
   "note": "2025",
   "src": [
    "mc_rev"
+  ]
+ },
+ "mkt": {
+  "cap": 1430,
+  "date": "2026-11",
+  "src": [
+   "mktcap"
   ]
  }
 }

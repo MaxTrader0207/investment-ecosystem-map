@@ -149,6 +149,10 @@
    "Broadcom IR｜FY2026 Q4 財報將於 2026-12-09 公布",
    "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announce-fourth-quarter-and-fiscal-year-2026",
    "A"
+  ],
+  "mktcap": [
+   "SectorAlpha｜美國市值前十大（2026-11 下旬）",
+   "https://www.sectoralpha.in/top-us-companies"
   ]
  },
  "categories": [
@@ -955,5 +959,12 @@
    "q3call"
   ],
   "cashNote": "FY2026 Q3 期末現金"
+ },
+ "mkt": {
+  "cap": 1450,
+  "date": "2026-11",
+  "src": [
+   "mktcap"
+  ]
  }
 }
