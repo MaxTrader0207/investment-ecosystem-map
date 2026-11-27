@@ -140,6 +140,16 @@
   "ttm_sa": [
    "sec-api.io｜Palantir 2026 Q3 財報分析（最近四季營收 $72.9 億）",
    "https://sec-api.io/insights/palantir-pltr-q3-2026-earnings-us-commercial-overtakes-us-government-sec-filing-analysis"
+  ],
+  "px_auto_SRFM": [
+   "Yahoo Finance｜SRFM 2026-11-25 收盤 0.3567",
+   "https://finance.yahoo.com/quote/SRFM",
+   "B"
+  ],
+  "px_auto_PLTR": [
+   "Yahoo Finance｜PLTR 2026-11-25 收盤 163.59",
+   "https://finance.yahoo.com/quote/PLTR",
+   "B"
   ]
  },
  "categories": [
@@ -394,7 +404,13 @@
    "shares": 4460000,
    "pxTk": "SRFM",
    "costUnknown": true,
-   "pxNote": "部分股份為 Surf Air 以股票支付的服務費，取得成本未完整揭露"
+   "pxNote": "部分股份為 Surf Air 以股票支付的服務費，取得成本未完整揭露",
+   "val": 0.0016,
+   "valDate": "2026-11-25",
+   "valSrc": [
+    "px_auto_SRFM"
+   ],
+   "valNote": "4,460,000 股 × 2026-11-25 收盤 0.36 USD ≈ $0.0 億（自動計算）；部分股份為 Surf Air 以股票支付的服務費，取得成本未完整揭露"
   },
   {
    "id": "spac",
@@ -1199,8 +1215,15 @@
   "cap": 394.2,
   "date": "2026-11-25",
   "src": [
-   "mktcap"
+   "mktcap",
+   "px_auto_PLTR"
   ],
-  "pxTk": "PLTR"
+  "pxTk": "PLTR",
+  "capRef": 394.2,
+  "pxRef": 163.58999633789062,
+  "fxRef": 1.0,
+  "refDate": "2026-11-25",
+  "refExact": true,
+  "note": "以 2026-11-25 的市值 $3,942 億 × 股價變動推算（自動，不反映股數變動）"
  }
 }

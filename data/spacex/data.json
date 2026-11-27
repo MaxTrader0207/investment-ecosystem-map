@@ -237,6 +237,11 @@
   "geo_cn": [
    "Aardvark Labs｜SpaceX S-1 分析：Starlink 在中國與印度受法規限制",
    "https://research.aardvarklabs.co/research/spcx/earnings/2026-s1/spcx-2026-s1-analysis"
+  ],
+  "px_auto_SPCX": [
+   "Yahoo Finance｜SPCX 2026-11-25 收盤 127.44",
+   "https://finance.yahoo.com/quote/SPCX",
+   "B"
   ]
  },
  "categories": [
@@ -1477,14 +1482,20 @@
   }
  },
  "mkt": {
-  "cap": 1880,
-  "date": "2026-11-19",
+  "cap": 1730.7,
+  "date": "2026-11-25",
   "src": [
    "mktcap",
-   "mktcap2"
+   "mktcap2",
+   "px_auto_SPCX"
   ],
   "pxTk": "SPCX",
   "hand": "11/19 收盤 $138.43 × 流通股數約 135.8 億股（自行計算）",
-  "note": "各資料商股數口徑不同，同期報價頁介於 $1.89–1.94 兆"
+  "note": "以 2026-11-19 的市值 $18,800 億 × 股價變動推算（自動，不反映股數變動）；11/19 收盤 $138.43 × 流通股數約 135.8 億股（自行計算）",
+  "capRef": 1880,
+  "pxRef": 138.42999267578125,
+  "fxRef": 1.0,
+  "refDate": "2026-11-19",
+  "refExact": true
  }
 }

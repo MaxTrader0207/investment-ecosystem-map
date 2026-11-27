@@ -249,6 +249,11 @@
   "cx_ttm": [
    "Trefis｜Meta 最近四季（至 2026 年 9 月）資本支出 $1,040 億、占營收 43.2%",
    "https://www.trefis.com/stock/meta/articles/622625/can-metas-business-pay-for-its-spending/2026-11-04"
+  ],
+  "px_auto_META": [
+   "Yahoo Finance｜META 2026-11-25 收盤 609.89",
+   "https://finance.yahoo.com/quote/META",
+   "B"
   ]
  },
  "categories": [
@@ -1664,12 +1669,19 @@
   }
  },
  "mkt": {
-  "cap": 1430,
-  "date": "2026-11-20",
+  "cap": 1555.1,
+  "date": "2026-11-25",
   "src": [
-   "mktcap"
+   "mktcap",
+   "px_auto_META"
   ],
-  "pxTk": "META"
+  "pxTk": "META",
+  "capRef": 1430,
+  "pxRef": 560.8400268554688,
+  "fxRef": 1.0,
+  "refDate": "2026-11-20",
+  "refExact": true,
+  "note": "以 2026-11-20 的市值 $14,300 億 × 股價變動推算（自動，不反映股數變動）"
  },
  "dues": [
   {

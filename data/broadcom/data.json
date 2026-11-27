@@ -169,6 +169,11 @@
   "rep_dt": [
    "Broadcom IR｜FY2026 Q4 財報將於 2026-12-09 盤後公布（2026-11-09）",
    "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announce-fourth-quarter-and-fiscal-year-2026"
+  ],
+  "px_auto_AVGO": [
+   "Yahoo Finance｜AVGO 2026-11-25 收盤 300.86",
+   "https://finance.yahoo.com/quote/AVGO",
+   "B"
   ]
  },
  "categories": [
@@ -1000,12 +1005,19 @@
   }
  },
  "mkt": {
-  "cap": 1450,
-  "date": "2026-11-20",
+  "cap": 1433.1,
+  "date": "2026-11-25",
   "src": [
-   "mktcap"
+   "mktcap",
+   "px_auto_AVGO"
   ],
-  "pxTk": "AVGO"
+  "pxTk": "AVGO",
+  "capRef": 1450,
+  "pxRef": 304.4100036621094,
+  "fxRef": 1.0,
+  "refDate": "2026-11-20",
+  "refExact": true,
+  "note": "以 2026-11-20 的市值 $14,500 億 × 股價變動推算（自動，不反映股數變動）"
  },
  "dues": [
   {

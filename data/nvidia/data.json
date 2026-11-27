@@ -357,13 +357,13 @@
    "https://fortune.com/2026/08/15/nvidia-21-billion-spacex-stake-30-billion-intel-shares/"
   ],
   "px_auto_SPCX": [
-   "Motley Fool｜SPCX 2026-11-24 收盤 $125.81",
-   "https://www.fool.com/investing/2026/11/24/why-anthropic-stock-fell-again/",
+   "Yahoo Finance｜SPCX 2026-11-25 收盤 127.44",
+   "https://finance.yahoo.com/quote/SPCX",
    "B"
   ],
   "px_auto_INTC": [
-   "Trefis｜INTC 2026-11-18 股價 $54.67",
-   "https://www.trefis.com/data/companies/INTC?from=KLAC-2026-05-07",
+   "Yahoo Finance｜INTC 2026-11-25 收盤 54.47",
+   "https://finance.yahoo.com/quote/INTC",
    "B"
   ],
   "mtk_now_ecb": [
@@ -465,6 +465,26 @@
   "ttm_q1": [
    "NVIDIA IR｜FY2027 Q1 財報：營收 $816.2 億（2026-05-20）",
    "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-First-Quarter-Fiscal-2027"
+  ],
+  "px_auto_NBIS": [
+   "Yahoo Finance｜NBIS 2026-11-25 收盤 84.99",
+   "https://finance.yahoo.com/quote/NBIS",
+   "B"
+  ],
+  "px_auto_COHR": [
+   "Yahoo Finance｜COHR 2026-11-25 收盤 196.19",
+   "https://finance.yahoo.com/quote/COHR",
+   "B"
+  ],
+  "px_auto_SNPS": [
+   "Yahoo Finance｜SNPS 2026-11-25 收盤 405.09",
+   "https://finance.yahoo.com/quote/SNPS",
+   "B"
+  ],
+  "px_auto_NVDA": [
+   "Yahoo Finance｜NVDA 2026-11-25 收盤 149.3",
+   "https://finance.yahoo.com/quote/NVDA",
+   "B"
   ]
  },
  "categories": [
@@ -610,12 +630,12 @@
    "pxTk": "SPCX",
    "costUnknown": true,
    "pxNote": "原始投資額說法分歧（$20 億 vs $100 億）",
-   "val": 16.4148,
-   "valDate": "2026-11-24",
+   "val": 16.6275,
+   "valDate": "2026-11-25",
    "valSrc": [
     "px_auto_SPCX"
    ],
-   "valNote": "130,472,925 股 × 2026-11-24 收盤 125.81 USD ≈ $164 億（自動計算）；原始投資額說法分歧（$20 億 vs $100 億）"
+   "valNote": "130,472,925 股 × 2026-11-25 收盤 127.44 USD ≈ $166 億（自動計算）；原始投資額說法分歧（$20 億 vs $100 億）"
   },
   {
    "id": "tml",
@@ -803,7 +823,13 @@
     "sec": "預融資認股權證"
    },
    "shares": 21065936,
-   "pxTk": "NBIS"
+   "pxTk": "NBIS",
+   "val": 1.7904,
+   "valDate": "2026-11-25",
+   "valSrc": [
+    "px_auto_NBIS"
+   ],
+   "valNote": "21,065,936 股 × 2026-11-25 收盤 84.99 USD ≈ $18 億（自動計算）"
   },
   {
    "id": "iren",
@@ -969,12 +995,13 @@
    "verified": "2026-11-26",
    "amtType": "equity",
    "direction": "out",
-   "val": 2.24,
-   "valDate": "2026-09-30",
+   "val": 1.5303,
+   "valDate": "2026-11-25",
    "valSrc": [
+    "px_auto_COHR",
     "kucoin_13f"
    ],
-   "valNote": "13F 申報市值（9/30）",
+   "valNote": "7,800,000 股 × 2026-11-25 收盤 196.19 USD ≈ $15 億（自動計算）",
    "shares": 7800000,
    "pxTk": "COHR"
   },
@@ -1086,13 +1113,13 @@
    "verified": "2026-11-26",
    "amtType": "equity",
    "direction": "out",
-   "val": 8.8064,
-   "valDate": "2026-11-18",
+   "val": 8.7742,
+   "valDate": "2026-11-25",
    "valSrc": [
     "px_auto_INTC",
     "ent_spacex"
    ],
-   "valNote": "161,082,488 股 × 2026-11-18 收盤 54.67 USD ≈ $88 億（自動計算）；股數為 Q3 減持 25% 後的 161,082,488 股；倍數以剩餘部位的成本（$50 億 × 75%）計算",
+   "valNote": "161,082,488 股 × 2026-11-25 收盤 54.47 USD ≈ $88 億（自動計算）；股數為 Q3 減持 25% 後的 161,082,488 股；倍數以剩餘部位的成本（$50 億 × 75%）計算",
    "terms": {
     "price": "$23.28",
     "sec": "普通股 214,776,632 股"
@@ -1123,12 +1150,13 @@
    "verified": "2026-11-26",
    "amtType": "equity",
    "direction": "out",
-   "val": 1.89,
-   "valDate": "2026-09-30",
+   "val": 1.7621,
+   "valDate": "2026-11-25",
    "valSrc": [
+    "px_auto_SNPS",
     "kucoin_13f"
    ],
-   "valNote": "13F 申報市值（9/30）",
+   "valNote": "4,350,000 股 × 2026-11-25 收盤 405.09 USD ≈ $18 億（自動計算）",
    "terms": {
     "price": "$414.79",
     "sec": "普通股"
@@ -2621,11 +2649,18 @@
   }
  },
  "mkt": {
-  "cap": 3030,
-  "date": "2026-11-20",
+  "cap": 3603.8,
+  "date": "2026-11-25",
   "src": [
-   "mktcap"
+   "mktcap",
+   "px_auto_NVDA"
   ],
-  "pxTk": "NVDA"
+  "pxTk": "NVDA",
+  "capRef": 3030,
+  "pxRef": 125.52999877929688,
+  "fxRef": 1.0,
+  "refDate": "2026-11-20",
+  "refExact": true,
+  "note": "以 2026-11-20 的市值 $30,300 億 × 股價變動推算（自動，不反映股數變動）"
  }
 }

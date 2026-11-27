@@ -112,6 +112,11 @@
   "ttm_q4": [
    "Samsung Newsroom｜2025 Q4 與全年財報：Q4 營收 ₩93.8 兆（2026-01-29）",
    "https://news.samsung.com/global/samsung-electronics-announces-fourth-quarter-and-fy-2025-results"
+  ],
+  "px_auto_005930_KS": [
+   "Yahoo Finance｜005930.KS 2026-11-27 收盤 179100.0",
+   "https://finance.yahoo.com/quote/005930.KS",
+   "B"
   ]
  },
  "categories": [
@@ -828,11 +833,18 @@
   "revRunLabel": "2026 Q3 × 4"
  },
  "mkt": {
-  "cap": 1022,
-  "date": "2026-11-26",
+  "cap": 1004.5,
+  "date": "2026-11-27",
   "src": [
-   "mktcap"
+   "mktcap",
+   "px_auto_005930_KS"
   ],
-  "pxTk": "005930.KS"
+  "pxTk": "005930.KS",
+  "capRef": 1022,
+  "pxRef": 171300.0,
+  "fxRef": 0.0007446183008141816,
+  "refDate": "2026-11-26",
+  "refExact": true,
+  "note": "以 2026-11-26 的市值 $10,220 億 × 股價與匯率變動推算（自動，不反映股數變動）"
  }
 }

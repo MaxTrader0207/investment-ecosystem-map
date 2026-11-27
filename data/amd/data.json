@@ -255,8 +255,8 @@
    "https://finance.yahoo.com/news/outstanding-ai-stock-under-250-123002147.html"
   ],
   "px_auto_SPCX": [
-   "Motley Fool｜SPCX 2026-11-24 收盤 $125.81",
-   "https://www.fool.com/investing/2026/11/24/why-anthropic-stock-fell-again/",
+   "Yahoo Finance｜SPCX 2026-11-25 收盤 127.44",
+   "https://finance.yahoo.com/quote/SPCX",
    "B"
   ],
   "mc_fy25": [
@@ -294,6 +294,26 @@
   "ttm_sa": [
    "sec-api.io｜AMD 2026 Q3 財報分析（最近四季營收 $454 億）",
    "https://sec-api.io/insights/amd-q3-2026-earnings-sec-filing-analysis-data-center-revenue-openai-and-meta-warrants-guidance"
+  ],
+  "px_auto_NTNX": [
+   "Yahoo Finance｜NTNX 2026-11-25 收盤 46.3",
+   "https://finance.yahoo.com/quote/NTNX",
+   "B"
+  ],
+  "px_auto_CBRS": [
+   "Yahoo Finance｜CBRS 2026-11-25 收盤 89.68",
+   "https://finance.yahoo.com/quote/CBRS",
+   "B"
+  ],
+  "px_auto_XNDU": [
+   "Yahoo Finance｜XNDU 2026-11-25 收盤 2.05",
+   "https://finance.yahoo.com/quote/XNDU",
+   "B"
+  ],
+  "px_auto_ABSI": [
+   "Yahoo Finance｜ABSI 2026-11-25 收盤 9.0",
+   "https://finance.yahoo.com/quote/ABSI",
+   "B"
   ]
  },
  "categories": [
@@ -585,7 +605,7 @@
     "sec": "普通股",
     "auto": true
    },
-   "valNote": "3,309,470 股 × 2026-11-24 收盤 125.81 USD ≈ $4.2 億（自動計算）",
+   "valNote": "3,309,470 股 × 2026-11-25 收盤 127.44 USD ≈ $4.2 億（自動計算）",
    "valSrc": [
     "px_auto_SPCX",
     "fool_ant1124",
@@ -594,8 +614,8 @@
    "shares": 3309470,
    "pxTk": "SPCX",
    "costUnknown": true,
-   "val": 0.4164,
-   "valDate": "2026-11-24"
+   "val": 0.4218,
+   "valDate": "2026-11-25"
   },
   {
    "id": "nutanix",
@@ -621,13 +641,14 @@
     "sec": "普通股",
     "auto": true
    },
-   "val": 0.291,
-   "valDate": "2026-09-30",
+   "val": 0.1915,
+   "valDate": "2026-11-25",
    "valSrc": [
+    "px_auto_NTNX",
     "amd_ntnx",
     "amd_13f_q3"
    ],
-   "valNote": "13F 市值 $2.91 億；股權成本 $1.5 億（節點金額另含最高 $1 億研發資金）",
+   "valNote": "4,136,789 股 × 2026-11-25 收盤 46.30 USD ≈ $1.9 億（自動計算）",
    "shares": 4136789,
    "pxTk": "NTNX"
   },
@@ -657,7 +678,13 @@
    },
    "shares": 794467,
    "pxTk": "CBRS",
-   "costUnknown": true
+   "costUnknown": true,
+   "val": 0.0712,
+   "valDate": "2026-11-25",
+   "valSrc": [
+    "px_auto_CBRS"
+   ],
+   "valNote": "794,467 股 × 2026-11-25 收盤 89.68 USD ≈ $0.7 億（自動計算）"
   },
   {
    "id": "xanadu",
@@ -684,7 +711,13 @@
    },
    "shares": 200000,
    "pxTk": "XNDU",
-   "costUnknown": true
+   "costUnknown": true,
+   "val": 0.0004,
+   "valDate": "2026-11-25",
+   "valSrc": [
+    "px_auto_XNDU"
+   ],
+   "valNote": "200,000 股 × 2026-11-25 收盤 2.05 USD ≈ $0.0 億（自動計算）"
   },
   {
    "id": "sanmina",
@@ -878,13 +911,14 @@
     "sec": "普通股",
     "auto": true
    },
-   "val": 0.0615,
-   "valDate": "2026-09-30",
+   "val": 0.0514,
+   "valDate": "2026-11-25",
    "valSrc": [
+    "px_auto_ABSI",
     "absci_pr",
     "amd_13f_q3"
    ],
-   "valNote": "13F 市值 $6,154 萬",
+   "valNote": "5,714,285 股 × 2026-11-25 收盤 9.00 USD ≈ $0.5 億（自動計算）",
    "shares": 5714285,
    "pxTk": "ABSI"
   },
@@ -1864,6 +1898,11 @@
   "src": [
    "mktcap"
   ],
-  "pxTk": "AMD"
+  "pxTk": "AMD",
+  "capRef": 906.8,
+  "pxRef": 406.0299987792969,
+  "fxRef": 1.0,
+  "refDate": "2026-11-26",
+  "refExact": true
  }
 }

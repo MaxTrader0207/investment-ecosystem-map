@@ -229,6 +229,11 @@
   "cash_q3": [
    "sec-api.io｜Intel 2026 Q3：現金與短期投資 $540 億、債務 $501 億",
    "https://sec-api.io/insights/intel-intc-q3-2026-earnings-sec-filing-analysis"
+  ],
+  "px_auto_JOBY": [
+   "Yahoo Finance｜JOBY 2026-11-25 收盤 3.9",
+   "https://finance.yahoo.com/quote/JOBY",
+   "B"
   ]
  },
  "categories": [
@@ -511,7 +516,13 @@
    "verified": "2026-11-26",
    "shares": 15300000,
    "pxTk": "JOBY",
-   "costUnknown": true
+   "costUnknown": true,
+   "val": 0.0597,
+   "valDate": "2026-11-25",
+   "valSrc": [
+    "px_auto_JOBY"
+   ],
+   "valNote": "15,300,000 股 × 2026-11-25 收盤 3.90 USD ≈ $0.6 億（自動計算）"
   },
   {
    "id": "arm",
@@ -1445,6 +1456,11 @@
   "src": [
    "mktcap"
   ],
-  "pxTk": "INTC"
+  "pxTk": "INTC",
+  "capRef": 332.2,
+  "pxRef": 54.470001220703125,
+  "fxRef": 1.0,
+  "refDate": "2026-11-26",
+  "refExact": true
  }
 }

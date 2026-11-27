@@ -154,6 +154,11 @@
   "cx_q2": [
    "Nasdaq／Zacks｜CoreWeave 2026 Q2 資本支出 $94 億",
    "https://www.nasdaq.com/articles/coreweaves-35-39b-capex-plan-can-ai-demand-justify-spend"
+  ],
+  "px_auto_CRWV": [
+   "Yahoo Finance｜CRWV 2026-11-25 收盤 42.57",
+   "https://finance.yahoo.com/quote/CRWV",
+   "B"
   ]
  },
  "categories": [
@@ -1103,9 +1108,16 @@
   "cap": 23.7,
   "date": "2026-11-25",
   "src": [
-   "mktcap"
+   "mktcap",
+   "px_auto_CRWV"
   ],
   "pxTk": "CRWV",
-  "hand": "只計公開流通股份，低於完整市值"
+  "hand": "只計公開流通股份，低於完整市值",
+  "capRef": 23.7,
+  "pxRef": 42.56999969482422,
+  "fxRef": 1.0,
+  "refDate": "2026-11-25",
+  "refExact": true,
+  "note": "以 2026-11-25 的市值 $237 億 × 股價變動推算（自動，不反映股數變動）；只計公開流通股份，低於完整市值"
  }
 }

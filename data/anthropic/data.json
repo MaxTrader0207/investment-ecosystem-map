@@ -318,6 +318,11 @@
   "geo_us": [
    "OfficeChai｜Anthropic S-1：2026 上半年 72.2% 營收來自美國帳單地址",
    "https://officechai.com/ai/72-of-anthropics-revenue-is-from-american-customers-reveals-s1/"
+  ],
+  "px_auto_ANT": [
+   "Yahoo Finance｜ANT 2026-11-25 收盤 82.79",
+   "https://finance.yahoo.com/quote/ANT",
+   "B"
   ]
  },
  "categories": [
@@ -1881,13 +1886,19 @@
   }
  ],
  "mkt": {
-  "cap": 1130,
+  "cap": 1130.0,
   "date": "2026-11-25",
   "src": [
-   "mktcap"
+   "mktcap",
+   "px_auto_ANT"
   ],
   "pxTk": "ANT",
-  "note": "11/25 收盤 $82.79；完全稀釋口徑較高（上市首日 $97 時約 $1.76–1.8 兆）"
+  "note": "以 2026-11-25 的市值 $11,300 億 × 股價變動推算（自動，不反映股數變動）",
+  "capRef": 1130,
+  "pxRef": 82.79000091552734,
+  "fxRef": 1.0,
+  "refDate": "2026-11-25",
+  "refExact": true
  },
  "paySched": {
   "y": {

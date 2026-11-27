@@ -155,8 +155,8 @@
    "https://www.axios.com/2026/11/24/anthropic-stock-ipo-banks"
   ],
   "px_auto_ANT": [
-   "Axios｜ANT 2026-11-24 收盤 $81.91",
-   "https://www.axios.com/2026/11/24/anthropic-stock-ipo-banks",
+   "Yahoo Finance｜ANT 2026-11-25 收盤 82.79",
+   "https://finance.yahoo.com/quote/ANT",
    "B"
   ],
   "mc_geo": [
@@ -214,6 +214,11 @@
   "cx_q4": [
    "Insider Monkey｜TSMC 2025 Q4 法說逐字稿：Q4 資本支出 $115 億、全年 $409 億",
    "https://www.insidermonkey.com/blog/taiwan-semiconductor-manufacturing-company-limited-nysetsm-q4-2025-earnings-call-transcript-1675955/"
+  ],
+  "px_auto_2330_TW": [
+   "Yahoo Finance｜2330.TW 2026-11-27 收盤 2180.0",
+   "https://finance.yahoo.com/quote/2330.TW",
+   "B"
   ]
  },
  "categories": [
@@ -456,15 +461,15 @@
     "sec": "普通股",
     "auto": true
    },
-   "val": 0.4934,
-   "valDate": "2026-11-24",
+   "val": 0.4987,
+   "valDate": "2026-11-25",
    "since": "2026-11",
    "valSrc": [
     "px_auto_ANT",
     "axios_ant",
     "ft_anth"
    ],
-   "valNote": "6,024,096 股 × 2026-11-24 收盤 81.91 USD ≈ $4.9 億（自動計算）",
+   "valNote": "6,024,096 股 × 2026-11-25 收盤 82.79 USD ≈ $5.0 億（自動計算）",
    "risks": [
     {
      "k": "acct",
@@ -1364,11 +1369,18 @@
   }
  },
  "mkt": {
-  "cap": 2068,
-  "date": "2026-11-13",
+  "cap": 1914.7,
+  "date": "2026-11-27",
   "src": [
-   "mktcap"
+   "mktcap",
+   "px_auto_2330_TW"
   ],
-  "pxTk": "2330.TW"
+  "pxTk": "2330.TW",
+  "capRef": 2068,
+  "pxRef": 2350.0,
+  "fxRef": 0.03035914897918701,
+  "refDate": "2026-11-13",
+  "refExact": true,
+  "note": "以 2026-11-13 的市值 $20,680 億 × 股價與匯率變動推算（自動，不反映股數變動）"
  }
 }

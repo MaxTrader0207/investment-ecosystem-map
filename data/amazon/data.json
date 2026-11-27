@@ -148,8 +148,8 @@
    "https://247wallst.com/investing/2026/04/09/amazon-gains-5-on-shareholder-letter-globalstar-deal-15-billion-aws-ai-revenue/"
   ],
   "px_auto_ANT": [
-   "Axios｜ANT 2026-11-24 收盤 $81.91",
-   "https://www.axios.com/2026/11/24/anthropic-stock-ipo-banks",
+   "Yahoo Finance｜ANT 2026-11-25 收盤 82.79",
+   "https://finance.yahoo.com/quote/ANT",
    "B"
   ],
   "mc_q4": [
@@ -203,6 +203,11 @@
   "debt_10q": [
    "SEC 10-Q｜Amazon 2026 Q3：長期債務明細（面額 $1,808.9 億）",
    "https://www.sec.gov/Archives/edgar/data/0001018724/000101872426000040/amzn-20260930.htm"
+  ],
+  "px_auto_AMZN": [
+   "Yahoo Finance｜AMZN 2026-11-25 收盤 244.43",
+   "https://finance.yahoo.com/quote/AMZN",
+   "B"
   ]
  },
  "categories": [
@@ -261,15 +266,15 @@
    "direction": "out",
    "shares": 3484600000,
    "pxTk": "ANT",
-   "val": 285.4236,
-   "valDate": "2026-11-24",
+   "val": 288.49,
+   "valDate": "2026-11-25",
    "since": "2023",
    "valSrc": [
     "px_auto_ANT",
     "w247_411",
     "axios_ant"
    ],
-   "valNote": "3,484,600,000 股 × 2026-11-24 收盤 81.91 USD ≈ $2,854 億（自動計算）；股數由 Reuters 估值 ÷ $78 推算，含未轉換可轉債",
+   "valNote": "3,484,600,000 股 × 2026-11-25 收盤 82.79 USD ≈ $2,885 億（自動計算）；股數由 Reuters 估值 ÷ $78 推算，含未轉換可轉債",
    "pxNote": "股數由 Reuters 估值 ÷ $78 推算，含未轉換可轉債",
    "terms": {
     "sec": "無表決權特別股＋可轉債（轉換上限 12%）",
@@ -1208,12 +1213,19 @@
   }
  },
  "mkt": {
-  "cap": 2670,
-  "date": "2026-11-20",
+  "cap": 2644.1,
+  "date": "2026-11-25",
   "src": [
-   "mktcap"
+   "mktcap",
+   "px_auto_AMZN"
   ],
-  "pxTk": "AMZN"
+  "pxTk": "AMZN",
+  "capRef": 2670,
+  "pxRef": 246.82000732421875,
+  "fxRef": 1.0,
+  "refDate": "2026-11-20",
+  "refExact": true,
+  "note": "以 2026-11-20 的市值 $26,700 億 × 股價變動推算（自動，不反映股數變動）"
  },
  "dues": [
   {

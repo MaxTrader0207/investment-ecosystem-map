@@ -169,6 +169,11 @@
   "geo_cn": [
    "Foreign Policy Journal｜Tencent 合約約 $14 億/年、約占 Oracle RPO 的 1%（2026-11-13）",
    "https://www.foreignpolicyjournal.com/2026/11/13/oracle-nyse-orcl-faces-china-chip-rule-at-the-worst-possible-moment-for-its-balance-sheet/"
+  ],
+  "px_auto_ORCL": [
+   "Yahoo Finance｜ORCL 2026-11-25 收盤 103.88",
+   "https://finance.yahoo.com/quote/ORCL",
+   "B"
   ]
  },
  "categories": [
@@ -1214,12 +1219,18 @@
   }
  ],
  "mkt": {
-  "cap": 371.4,
-  "date": "2026-11-10",
+  "cap": 327.0,
+  "date": "2026-11-25",
   "src": [
-   "mktcap"
+   "mktcap",
+   "px_auto_ORCL"
   ],
   "pxTk": "ORCL",
-  "note": "11/10 股價 $119.12；其他來源同期介於 $3,620–3,740 億"
+  "note": "以 2026-11-10 的市值 $3,714 億 × 股價變動推算（自動，不反映股數變動）",
+  "capRef": 371.4,
+  "pxRef": 117.9800033569336,
+  "fxRef": 1.0,
+  "refDate": "2026-11-10",
+  "refExact": true
  }
 }

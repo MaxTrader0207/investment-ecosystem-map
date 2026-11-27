@@ -198,6 +198,16 @@
   "cash_q2": [
    "Twelve Data｜MediaTek 資產負債表：2026 年 6 月底現金及約當現金 NT$1,890 億",
    "https://twelvedata.com/markets/735915/stock/twse/2454/financials/balance-sheet?period=quarterly"
+  ],
+  "px_auto_3661_TW": [
+   "Yahoo Finance｜3661.TW 2026-11-27 收盤 3595.0",
+   "https://finance.yahoo.com/quote/3661.TW",
+   "B"
+  ],
+  "px_auto_2454_TW": [
+   "Yahoo Finance｜2454.TW 2026-11-27 收盤 3680.0",
+   "https://finance.yahoo.com/quote/2454.TW",
+   "B"
   ]
  },
  "categories": [
@@ -419,7 +429,13 @@
     "auto": true
    },
    "shares": 450000,
-   "pxTk": "3661.TW"
+   "pxTk": "3661.TW",
+   "val": 0.049,
+   "valDate": "2026-11-27",
+   "valSrc": [
+    "px_auto_3661_TW"
+   ],
+   "valNote": "450,000 股 × 2026-11-27 收盤 3,595.00 TWD × 匯率 0.03030 ≈ $0.5 億（自動計算）"
   },
   {
    "id": "airoha",
@@ -1269,12 +1285,19 @@
   }
  },
  "mkt": {
-  "cap": 189.3,
-  "date": "2026-11-26",
+  "cap": 189.1,
+  "date": "2026-11-27",
   "src": [
-   "mktcap"
+   "mktcap",
+   "px_auto_2454_TW"
   ],
-  "pxTk": "2454.TW"
+  "pxTk": "2454.TW",
+  "capRef": 189.3,
+  "pxRef": 3705.0,
+  "fxRef": 0.03013046644628048,
+  "refDate": "2026-11-26",
+  "refExact": true,
+  "note": "以 2026-11-26 的市值 $1,893 億 × 股價與匯率變動推算（自動，不反映股數變動）"
  },
  "fin": {
   "rev": 19.1,

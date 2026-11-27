@@ -162,6 +162,11 @@
   "cx_q1": [
    "FourWeekMBA／CNBC｜Microsoft FY2027 Q1 資本支出（含融資租賃）$452 億",
    "https://fourweekmba.com/ai-microsoft-azure-grows-48-as-free-cash-flow-falls-to-18-6b/"
+  ],
+  "px_auto_MSFT": [
+   "Yahoo Finance｜MSFT 2026-11-25 收盤 489.93",
+   "https://finance.yahoo.com/quote/MSFT",
+   "B"
   ]
  },
  "categories": [
@@ -1101,11 +1106,18 @@
   }
  },
  "mkt": {
-  "cap": 3600,
-  "date": "2026-11-20",
+  "cap": 3640.2,
+  "date": "2026-11-25",
   "src": [
-   "mktcap"
+   "mktcap",
+   "px_auto_MSFT"
   ],
-  "pxTk": "MSFT"
+  "pxTk": "MSFT",
+  "capRef": 3600,
+  "pxRef": 484.5199890136719,
+  "fxRef": 1.0,
+  "refDate": "2026-11-20",
+  "refExact": true,
+  "note": "以 2026-11-20 的市值 $36,000 億 × 股價變動推算（自動，不反映股數變動）"
  }
 }

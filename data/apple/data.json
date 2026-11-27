@@ -152,6 +152,11 @@
   "q4_yoy": [
    "9to5Mac｜Apple FY2026 Q4：營收 $1,144.8 億，去年同期 $1,024.7 億",
    "https://9to5mac.com/?p=1077006"
+  ],
+  "px_auto_AAPL": [
+   "Yahoo Finance｜AAPL 2026-11-25 收盤 355.58",
+   "https://finance.yahoo.com/quote/AAPL",
+   "B"
   ]
  },
  "categories": [
@@ -1188,11 +1193,18 @@
   }
  },
  "mkt": {
-  "cap": 4980,
-  "date": "2026-11-20",
+  "cap": 5169.3,
+  "date": "2026-11-25",
   "src": [
-   "mktcap"
+   "mktcap",
+   "px_auto_AAPL"
   ],
-  "pxTk": "AAPL"
+  "pxTk": "AAPL",
+  "capRef": 4980,
+  "pxRef": 342.55999755859375,
+  "fxRef": 1.0,
+  "refDate": "2026-11-20",
+  "refExact": true,
+  "note": "以 2026-11-20 的市值 $49,800 億 × 股價變動推算（自動，不反映股數變動）"
  }
 }
