@@ -167,6 +167,8 @@ footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs)
 <div class="brief" id="polB"></div>
 <div class="sec" id="s-his">📜 歷史對照：2000 年電信設備商的供應商融資</div>
 <div class="brief" id="hisB"></div>
+<div class="sec" id="s-fresh">🗓️ 資料新鮮度（各家營收、現金、市值是哪一天的數字）</div>
+<div class="brief" id="freshB"></div>
 <div class="sec" id="s-chg">📝 變動紀錄（每次更新後，與上一期相比哪些數字改了、為什麼）</div>
 <div class="brief" id="chg"></div>
 <div class="sec">⚖️ 多實體比較（勾選 2–3 家並排）</div>
@@ -558,6 +560,9 @@ build(); side(null); table(); cmp();
  $('#wall').innerHTML=`<div class="rcard">${svg}<div class="legend" style="margin-top:6px">${payers.map(p=>`<span><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${col(p.k)};margin-right:4px"></i>${esc(nm(p.k))}（合計 ${bn(p.t)}）</span>`).join('')}</div>
   <div class="hint" style="margin-top:8px;line-height:1.7">${[...new Set(F.filter(f=>f.sched).map(f=>nm(f.from)))].map(n=>`${esc(n)} 依公司揭露的逐年義務表分配（合約總額不變）；`).join('')}其餘合約${WM==='ramp'?'假設付款逐年等差遞增（前低後高），這是假設不是揭露數字':'把合約總額平均攤到合約年數，實際多半前低後高'}。滑鼠移到色塊可看金額。${Y.map((y,i)=>[y,tot[i]]).sort((a,b)=>b[1]-a[1]).slice(0,1).map(([y,v])=>`付款高峰在 ${y} 年，約 ${bn(v)}。`).join('')}沒有揭露年期的合約與公司債到期未納入。</div></div>`;};
  wallDraw();$('#wallM').onchange=wallDraw;
+ // 資料新鮮度
+ {const FR=DATA.fresh||[], cell=(x,no)=>no?'<td class="rc3">有數字但未標示基準日</td>':!x?'<td class="hint">沒有這項數字</td>':`<td class="rc${x[2]}" title="距今 ${x[1]} 天">${esc(x[0])}<span class="hint">　${x[1]} 天前</span></td>`, st=FR.filter(r=>r.stale.length);
+  $('#freshB').innerHTML=`<div class="hint" style="margin-bottom:8px;line-height:1.7">${st.length?`<b class="rc3">有 ${st.length} 家的數字過期或未標示：</b>${st.map(r=>`<a href="#" data-pk="${esc(r.key)}">${esc(r.entity)}</a>（${r.stale.join('、')}）`).join('、')}。`:'目前沒有過期的數字。'}以建置當天為準：營收與現金的基準日超過 200 天（約兩季）標紅、超過 150 天標黃；市值超過 45 天標紅。每週自動更新只會更新市值，營收與現金要等人工查證後才會換新，所以這張表會隨時間自動轉紅，提醒該重查了。</div><div style="overflow:auto"><table><thead><tr><th>公司</th><th>營收基準日</th><th>現金基準日</th><th>市值日期</th><th>最後整體查證</th></tr></thead><tbody>${FR.map(r=>`<tr><td><a href="#" data-pk="${esc(r.key)}">${esc(r.entity)}</a></td>${cell(r.rev,r.revNo)}${cell(r.cash,r.cashNo)}${cell(r.mkt)}${cell(r.chk)}</tr>`).join('')}</tbody></table></div>`;}
  document.addEventListener('click',ev=>{const a=ev.target.closest&&ev.target.closest('a[data-pk]');if(!a)return;ev.preventDefault();brief(a.dataset.pk);$('#brief').scrollIntoView({behavior:'smooth',block:'center'})});
  // 未來 36 個月到期事項：合約付款、債務到期、尚未解除的擔保
  {const y0=+DATA.asOf.slice(0,4)+1,Y3=[y0,y0+1,y0+2],DU=DATA.due||[],GU=DATA.guar||[];

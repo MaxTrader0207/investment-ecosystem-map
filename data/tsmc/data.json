@@ -190,6 +190,10 @@
   "rev_g": [
    "Longbridge｜TSMC 第三季法說會重點（全年成長約 44%）",
    "https://longbridge.com/en/news/301950804"
+  ],
+  "cash_q3": [
+   "sec-api.io｜TSMC 2026 Q3 申報文件分析",
+   "https://sec-api.io/insights/tsmc-tsm-q3-2026-earnings-nt-1-49tn-revenue-58-7-operating-margin-and-a-us-52-3bn-to-us-54-3bn-q4-outlook-sec-filing-analysis"
   ]
  },
  "categories": [
@@ -1308,7 +1312,14 @@
   "src": [
    "rev_q3",
    "rev_g"
-  ]
+  ],
+  "period": "2026-09-30",
+  "cash": 113.6,
+  "cashSrc": [
+   "cash_q3"
+  ],
+  "cashNote": "9/30 現金與約當現金 NT$3.62 兆，以 NT$31.88／$1 換算；不含有價證券",
+  "cashDate": "2026-09-30"
  },
  "mkt": {
   "cap": 2068,

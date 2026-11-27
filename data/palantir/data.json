@@ -132,6 +132,10 @@
   "gap_10k": [
    "SEC｜Palantir 10-K FY2025",
    "https://www.sec.gov/Archives/edgar/data/0001321655/000132165526000011/pltr-20251231.htm"
+  ],
+  "cash_q3": [
+   "SiliconANGLE｜Palantir 2026 Q3 財報",
+   "https://siliconangle.com/?p=852767"
   ]
  },
  "categories": [
@@ -1165,7 +1169,14 @@
   "note": "2026 全年指引",
   "src": [
    "aiw_q3"
-  ]
+  ],
+  "period": "2026-09-30",
+  "cash": 10.4,
+  "cashSrc": [
+   "cash_q3"
+  ],
+  "cashNote": "9/30 現金、約當現金與美國公債",
+  "cashDate": "2026-09-30"
  },
  "mkt": {
   "cap": 394.2,

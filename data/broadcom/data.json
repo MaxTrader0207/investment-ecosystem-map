@@ -974,7 +974,9 @@
   "cashSrc": [
    "q3call"
   ],
-  "cashNote": "FY2026 Q3 期末現金"
+  "cashNote": "FY2026 Q3 期末現金",
+  "period": "2026-08-02",
+  "cashDate": "2026-08-02"
  },
  "mkt": {
   "cap": 1450,

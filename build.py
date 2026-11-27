@@ -136,6 +136,9 @@ def validate(d):
             if k not in S: err.append(f"dues[{i}] 引用不存在的來源 {k}")
             used.add(k)
         if not x.get("src"): err.append(f"dues[{i}] 需要來源")
+    _f = d.get("fin") or {}                             # 基準日：fin.period＝營收數字所屬期間的最後一天，fin.cashDate＝現金餘額的日期（YYYY-MM-DD），供網路圖的資料新鮮度檢查
+    if _f.get("rev") is not None and not _f.get("period"): warn.append("fin.rev 有數字但缺 fin.period（營收基準日，YYYY-MM-DD）")
+    if _f.get("cash") is not None and not _f.get("cashDate"): warn.append("fin.cash 有數字但缺 fin.cashDate（現金基準日，YYYY-MM-DD）")
     if d.get("paySched") is not None:                   # 公司揭露的逐年付款義務表：{y:{"2027":US$十億,…}, after:[金額, 攤到哪一年], note, src}
         ps = d["paySched"] or {}
         if not isinstance(ps.get("y"), dict) or not ps["y"]: err.append("paySched.y 需為 {年: 金額} 的對照表")

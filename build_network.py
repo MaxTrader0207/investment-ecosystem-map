@@ -340,6 +340,23 @@ for _b in extras.get("bottlenecks",[]):
         _tk=[x for x in re.split(r"[ ／（）()]+",e["key"]+" "+e["entity"]) if len(x)>=2 and x not in ("Group","Alphabet")]
         if any(x in _a for x in _tk):
             _b["hit"].append([e["key"],e["entity"]]); e["phy"].append([_b["n"],_b.get("light",0)])
+# 資料新鮮度：以建置當天為準，營收與現金的基準日超過 200 天（約兩季）、市值超過 45 天就標示過期；沒填基準日的標示未標示
+import datetime as _dt
+def _age(d,lim):
+    try:
+        p=[int(x) for x in str(d).split("-")]+[1,1]; n=(_dt.date.today()-_dt.date(p[0],p[1],p[2])).days
+        return [str(d),n,3 if n>lim else 2 if n>lim*0.75 else 1]
+    except Exception: return None
+fresh=[]
+for e in ents:
+    _f=e.get("fin") or {}; _m=e.get("mkt") or {}
+    r={"key":e["key"],"entity":e["entity"],"rev":(_age(_f.get("period"),200) if _f.get("rev") is not None else None),"revNo":_f.get("rev") is not None and not _f.get("period"),
+       "cash":(_age(_f.get("cashDate"),200) if _f.get("cash") is not None else None),"cashNo":_f.get("cash") is not None and not _f.get("cashDate"),
+       "mkt":(_age(_m.get("date"),45) if _m.get("cap") is not None else None),"chk":_age(e["asOf"],120)}
+    r["stale"]=[n for n,k in (("營收","rev"),("現金","cash"),("市值","mkt")) if r[k] and r[k][2]==3]+[n for n,k in (("營收","revNo"),("現金","cashNo")) if r[k]]
+    fresh.append(r)
+_stale=[r for r in fresh if r["stale"]]
+if _stale: print("⚠️  資料過期或未標示基準日："+"；".join(r["entity"]+"（"+"、".join(r["stale"])+"）" for r in _stale))
 vfnow=sorted([{"ent":e["entity"],"key":e["key"],"fin":_X[e["key"]]["gonly"],"rev":(e.get("fin") or {}).get("rev")} for e in ents if _X[e["key"]]["gonly"]>0 and (e.get("fin") or {}).get("rev")],key=lambda x:-x["fin"]/x["rev"])
 due=[dict(x,ent=e["entity"],key=e["key"]) for e in ents for x in e.pop("dues",[])]
 guar=sorted([{"ent":_name[k],"key":k,"name":g[0],"amt":g[1],"status":g[2],"date":g[3],"end":g[4]} for k,v in _X.items() for g in v["guar"]],key=lambda g:-(g["amt"] or 0))
@@ -439,7 +456,7 @@ if _entry["from"]:
     for a in _auto: _cnt[a["t"]]=_cnt.get(a["t"],0)+1
     _new=[a["e"] for a in _auto if a["t"]=="新增公司"]; _lc=[a["e"]+"（"+a["x"].split("，")[-1]+"）" for a in _auto if a["t"]=="燈號變動"]
     head.append(f"與上一期（{_entry['from']}）相比："+("；".join(filter(None,[("新增 "+"、".join(_new)) if _new else "",("燈號變動 "+"、".join(_lc[:4])) if _lc else "",f"金額更新 {_cnt.get('金額更新',0)} 筆、新增節點 {_cnt.get('新增節點',0)} 個" if _cnt.get('金額更新') or _cnt.get('新增節點') else ""])) or "沒有數字變動")+"。")
-data={"asOf":ASOF,"ents":ents,"links":links,"hubs":hubs,"amt":AMT,"checks":checks,"cycles":cycles,"flows":flows,"watch":watch,"head":head,"due":due,"guar":guar,"policy":policy,"extras":extras,"vfnow":vfnow,"chg":[{k:x[k] for k in ("d","from","auto","notes")} for x in _log["log"][:8]]}
+data={"asOf":ASOF,"ents":ents,"links":links,"hubs":hubs,"amt":AMT,"checks":checks,"cycles":cycles,"flows":flows,"watch":watch,"head":head,"due":due,"guar":guar,"policy":policy,"extras":extras,"fresh":fresh,"vfnow":vfnow,"chg":[{k:x[k] for k in ("d","from","auto","notes")} for x in _log["log"][:8]]}
 # 使用者指引：network template 旁邊若有 guide_template.html，就一併產生 guide.html（公司清單隨資料更新）
 GT=os.path.join(os.path.dirname(os.path.abspath(TPL)),"guide_template.html")
 if os.path.exists(GT):

@@ -808,7 +808,9 @@
   "cashSrc": [
    "q3sl"
   ],
-  "cashNote": "Q3 底現金 ₩214.8 兆"
+  "cashNote": "Q3 底現金 ₩214.8 兆",
+  "period": "2026-09-30",
+  "cashDate": "2026-09-30"
  },
  "mkt": {
   "cap": 1022,

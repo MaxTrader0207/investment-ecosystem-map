@@ -146,6 +146,10 @@
   "gap_cn": [
    "The Standard／路透｜Microsoft 在中國逐步收縮",
    "https://www.thestandard.com.hk/china/article/339860/Microsoft-retreats-in-China-but-AI-boom-helps-it-keep-a-window-open"
+  ],
+  "cash_fy26": [
+   "Zacks｜Microsoft FY2026 Q4 財報（6/30 現金與負債）",
+   "https://www.zacks.com/stock/news/2964867/microsoft-q4-earnings-beat-estimates-as-cloud-and-ai-drive-results"
   ]
  },
  "categories": [
@@ -1059,7 +1063,14 @@
   "note": "FY2026",
   "src": [
    "mc_fa"
-  ]
+  ],
+  "period": "2026-06-30",
+  "cash": 76.8,
+  "cashSrc": [
+   "cash_fy26"
+  ],
+  "cashNote": "6/30 現金、約當現金與短期投資；9/30 的數字未取得。同日長期債務 $311 億",
+  "cashDate": "2026-06-30"
  },
  "mkt": {
   "cap": 3600,
