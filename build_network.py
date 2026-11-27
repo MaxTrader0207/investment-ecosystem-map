@@ -353,7 +353,7 @@ for e in ents:
     r={"key":e["key"],"entity":e["entity"],"rev":(_age(_f.get("period"),200) if _f.get("rev") is not None else None),"revNo":_f.get("rev") is not None and not _f.get("period"),
        "cash":(_age(_f.get("cashDate"),200) if _f.get("cash") is not None else None),"cashNo":_f.get("cash") is not None and not _f.get("cashDate"),
        "mkt":(_age(_m.get("date"),45) if _m.get("cap") is not None else None),"chk":_age(e["asOf"],120)}
-    _n=str(_f.get("note") or ""); r["basis"]=("" if _f.get("rev") is None else "單季年化" if ("× 4" in _n or "×4" in _n) else "期間年化" if "年化" in _n else "全年估計" if ("估計" in _n or "指引" in _n) else "財年實績")
+    _n=str(_f.get("note") or ""); r["basis"]=("" if _f.get("rev") is None else "最近四季（含推算）" if ("最近四季" in _n and ("推算值" in _n or "含估算" in _n)) else "最近四季" if "最近四季" in _n else "單季年化" if ("× 4" in _n or "×4" in _n) else "期間年化" if "年化" in _n else "全年估計" if ("估計" in _n or "指引" in _n) else "財年實績")
     r["stale"]=[n for n,k in (("營收","rev"),("現金","cash"),("市值","mkt")) if r[k] and r[k][2]==3]+[n for n,k in (("營收","revNo"),("現金","cashNo")) if r[k]]
     fresh.append(r)
 _stale=[r for r in fresh if r["stale"]]

@@ -251,6 +251,10 @@
   "rev_q3": [
    "Tiger Brokers｜CATL 2026 前三季財報",
    "https://www.itiger.com/news/1149301684"
+  ],
+  "ttm_fy": [
+   "CarNewsChina｜CATL 2025 年報：全年營收 RMB 4,237 億、Q4 RMB 1,406.3 億（2026-03-10）",
+   "https://carnewschina.com/2026/03/10/catl-reports-record-breaking-financial-results-in-2025-with-10-billion-usd-net-profit/"
   ]
  },
  "categories": [
@@ -1808,10 +1812,11 @@
   }
  },
  "fin": {
-  "rev": 87.3,
-  "note": "2026 前三季營收 RMB 4,421.4 億年化，以 ¥6.75／$1 換算（自行計算）",
+  "rev": 86.3,
+  "note": "最近四季合計（2025 Q4–2026 Q3）RMB 5,827.7 億：2025 Q4 RMB 1,406.3 億＋2026 前三季 RMB 4,421.4 億，以 ¥6.75／$1 換算（自行計算）",
   "src": [
-   "rev_q3"
+   "rev_q3",
+   "ttm_fy"
   ],
   "period": "2026-09-30"
  }

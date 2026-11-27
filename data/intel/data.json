@@ -217,6 +217,10 @@
   "rev_q3": [
    "Intel｜2026 年第三季財報",
    "https://www.intc.com/news-events/press-releases/detail/1786/intel-reports-third-quarter-2026-financial-results"
+  ],
+  "ttm_sa": [
+   "sec-api.io｜Intel 2026 Q3 財報分析（最近四季營收 $599 億）",
+   "https://sec-api.io/insights/intel-intc-q3-2026-earnings-sec-filing-analysis"
   ]
  },
  "categories": [
@@ -1381,13 +1385,14 @@
    ]
   },
   "infl": {
-   "score": 64,
-   "basis": "資本支出 $180 億 ÷ Q3 年化營收 $660 億＝27%；有息負債 $491 億 ÷ 營收＝74%",
+   "score": 71,
+   "basis": "資本支出 $180 億 ÷ 最近四季營收 $599 億＝30%；有息負債 $491 億 ÷ 營收＝82%",
    "src": [
     "mc_capex",
     "mc_debt",
     "mc_fy25",
-    "rev_q3"
+    "rev_q3",
+    "ttm_sa"
    ]
   },
   "ceo": {
@@ -1399,10 +1404,11 @@
   }
  },
  "fin": {
-  "rev": 66.0,
-  "note": "2026 Q3 營收 $165 億 × 4（自行年化）；Q4 指引 $150–160 億",
+  "rev": 59.9,
+  "note": "最近四季合計（2025 Q4–2026 Q3）$599 億：$137 億＋$136 億＋$161 億＋$165 億",
   "src": [
-   "rev_q3"
+   "rev_q3",
+   "ttm_sa"
   ],
   "period": "2026-09-26"
  },

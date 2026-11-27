@@ -241,6 +241,10 @@
   "rev_q3": [
    "Meta IR｜2026 年第三季財報",
    "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/"
+  ],
+  "ttm_sa": [
+   "sec-api.io｜Meta 2026 Q3 財報分析（最近四季營收 $2,416 億）",
+   "https://sec-api.io/insights/financial-analysis-of-meta-platforms-meta-q3-2026-earnings"
   ]
  },
  "categories": [
@@ -1605,12 +1609,13 @@
    ]
   },
   "infl": {
-   "score": 71,
-   "basis": "2026 資本支出指引中值 $1,400 億 ÷ Q3 年化營收 $2,584 億＝54%，× 2 後達上限 100；票據面額 $840 億（9/30）加 11 月新發約 $254 億，合計 $1,094 億 ÷ 營收＝42%",
+   "score": 73,
+   "basis": "2026 資本支出指引中值 $1,400 億 ÷ 最近四季營收 $2,416 億＝58%，× 2 後達上限 100；票據面額 $840 億（9/30）加 11 月新發約 $254 億，合計 $1,094 億 ÷ 營收＝45%",
    "src": [
     "q3",
     "mc_rev",
-    "rev_q3"
+    "rev_q3",
+    "ttm_sa"
    ]
   },
   "ceo": {
@@ -1624,10 +1629,11 @@
   }
  },
  "fin": {
-  "rev": 258.4,
-  "note": "2026 Q3 營收 $646 億 × 4（自行年化）",
+  "rev": 241.6,
+  "note": "最近四季合計（2025 Q4–2026 Q3）$2,416 億",
   "src": [
-   "rev_q3"
+   "rev_q3",
+   "ttm_sa"
   ],
   "cash": 82.45,
   "cashSrc": [

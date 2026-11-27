@@ -136,6 +136,10 @@
   "cash_q3": [
    "SiliconANGLE｜Palantir 2026 Q3 財報",
    "https://siliconangle.com/?p=852767"
+  ],
+  "ttm_sa": [
+   "sec-api.io｜Palantir 2026 Q3 財報分析（最近四季營收 $72.9 億）",
+   "https://sec-api.io/insights/palantir-pltr-q3-2026-earnings-us-commercial-overtakes-us-government-sec-filing-analysis"
   ]
  },
  "categories": [
@@ -1165,10 +1169,11 @@
   }
  },
  "fin": {
-  "rev": 8.53,
-  "note": "2026 全年指引",
+  "rev": 7.29,
+  "note": "最近四季合計（2025 Q4–2026 Q3）$72.9 億：$14.07 億＋$16.33 億＋$19.35 億＋$23.13 億",
   "src": [
-   "aiw_q3"
+   "aiw_q3",
+   "ttm_sa"
   ],
   "period": "2026-09-30",
   "cash": 10.4,

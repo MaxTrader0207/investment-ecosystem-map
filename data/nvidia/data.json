@@ -457,6 +457,14 @@
   "q3call": [
    "Motley Fool｜NVIDIA Q3 FY2027 法說會逐字稿",
    "https://www.fool.com/earnings/call-transcripts/2026/11/18/nvidia-nvda-q3-2027-earnings-call-transcript/"
+  ],
+  "ttm_q4": [
+   "NVIDIA IR｜FY2026 Q4 與全年財報：Q4 營收 $681.3 億（2026-02-25）",
+   "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Fourth-Quarter-and-Fiscal-2026"
+  ],
+  "ttm_q1": [
+   "NVIDIA IR｜FY2027 Q1 財報：營收 $816.2 億（2026-05-20）",
+   "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-First-Quarter-Fiscal-2027"
   ]
  },
  "categories": [
@@ -2537,11 +2545,13 @@
    ]
   },
   "infl": {
-   "score": 4,
-   "basis": "有息負債 $85 億 ÷ FY2026 營收 $2,159 億＝3.9%；未取得資本支出，僅以負債計",
+   "score": 2,
+   "basis": "有息負債 $85 億 ÷ 最近四季營收 $3,617 億＝2.4%；未取得資本支出，僅以負債計",
    "src": [
     "mc_debt",
-    "mc_fy26"
+    "mc_fy26",
+    "ttm_q4",
+    "ttm_q1"
    ]
   },
   "ceo": {
@@ -2554,16 +2564,18 @@
   }
  },
  "fin": {
-  "rev": 423.5,
-  "note": "FY2027 估計：Q2、Q3 實績＋Q4 指引，Q1 由 Q2 季增 18% 反推",
+  "rev": 361.7,
+  "note": "最近四季合計（FY2026 Q4–FY2027 Q3）$3,617 億：$681.3 億＋$816.2 億＋$962 億＋$1,158 億",
   "src": [
    "q3fy27",
-   "q2fy27"
+   "q2fy27",
+   "ttm_q4",
+   "ttm_q1"
   ],
   "circEst": {
    "lo": 59.0,
    "hi": 115.6,
-   "note": "NVIDIA 沒有揭露來自被投資公司的營收，以下是依公開數字加上假設推出的區間，不是實際數字。OpenAI 改用「每 GW 營收 × 部署進度」估算，取代原本把 2030 年前 $6,000 億計畫平均攤提的做法。如果 OpenAI 首個 GW 延後交付，下限會回到只算 CoreWeave 的 $190 億（約占營收 4%）。OpenAI 的採購多半經雲端業者間接進行，可能與雲端業者的營收重複計算。",
+   "note": "NVIDIA 沒有揭露來自被投資公司的營收，以下是依公開數字加上假設推出的區間，不是實際數字。OpenAI 改用「每 GW 營收 × 部署進度」估算，取代原本把 2030 年前 $6,000 億計畫平均攤提的做法。如果 OpenAI 首個 GW 延後交付，下限會回到只算 CoreWeave 的 $190 億（約占營收 5%）。OpenAI 的採購多半經雲端業者間接進行，可能與雲端業者的營收重複計算。",
    "parts": [
     {
      "k": "CoreWeave",

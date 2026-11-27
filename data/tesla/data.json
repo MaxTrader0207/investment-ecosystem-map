@@ -136,6 +136,10 @@
   "rev_q3": [
    "The EV Report｜Tesla 2026 Q3 財報",
    "https://theevreport.com/tesla-q3-2026-results-energy-storage-semi"
+  ],
+  "ttm_sa": [
+   "sec-api.io｜Tesla 2026 Q3 財報分析（最近四季營收 $1,036 億）",
+   "https://sec-api.io/insights/financial-analysis-of-tesla-tsla-q3-2026-earnings"
   ]
  },
  "categories": [
@@ -913,12 +917,13 @@
    ]
   },
   "infl": {
-   "score": 22,
-   "basis": "2026 資本支出上限 $200 億 ÷ Q3 年化營收 $1,122 億＝18%；負債與融資租賃 $95 億 ÷ 營收＝8%",
+   "score": 24,
+   "basis": "2026 資本支出上限 $200 億 ÷ 最近四季營收 $1,036 億＝19%；負債與融資租賃 $95 億 ÷ 營收＝9%",
    "src": [
     "ts_q3c",
     "mc_fa",
-    "rev_q3"
+    "rev_q3",
+    "ttm_sa"
    ]
   },
   "ceo": {
@@ -931,10 +936,11 @@
   }
  },
  "fin": {
-  "rev": 112.2,
-  "note": "2026 Q3 營收 $280.5 億 × 4（自行年化）；公司稱近四季營收連兩季高於 $1,000 億",
+  "rev": 103.6,
+  "note": "最近四季合計（2025 Q4–2026 Q3）$1,036 億",
   "src": [
-   "rev_q3"
+   "rev_q3",
+   "ttm_sa"
   ],
   "cash": 45.45,
   "cashSrc": [

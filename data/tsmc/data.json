@@ -194,6 +194,18 @@
   "cash_q3": [
    "sec-api.io｜TSMC 2026 Q3 申報文件分析",
    "https://sec-api.io/insights/tsmc-tsm-q3-2026-earnings-nt-1-49tn-revenue-58-7-operating-margin-and-a-us-52-3bn-to-us-54-3bn-q4-outlook-sec-filing-analysis"
+  ],
+  "ttm_q4": [
+   "TSMC｜2025 年第四季財報（2026-01-15）",
+   "https://pr.tsmc.com/english/news/3281"
+  ],
+  "ttm_q1": [
+   "SEC 6-K｜TSMC 2026 年第一季財報：營收 $359.0 億（2026-04-16）",
+   "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000199/a1q26e_withguidancexfinal.htm"
+  ],
+  "ttm_q2": [
+   "TSMC 投資人關係｜季度業績與展望表（2Q26 實績 $402.0 億）",
+   "https://investor.tsmc.com/schinese/quarterly-results"
   ]
  },
  "categories": [
@@ -1289,12 +1301,15 @@
    ]
   },
   "infl": {
-   "score": 70,
-   "basis": "2026 資本支出指引中值 $620 億 ÷ 2026 全年估計營收 $1,763 億＝35%；未取得有息負債，僅以資本支出計",
+   "score": 79,
+   "basis": "2026 資本支出指引中值 $620 億 ÷ 最近四季營收 $1,565.5 億＝40%；未取得有息負債，僅以資本支出計",
    "src": [
     "crn_q3",
     "mc_fy25",
-    "rev_q3"
+    "rev_q3",
+    "ttm_q4",
+    "ttm_q1",
+    "ttm_q2"
    ]
   },
   "ceo": {
@@ -1307,11 +1322,14 @@
   }
  },
  "fin": {
-  "rev": 176.3,
-  "note": "2026 全年估計：2025 年 $1,224 億 × 公司預期的全年成長約 44%；Q3 單季 $467 億",
+  "rev": 156.55,
+  "note": "最近四季合計（2025 Q4–2026 Q3）$1,565.5 億：$337.3 億＋$359.0 億＋$402.0 億＋$467.2 億（公司以美元揭露）",
   "src": [
    "rev_q3",
-   "rev_g"
+   "rev_g",
+   "ttm_q4",
+   "ttm_q1",
+   "ttm_q2"
   ],
   "period": "2026-09-30",
   "cash": 113.6,

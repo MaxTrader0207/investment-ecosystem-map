@@ -138,6 +138,14 @@
   "gap_10k": [
    "CoreWeave｜FY2025 10-K（地區資訊）",
    "https://s205.q4cdn.com/133937190/files/doc_financials/2025/q4/CoreWeave-Inc-FY25-10-K-7.pdf"
+  ],
+  "ttm_sa": [
+   "sec-api.io｜CoreWeave 2026 Q3 財報分析",
+   "https://sec-api.io/insights/coreweave-crwv-q3-2026-earnings-132-5bn-backlog-4-6-gw-contracted-power-and-46-9bn-of-debt-sec-filing-analysis"
+  ],
+  "ttm_9m": [
+   "RTTNews｜CoreWeave 2026 前三季營收 $83.14 億",
+   "https://www.rttnews.com/3712745/coreweave-reports-wider-q3-net-loss.aspx"
   ]
  },
  "categories": [
@@ -1015,10 +1023,12 @@
   },
   "infl": {
    "score": 100,
-   "basis": "2026 資本支出中值 $380 億 ÷ 營收指引中值 $131.5 億＝289%；負債本金 $475 億 ÷ 營收＝361%，兩項都達上限",
+   "basis": "2026 資本支出中值 $380 億 ÷ 最近四季營收 $98.9 億＝384%；負債本金 $475 億 ÷ 營收＝480%，兩項都達上限",
    "src": [
     "q3",
-    "debt930"
+    "debt930",
+    "ttm_sa",
+    "ttm_9m"
    ]
   },
   "ceo": {
@@ -1032,10 +1042,12 @@
   }
  },
  "fin": {
-  "rev": 13.15,
-  "note": "2026 全年營收指引中值",
+  "rev": 9.89,
+  "note": "最近四季合計（2025 Q4–2026 Q3）約 $98.9 億：2025 Q4 $15.7 億＋2026 前三季 $83.1 億",
   "src": [
-   "q3"
+   "q3",
+   "ttm_sa",
+   "ttm_9m"
   ],
   "cash": 4.2,
   "cashSrc": [

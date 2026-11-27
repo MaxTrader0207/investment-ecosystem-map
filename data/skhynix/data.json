@@ -105,6 +105,14 @@
   "gap_f1": [
    "SEC｜SK hynix Form F-1（董事名單與任期）",
    "https://www.sec.gov/Archives/edgar/data/2120882/000119312526280172/d32785df1.htm"
+  ],
+  "ttm_q1": [
+   "StorageNewsletter｜SK hynix 1Q26 財報（附 4Q25 營收 ₩32.8267 兆）",
+   "https://www.storagenewsletter.com/2026/04/29/sk-hynix-fiscal-1q26-financial-results/"
+  ],
+  "ttm_q2": [
+   "Webull／PR Newswire｜SK hynix 2Q26 財報：營收 ₩79.3187 兆",
+   "https://www.webull.com/news/15307406136009728"
   ]
  },
  "categories": [
@@ -862,10 +870,12 @@
   },
   "infl": {
    "score": 16,
-   "basis": "前三季設備投資 ₩31.2 兆 ÷ 營收 ₩236.5 兆＝13%，×2＝26；有息負債 ₩15.8 兆 ÷ 年化營收約 ₩315 兆＝5%；兩項平均",
+   "basis": "前三季設備投資 ₩31.2 兆 ÷ 同期營收 ₩236.5 兆＝13%，×2＝26；有息負債 ₩15.8 兆 ÷ 最近四季營收 ₩269.3 兆＝6%；兩項平均",
    "src": [
     "q3k",
-    "q3cash"
+    "q3cash",
+    "ttm_q1",
+    "ttm_q2"
    ]
   },
   "ceo": {
@@ -878,11 +888,13 @@
   }
  },
  "fin": {
-  "rev": 236.3,
-  "note": "前三季營收 ₩236.5 兆年化，以 ₩1,335／$1 換算",
+  "rev": 201.8,
+  "note": "最近四季合計（2025 Q4–2026 Q3）₩269.3 兆：₩32.8 兆＋₩52.6 兆＋₩79.3 兆＋₩104.6 兆，以 ₩1,335／$1 換算",
   "src": [
    "q3k",
-   "fx"
+   "fx",
+   "ttm_q1",
+   "ttm_q2"
   ],
   "cash": 85.8,
   "cashSrc": [

@@ -150,6 +150,10 @@
   "cash_fy26": [
    "Zacks｜Microsoft FY2026 Q4 財報（6/30 現金與負債）",
    "https://www.zacks.com/stock/news/2964867/microsoft-q4-earnings-beat-estimates-as-cloud-and-ai-drive-results"
+  ],
+  "ttm_ar": [
+   "Arincen｜Microsoft 營收（最近四季合計 $3,464.5 億）",
+   "https://en.arincen.com/instruments/MSFT/revenue"
   ]
  },
  "categories": [
@@ -1043,10 +1047,11 @@
    ]
   },
   "infl": {
-   "score": 39,
-   "basis": "FY2026 資本支出占營收 34.9%；淨負債 $300 億 ÷ 營收 $3,318 億＝9%",
+   "score": 38,
+   "basis": "FY2026 資本支出 $1,159 億 ÷ 最近四季營收 $3,464.5 億＝33%（資本支出截至 6 月、營收截至 9 月）；淨負債 $300 億 ÷ 營收＝9%",
    "src": [
-    "mc_fa"
+    "mc_fa",
+    "ttm_ar"
    ]
   },
   "ceo": {
@@ -1059,12 +1064,13 @@
   }
  },
  "fin": {
-  "rev": 331.8,
-  "note": "FY2026",
+  "rev": 346.45,
+  "note": "最近四季合計（FY2026 Q2–FY2027 Q1，截至 2026-09-30）$3,464.5 億：FY2026 全年 $3,318 億，減 FY2026 Q1 $776.7 億，加 FY2027 Q1 $922.8 億",
   "src": [
-   "mc_fa"
+   "mc_fa",
+   "ttm_ar"
   ],
-  "period": "2026-06-30",
+  "period": "2026-09-30",
   "cash": 76.8,
   "cashSrc": [
    "cash_fy26"

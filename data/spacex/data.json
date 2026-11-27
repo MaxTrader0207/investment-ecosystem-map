@@ -221,6 +221,14 @@
   "mktcap2": [
    "CNN｜11/19 SpaceX 收盤 $138.43",
    "https://www.cnn.com/2026/11/19/business/live-news/anthropic-ipo"
+  ],
+  "ttm_sa": [
+   "sec-api.io｜SpaceX 2026 Q3 財報分析（最近四季營收 $320 億）",
+   "https://sec-api.io/insights/financial-analysis-of-spacex-spcx-q3-2026-earnings"
+  ],
+  "ttm_sw": [
+   "Simply Wall St｜SpaceX Q3：最近四季營收 $320.4 億",
+   "https://simplywall.st/stocks/us/telecom/nasdaq-spcx/space-exploration-technologies/news/spacex-spcx-stock-shrugs-off-q3-results-as-profit-jumps"
   ]
  },
  "categories": [
@@ -1424,10 +1432,12 @@
   }
  },
  "fin": {
-  "rev": 58.4,
-  "note": "2026 Q3 營收 $146 億 × 4 年化",
+  "rev": 32.04,
+  "note": "最近四季合計（2025 Q4–2026 Q3）$320.4 億：2025 Q4 約 $49.6 億（全年 $186.7 億減前三季 $137.1 億）＋2026 前三季 $270.8 億",
   "src": [
-   "alpha_q3"
+   "alpha_q3",
+   "ttm_sa",
+   "ttm_sw"
   ],
   "period": "2026-09-30"
  },

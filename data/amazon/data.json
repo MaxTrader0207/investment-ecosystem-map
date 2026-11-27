@@ -183,6 +183,14 @@
   "rev_q3": [
    "Amazon IR｜2026 年第三季財報",
    "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Third-Quarter-Results/"
+  ],
+  "ttm_q1": [
+   "Nasdaq／Amazon 新聞稿｜2026 年第一季財報（2026-04-29）",
+   "https://www.nasdaq.com/press-release/amazoncom-announces-first-quarter-results-2026-04-29"
+  ],
+  "ttm_q2": [
+   "Nasdaq／Amazon 新聞稿｜2026 年第二季財報（2026-07-30）",
+   "https://www.nasdaq.com/press-release/amazoncom-announces-second-quarter-results-2026-07-30"
   ]
  },
  "categories": [
@@ -1133,12 +1141,14 @@
    ]
   },
   "infl": {
-   "score": 38,
-   "basis": "2026 年資本支出約 $2,200 億 ÷ Q3 年化淨銷售 $8,076 億＝27%；長期債務面額 $1,809 億（9/30）÷ 淨銷售＝22%",
+   "score": 39,
+   "basis": "2026 年資本支出約 $2,200 億 ÷ 最近四季淨銷售 $7,973 億＝28%；長期債務面額 $1,809 億（9/30）÷ 淨銷售＝23%",
    "src": [
     "cr_q3",
     "mc_fy25",
-    "rev_q3"
+    "rev_q3",
+    "ttm_q1",
+    "ttm_q2"
    ]
   },
   "ceo": {
@@ -1150,10 +1160,12 @@
   }
  },
  "fin": {
-  "rev": 807.6,
-  "note": "2026 Q3 淨銷售 $2,019 億 × 4（自行年化）；Q4 指引 $2,400–2,470 億",
+  "rev": 797.3,
+  "note": "最近四季合計（2025 Q4–2026 Q3）：$2,133 億＋$1,815 億＋$2,006 億＋$2,019 億；2025 Q4 以全年 $7,169 億減前三季反推",
   "src": [
-   "rev_q3"
+   "rev_q3",
+   "ttm_q1",
+   "ttm_q2"
   ],
   "cash": 114.2,
   "cashSrc": [
