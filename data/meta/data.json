@@ -193,6 +193,10 @@
   "or_meta2": [
    "TipRanks｜Oracle 在 AI World 證實與 Meta 簽有雲端合約（2025-10）",
    "https://www.tipranks.com/news/oracle-stock-orcl-jumps-after-confirming-cloud-deal-with-meta"
+  ],
+  "mc_rev": [
+   "EdgarTools｜Meta 2025 10-K 營收揭露：總營收 $2,009.7 億、美國 $747.8 億",
+   "https://app.edgar.tools/companies/META/disclosures/revenue"
   ]
  },
  "categories": [
@@ -1488,5 +1492,25 @@
     ]
    }
   ]
+ },
+ "macro": {
+  "geo": {
+   "basis": "待補資料：未取得中國廣告主相關營收占比"
+  },
+  "fx": {
+   "score": 63,
+   "basis": "2025 年美國營收 $748 億 ÷ 總營收 $2,010 億＝37%，美國以外 63%",
+   "src": [
+    "mc_rev"
+   ]
+  },
+  "infl": {
+   "score": 70,
+   "basis": "2026 資本支出指引中值 $1,400 億 ÷ 2025 營收 $2,010 億＝70%；長期負債 $809 億 ÷ 營收＝40%",
+   "src": [
+    "q3",
+    "mc_rev"
+   ]
+  }
  }
 }

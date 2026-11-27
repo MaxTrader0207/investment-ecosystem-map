@@ -63,7 +63,9 @@ for fp in FILES:
               "dep":[l.get("dep") for l in D.get("loops",[]) if l.get("dep")],
               "guar":sum(1 for n in D["nodes"] if not cats.get(n["cat"],{}).get("counterparty") and (n.get("guarantee") or "擔保" in n.get("type","") or n.get("amtType")=="liability" or any(r["k"]=="fin" for r in n.get("risks",[])))),
               "unc":sum(1 for n in D["nodes"] if not cats.get(n["cat"],{}).get("counterparty") and (n.get("unconfirmed") or any(r["k"]=="exec" for r in n.get("risks",[])))),
-              "macro":D.get("macro") or {}}})
+              "gamt":sum((n.get("guarAmt") if n.get("guarAmt") is not None else (n.get("amt") or 0)) for n in D["nodes"] if not cats.get(n["cat"],{}).get("counterparty") and not n.get("excludeFromSum")
+                         and (n.get("guarAmt") is not None or n.get("amtType")=="liability" or ("擔保" in n.get("type","") and n.get("amtType") in ("commitment","none")))),
+              "macro":{mk:dict(mv,src=[[S[x][0],S[x][1]] for x in mv.get("src",[]) if x in S]) for mk,mv in (D.get("macro") or {}).items() if isinstance(mv,dict)}}})
     for n in D["nodes"]:
         if n["cat"] not in cats: continue
         c=cats[n["cat"]]
@@ -179,6 +181,7 @@ RISK_DIMS=[("geo","地緣政治／出口管制",15),("inv","對外投資集中�
 _INV=re.compile("股權|特別股|普通股|收購|入股|增資|參與|輪|可轉|認股|權證|認購|配售|PIPE|股東|合資|基金|LP|投資|技術授權|持股")
 _NOTINV=re.compile("採購|雲端|合約|租|代工|資本支出|計畫|投資承諾|發債|公司債|回購|貸款|籌資|訴訟|競爭"); _DEAD=re.compile("撤銷|終止|取消|出清|出售")
 def _cap(v): return int(round(max(0,min(100,v))))
+def _flag(c,n,thr,full=5): return 0.5*min(100,c/n/thr*100)+0.5*min(100,c/full*100)   # 旗標類：占比與絕對數量各半（full＝幾個就算滿分）
 for e in ents:
     rk=e.pop("rk"); st=e["st"]; n=max(rk["n"],15); k=e["key"]; R={}   # 節點少於 15 個時以 15 計，避免資料少的公司占比被放大
     # 與「投資簡覽」相同的認定：股權成本，加上屬於入股／收購／合資性質的承諾
@@ -191,26 +194,27 @@ for e in ents:
     dv={"high":100,"mid":60,"low":20}; ds=[dv[d] for d in rk["dep"] if d in dv]
     nc=sum(1 for c in cycles if k in c["path"])
     R["loop"]=(_cap(0.7*(sum(ds)/len(ds) if ds else 0)+0.3*min(100,nc*10)),f"{len(ds)} 條資金循環的依賴程度平均（高 {rk['dep'].count('high')}、中 {rk['dep'].count('mid')}、低 {rk['dep'].count('low')}）；參與 {nc} 個跨實體閉環")
-    R["fin"]=(_cap(rk["guar"]/n/0.20*100),f"{rk['guar']}／{rk['n']} 個節點涉及擔保、負債或財務風險旗標（占 {rk['guar']/n*100:.0f}%，達 20% 為滿分）")
+    ga=rk["gamt"]; gr=ga/(ga+tot) if ga>0 else 0
+    R["fin"]=(_cap(0.6*gr*100+0.4*_flag(rk["guar"],n,0.20)),(f"擔保與負債金額 {fmtb(ga)}，相當於「擔保負債＋股權類投資」的 {gr*100:.0f}%（占六成權重）；" if ga>0 else "沒有已揭露金額的擔保或負債節點；")+f"{rk['guar']} 個節點有擔保、負債或財務風險旗標（占四成權重）")
     cl=[l for l in links if l["ent"]==k and l["amtType"] in ("contract","commitment","inflow","project") and l["amt"] is not None and not l["excl"]]
     bycp={}
     for l in cl: bycp[l["cp"]]=bycp.get(l["cp"],0)+l["amt"]
     ct=sum(bycp.values()); top=max(bycp.items(),key=lambda x:x[1]) if bycp else None
     cf=st["risk"].get("conc",0)
-    R["conc"]=(_cap(0.5*min(100,cf/n/0.15*100)+0.5*(top[1]/ct*100 if top and len(bycp)>1 else (100 if top else 0))),
+    R["conc"]=(_cap(0.5*_flag(cf,n,0.15,3)+0.5*(top[1]/ct*100 if top and len(bycp)>1 else (100 if top else 0))),
                (f"合約與承諾金額最大對手 {top[0]} 占 {top[1]/ct*100:.0f}%（共 {len(bycp)} 個對手）；" if top else "沒有已揭露金額的合約；")+f"{cf} 個節點有集中度旗標")
     rf=st["risk"].get("reg",0)
-    R["reg"]=(_cap(rf/n/0.15*100),f"{rf}／{rk['n']} 個節點有監管或治理旗標（占 {rf/n*100:.0f}%，達 15% 為滿分）")
-    R["exec"]=(_cap(rk["unc"]/n/0.25*100),f"{rk['unc']}／{rk['n']} 個節點未定案或有執行風險旗標（占 {rk['unc']/n*100:.0f}%，達 25% 為滿分）")
+    R["reg"]=(_cap(_flag(rf,n,0.15)),f"{rf}／{rk['n']} 個節點有監管或治理旗標（占比達 15% 與數量達 5 個各算一半）")
+    R["exec"]=(_cap(_flag(rk["unc"],n,0.25)),f"{rk['unc']}／{rk['n']} 個節點未定案或有執行風險旗標（占比達 25% 與數量達 5 個各算一半）")
     low=st["grade"]["C"]+st["grade"]["D"]+st["stale"]
-    R["info"]=(_cap(low/n/0.40*100),f"{st['grade']['C']+st['grade']['D']} 個節點來源等級為 C 或 D、{st['stale']} 個待重新查證（占 {low/n*100:.0f}%，達 40% 為滿分）")
+    R["info"]=(_cap(_flag(low,n,0.40,8)),f"{st['grade']['C']+st['grade']['D']} 個節點來源等級為 C 或 D、{st['stale']} 個待重新查證（占比達 40% 與數量達 8 個各算一半）")
     for mk in ("geo","fx","infl"):
         m=rk["macro"].get(mk)
         if isinstance(m,dict) and isinstance(m.get("score"),(int,float)): R[mk]=(_cap(m["score"]),m.get("basis",""),m.get("src",[]))
     dims=[]
     for key,name,w in RISK_DIMS:
         r=R.get(key)
-        dims.append({"k":key,"n":name,"w":w,"s":r[0] if r else None,"b":r[1] if r else "待補資料：需要另外查證公開數據後才能評分","src":list(r[2]) if r and len(r)>2 else []})
+        dims.append({"k":key,"n":name,"w":w,"s":r[0] if r else None,"b":r[1] if r else (rk["macro"].get(key,{}).get("basis") or "待補資料：需要另外查證公開數據後才能評分"),"src":list(r[2]) if r and len(r)>2 else []})
     cov=sum(d["w"] for d in dims if d["s"] is not None)
     e["risk"]={"dims":dims,"cov":cov,"total":int(round(sum(d["s"]*d["w"] for d in dims if d["s"] is not None)/cov)) if cov else None}
 _rank=sorted([e for e in ents if e["risk"]["total"] is not None],key=lambda e:-e["risk"]["total"])

@@ -122,6 +122,10 @@
   "fk_maia": [
    "ForkLog｜10 月發表第三代自研 AI 晶片 Maia 300，2027 年起導入",
    "https://forklog.com/en/?p=106004"
+  ],
+  "mc_fa": [
+   "sec-api.io｜Microsoft FY2026：營收 $3,318 億、資本支出 $1,159 億（34.9%）、淨負債 $300 億",
+   "https://sec-api.io/insights/financial-analysis-of-microsoft-fy2026-capital-intensity-against-a-record-margin"
   ]
  },
  "categories": [
@@ -980,5 +984,20 @@
     ]
    }
   ]
+ },
+ "macro": {
+  "geo": {
+   "basis": "待補資料：未取得中國營收占比"
+  },
+  "fx": {
+   "basis": "待補資料：未取得美國以外營收占比"
+  },
+  "infl": {
+   "score": 39,
+   "basis": "FY2026 資本支出占營收 34.9%；淨負債 $300 億 ÷ 營收 $3,318 億＝9%",
+   "src": [
+    "mc_fa"
+   ]
+  }
  }
 }

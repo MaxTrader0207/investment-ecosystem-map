@@ -121,6 +121,18 @@
   "or_meta2": [
    "TipRanks｜Oracle 在 AI World 證實與 Meta 簽有雲端合約（2025-10）",
    "https://www.tipranks.com/news/oracle-stock-orcl-jumps-after-confirming-cloud-deal-with-meta"
+  ],
+  "mc_fy26": [
+   "Oracle IR｜FY2026：營收 $674 億、營業現金流 $320 億、自由現金流 −$237 億（2026-06-10）",
+   "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Record-Q4-and-FY-2026-Results-Driven-by-Cloud-Infrastructure--Cloud-Applications/default.aspx"
+  ],
+  "mc_bs": [
+   "EdgarTools｜Oracle 資產負債表：應付票據與借款（2026/5/31）",
+   "https://app.edgar.tools/companies/ORCL-PD"
+  ],
+  "mc_ar": [
+   "Global Banking & Finance｜Oracle 年報摘要：美洲占營收 63.3%（FY2025）",
+   "https://www.globalbankingandfinance.com/markets/orcl/annual-report/"
   ]
  },
  "categories": [
@@ -1026,5 +1038,25 @@
     ]
    }
   ]
+ },
+ "macro": {
+  "geo": {
+   "basis": "待補資料：未取得中國相關營收占比"
+  },
+  "fx": {
+   "score": 37,
+   "basis": "FY2025 美洲占營收 63.3%，美洲以外 36.7%（最新年度占比未取得）",
+   "src": [
+    "mc_ar"
+   ]
+  },
+  "infl": {
+   "score": 100,
+   "basis": "FY2026 資本支出約 $557 億（營業現金流 $320 億 − 自由現金流 −$237 億）÷ 營收 $674 億＝83%；借款 $1,295 億 ÷ 營收＝192%",
+   "src": [
+    "mc_fy26",
+    "mc_bs"
+   ]
+  }
  }
 }

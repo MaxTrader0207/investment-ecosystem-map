@@ -128,6 +128,18 @@
   "mr_gsat2": [
    "MacRumors｜Amazon 將一併收購 Apple 持有的 Globalstar 股權（FCC 文件，2026-05-27）",
    "https://macrumors.com/2026/05/27/amazon-apple-globalstar-deal/"
+  ],
+  "mc_china": [
+   "FourWeekMBA｜Apple FY2026 大中華區淨銷售 $823.8 億、占 17.2%（依 10-K）",
+   "https://fourweekmba.com/ai-how-apples-china-exposure-works-17-of-sales-42-9-margin/"
+  ],
+  "mc_q3": [
+   "Business Wire｜Apple FY26 Q3：前九個月各區銷售與長期債務（2026-07-30）",
+   "https://www.businesswire.com/news/home/20260730284687/en/Apple-reports-third-quarter-results"
+  ],
+  "mc_fy26": [
+   "ProPakistani｜Apple FY2026 淨銷售 $4,788 億（2026-11-03）",
+   "https://propakistani.pk/2026/11/03/apple-breaks-revenue-records-with-114-5-billion-in-just-3-months/"
   ]
  },
  "categories": [
@@ -1099,5 +1111,29 @@
     ]
    }
   ]
+ },
+ "macro": {
+  "geo": {
+   "score": 34,
+   "basis": "FY2026 大中華區（含港台）占淨銷售 17.2%（17.2×2）",
+   "src": [
+    "mc_china"
+   ]
+  },
+  "fx": {
+   "score": 59,
+   "basis": "FY26 前九個月美洲區 $1,494 億 ÷ 總銷售 $3,644 億＝41%，美洲以外約 59%",
+   "src": [
+    "mc_q3"
+   ]
+  },
+  "infl": {
+   "score": 15,
+   "basis": "長期債務 $713 億（2026/6）÷ FY2026 淨銷售 $4,788 億＝15%；未取得資本支出，僅以負債計",
+   "src": [
+    "mc_q3",
+    "mc_fy26"
+   ]
+  }
  }
 }

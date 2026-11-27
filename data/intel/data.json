@@ -189,6 +189,22 @@
   "globes_mbly": [
    "Globes｜Mobileye（Intel 持股 79.8%）跌破 $10、市值約 $80 億",
    "https://en.globes.co.il/en/article-1001533009"
+  ],
+  "mc_10k": [
+   "Medici List｜Intel 2025 10-K 摘要：70% 營收來自美國以外、中國占 24%",
+   "https://medici-list.vercel.app/company/intel-corp-50863"
+  ],
+  "mc_fy25": [
+   "Intel IR｜2025 全年營收 $529 億（2026-01-22）",
+   "https://www.intc.com/news-events/press-releases/detail/1759/intel-reports-fourth-quarter-and-full-year-2025-financial-results"
+  ],
+  "mc_capex": [
+   "Intel IR｜2025 年總資本支出目標 $180 億",
+   "https://www.intc.com/news-events/press-releases/detail/1745/intel-reports-third-quarter-2025-financial-results"
+  ],
+  "mc_debt": [
+   "ForensicAnalysis｜Intel FY2025 總負債 $491 億（依 10-K 整理）",
+   "https://thekinghippopotamus.github.io/ForensicAnalysis/INTC/"
   ]
  },
  "categories": [
@@ -1335,5 +1351,30 @@
     ]
    }
   ]
+ },
+ "macro": {
+  "geo": {
+   "score": 48,
+   "basis": "2025 年中國占營收 24%（24×2）",
+   "src": [
+    "mc_10k"
+   ]
+  },
+  "fx": {
+   "score": 70,
+   "basis": "2025 年 70% 營收來自美國以外",
+   "src": [
+    "mc_10k"
+   ]
+  },
+  "infl": {
+   "score": 80,
+   "basis": "資本支出 $180 億 ÷ 營收 $529 億＝34%；有息負債 $491 億 ÷ 營收＝93%",
+   "src": [
+    "mc_capex",
+    "mc_debt",
+    "mc_fy25"
+   ]
+  }
  }
 }

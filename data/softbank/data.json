@@ -194,6 +194,10 @@
    "Trefis｜INTC 2026-11-18 股價 $54.67",
    "https://www.trefis.com/data/companies/INTC?from=KLAC-2026-05-07",
    "B"
+  ],
+  "mc_ltv": [
+   "SoftBank Group IR｜2026/9/30：LTV 15.9%、淨負債 ¥11.30 兆（2026-11-10）",
+   "https://group.softbank/en/news/ir/20261110_1"
   ]
  },
  "categories": [
@@ -1402,5 +1406,20 @@
     ]
    }
   ]
+ },
+ "macro": {
+  "geo": {
+   "basis": "待補資料：控股公司，未取得可比較的地區曝險指標"
+  },
+  "fx": {
+   "basis": "待補資料：資產多以美元計價、負債多為日圓，未取得可量化指標"
+  },
+  "infl": {
+   "score": 45,
+   "basis": "控股公司不適用營收公式，改用 LTV：15.9% ÷ 公司自訂上限 35%＝45",
+   "src": [
+    "mc_ltv"
+   ]
+  }
  }
 }

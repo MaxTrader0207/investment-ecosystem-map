@@ -287,6 +287,18 @@
    "Motley Fool｜SPCX 2026-11-24 收盤 $125.81",
    "https://www.fool.com/investing/2026/11/24/why-anthropic-stock-fell-again/",
    "B"
+  ],
+  "mc_ar": [
+   "Global Banking & Finance｜Alphabet 年報摘要：美國占營收 48.7%（2024）、長期負債",
+   "https://www.globalbankingandfinance.com/markets/googl/annual-report/"
+  ],
+  "mc_fy25": [
+   "YourStory｜Alphabet 2025 營收 $4,028 億、2026 資本支出指引（2026-02）",
+   "https://yourstory.com/2026/02/alphabet-caps-2025-revenue-milestone-doubles-down-ai-spending"
+  ],
+  "mc_10q": [
+   "Alphabet｜2026 Q1 10-Q：長期負債 $775 億",
+   "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q1/GOOG-10-Q-Q1-2026.pdf"
   ]
  },
  "categories": [
@@ -1821,5 +1833,26 @@
     ]
    }
   ]
+ },
+ "macro": {
+  "geo": {
+   "basis": "待補資料：未取得中國相關營收占比"
+  },
+  "fx": {
+   "score": 51,
+   "basis": "2024 年美國占營收 48.7%，美國以外 51.3%（最新年度占比未取得）",
+   "src": [
+    "mc_ar"
+   ]
+  },
+  "infl": {
+   "score": 59,
+   "basis": "2026 資本支出指引中值約 $2,000 億 ÷ 2025 營收 $4,028 億＝50%；長期負債 $775 億（2026/3）÷ 營收＝19%",
+   "src": [
+    "aiw_q3",
+    "mc_10q",
+    "mc_fy25"
+   ]
+  }
  }
 }

@@ -116,6 +116,10 @@
    "Motley Fool｜SPCX 2026-11-24 收盤 $125.81",
    "https://www.fool.com/investing/2026/11/24/why-anthropic-stock-fell-again/",
    "B"
+  ],
+  "mc_fa": [
+   "sec-api.io｜Tesla Q3 2026 分析：FY2025 地區營收（美國 50.2%、中國 22.1%）、負債與資本支出",
+   "https://sec-api.io/insights/financial-analysis-of-tesla-tsla-q3-2026-earnings"
   ]
  },
  "categories": [
@@ -868,5 +872,29 @@
     ]
    }
   ]
+ },
+ "macro": {
+  "geo": {
+   "score": 44,
+   "basis": "FY2025 中國占營收 22.1%（22.1×2）",
+   "src": [
+    "mc_fa"
+   ]
+  },
+  "fx": {
+   "score": 50,
+   "basis": "FY2025 美國占營收 50.2%，美國以外 49.8%",
+   "src": [
+    "mc_fa"
+   ]
+  },
+  "infl": {
+   "score": 26,
+   "basis": "2026 資本支出上限 $200 億 ÷ FY2025 營收 $948 億＝21%；負債與融資租賃 $95 億 ÷ 營收＝10%",
+   "src": [
+    "ts_q3c",
+    "mc_fa"
+   ]
+  }
  }
 }

@@ -258,6 +258,10 @@
    "Motley Fool｜SPCX 2026-11-24 收盤 $125.81",
    "https://www.fool.com/investing/2026/11/24/why-anthropic-stock-fell-again/",
    "B"
+  ],
+  "mc_fy25": [
+   "AMD IR｜2025 全年營收 $346 億；MI308 出口管制相關費用約 $4.4 億（2026-02-03）",
+   "https://ir.amd.com/news-events/press-releases/detail/1276/amd-reports-fourth-quarter-and-full-year-2025-financial-results"
   ]
  },
  "categories": [
@@ -1758,5 +1762,20 @@
     ]
    }
   ]
+ },
+ "macro": {
+  "geo": {
+   "score": 30,
+   "basis": "2025 年因美國對 MI308 的出口管制認列約 $4.4 億費用（＋30）；未取得中國營收占比，分數可能偏低",
+   "src": [
+    "mc_fy25"
+   ]
+  },
+  "fx": {
+   "basis": "待補資料：未取得美國以外營收占比"
+  },
+  "infl": {
+   "basis": "待補資料：未取得資本支出與有息負債"
+  }
  }
 }

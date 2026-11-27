@@ -151,6 +151,14 @@
    "Axios｜ANT 2026-11-24 收盤 $81.91",
    "https://www.axios.com/2026/11/24/anthropic-stock-ipo-banks",
    "B"
+  ],
+  "mc_q4": [
+   "Business Wire｜Amazon 2025：International 部門銷售 $1,619 億（2026-02-05）",
+   "https://www.businesswire.com/news/home/20260204777163/en/Amazon.com-Announces-Fourth-Quarter-Results"
+  ],
+  "mc_fy25": [
+   "Nasdaq｜Amazon 2025 淨銷售 $7,169 億",
+   "https://www.nasdaq.com/press-release/amazoncom-announces-fourth-quarter-results-2026-02-05"
   ]
  },
  "categories": [
@@ -1079,5 +1087,26 @@
     ]
    }
   ]
+ },
+ "macro": {
+  "geo": {
+   "basis": "待補資料：未取得中國相關營收占比"
+  },
+  "fx": {
+   "score": 23,
+   "basis": "2025 年 International 部門 $1,619 億 ÷ 淨銷售 $7,169 億＝23%（不含 AWS 海外營收，實際應更高）",
+   "src": [
+    "mc_q4",
+    "mc_fy25"
+   ]
+  },
+  "infl": {
+   "score": 37,
+   "basis": "2026 年資本支出約 $2,200 億 ÷ 2025 淨銷售 $7,169 億＝31%；2026 年發債約 $890 億 ÷ 淨銷售＝12%（僅新發行，非全部負債）",
+   "src": [
+    "cr_q3",
+    "mc_fy25"
+   ]
+  }
  }
 }

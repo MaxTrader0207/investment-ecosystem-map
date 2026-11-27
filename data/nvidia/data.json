@@ -390,6 +390,22 @@
    "NVIDIA 新聞稿｜NVIDIA Guarantees SB Energy's PORTS-Pike Campus；現階段投資 SB Energy $15 億（2026-08-17）",
    "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Guarantees-SB-Energys-PORTS-Pike-Technology-Campus-in-Ohio-to-Exclusively-Host-NVIDIA-AI-Compute/default.aspx",
    "A"
+  ],
+  "mc_fy26": [
+   "NVIDIA Newsroom｜FY2026 全年營收 $215.9B（2026-02-25）",
+   "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Fourth-Quarter-and-Fiscal-2026/default.aspx"
+  ],
+  "mc_china": [
+   "FourWeekMBA｜NVIDIA 中國營收占比 FY2026 9.1%（依 10-K 整理）",
+   "https://fourweekmba.com/ai-how-much-of-nvidias-revenue-really-comes-from-china/"
+  ],
+  "mc_h20": [
+   "The Energy Mag｜H20 出口許可與 $45 億費用（2026-02-25）",
+   "https://theenergymag.com/news/2026-02-25/nvidia-blackwell-data-center-ai"
+  ],
+  "mc_debt": [
+   "InvestSkill｜NVDA FY2026 總負債 $8.5B、淨現金（依 10-K 整理）",
+   "https://raw.githubusercontent.com/yennanliu/InvestSkill/main/site/content/FULL-DEMO-NVDA.md"
   ]
  },
  "categories": [
@@ -802,7 +818,8 @@
      ]
     }
    ],
-   "xnote": "NVIDIA 新聞稿寫的是「現階段投資 $15 億」；SoftBank 端的報導為兩筆私募合計 $30 億。差額是否為後續承諾，沒有官方說明。"
+   "xnote": "NVIDIA 新聞稿寫的是「現階段投資 $15 億」；SoftBank 端的報導為兩筆私募合計 $30 億。差額是否為後續承諾，沒有官方說明。",
+   "guarAmt": 105
   },
   {
    "id": "lambda",
@@ -2424,5 +2441,26 @@
    }
   ]
  },
- "method": "<b>方法與注意事項：</b>（1）金額為公開宣布的承諾金額，未必已全數撥付；認股權證以全數行使的最大金額表示，列為承諾上限；擔保屬或有負債。（2）13F 市值為 2026/9/30 申報值，只涵蓋可申報的美國上市證券。（3）對 xAI 的原始投資金額各媒體說法不一，並列兩說。（4）部分新創只確認參與輪次，出資額未揭露。（5）本 Dashboard 為資訊整理，非投資建議。"
+ "method": "<b>方法與注意事項：</b>（1）金額為公開宣布的承諾金額，未必已全數撥付；認股權證以全數行使的最大金額表示，列為承諾上限；擔保屬或有負債。（2）13F 市值為 2026/9/30 申報值，只涵蓋可申報的美國上市證券。（3）對 xAI 的原始投資金額各媒體說法不一，並列兩說。（4）部分新創只確認參與輪次，出資額未揭露。（5）本 Dashboard 為資訊整理，非投資建議。",
+ "macro": {
+  "geo": {
+   "score": 48,
+   "basis": "FY2026 中國（含香港）營收占 9.1%（依客戶總部）；H20 需出口許可並認列 $45 億費用，屬出口管制直接影響（9.1×2＋30）",
+   "src": [
+    "mc_china",
+    "mc_h20"
+   ]
+  },
+  "fx": {
+   "basis": "待補資料：未取得美國以外營收占比"
+  },
+  "infl": {
+   "score": 4,
+   "basis": "有息負債 $85 億 ÷ FY2026 營收 $2,159 億＝3.9%；未取得資本支出，僅以負債計",
+   "src": [
+    "mc_debt",
+    "mc_fy26"
+   ]
+  }
+ }
 }

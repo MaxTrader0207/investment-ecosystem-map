@@ -158,6 +158,18 @@
    "Axios｜ANT 2026-11-24 收盤 $81.91",
    "https://www.axios.com/2026/11/24/anthropic-stock-ipo-banks",
    "B"
+  ],
+  "mc_geo": [
+   "台積電｜2025 Q4 法說資料：2025 全年營收地區別（北美 75%、中國 9%）",
+   "https://basic.10jqka.com.cn/ajax/usaph/pubDetail/72c4a5f2626ccedf_pdf"
+  ],
+  "mc_fy25": [
+   "TelecomLead｜台積電 2025 營收 US$1,224 億",
+   "https://telecomlead.com/semiconductor/tsmc-delivers-record-2025-revenue-and-profit-as-ai-chip-demand-fuels-growth-us-expansion-accelerates-124150"
+  ],
+  "mc_ec": [
+   "FourWeekMBA｜台積電中國營收占比因出口管制由 22% 降至 9%",
+   "https://fourweekmba.com/tsmc-revenue-breakdown/"
   ]
  },
  "categories": [
@@ -1234,5 +1246,30 @@
     ]
    }
   ]
+ },
+ "macro": {
+  "geo": {
+   "score": 48,
+   "basis": "2025 年中國占營收 9%；占比因美國出口管制由約 22% 下降，屬直接影響（9×2＋30）。產能集中台灣的風險未納入公式",
+   "src": [
+    "mc_geo",
+    "mc_ec"
+   ]
+  },
+  "fx": {
+   "score": 91,
+   "basis": "2025 年北美 75%、中國 9%、日本 4%、歐非中東 3%，合計 91% 來自亞太（含台灣）以外，營收多以美元計價",
+   "src": [
+    "mc_geo"
+   ]
+  },
+  "infl": {
+   "score": 100,
+   "basis": "2026 資本支出指引中值 $620 億 ÷ 2025 營收 $1,224 億＝51%；未取得有息負債，僅以資本支出計",
+   "src": [
+    "crn_q3",
+    "mc_fy25"
+   ]
+  }
  }
 }

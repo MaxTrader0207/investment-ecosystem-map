@@ -277,7 +277,7 @@ function risk(k){
  const peers=DATA.ents.filter(x=>x.risk&&x.risk.total!=null).sort((a,b)=>b.risk.total-a.risk.total||a.key.localeCompare(b.key,'zh-Hant'));
  const strip=`<div class="rcard" style="margin-top:14px"><b>全部公司一覽</b> <span class="hint">依總風險值由高到低；點選可切換公司</span>
   <div class="rpeers">${peers.map(p=>`<button class="rpeer${p.key===k?' on':''}" data-k="${esc(p.key)}" title="${esc(p.entity)}：總風險值 ${p.risk.total}（${RLAMP[RLV(p.risk.total)]}）"><i class="rb${RLV(p.risk.total)}"></i><span>${esc(p.entity)}</span><b class="rc${RLV(p.risk.total)}">${p.risk.total}</b></button>`).join('')}</div></div>`;
- const foot=`<div class="hint" style="margin-top:8px;line-height:1.7">總風險值＝各面向分數（0–100）× 權重後相加，再依已有資料的權重換算成 0–100。燈號：60 以上紅燈（高）、40–59 黃燈（中）、39 以下綠燈（低）。雷達圖上的紅色虛線是 60 分。分數只反映各家 Dashboard 記錄到的投資與資金循環結構，不是公司整體的信用或經營風險；滑鼠移到雷達圖的圓點可看計算依據。非投資建議。</div>`;
+ const foot=`<div class="hint" style="margin-top:8px;line-height:1.7">總風險值＝各面向分數（0–100）× 權重後相加，再依已有資料的權重換算成 0–100。燈號：60 以上紅燈（高）、40–59 黃燈（中）、39 以下綠燈（低）。雷達圖上的紅色虛線是 60 分。地緣政治＝中國（含港）營收占比 × 2，受出口管制或強制分拆直接影響再加 30；匯率＝本國以外營收占比；通膨／物價／利率＝資本支出占營收 × 2 與有息負債占營收的平均。這三項取自公開財報，「全部面向」的 ↗ 可開啟來源；查不到公開數據的面向標示待補、不計入總分。其餘面向反映各家 Dashboard 記錄到的投資與資金循環結構。總分不是公司整體的信用評等；滑鼠移到圓點或清單可看計算依據。非投資建議。</div>`;
  if(!e||!e.risk||e.risk.total==null){X.innerHTML=`<div class="rcard"><b>${esc(k)}</b> <span class="hint">尚未建立專屬 Dashboard，沒有足夠資料計算風險值。請從下方選擇已建 Dashboard 的公司。</span></div>${strip}${foot}`;}
  else{
   const r=e.risk, lv=RLV(r.total), D=r.dims, n=D.length, R=150;
@@ -303,7 +303,7 @@ function risk(k){
    <div class="rcard rradar">${svg}</div>
    <div class="rside">
     <div class="rcard"><b>風險主要來自</b>${D.filter(d=>d.s!=null).sort((a,b)=>b.s*b.w-a.s*a.w).slice(0,3).map(d=>`<div class="rtop"><i class="rb${RLV(d.s)}"></i><div><div><b>${esc(d.n)}</b> <b class="rc${RLV(d.s)}">${d.s}</b></div><div class="hint">${esc(d.b)}｜貢獻 ${(d.s*d.w/r.cov).toFixed(1)} 分</div></div></div>`).join('')}</div>
-    <div class="rcard"><b>全部面向</b>${D.map(d=>`<div class="rrow" title="${esc(d.b)}"><i class="rb${RLV(d.s)}"></i><span>${esc(d.n)}</span><span class="hint">${d.w}%</span><b class="rc${RLV(d.s)}">${d.s==null?'待補':d.s}</b></div>`).join('')}</div>
+    <div class="rcard"><b>全部面向</b>${D.map(d=>`<div class="rrow" title="${esc(d.b)}"><i class="rb${RLV(d.s)}"></i><span>${esc(d.n)}</span><span class="hint">${d.w}%</span>${d.src&&d.src[0]?`<a href="${esc(d.src[0][1])}" target="_blank" rel="noopener" title="${esc(d.src.map(x=>x[0]).join('\n'))}">↗</a>`:'<span style="width:.8em"></span>'}<b class="rc${RLV(d.s)}">${d.s==null?'待補':d.s}</b></div>`).join('')}</div>
    </div></div>${strip}${foot}`;}
  X.insertAdjacentHTML('afterbegin',`<div class="bx rx" style="padding:0 0 8px;margin-bottom:10px"><span class="hint">資料輸出</span><button class="btn" title="把風險總覽整個區塊存成 PNG 圖片">PNG</button></div>`);
  X.querySelector('.rx button').onclick=()=>elToPNG(X,`風險總覽_${k.replace(/[\\/:*?"<>|／\s]+/g,'_')}_${DATA.asOf}`,'.rx');
