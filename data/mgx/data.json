@@ -1,0 +1,949 @@
+{
+ "meta": {
+  "entity": "MGX",
+  "ticker": "未上市（阿布達比）",
+  "asOf": "2026-11-27",
+  "tz": "台北",
+  "accent": "#10b981",
+  "centerLabel": "主權 AI 資本",
+  "fileSlug": "MGX",
+  "subtitle": "涵蓋模型公司持股、資料中心平台、合資與基金募資"
+ },
+ "notice": {
+  "title": "近期重大動態",
+  "html": "11/20 MGX 發言人稱 Anthropic 持股帳面獲利約 $200 億；10/30 報導稱 OpenAI 新一輪降至約 $200 億，MGX 等阿聯投資人為最大參與者。"
+ },
+ "sources": {
+  "fund": [
+   "Forbes｜MGX 首檔基金 7/1 以 $490 億關帳，超過目標 $40 億；創始夥伴為 Mubadala 與 G42",
+   "https://www.forbes.com/sites/guneyyildiz/2026/07/03/abu-dhabis-49-billion-ai-fund-and-its-sovereign-rivals/"
+  ],
+  "fund2": [
+   "The Edge／Bloomberg｜MGX 基金募資超過 $450 億目標，資產管理規模目標逾 $1,000 億",
+   "https://theedgemalaysia.com/node/809016"
+  ],
+  "fund3": [
+   "TechTimes｜MGX 14 家投資組合公司含 Anthropic、OpenAI、xAI、Binance、SpaceX、TikTok USDS",
+   "https://www.techtimes.com/articles/319646/20260703/abu-dhabi-ai-fund-mgx-closes-49-billion-backing-every-major-us-frontier-lab.htm"
+  ],
+  "ant": [
+   "Bloomberg｜Anthropic 上市讓 MGX 帳面獲利約 $200 億（2026-11-20）",
+   "https://www.bloomberg.com/news/articles/2026-11-20/anthropic-s-record-ipo-hands-abu-dhabi-s-mgx-a-20-billion-gain"
+  ],
+  "ant2": [
+   "The National｜MGX 為 Anthropic 最大機構投資人之一；最多 80% 投資組合投向美國",
+   "https://www.thenationalnews.com/future/technology/2026/11/20/mgx-anthropic-ipo-adif/"
+  ],
+  "ant3": [
+   "FourWeekMBA｜MGX 持股低於 5% 揭露門檻，$200 億無法由公開說明書驗證",
+   "https://fourweekmba.com/ai-abu-dhabis-mgx-books-a-reported-20b-gain-on-anthropic/"
+  ],
+  "oai": [
+   "AI Business Weekly｜MGX 共同領投 OpenAI $1,220 億輪、Anthropic Series H，並參與 xAI $200 億 Series E",
+   "https://aibusinessweekly.net/p/abu-dhabi-mgx-50-billion-ai-fund-closes-2026"
+  ],
+  "oai11": [
+   "Yahoo Finance｜OpenAI 新一輪降至約 $200 億，MGX 等阿聯投資人為最大參與者，並附帶海灣資料中心容量選擇權",
+   "https://finance.yahoo.com/technology/ai/articles/openai-cuts-round-20-billion-114644119.html"
+  ],
+  "sg": [
+   "Wikipedia｜Stargate LLC：The Information 報導 Oracle 與 MGX 各出資 $70 億",
+   "https://en.wikipedia.org/wiki/Stargate_LLC"
+  ],
+  "sg2": [
+   "The Edge／Bloomberg｜MGX 參與出資 Trump 宣布的 $1,000 億 AI 計畫（2025-01-23）",
+   "https://theedgemalaysia.com/node/742241"
+  ],
+  "al": [
+   "CNBC｜MGX 與 NVIDIA、Microsoft、BlackRock、xAI 等以 $400 億收購 Aligned Data Centers",
+   "https://www.cnbc.com/2025/10/15/abu-dhabis-mgx-investments-in-trump-crypto-tiktok-openai-.html"
+  ],
+  "al2": [
+   "Safeguard｜Gulf News：MGX、AIP、GIP 於 2026-07-21 完成收購 Aligned 100% 股權",
+   "https://safeguard.sh/resources/blog/uae-ai-strategy-chip-export-licences-g42-stargate-timeline"
+  ],
+  "aip": [
+   "UAE AI Center｜AIP：初始股本目標 $300 億，含負債最高 $1,000 億",
+   "https://www.uaeaicenter.com/blog/mgx-uae-ai-investment"
+  ],
+  "tik": [
+   "Reuters／Yahoo｜MGX 取得 TikTok 美國業務 15%，並以 $20 億入股 Binance；洽購 DayOne",
+   "https://finance.yahoo.com/technology/ai/articles/exclusive-abu-dhabis-mgx-weighs-185043985.html"
+  ],
+  "tik2": [
+   "Yahoo Finance｜Oracle 以約 $22 億取得 TikTok 美國合資 15%",
+   "https://finance.yahoo.com/news/oracle-reveals-2-2-billion-120047526.html"
+  ],
+  "bn": [
+   "Multinationals Observatory｜MGX 以 World Liberty 的穩定幣支付 $20 億入股 Binance；法國 Campus IA 持股 70%",
+   "https://multinationales.org/en/investigations/behind-the-data-center-boom-in-france/mgx-the-shady-emirati-fund-behind-france-s-flagship-sovereign-data-center"
+  ],
+  "fr": [
+   "Wikipedia｜MGX：2025 年初宣布計畫投資 $312–520 億於法國 AI 資料中心園區",
+   "https://en.wikipedia.org/wiki/MGX_Fund_Management_Limited"
+  ],
+  "fr2": [
+   "IndexBox｜法國園區初期 1.4GW，目標全國 3GW",
+   "https://www.indexbox.io/blog/mgx-raises-49-billion-for-ai-fund-surpassing-45-billion-target/"
+  ],
+  "alt": [
+   "TechCrunch｜Silver Lake 取得 Altera 51%（MGX 為共同投資人）",
+   "https://techcrunch.com/?p=2993291"
+  ],
+  "pb": [
+   "PitchBook｜MGX 投資紀錄：Databricks（2026-08）、Isomorphic Labs（2026-05）等 21 筆",
+   "https://pitchbook.com/profiles/investor/590511-25"
+  ],
+  "gov": [
+   "ai-CIO｜MGX 成立：Sheikh Tahnoon 任董事長、Khaldoon Al Mubarak 任副董事長、Ahmed Yahia Al Idrissi 任執行長",
+   "https://www.ai-cio.com/news/abu-dhabi-launches-artificial-intelligence-tech-investment-vehicle-mgx/"
+  ],
+  "gov2": [
+   "Semafor｜MGX 取得獨家投資機會的做法（2026-02-18）",
+   "https://www.semafor.com/article/02/18/2026/the-playbook-abu-dhabis-mgx-uses-to-get-exclusive-investment-opportunities"
+  ]
+ },
+ "categories": [
+  {
+   "id": "lab",
+   "name": "模型公司",
+   "color": "#a78bfa"
+  },
+  {
+   "id": "cloud",
+   "name": "資料中心與基礎設施",
+   "color": "#38bdf8",
+   "sumNote": "財團或平台合計金額，不是 MGX 的個別出資"
+  },
+  {
+   "id": "semi",
+   "name": "半導體",
+   "color": "#f472b6"
+  },
+  {
+   "id": "other",
+   "name": "其他持股",
+   "color": "#94a3b8"
+  },
+  {
+   "id": "fin",
+   "name": "資金來源",
+   "color": "#facc15"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "anthropic",
+   "name": "Anthropic",
+   "tk": "ANT",
+   "cat": "lab",
+   "type": "股權（多輪＋IPO）",
+   "amt": null,
+   "short": "未揭露（帳面獲利約$200億）",
+   "date": "2026-11-19",
+   "amtText": "2024 年初首次投資；共同領投 2026/2 的 $300 億輪、參與 5 月 $650 億 Series H，並在 IPO 加碼。以 11/19 收盤 $97.17 計，MGX 發言人稱帳面獲利約 $200 億；持股低於 5%，投入金額與持股比例未揭露。",
+   "status": "已上市，持有中",
+   "flow": "未實現獲利；大額出售受限",
+   "src": [
+    "ant",
+    "ant2",
+    "ant3"
+   ],
+   "amtType": "none",
+   "risks": [
+    {
+     "k": "acct",
+     "x": "$200 億為發言人說法，無法由公開說明書驗證",
+     "src": [
+      "ant3"
+     ]
+    }
+   ],
+   "verified": "2026-11-27",
+   "direction": "out"
+  },
+  {
+   "id": "openai",
+   "name": "OpenAI",
+   "tk": "未上市",
+   "cat": "lab",
+   "type": "股權（多輪）",
+   "amt": null,
+   "short": "未揭露",
+   "date": "2026-11",
+   "amtText": "共同領投 2026/3 的 $1,220 億輪；報導稱在 11 月約 $200 億的新一輪中，MGX 等阿聯投資人是最大參與者，並附帶海灣資料中心容量的選擇權。個別金額未揭露。",
+   "status": "持有中；新一輪進行中",
+   "flow": "出資同時為海灣資料中心爭取 OpenAI 的容量需求",
+   "src": [
+    "oai",
+    "oai11"
+   ],
+   "amtType": "none",
+   "risks": [
+    {
+     "k": "exec",
+     "x": "新一輪規模已由 $300 億下修至約 $200 億",
+     "src": [
+      "oai11"
+     ]
+    }
+   ],
+   "verified": "2026-11-27",
+   "direction": "out"
+  },
+  {
+   "id": "xai",
+   "name": "xAI（已併入 SpaceX）",
+   "tk": "未上市",
+   "cat": "lab",
+   "type": "股權",
+   "amt": null,
+   "short": "未揭露",
+   "date": "2026-01",
+   "amtText": "參與 xAI 2026/1 的 $200 億 Series E，其後 xAI 併入 SpaceX；金額未揭露。",
+   "status": "持有中",
+   "flow": "持有三家互相競爭的模型公司",
+   "src": [
+    "oai",
+    "fund3"
+   ],
+   "amtType": "none",
+   "verified": "2026-11-27",
+   "direction": "out"
+  },
+  {
+   "id": "stargate",
+   "name": "Stargate（美國）",
+   "tk": "",
+   "cat": "cloud",
+   "type": "合資出資",
+   "amt": 7.0,
+   "short": "$70億（報導）",
+   "date": "2025-01-21",
+   "amtText": "Stargate 四個初始出資方之一；The Information 報導 Oracle 與 MGX 各出資 $70 億。",
+   "status": "執行中",
+   "flow": "出資興建供 OpenAI 使用的資料中心",
+   "src": [
+    "sg",
+    "sg2"
+   ],
+   "amtType": "commitment",
+   "verified": "2026-11-27",
+   "direction": "out"
+  },
+  {
+   "id": "aligned",
+   "name": "Aligned Data Centers",
+   "tk": "未上市",
+   "cat": "cloud",
+   "type": "財團收購",
+   "amt": 40,
+   "short": "企業價值約$400億（財團合計）",
+   "date": "2026-07-21",
+   "amtText": "MGX 與 AIP、BlackRock 旗下 GIP 收購 Aligned 100% 股權，企業價值約 $400 億；MGX 個別出資未揭露。",
+   "status": "已完成",
+   "flow": "資料中心出租給 AI 客戶收取租金",
+   "src": [
+    "al",
+    "al2"
+   ],
+   "amtType": "project",
+   "excludeFromSum": true,
+   "verified": "2026-11-27",
+   "direction": "out"
+  },
+  {
+   "id": "aip",
+   "name": "AI Infrastructure Partnership",
+   "tk": "",
+   "cat": "cloud",
+   "type": "共同投資平台",
+   "amt": 30,
+   "short": "股本目標$300億",
+   "date": "2024-09",
+   "amtText": "與 BlackRock、GIP、Microsoft 共同發起，初始股本目標 $300 億，含負債最高 $1,000 億；NVIDIA 擔任技術顧問。",
+   "status": "運作中",
+   "flow": "透過平台投資美國資料中心與電力",
+   "src": [
+    "aip",
+    "al"
+   ],
+   "amtType": "project",
+   "excludeFromSum": true,
+   "verified": "2026-11-27",
+   "direction": "out"
+  },
+  {
+   "id": "campus",
+   "name": "Campus IA（法國）",
+   "tk": "",
+   "cat": "cloud",
+   "type": "資料中心園區",
+   "amt": 31.2,
+   "short": "$312–520億（計畫）",
+   "date": "2025",
+   "amtText": "與 Bpifrance、Mistral AI、NVIDIA 合作的法國 AI 園區，初期 1.4GW、目標 3GW；2025 年初宣布計畫投資 $312–520 億。公司登記資料顯示 MGX 持股 70%。",
+   "status": "建設中",
+   "flow": "歐洲在地算力",
+   "src": [
+    "fr",
+    "fr2",
+    "bn"
+   ],
+   "amtType": "project",
+   "excludeFromSum": true,
+   "risks": [
+    {
+     "k": "exec",
+     "x": "金額為計畫區間",
+     "src": [
+      "fr"
+     ]
+    }
+   ],
+   "verified": "2026-11-27",
+   "direction": "out"
+  },
+  {
+   "id": "tiktok",
+   "name": "TikTok USDS 合資",
+   "tk": "",
+   "cat": "other",
+   "type": "股權 15%",
+   "amt": 2.1,
+   "short": "15%（約$21億，推算）",
+   "date": "2026-01",
+   "amtText": "持有 TikTok 美國合資 15%。MGX 出資金額未揭露；同樣取得 15% 的 Oracle 揭露約 $22 億，依合資估值 $140 億推算約 $21 億。",
+   "status": "持有中",
+   "flow": "與 Oracle、Silver Lake 同為管理投資人",
+   "src": [
+    "tik",
+    "tik2"
+   ],
+   "amtType": "equity",
+   "risks": [
+    {
+     "k": "reg",
+     "x": "涉及美國國安審查的資產",
+     "src": [
+      "al"
+     ]
+    }
+   ],
+   "verified": "2026-11-27",
+   "direction": "out"
+  },
+  {
+   "id": "binance",
+   "name": "Binance",
+   "tk": "未上市",
+   "cat": "other",
+   "type": "少數股權",
+   "amt": 2.0,
+   "short": "$20億",
+   "date": "2025-03",
+   "amtText": "以 World Liberty Financial 的 USD1 穩定幣支付 $20 億，取得少數股權。",
+   "status": "持有中",
+   "flow": "加密資產基礎設施",
+   "src": [
+    "tik",
+    "bn"
+   ],
+   "amtType": "equity",
+   "risks": [
+    {
+     "k": "reg",
+     "x": "以美國總統家族相關的穩定幣支付",
+     "src": [
+      "bn"
+     ]
+    }
+   ],
+   "verified": "2026-11-27",
+   "direction": "out"
+  },
+  {
+   "id": "altera",
+   "name": "Altera（與 Silver Lake）",
+   "tk": "未上市",
+   "cat": "semi",
+   "type": "共同投資",
+   "amt": null,
+   "short": "未揭露",
+   "date": "2025",
+   "amtText": "Silver Lake 取得 Altera 51%，MGX 為共同投資人；MGX 個別金額未揭露。",
+   "status": "持有中",
+   "flow": "半導體資產",
+   "src": [
+    "alt"
+   ],
+   "amtType": "none",
+   "verified": "2026-11-27",
+   "direction": "out"
+  },
+  {
+   "id": "others",
+   "name": "Databricks・Isomorphic Labs",
+   "tk": "未上市",
+   "cat": "other",
+   "type": "股權",
+   "amt": null,
+   "short": "未揭露",
+   "date": "2026-08",
+   "amtText": "PitchBook 紀錄 2026/8 投資 Databricks、2026/5 投資 Isomorphic Labs；金額未揭露。",
+   "status": "持有中",
+   "flow": "應用與資料層",
+   "src": [
+    "pb"
+   ],
+   "amtType": "none",
+   "verified": "2026-11-27",
+   "direction": "out"
+  },
+  {
+   "id": "dayone",
+   "name": "DayOne（洽談）",
+   "tk": "未上市",
+   "cat": "cloud",
+   "type": "潛在收購",
+   "amt": null,
+   "short": "未定案",
+   "date": "2026-06-19",
+   "amtText": "Reuters 報導 MGX 洽購新加坡資料中心業者 DayOne；DayOne 的 IPO 目標估值 $200 億，消息人士稱交易未必成局。",
+   "status": "洽談中",
+   "flow": "若成交為首筆亞洲收購",
+   "src": [
+    "tik"
+   ],
+   "amtType": "none",
+   "unconfirmed": true,
+   "risks": [
+    {
+     "k": "exec",
+     "x": "未定案",
+     "src": [
+      "tik"
+     ]
+    }
+   ],
+   "verified": "2026-11-27",
+   "direction": "out"
+  },
+  {
+   "id": "fund1",
+   "name": "MGX Fund I",
+   "tk": "",
+   "cat": "fin",
+   "type": "基金募資",
+   "amt": 49,
+   "short": "$490億",
+   "date": "2026-07-01",
+   "amtText": "首檔基金以 $490 億關帳，超過 $450 億目標；出資人含主權基金、退休基金與機構投資人。",
+   "status": "已關帳，投資中",
+   "flow": "外部資金流入，供後續投資",
+   "src": [
+    "fund",
+    "fund2"
+   ],
+   "amtType": "inflow",
+   "direction": "in",
+   "verified": "2026-11-27"
+  },
+  {
+   "id": "founders",
+   "name": "Mubadala・G42（創始夥伴）",
+   "tk": "",
+   "cat": "fin",
+   "type": "創始夥伴",
+   "amt": null,
+   "short": "—",
+   "date": "2024-03",
+   "amtText": "MGX 於 2024/3 由 Mubadala 與 G42 發起，資產管理規模目標逾 $1,000 億。",
+   "status": "主要支持者",
+   "flow": "阿布達比主權資本",
+   "src": [
+    "fund",
+    "gov"
+   ],
+   "amtType": "none",
+   "direction": "in",
+   "verified": "2026-11-27"
+  }
+ ],
+ "flows": [
+  [
+   "fund1",
+   "openai",
+   "基金資金投入"
+  ],
+  [
+   "fund1",
+   "anthropic",
+   "基金資金投入"
+  ],
+  [
+   "aip",
+   "aligned",
+   "平台首筆投資"
+  ],
+  [
+   "openai",
+   "stargate",
+   "OpenAI 使用 Stargate 容量"
+  ]
+ ],
+ "kpis": [
+  {
+   "v": "$490億",
+   "l": "Fund I 規模（2026/7 關帳）",
+   "src": [
+    "fund"
+   ]
+  },
+  {
+   "v": ">$1,000億",
+   "l": "資產管理規模目標",
+   "src": [
+    "fund2"
+   ]
+  },
+  {
+   "v": "14 家",
+   "l": "投資組合公司（2026/7）",
+   "src": [
+    "fund3"
+   ]
+  },
+  {
+   "v": "約$200億",
+   "l": "Anthropic 帳面獲利（發言人）",
+   "src": [
+    "ant"
+   ]
+  },
+  {
+   "v": "約$400億",
+   "l": "Aligned 收購企業價值（財團）",
+   "src": [
+    "al2"
+   ]
+  },
+  {
+   "v": "≤80%",
+   "l": "投資組合投向美國的上限",
+   "src": [
+    "ant2"
+   ]
+  },
+  {
+   "v": "15%",
+   "l": "TikTok 美國合資持股",
+   "src": [
+    "tik"
+   ]
+  },
+  {
+   "v": "$20億",
+   "l": "Binance 投資",
+   "src": [
+    "tik"
+   ]
+  }
+ ],
+ "center": [
+  {
+   "title": "定位",
+   "text": "MGX 是阿布達比 2024 年成立的 AI 專門投資機構，由 Mubadala 與 G42 發起。它同時持有 Anthropic、OpenAI 與 xAI 三家互相競爭的模型公司，並透過平台持有它們租用的資料中心。",
+   "src": [
+    "fund",
+    "oai",
+    "al"
+   ]
+  },
+  {
+   "title": "資本換容量",
+   "text": "MGX 出資給模型公司的同時，替海灣地區的資料中心爭取這些公司的算力需求；OpenAI 最新一輪就附帶海灣容量的選擇權。",
+   "src": [
+    "oai11"
+   ]
+  }
+ ],
+ "loops": [
+  {
+   "id": "L1",
+   "title": "① 資本換容量循環",
+   "sub": "入股 → 算力需求 → 自家資料中心",
+   "nodes": [
+    [
+     "MGX",
+     "accent"
+    ],
+    [
+     "OpenAI",
+     "lab"
+    ],
+    [
+     "Stargate・海灣\n資料中心",
+     "cloud"
+    ],
+    [
+     "租金與容量費",
+     "accent"
+    ]
+   ],
+   "edges": [
+    [
+     0,
+     1,
+     "多輪入股"
+    ],
+    [
+     1,
+     2,
+     "算力需求"
+    ],
+    [
+     2,
+     3,
+     "付費"
+    ],
+    [
+     3,
+     0,
+     "回到阿布達比\n體系"
+    ],
+    [
+     0,
+     2,
+     "出資 $70 億\n（報導）",
+     "chord"
+    ]
+   ],
+   "text": "MGX 一手入股 OpenAI，一手出資 OpenAI 要用的資料中心。OpenAI 花的算力費用有一部分會回到 MGX 參與的基礎設施。",
+   "src": [
+    "oai",
+    "oai11",
+    "sg"
+   ],
+   "back": 7.0,
+   "dep": "mid",
+   "backSrc": [
+    "sg"
+   ],
+   "backNote": "僅 Stargate 出資 $70 億有報導數字；對 OpenAI 的持股金額未揭露"
+  },
+  {
+   "id": "L2",
+   "title": "② 資料中心平台循環",
+   "sub": "共同投資 → 收購 → 出租",
+   "nodes": [
+    [
+     "MGX・BlackRock\nMicrosoft・NVIDIA",
+     "accent"
+    ],
+    [
+     "AIP 平台",
+     "cloud"
+    ],
+    [
+     "Aligned\nData Centers",
+     "cloud"
+    ],
+    [
+     "AI 客戶",
+     "lab"
+    ]
+   ],
+   "edges": [
+    [
+     0,
+     1,
+     "股本目標 $300 億"
+    ],
+    [
+     1,
+     2,
+     "收購約 $400 億"
+    ],
+    [
+     2,
+     3,
+     "出租容量"
+    ],
+    [
+     3,
+     0,
+     "租金"
+    ]
+   ],
+   "text": "平台的出資人裡有 Microsoft、NVIDIA 與 xAI，它們同時也是資料中心的使用者或供應商。",
+   "src": [
+    "aip",
+    "al",
+    "al2"
+   ],
+   "back": 40,
+   "dep": "mid",
+   "backSrc": [
+    "al2"
+   ],
+   "backNote": "Aligned 企業價值約 $400 億為財團合計，MGX 的份額未揭露"
+  },
+  {
+   "id": "L3",
+   "title": "③ Anthropic 持股",
+   "sub": "多輪入股 → 上市 → 帳面獲利",
+   "nodes": [
+    [
+     "MGX",
+     "accent"
+    ],
+    [
+     "Anthropic",
+     "lab"
+    ],
+    [
+     "Nasdaq 上市",
+     "fin"
+    ]
+   ],
+   "edges": [
+    [
+     0,
+     1,
+     "多輪＋IPO 加碼"
+    ],
+    [
+     1,
+     2,
+     "上市"
+    ],
+    [
+     2,
+     0,
+     "帳面獲利\n約 $200 億"
+    ]
+   ],
+   "text": "獲利尚未實現，而且大額出售受限；股價在上市隔天就回落約 8.5%。",
+   "src": [
+    "ant",
+    "ant2",
+    "ant3"
+   ],
+   "back": 20,
+   "dep": "low",
+   "backSrc": [
+    "ant"
+   ],
+   "backNote": "發言人稱的未實現獲利約 $200 億（以 11/19 收盤計），非現金回流"
+  }
+ ],
+ "loopNote": {
+  "text": "支持者認為主權資本有耐心、能同時押注模型與基礎設施；質疑者指出 MGX 多數持股金額不透明、治理由阿聯國安顧問主導，而且同時持有互相競爭的公司。",
+  "src": [
+   "fund",
+   "gov",
+   "ant3"
+  ]
+ },
+ "events": [
+  {
+   "d": "2024-03",
+   "t": "MGX 成立",
+   "x": "Mubadala 與 G42 為創始夥伴，目標逾 $1,000 億。",
+   "cat": "fin",
+   "src": [
+    "gov"
+   ]
+  },
+  {
+   "d": "2024-09",
+   "t": "發起 AI Infrastructure Partnership",
+   "x": "與 BlackRock、GIP、Microsoft。",
+   "cat": "cloud",
+   "src": [
+    "aip"
+   ]
+  },
+  {
+   "d": "2025-01-21",
+   "t": "參與 Stargate",
+   "x": "四個初始出資方之一。",
+   "cat": "cloud",
+   "src": [
+    "sg2"
+   ]
+  },
+  {
+   "d": "2025-03",
+   "t": "入股 Binance $20 億",
+   "x": "以穩定幣支付。",
+   "cat": "other",
+   "src": [
+    "bn"
+   ]
+  },
+  {
+   "d": "2026-01",
+   "t": "TikTok 美國合資成立；參與 xAI Series E",
+   "x": "持有合資 15%。",
+   "cat": "other",
+   "src": [
+    "tik",
+    "oai"
+   ]
+  },
+  {
+   "d": "2026-03",
+   "t": "共同領投 OpenAI $1,220 億輪",
+   "x": "個別金額未揭露。",
+   "cat": "lab",
+   "src": [
+    "oai"
+   ]
+  },
+  {
+   "d": "2026-07-01",
+   "t": "Fund I 以 $490 億關帳",
+   "x": "超過 $450 億目標。",
+   "cat": "fin",
+   "src": [
+    "fund"
+   ]
+  },
+  {
+   "d": "2026-07-21",
+   "t": "完成收購 Aligned",
+   "x": "企業價值約 $400 億。",
+   "cat": "cloud",
+   "src": [
+    "al2"
+   ]
+  },
+  {
+   "d": "2026-10-30",
+   "t": "OpenAI 新一輪降至約 $200 億",
+   "x": "MGX 等阿聯投資人為最大參與者（報導）。",
+   "cat": "lab",
+   "src": [
+    "oai11"
+   ]
+  },
+  {
+   "d": "2026-11-20",
+   "t": "Anthropic 帳面獲利約 $200 億",
+   "x": "以上市首日收盤計。",
+   "cat": "lab",
+   "src": [
+    "ant"
+   ]
+  }
+ ],
+ "verify": [
+  {
+   "tag": "仍有分歧",
+   "html": "Anthropic 帳面獲利 $200 億是 MGX 發言人的說法；持股低於 5%，投入金額、持股比例與計算基礎都沒有公開文件可核對。"
+  },
+  {
+   "tag": "已補充",
+   "html": "TikTok 合資的 $21 億是依 $140 億估值 × 15% 推算；同樣持有 15% 的 Oracle 揭露約 $22 億。"
+  },
+  {
+   "tag": "已補充",
+   "html": "Aligned（$400 億）、AIP（$300 億）、法國園區（$312–520 億）都是財團或計畫合計，不是 MGX 的個別出資，不計入合計。"
+  },
+  {
+   "tag": "未定案",
+   "html": "Stargate 出資 $70 億來自 The Information 的報導（經 Wikipedia 轉引），MGX 未公開證實。"
+  },
+  {
+   "tag": "未定案",
+   "html": "OpenAI 11 月新一輪與 DayOne 收購都尚未定案。"
+  },
+  {
+   "tag": "已補充",
+   "html": "MGX 是投資機構，沒有營收，因此不列營收，循環融資占營收與通膨面向不適用。"
+  }
+ ],
+ "method": "<b>方法與注意事項：</b>（1）MGX 未上市，多數投資金額未揭露，不估算。（2）財團或平台的合計金額另外標示，不計入 MGX 的投資合計。（3）帳面獲利為未實現。（4）部分資訊來自媒體報導與第三方資料庫。（5）本 Dashboard 為資訊整理，非投資建議。",
+ "ic": {
+  "thesis": "MGX 是 AI 資本循環中最重要的外部資金來源之一：同時是三家模型公司的股東與它們所用資料中心的出資人；但幾乎所有部位的金額都不透明。",
+  "src": [
+   "fund",
+   "oai",
+   "al"
+  ],
+  "opps": [
+   {
+    "t": "Fund I $490 億已關帳，仍有可投資金",
+    "src": [
+     "fund"
+    ]
+   },
+   {
+    "t": "Anthropic 上市後有可觀的未實現獲利",
+    "src": [
+     "ant"
+    ]
+   }
+  ],
+  "risks": [
+   {
+    "t": "同時持有三家互相競爭的模型公司，且兼任其基礎設施出資人",
+    "src": [
+     "oai",
+     "al"
+    ]
+   },
+   {
+    "t": "多數部位金額未揭露，外部無法驗證",
+    "src": [
+     "ant3"
+    ]
+   },
+   {
+    "t": "最多 80% 的組合集中在美國，涉及國安審查的資產",
+    "src": [
+     "ant2",
+     "al"
+    ]
+   }
+  ],
+  "triggers": [
+   {
+    "t": "OpenAI 新一輪最終規模與估值",
+    "src": [
+     "oai11"
+    ]
+   },
+   {
+    "t": "Anthropic 閉鎖期後的持股變化",
+    "src": [
+     "ant2"
+    ]
+   }
+  ]
+ },
+ "macro": {
+  "geo": {
+   "basis": "待補資料：投資機構沒有營收地區分布；最多 80% 投資組合投向美國，並涉及 TikTok 等國安審查資產，暫不評分",
+   "src": [
+    "ant2"
+   ]
+  },
+  "fx": {
+   "basis": "待補資料：投資機構，無營收幣別資料"
+  },
+  "infl": {
+   "basis": "待補資料：投資機構，無資本支出與負債資料"
+  },
+  "ceo": {
+   "score": 25,
+   "basis": "由發起人主導（董事長為阿聯國安顧問 Sheikh Tahnoon，+25）；執行長 Ahmed Yahia Al Idrissi 不兼任董事長，另有副董事長 Khaldoon Al Mubarak，視為有第二號人物；2024 年成立，任期未滿 15 年；近 12 個月無更換",
+   "src": [
+    "gov",
+    "gov2"
+   ]
+  }
+ }
+}
