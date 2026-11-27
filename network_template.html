@@ -143,6 +143,7 @@ input[type=checkbox],input[type=radio]{width:20px;height:20px;vertical-align:mid
 @media print{.secbody[hidden]{display:block!important;content-visibility:visible!important}}
 .wrule summary{cursor:pointer;color:var(--muted);font-size:calc(12px*var(--fs));margin-top:6px;list-style:none;display:inline-flex;align-items:center;min-height:28px}.wrule summary::-webkit-details-marker{display:none}.wrule summary:hover{color:var(--text)}
 #g line{transition:stroke-opacity .12s}
+.nlab.lhide{display:none}g.node:hover .nlab.lhide,g.node.hovn .nlab.lhide{display:block}
 
 /* —— 顯示設定（各頁共用同一組，存在 ecomap_prefs_v1） —— */
 .pref{position:relative;display:inline-block}
@@ -295,6 +296,19 @@ function draw(){
  // 搜尋：符合名稱的節點＋與它直接相連的節點都保持顯示；符合者加外圈標記
  const hit=new Set(),qnb=new Set();if(q){NODES.forEach(n=>{if(n.id.toLowerCase().includes(q))hit.add(n.id)});hit.forEach(h=>qnb.add(h));EDGES.forEach(e=>{if(hit.has(e.s.id))qnb.add(e.t.id);if(hit.has(e.t.id))qnb.add(e.s.id)});}
  const ge=mk('g',{},g), gn=mk('g',{},g);
+ const crowd=NODES.filter(n=>!n.isE).length>60;   // 圓點太多時，只跨一家的小圓點先不顯示名稱（滑鼠移上去、選取或搜尋時才顯示）
+ // 小圓點的名稱：依序試「下、上、右、左、右下、左下、右上、左上」，挑第一個不壓到其他名稱或圓點的位置
+ const LP={},LB=[],tw=t=>[...t].reduce((w,c)=>w+(c.charCodeAt(0)>255?11:6.3),0)+4,hitB=(a,b)=>a[0]<b[2]&&a[2]>b[0]&&a[1]<b[3]&&a[3]>b[1];
+ const CB=NODES.map(n=>({id:n.id,b:[n.x-n.r-1,n.y-n.r-1,n.x+n.r+1,n.y+n.r+1]}));
+ NODES.filter(n=>n.isE).forEach(n=>{const w=tw(n.id)*1.2;LB.push([n.x-w/2,n.y-9,n.x+w/2,n.y+8])});
+ NODES.filter(n=>!n.isE).sort((a,b)=>b.deg-a.deg).forEach(n=>{const txt=n.id+(n.deg>1?` (${n.deg})`:''),w=tw(txt),r=n.r,d=r*.75;
+  const C=[[0,r+12,'middle'],[0,-r-5,'middle'],[r+5,4,'start'],[-r-5,4,'end'],[d+3,d+11,'start'],[-d-3,d+11,'end'],[d+3,-d-3,'start'],[-d-3,-d-3,'end']];
+  let best=C[0];
+  for(const c of C){const x=n.x+c[0],y=n.y+c[1],x0=c[2]==='middle'?x-w/2:c[2]==='start'?x:x-w,bx=[x0,y-10,x0+w,y+3];
+   if(bx[0]<-556||bx[2]>556||bx[1]<-416||bx[3]>416)continue;
+   if(LB.some(o=>hitB(bx,o))||CB.some(o=>o.id!==n.id&&hitB(bx,o.b)))continue;
+   best=c;break;}
+  const x=n.x+best[0],y=n.y+best[1],x0=best[2]==='middle'?x-w/2:best[2]==='start'?x:x-w;LB.push([x0,y-10,x0+w,y+3]);LP[n.id]=best;});
  EDGES.forEach(e=>{const col=e.dir==='in'?getComputedStyle(document.body).getPropertyValue('--in'):e.dir==='both'?'#fbbf24':(ENT[e.s.id]?ENT[e.s.id].accent:'#94a3b8');
   const w=e.amt>0?Math.min(7,1.2+Math.log10(e.amt*10+1)*1.6):1.1;
   const on=selected?(e.s.id===selected||e.t.id===selected):(!q||hit.has(e.s.id)||hit.has(e.t.id));
@@ -306,14 +320,14 @@ function draw(){
   mk('circle',{r:n.r,fill:n.isE?'var(--panel)':c,'fill-opacity':n.isE?1:.85,stroke:n.isE?c:(selected===n.id?'#fff':'var(--bg)'),'stroke-width':n.isE?3:(selected===n.id?2.5:1.2)},gg);
   if(selected===n.id){const s=n.r+9,L=s*.5;mk('path',{d:`M${-s},${-s+L}V${-s}H${-s+L}M${s-L},${-s}H${s}V${-s+L}M${s},${s-L}V${s}H${s-L}M${-s+L},${s}H${-s}V${s-L}`,fill:'none',stroke:'var(--acc)','stroke-width':4,'stroke-linecap':'round','stroke-linejoin':'round'},gg);}   // 被選者用方形對焦框（四個角括號）標記
   else if(q&&hit.has(n.id)) mk('circle',{r:n.r+5,fill:'none',stroke:'var(--acc)','stroke-width':2.5,'stroke-dasharray':'4 3'},gg);
-  const t=mk('text',{class:n.isE?'elab':'nlab','text-anchor':'middle',y:n.isE?4:n.r+12},gg);t.textContent=n.id+(n.isE?'':(n.deg>1?` (${n.deg})`:''));
+  const lp=LP[n.id]||[0,n.r+12,'middle'];const t=mk('text',n.isE?{class:'elab','text-anchor':'middle',y:4}:{class:'nlab'+(crowd&&n.deg<2&&!(selected&&nb.has(n.id))&&!(q&&qnb.has(n.id))?' lhide':''),'text-anchor':lp[2],x:lp[0],y:lp[1]},gg);t.textContent=n.id+(n.isE?'':(n.deg>1?` (${n.deg})`:''));
   gg.onclick=ev=>{ev.stopPropagation();selected=selected===n.id?null:n.id;draw();side(selected);};});
  g.onclick=()=>{selected=null;draw();side(null)};
 }
 // 滑鼠移到圓點：只亮出它的關係線與鄰居（有選取或搜尋時不作用）
 function hov(id){if(selected||$('#q').value.trim())return;const g=$('#g'),nb=new Set();if(id){nb.add(id);EDGES.forEach(e=>{if(e.s.id===id)nb.add(e.t.id);if(e.t.id===id)nb.add(e.s.id)})}
  g.querySelectorAll('line').forEach(l=>l.setAttribute('stroke-opacity',id?((l.dataset.s===id||l.dataset.t===id)?.9:.04):l.dataset.o));
- g.querySelectorAll('g.node').forEach(x=>x.classList.toggle('dim',!!id&&!nb.has(x.dataset.id)));}
+ g.querySelectorAll('g.node').forEach(x=>{x.classList.toggle('dim',!!id&&!nb.has(x.dataset.id));x.classList.toggle('hovn',!!id&&nb.has(x.dataset.id))});}
 /* ---------- 投資簡覽：對外投資前 5 大／被投資前 5 大 ---------- */
 const INV_RE=/股權|特別股|普通股|收購|入股|增資|參與|輪|可轉|認股|權證|認購|配售|PIPE|股東|合資|基金|LP|投資|技術授權|持股/;
 const NOTINV_RE=/採購|雲端|合約|租|代工|資本支出|計畫|投資承諾|發債|公司債|回購|貸款|籌資|訴訟|競爭/, DEAD_RE=/撤銷|終止|取消|出清|出售/;
@@ -849,10 +863,11 @@ build(); side(null); table(); cmp();
 <script id="totop-js">
 (function(){
  const b=document.getElementById('toTop'),H=64,PAD=12;let y=null;
- const clamp=v=>Math.max(PAD,Math.min(innerHeight-H-PAD,v));
+ const clamp=v=>Math.max(64,Math.min(innerHeight-H-PAD,v));   // 上緣留 64px，避開置頂的導覽列
  const place=()=>b.style.setProperty('--ty',clamp(y==null?innerHeight-H-28:y)+'px');
  const vis=()=>b.classList.toggle('show',scrollY>300);
  addEventListener('mousemove',e=>{
+  if(matchMedia('(hover:none)').matches)return;   // 觸控裝置的點按也會送出 mousemove，按鈕固定在右下角就好
   if(e.clientX>innerWidth-110)return;   // 滑鼠靠近按鈕時停止移動，避免按鈕在指標下亂跑
   y=e.clientY-H/2;place();
  },{passive:true});
