@@ -67,8 +67,12 @@ tr:hover td{background:var(--panel2)}
 .bcol td.ba{white-space:nowrap;text-align:right;font-family:Consolas,monospace;font-weight:700}
 .bcol td.ba small{display:block;font-weight:400;color:var(--muted);font-family:inherit}
 .bcol .bn{font-weight:700}.bcol .bi{color:var(--muted);font-size:calc(11.5px*var(--fs));line-height:1.55;margin-top:2px}
-.rgrid{display:grid;grid-template-columns:270px 1fr;gap:14px}
-@media (max-width:900px){.rgrid{grid-template-columns:1fr}}
+.rgrid{display:grid;grid-template-columns:270px minmax(0,1fr) 350px;gap:14px}
+@media (max-width:1250px){.rgrid{grid-template-columns:270px minmax(0,1fr)}.rside{grid-column:1/-1;flex-direction:row!important}.rside>.rcard{flex:1}}
+@media (max-width:900px){.rgrid{grid-template-columns:1fr}.rside{flex-direction:column!important}}
+.rside{display:flex;flex-direction:column;gap:14px}
+.rtop{display:flex;gap:10px;align-items:flex-start;margin-top:10px;font-size:calc(13.5px*var(--fs))}.rtop i{width:14px;height:14px;border-radius:50%;flex:none;margin-top:3px}.rtop .hint{line-height:1.55;margin-top:2px}
+.rrow{display:flex;align-items:center;gap:8px;margin-top:7px;font-size:calc(12.5px*var(--fs))}.rrow i{width:13px;height:13px;border-radius:50%;flex:none}.rrow span:nth-child(2){flex:1}.rrow b{width:34px;text-align:right}
 .rcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
 .rtot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
 .rlight{background:#05080c;border:1px solid var(--line);border-radius:22px;padding:11px 9px;display:flex;flex-direction:column;gap:9px}
@@ -296,7 +300,11 @@ function risk(k){
     <div class="rc${lv}" style="font-size:calc(17px*var(--fs));font-weight:700">${RLN[lv]}度風險（${RLAMP[lv]}）</div>
     <div class="rrank">${r.of} 間公司中排名第 ${r.rank} 高</div>
     <div class="hint" style="line-height:1.7">${cnt[2]} 個面向紅燈、${cnt[1]} 個黃燈、${cnt[0]} 個綠燈${miss.length?`、${miss.length} 個待補`:''}<br>最大來源：${top?esc(top.n)+'（'+top.s+' 分）':'—'}${r.cov<100?`<br>目前依權重 ${r.cov}% 的面向計算`:''}</div></div>
-   <div class="rcard rradar">${svg}</div></div>${strip}${foot}`;}
+   <div class="rcard rradar">${svg}</div>
+   <div class="rside">
+    <div class="rcard"><b>風險主要來自</b>${D.filter(d=>d.s!=null).sort((a,b)=>b.s*b.w-a.s*a.w).slice(0,3).map(d=>`<div class="rtop"><i class="rb${RLV(d.s)}"></i><div><div><b>${esc(d.n)}</b> <b class="rc${RLV(d.s)}">${d.s}</b></div><div class="hint">${esc(d.b)}｜貢獻 ${(d.s*d.w/r.cov).toFixed(1)} 分</div></div></div>`).join('')}</div>
+    <div class="rcard"><b>全部面向</b>${D.map(d=>`<div class="rrow" title="${esc(d.b)}"><i class="rb${RLV(d.s)}"></i><span>${esc(d.n)}</span><span class="hint">${d.w}%</span><b class="rc${RLV(d.s)}">${d.s==null?'待補':d.s}</b></div>`).join('')}</div>
+   </div></div>${strip}${foot}`;}
  X.querySelectorAll('.rpeer').forEach(b=>b.onclick=()=>brief(b.dataset.k));
 }
 /* ---- 「投資簡覽」兩欄輸出：CSV／Excel／JSON／Markdown／PNG（檔案含全部排名，PNG 為畫面上的前 5 大） ---- */
