@@ -54,7 +54,12 @@ th{background:var(--panel2);position:sticky;top:0;cursor:pointer;white-space:now
 tr:hover td{background:var(--panel2)}
 .sec{padding:14px 22px 0;font-weight:700;font-size:calc(15px*var(--fs))}
 footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs));line-height:1.7;border-top:1px solid var(--line)}
-.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:calc(11.5px*var(--fs));color:var(--muted);align-items:center}
+.hact{margin-left:auto;align-self:flex-start;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.gbtn{display:inline-flex;align-items:center;gap:9px;background:var(--acc);color:#111;border-radius:10px;padding:7px 14px 7px 11px;text-decoration:none;line-height:1.25;box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 28%,transparent);transition:transform .12s,box-shadow .12s}
+.gbtn:hover{text-decoration:none;transform:translateY(-1px);box-shadow:0 0 0 5px color-mix(in srgb,var(--acc) 35%,transparent)}
+.gbtn .gi{font-size:calc(22px*var(--fs))}.gbtn b{display:block;font-size:calc(14px*var(--fs))}.gbtn small{display:block;font-size:calc(11px*var(--fs));opacity:.8}
+[data-theme="light"] .gbtn{color:#fff}
+.legend{flex-basis:100%;display:flex;flex-wrap:wrap;gap:14px;font-size:calc(11.5px*var(--fs));color:var(--muted);align-items:center}
 .legend i{display:inline-block;width:22px;height:0;border-top:2px solid;vertical-align:middle;margin-right:4px}
 @media (max-width:1000px){.wrap{grid-template-columns:1fr}aside{border-left:none;max-height:none}}
 </style>
@@ -63,6 +68,7 @@ footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs)
 <header>
 <div><h1><b>跨實體投資生態總網路圖</b>・系統性樞紐與影響面</h1>
 <div class="sub" id="sub"></div></div>
+<div class="hact"><a class="gbtn" id="guideLink" href="guide.html" style="display:none" title="第一次使用？先看這裡：操作方式、符號對照、每個功能在哪裡"><span class="gi">📖</span><span><b>使用指引與功能地圖</b><small>第一次使用？先看這裡</small></span></a><button class="btn" id="theme">🌓 淺色／深色</button></div>
 <div class="legend">
 <span><i style="border-color:#94a3b8"></i>流出（實體出資／採購）</span>
 <span><i style="border-color:var(--in)"></i>流入（對方投入資金）</span>
@@ -79,8 +85,6 @@ footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs)
 <input type="search" id="q" placeholder="搜尋公司…">
 <button class="btn" id="reset">重設</button>
 <button class="btn" id="csv">⬇ 樞紐排行 CSV</button>
-<button class="btn" id="theme">🌓 淺色／深色</button>
-<a class="btn" id="guideLink" href="guide.html" style="display:none;text-decoration:none">📖 使用指引與功能地圖</a>
 <span class="hint">點選圓點看「哪些實體與它有關、涉及多少錢、若它出事影響誰」。</span>
 </div>
 <div class="wrap">
@@ -285,7 +289,7 @@ $('#csv').onclick=()=>{const rows=window._rows||[];const head=['交易對手','�
  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([''+csv],{type:'text/csv'}));a.download=`生態系樞紐排行_${DATA.asOf}.csv`;a.click();};
 /* CSV 開頭的 BOM 由下一行補上，避免 Excel 中文亂碼 */
 (function(){const B=window.Blob;window.Blob=function(parts,opt){if(opt&&opt.type==='text/csv')parts=[String.fromCharCode(65279),...parts.map(p=>typeof p==='string'?p.replace(/^/,''):p)];return new B(parts,opt)};})();
-if(DATA.guide){$('#guideLink').href=DATA.guide;$('#guideLink').style.display=''}
+if(DATA.guide){$('#guideLink').href=DATA.guide;$('#guideLink').style.display='inline-flex'}
 $('#theme').onclick=()=>{document.body.dataset.theme=document.body.dataset.theme==='light'?'':'light';draw()};
 ['#minDeg','#dirSel','#cpChk'].forEach(s=>$(s).onchange=()=>{build();side(selected)});
 $('#q').oninput=draw; $('#reset').onclick=()=>{selected=null;$('#q').value='';$('#minDeg').value='2';$('#dirSel').value='';$('#cpChk').checked=true;build();side(null)};
