@@ -271,16 +271,17 @@ function brief(k){
  B.querySelectorAll('a[data-k]').forEach(a=>a.onclick=ev=>{ev.preventDefault();selected=a.dataset.k;$('#q').value='';if(!NODES.find(n=>n.id===selected)){$('#minDeg').value='1';build();}draw();side(selected)});
 }
 /* ---------- 風險總覽：左＝總風險值與燈號、右＝雷達圖、下＝全部公司一覽 ---------- */
-const RLV=v=>v==null?0:v>=60?3:v>=40?2:1, RLN=['待補','低','中','高'], RLAMP=['—','綠燈','黃燈','紅燈'];
+// 單一面向用 60／40；總風險值是加權平均、分布較集中，門檻改用 45／30
+const RLV=v=>v==null?0:v>=60?3:v>=40?2:1, RLT=v=>v==null?0:v>=45?3:v>=30?2:1, RLN=['待補','低','中','高'], RLAMP=['—','綠燈','黃燈','紅燈'];
 function risk(k){
  const X=$('#riskBox'), e=ENT[k];
  const peers=DATA.ents.filter(x=>x.risk&&x.risk.total!=null).sort((a,b)=>b.risk.total-a.risk.total||a.key.localeCompare(b.key,'zh-Hant'));
  const strip=`<div class="rcard" style="margin-top:14px"><b>全部公司一覽</b> <span class="hint">依總風險值由高到低；點選可切換公司</span>
-  <div class="rpeers">${peers.map(p=>`<button class="rpeer${p.key===k?' on':''}" data-k="${esc(p.key)}" title="${esc(p.entity)}：總風險值 ${p.risk.total}（${RLAMP[RLV(p.risk.total)]}）"><i class="rb${RLV(p.risk.total)}"></i><span>${esc(p.entity)}</span><b class="rc${RLV(p.risk.total)}">${p.risk.total}</b></button>`).join('')}</div></div>`;
- const foot=`<div class="hint" style="margin-top:8px;line-height:1.7">總風險值＝各面向分數（0–100）× 權重後相加，再依已有資料的權重換算成 0–100。燈號：60 以上紅燈（高）、40–59 黃燈（中）、39 以下綠燈（低）。雷達圖上的紅色虛線是 60 分。地緣政治＝中國（含港）營收占比 × 2，受出口管制或強制分拆直接影響再加 30；匯率＝本國以外營收占比；通膨／物價／利率＝資本支出占營收 × 2 與有息負債占營收的平均。這三項取自公開財報，「全部面向」的 ↗ 可開啟來源；查不到公開數據的面向標示待補、不計入總分。其餘面向反映各家 Dashboard 記錄到的投資與資金循環結構。總分不是公司整體的信用評等；滑鼠移到圓點或清單可看計算依據。非投資建議。</div>`;
+  <div class="rpeers">${peers.map(p=>`<button class="rpeer${p.key===k?' on':''}" data-k="${esc(p.key)}" title="${esc(p.entity)}：總風險值 ${p.risk.total}（${RLAMP[RLT(p.risk.total)]}）"><i class="rb${RLT(p.risk.total)}"></i><span>${esc(p.entity)}</span><b class="rc${RLT(p.risk.total)}">${p.risk.total}</b></button>`).join('')}</div></div>`;
+ const foot=`<div class="hint" style="margin-top:8px;line-height:1.7">總風險值＝各面向分數（0–100）× 權重後相加，再依已有資料的權重換算成 0–100。總風險值的燈號：45 以上紅燈（高）、30–44 黃燈（中）、29 以下綠燈（低）。單一面向的燈號：60 以上紅燈、40–59 黃燈、39 以下綠燈；雷達圖上的紅色虛線是 60 分。總分是十個面向的加權平均，分布比單一面向集中，所以門檻較低。地緣政治＝中國（含港）營收占比 × 2，受出口管制或強制分拆直接影響再加 30；匯率＝本國以外營收占比；通膨／物價／利率＝資本支出占營收 × 2 與有息負債占營收的平均。這三項取自公開財報，「全部面向」的 ↗ 可開啟來源；查不到公開數據的面向標示待補、不計入總分。其餘面向反映各家 Dashboard 記錄到的投資與資金循環結構。總分不是公司整體的信用評等；滑鼠移到圓點或清單可看計算依據。非投資建議。</div>`;
  if(!e||!e.risk||e.risk.total==null){X.innerHTML=`<div class="rcard"><b>${esc(k)}</b> <span class="hint">尚未建立專屬 Dashboard，沒有足夠資料計算風險值。請從下方選擇已建 Dashboard 的公司。</span></div>${strip}${foot}`;}
  else{
-  const r=e.risk, lv=RLV(r.total), D=r.dims, n=D.length, R=150;
+  const r=e.risk, lv=RLT(r.total), D=r.dims, n=D.length, R=150;
   const cnt=[1,2,3].map(v=>D.filter(d=>RLV(d.s)===v).length), miss=D.filter(d=>d.s==null);
   const top=D.filter(d=>d.s!=null).sort((a,b)=>b.s*b.w-a.s*a.w)[0];
   const pt=(i,rr)=>{const a=-Math.PI/2+i*2*Math.PI/n;return [+(Math.cos(a)*rr).toFixed(1),+(Math.sin(a)*rr).toFixed(1)]};
