@@ -217,14 +217,16 @@ $('#foot').innerHTML=`<b>方法與注意事項：</b>（1）由各實體 Dashboa
 const RISK={reg:'監管',geo:'地緣／出口管制',conc:'客戶集中',acct:'會計',exec:'執行／未定案',fin:'財務／擔保'};
 let cmpSel=['Meta','Google／Alphabet','Intel'].filter(k=>DATA.ents.some(e=>e.key===k)); if(cmpSel.length<2) cmpSel=DATA.ents.slice(0,3).map(e=>e.key);
 function cmp(){
- $('#cmpPick').innerHTML=DATA.ents.map(e=>`<label style="margin-right:8px"><input type="checkbox" value="${esc(e.key)}" ${cmpSel.includes(e.key)?'checked':''}> <b style="color:${e.accent}">${esc(e.entity)}</b></label>`).join('')+'<span class="hint">最多 3 家；金額只在同口徑內比較</span>';
+ $('#cmpPick').innerHTML=DATA.ents.map(e=>`<label style="margin-right:8px"><input type="checkbox" value="${esc(e.key)}" ${cmpSel.includes(e.key)?'checked':''}> <b style="color:${e.accent}">${esc(e.entity)}</b></label>`).join('')+'<span class="hint">最多 3 家；金額只在同口徑內比較。「—」＝沒有這類交易；「有，但未加總」＝有節點但金額未揭露或不納入加總</span>';
  $('#cmpPick').querySelectorAll('input').forEach(i=>i.onchange=()=>{if(i.checked){cmpSel.push(i.value);if(cmpSel.length>3)cmpSel.shift();}else cmpSel=cmpSel.filter(x=>x!==i.value);cmp();});
  const E=cmpSel.map(k=>ENT[k]).filter(Boolean); if(!E.length){$('#cmp').innerHTML='';return;}
- const types=Object.keys(AMT).filter(t=>E.some(e=>e.st.tot[t]));
+ const types=Object.keys(AMT).filter(t=>E.some(e=>e.st.tot[t]||(e.st.skip||{})[t]));
+ const skipTxt=s=>{if(!s)return '';const a=[];if(s.und)a.push(`${s.und} 筆金額未揭露`);if(s.per)a.push(`${s.per} 筆為年度金額`);if(s.excl)a.push(`${s.excl} 筆為避免重複不加總`);return a.join('、');};
+ const cell=(e,t,mx)=>{const v=e.st.tot[t]||0,s=skipTxt((e.st.skip||{})[t]);return v?bar(v,mx,e.accent)+(s?`<span class="hint">另有 ${s}</span>`:''):(s?`<span class="hint">有，但未加總：${s}</span>`:'—');};
  const bar=(v,max,c)=>v?`<div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;height:8px;width:${Math.max(3,v/max*140)}px;background:${c};border-radius:3px"></span>${fmtB(v)}</div>`:'—';
  const pct=(a,b)=>b?Math.round(a/b*100)+'%':'—';
  const R=[];
- types.forEach(t=>{const mx=Math.max(...E.map(e=>e.st.tot[t]||0));R.push([`${IN.has(t)?'↙':'↗'}${AMT[t]}`,E.map(e=>bar(e.st.tot[t]||0,mx,e.accent))]);});
+ types.forEach(t=>{const mx=Math.max(...E.map(e=>e.st.tot[t]||0));R.push([`${IN.has(t)?'↙':'↗'}${AMT[t]}`,E.map(e=>cell(e,t,mx))]);});
  const own=e=>Object.values(e.st.grade).reduce((a,b)=>a+b,0);
  R.push(['節點數（不含對手方）',E.map(e=>own(e))]);
  R.push(['循環對手方節點',E.map(e=>e.st.cpNodes)]);

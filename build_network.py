@@ -38,7 +38,7 @@ for fp in FILES:
     f=f"{M.get('fileSlug') or M['entity']}_Ecosystem_Capital_Map.html"
     ek=canon(M["entity"],M.get("ticker",""))
     st={"tot":{},"grade":{"A":0,"B":0,"C":0,"D":0},"stale":0,"rumor":0,"risk":{},"cpNodes":0,"loops":len(D.get("loops",[])),
-        "loopsQ":sum(1 for l in D.get("loops",[]) if l.get("back") is not None),"val":0,"events":len(D.get("events",[])),"top":[]}
+        "loopsQ":sum(1 for l in D.get("loops",[]) if l.get("back") is not None),"val":0,"events":len(D.get("events",[])),"top":[],"skip":{}}
     for n in D["nodes"]:
         c=cats.get(n["cat"],{})
         if c.get("counterparty"): st["cpNodes"]+=1; continue
@@ -48,8 +48,12 @@ for fp in FILES:
         if n.get("unconfirmed") or g=="D": st["rumor"]+=1
         for r in n.get("risks",[]): st["risk"][r["k"]]=st["risk"].get(r["k"],0)+1
         if n.get("val") is not None: st["val"]+=1
+        t=n.get("amtType","equity")
         if n.get("amt") is not None and not n.get("excludeFromSum") and not n.get("per"):
-            t=n.get("amtType","equity"); st["tot"][t]=round(st["tot"].get(t,0)+n["amt"],3)
+            st["tot"][t]=round(st["tot"].get(t,0)+n["amt"],3)
+        elif t!="none":      # 有這類節點但沒進加總：分成「金額未揭露」「年度金額」「避免重複而排除」
+            k="und" if n.get("amt") is None else ("per" if n.get("per") else "excl")
+            st["skip"].setdefault(t,{"und":0,"per":0,"excl":0})[k]+=1
     st["top"]=[[n["name"],n.get("short",""),AMT.get(n.get("amtType","none"),"")] for n in sorted([n for n in D["nodes"] if n.get("amt") is not None and not cats.get(n["cat"],{}).get("counterparty") and not n.get("excludeFromSum")],key=lambda n:-n["amt"])[:3]]
     ents.append({"key":ek,"entity":M["entity"],"ticker":M.get("ticker",""),"accent":M.get("accent","#888"),"file":f,"asOf":M["asOf"],"nodes":len(D["nodes"]),"st":st})
     for n in D["nodes"]:
