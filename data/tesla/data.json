@@ -120,6 +120,14 @@
   "mc_fa": [
    "sec-api.io｜Tesla Q3 2026 分析：FY2025 地區營收（美國 50.2%、中國 22.1%）、負債與資本支出",
    "https://sec-api.io/insights/financial-analysis-of-tesla-tsla-q3-2026-earnings"
+  ],
+  "ceo_denholm": [
+   "Nasdaq／RTTNews｜Tesla 董事長 Denholm：已準備內部接班人選，包括 Tom Zhu",
+   "https://www.nasdaq.com/articles/tesla-readies-internal-successors-musk-threatens-exit-over-1-trillion-pay-vote"
+  ],
+  "ceo_founder": [
+   "Business Standard｜Tesla 若 Musk 離任將優先由內部接任（Bloomberg）",
+   "https://www.business-standard.com/world-news/elon-musk-tesla-1-trillion-pay-package-robyn-denholm-internal-hiring-ceo-125102900302_1.html"
   ]
  },
  "categories": [
@@ -897,7 +905,12 @@
    ]
   },
   "ceo": {
-   "basis": "待補資料：尚未查證現任執行長、是否兼任董事長與接班安排"
+   "score": 25,
+   "basis": "報導以創辦人稱呼執行長 Musk，公司由他主導（＋25）；董事長為 Robyn Denholm，未兼任（＋0）；董事會表示已準備內部接班人選（含 Tom Zhu）（＋0）；未取得任期與年齡的來源，暫不計分（＋0）",
+   "src": [
+    "ceo_founder",
+    "ceo_denholm"
+   ]
   }
  }
 }

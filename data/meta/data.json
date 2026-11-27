@@ -197,6 +197,18 @@
   "mc_rev": [
    "EdgarTools｜Meta 2025 10-K 營收揭露：總營收 $2,009.7 億、美國 $747.8 億",
    "https://app.edgar.tools/companies/META/disclosures/revenue"
+  ],
+  "ceo_chair": [
+   "Barchart｜Meta 2026 股東會：Chairman and CEO Mark Zuckerberg",
+   "https://www.barchart.com/story/news/2226310/meta-platforms-investors-reject-proposals-as-zuckerberg-bets-big-on-ai"
+  ],
+  "ceo_vote": [
+   "Semafor｜Meta 新增無表決權股份，Zuckerberg 保有控制權；公司由他在 22 年前創立（2026-10-22）",
+   "https://semafor.com/article/10/22/2026/metas-new-class-of-nonvoting-stock-lets-zuckerberg-fund-ai-without-losing-control"
+  ],
+  "ceo_org": [
+   "Creately｜Meta 高階主管：President & Vice Chairman Dina Powell McCormick",
+   "https://creately.com/org-chart/fortune-500/meta/"
   ]
  },
  "categories": [
@@ -1513,7 +1525,13 @@
    ]
   },
   "ceo": {
-   "basis": "待補資料：尚未查證現任執行長、是否兼任董事長與接班安排"
+   "score": 55,
+   "basis": "創辦人 Zuckerberg 擔任執行長並握有約六成表決權（＋25）；兼任董事長（＋15）；設有總裁兼副董事長（＋0）；創立 22 年來一直主導，任期逾 15 年（＋15）",
+   "src": [
+    "ceo_chair",
+    "ceo_vote",
+    "ceo_org"
+   ]
   }
  }
 }

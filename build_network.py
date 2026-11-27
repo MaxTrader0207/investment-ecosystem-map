@@ -179,6 +179,7 @@ cycles.sort(key=lambda c:(c["und"],-c["min"],c["len"]))
 # 權重不寫死：每次建置依全部公司的分數自動計算（等權與離散度權重各半，見下方 _weights）
 RISK_DIMS=[("geo","地緣政治／出口管制"),("ceo","經營者與接班"),("inv","對外投資集中度"),("loop","循環融資依賴"),("fin","擔保與或有負債"),("conc","客戶與對手集中"),
            ("infl","通膨／物價／利率"),("reg","監管與治理"),("fx","匯率"),("exec","執行／未定案"),("info","資訊可信度")]
+ALERT=85   # 單項警示門檻
 def _weights(ents):
     """離散度權重（標準差法）：某面向在各公司之間的分數差異愈大（愈能區分公司），權重愈高；與等權各半混合以免極端。
     有分數的公司少於 5 家時只用等權。不用熵權法，因為它會把多數公司為 0 分的面向權重拉得過高。"""
@@ -234,6 +235,10 @@ for e in ents:
     for d in dims: d["w"]=_W[d["k"]]
     cov=sum(d["w"] for d in dims if d["s"] is not None)
     e["risk"].update({"cov":int(round(cov)),"total":int(round(sum(d["s"]*d["w"] for d in dims if d["s"] is not None)/cov)) if cov else None})
+    # 燈號：總分 45 以上紅、30–44 黃、29 以下綠；任一面向達 ALERT 分（單項警示）時，總燈號至少升一級，避免嚴重的單一風險被平均稀釋
+    t=e["risk"]["total"]; base=0 if t is None else 3 if t>=45 else 2 if t>=30 else 1
+    al=[[d["n"],d["s"]] for d in sorted(dims,key=lambda d:-(d["s"] or 0)) if d["s"] is not None and d["s"]>=ALERT and d["k"]!="info"]   # 資訊可信度反映的是資料品質，不是公司本身的風險，不觸發警示
+    e["risk"].update({"base":base,"alert":al,"light":min(3,base+1) if al and base else base})
 _rank=sorted([e for e in ents if e["risk"]["total"] is not None],key=lambda e:-e["risk"]["total"])
 for i,e in enumerate(_rank): e["risk"]["rank"]=1+sum(1 for x in _rank if x["risk"]["total"]>e["risk"]["total"]); e["risk"]["of"]=len(_rank)
 cycles=cycles[:40]

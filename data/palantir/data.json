@@ -120,6 +120,10 @@
   "fool_1116": [
    "Motley Fool｜Palantir 連三日下跌（2026-11-16）",
    "https://www.fool.com/investing/2026/11/16/why-does-palantir-stock-keep-going-down/"
+  ],
+  "ceo_board": [
+   "Palantir IR｜董事會：Karp 為共同創辦人、2005 年起任 CEO；Thiel 任董事長；Cohen 任總裁",
+   "https://investors.palantir.com/board.html"
   ]
  },
  "categories": [
@@ -1137,7 +1141,11 @@
    "basis": "待補資料：未取得資本支出與有息負債"
   },
   "ceo": {
-   "basis": "待補資料：尚未查證現任執行長、是否兼任董事長與接班安排"
+   "score": 40,
+   "basis": "共同創辦人 Alex Karp 擔任執行長（＋25）；董事長為 Peter Thiel，未兼任（＋0）；共同創辦人 Stephen Cohen 任總裁（＋0）；2005 年起任執行長，任期逾 15 年（＋15）",
+   "src": [
+    "ceo_board"
+   ]
   }
  }
 }

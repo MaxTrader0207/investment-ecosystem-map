@@ -279,11 +279,11 @@ function risk(k){
  const X=$('#riskBox'), e=ENT[k];
  const peers=DATA.ents.filter(x=>x.risk&&x.risk.total!=null).sort((a,b)=>b.risk.total-a.risk.total||a.key.localeCompare(b.key,'zh-Hant'));
  const strip=`<div class="rcard" style="margin-top:14px"><b>全部公司一覽</b> <span class="hint">依總風險值由高到低；點選可切換公司</span>
-  <div class="rpeers">${peers.map(p=>`<button class="rpeer${p.key===k?' on':''}" data-k="${esc(p.key)}" title="${esc(p.entity)}：總風險值 ${p.risk.total}（${RLAMP[RLT(p.risk.total)]}）"><i class="rb${RLT(p.risk.total)}"></i><span>${esc(p.entity)}${p.risk.dims.some(d=>d.s>=80)?' <b class="rwarn" title="單項警示：'+esc(p.risk.dims.filter(d=>d.s>=80).map(d=>d.n+' '+d.s).join('、'))+'">!</b>':''}</span><b class="rc${RLT(p.risk.total)}">${p.risk.total}</b></button>`).join('')}</div></div>`;
- const foot=`<div class="hint" style="margin-top:8px;line-height:1.7">總風險值＝各面向分數（0–100）× 權重後相加，再依已有資料的權重換算成 0–100。權重每次更新時自動計算：一半是各面向等權，一半依該面向在全部公司之間的分數差異（標準差）分配，差異愈大、愈能區分公司的面向權重愈高。任一面向達 80 分會另外標示「單項警示」，避免被平均稀釋。經營者與接班＝創辦人主導 25、執行長兼董事長 15、沒有公開的二號人物或接班安排 25、主導者滿 65 歲或任期滿 15 年 15、近 12 個月有執行長異動 20。總風險值的燈號：45 以上紅燈（高）、30–44 黃燈（中）、29 以下綠燈（低）。單一面向的燈號：60 以上紅燈、40–59 黃燈、39 以下綠燈；雷達圖上的紅色虛線是 60 分。總分是各面向的加權平均，分布比單一面向集中，所以門檻較低。地緣政治＝中國（含港）營收占比 × 2，受出口管制或強制分拆直接影響再加 30；匯率＝本國以外營收占比；通膨／物價／利率＝資本支出占營收 × 2 與有息負債占營收的平均。這幾項取自公開財報與公告，「全部面向」的 ↗ 可開啟來源；查不到公開數據的面向標示待補、不計入總分。其餘面向反映各家 Dashboard 記錄到的投資與資金循環結構。總分不是公司整體的信用評等；滑鼠移到圓點或清單可看計算依據。非投資建議。</div>`;
+  <div class="rpeers">${peers.map(p=>`<button class="rpeer${p.key===k?' on':''}" data-k="${esc(p.key)}" title="${esc(p.entity)}：總風險值 ${p.risk.total}（${RLAMP[p.risk.light]}）"><i class="rb${p.risk.light}"></i><span>${esc(p.entity)}${p.risk.alert.length?' <b class="rwarn" title="單項警示：'+esc(p.risk.alert.map(a=>a[0]+' '+a[1]).join('、'))+(p.risk.light>p.risk.base?'（燈號因此升一級）':'')+'">!</b>':''}</span><b class="rc${p.risk.light}">${p.risk.total}</b></button>`).join('')}</div></div>`;
+ const foot=`<div class="hint" style="margin-top:8px;line-height:1.7">總風險值＝各面向分數（0–100）× 權重後相加，再依已有資料的權重換算成 0–100。權重每次更新時自動計算：一半是各面向等權，一半依該面向在全部公司之間的分數差異（標準差）分配，差異愈大、愈能區分公司的面向權重愈高。任一面向（資訊可信度除外）達 85 分會標示「單項警示」，總燈號並至少升一級（綠升黃、黃升紅），避免嚴重的單一風險被平均稀釋。經營者與接班＝創辦人主導 25、執行長兼董事長 15、沒有公開的二號人物或接班安排 25、主導者滿 65 歲或任期滿 15 年 15、近 12 個月有執行長異動 20。總風險值的燈號：45 以上紅燈（高）、30–44 黃燈（中）、29 以下綠燈（低）。單一面向的燈號：60 以上紅燈、40–59 黃燈、39 以下綠燈；雷達圖上的紅色虛線是 60 分。總分是各面向的加權平均，分布比單一面向集中，所以門檻較低。地緣政治＝中國（含港）營收占比 × 2，受出口管制或強制分拆直接影響再加 30；匯率＝本國以外營收占比；通膨／物價／利率＝資本支出占營收 × 2 與有息負債占營收的平均。這幾項取自公開財報與公告，「全部面向」的 ↗ 可開啟來源；查不到公開數據的面向標示待補、不計入總分。其餘面向反映各家 Dashboard 記錄到的投資與資金循環結構。總分不是公司整體的信用評等；滑鼠移到圓點或清單可看計算依據。非投資建議。</div>`;
  if(!e||!e.risk||e.risk.total==null){X.innerHTML=`<div class="rcard"><b>${esc(k)}</b> <span class="hint">尚未建立專屬 Dashboard，沒有足夠資料計算風險值。請從下方選擇已建 Dashboard 的公司。</span></div>${strip}${foot}`;}
  else{
-  const r=e.risk, lv=RLT(r.total), D=r.dims, n=D.length, R=150;
+  const r=e.risk, lv=r.light, D=r.dims, n=D.length, R=150;
   const cnt=[1,2,3].map(v=>D.filter(d=>RLV(d.s)===v).length), miss=D.filter(d=>d.s==null);
   const top=D.filter(d=>d.s!=null).sort((a,b)=>b.s*b.w-a.s*a.w)[0];
   const pt=(i,rr)=>{const a=-Math.PI/2+i*2*Math.PI/n;return [+(Math.cos(a)*rr).toFixed(1),+(Math.sin(a)*rr).toFixed(1)]};
@@ -302,7 +302,7 @@ function risk(k){
     <div style="display:flex;gap:16px;align-items:center"><div class="rlight" aria-hidden="true"><i class="${lv===3?'on3':''}"></i><i class="${lv===2?'on2':''}"></i><i class="${lv===1?'on1':''}"></i></div><div class="rnum rc${lv}">${r.total}</div></div>
     <div class="rc${lv}" style="font-size:calc(17px*var(--fs));font-weight:700">${RLN[lv]}度風險（${RLAMP[lv]}）</div>
     <div class="rrank">${r.of} 間公司中排名第 ${r.rank} 高</div>
-    ${D.some(d=>d.s>=80)?`<div class="ralert"><b>單項警示</b>（單一面向 80 分以上）<br>${D.filter(d=>d.s>=80).sort((a,b)=>b.s-a.s).map(d=>esc(d.n)+' '+d.s).join('、')}</div>`:''}
+    ${r.alert.length?`<div class="ralert"><b>單項警示</b>（單一面向 85 分以上）<br>${r.alert.map(a=>esc(a[0])+' '+a[1]).join('、')}${r.light>r.base?`<br>總分 ${r.total} 原為${RLAMP[r.base]}，因單項警示升為${RLAMP[r.light]}`:''}</div>`:''}
     <div class="hint" style="line-height:1.7">${cnt[2]} 個面向紅燈、${cnt[1]} 個黃燈、${cnt[0]} 個綠燈${miss.length?`、${miss.length} 個待補`:''}<br>最大來源：${top?esc(top.n)+'（'+top.s+' 分）':'—'}${r.cov<100?`<br>目前依權重 ${r.cov}% 的面向計算`:''}</div></div>
    <div class="rcard rradar">${svg}</div>
    <div class="rside">

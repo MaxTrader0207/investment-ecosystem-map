@@ -198,6 +198,14 @@
   "mc_ltv": [
    "SoftBank Group IR｜2026/9/30：LTV 15.9%、淨負債 ¥11.30 兆（2026-11-10）",
    "https://group.softbank/en/news/ir/20261110_1"
+  ],
+  "ceo_son": [
+   "SoftBank Group｜孫正義略歷：1957 年生、1981 年創立、代表取締役會長兼社長",
+   "https://group.softbank/about/officer/son"
+  ],
+  "ceo_succ": [
+   "Business Standard／Bloomberg｜孫正義：接班人將出自集團內部，但最後一刻才公布",
+   "https://www.business-standard.com/world-news/masayoshi-son-prepares-to-pick-successor-from-within-softbank-group-125062700148_1.html"
   ]
  },
  "categories": [
@@ -1422,7 +1430,12 @@
    ]
   },
   "ceo": {
-   "basis": "待補資料：尚未查證現任執行長、是否兼任董事長與接班安排"
+   "score": 80,
+   "basis": "創辦人孫正義擔任執行長（＋25）；兼任會長（董事長）（＋15）；表示有人選但不公布接班人（＋25）；1957 年生，已逾 65 歲；1981 年創立至今（＋15）",
+   "src": [
+    "ceo_son",
+    "ceo_succ"
+   ]
   }
  }
 }

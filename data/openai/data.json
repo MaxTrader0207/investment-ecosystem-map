@@ -197,6 +197,14 @@
   "bd_sbe": [
    "BusinessDay/Reuters｜SB Energy 遞件 IPO：上半年淨損 $32.1 億、backlog 約 $4,390 億（2026-09-01）",
    "https://www.businessday.co.za/world/international-companies/2026-09-01-softbank-backed-sb-energy-moves-closer-to-public-markets-with-us-ipo-filing/"
+  ],
+  "ceo_simo": [
+   "TechCrunch｜OpenAI 二號人物 Fidji Simo 卸任，Altman 需另覓人選（2026-07-09）",
+   "https://techcrunch.com/2026/07/09/fidji-simo-steps-down-from-openais-no-2-role/"
+  ],
+  "ceo_org": [
+   "Creately｜OpenAI 組織：創辦人主導、Altman 直接管轄多數部門",
+   "https://creately.com/org-chart/major-startups/openai"
   ]
  },
  "categories": [
@@ -1411,7 +1419,12 @@
    "basis": "待補資料：未取得可比較的資本支出與負債"
   },
   "ceo": {
-   "basis": "待補資料：尚未查證現任執行長、是否兼任董事長與接班安排"
+   "score": 50,
+   "basis": "創辦人主導，Sam Altman 擔任執行長（＋25）；未取得是否兼任董事長的來源，暫不計分（＋0）；二號人物 Fidji Simo 於 2026/7 卸任，接替人選未定（＋25）；執行長本人近 12 個月沒有異動（＋0）",
+   "src": [
+    "ceo_simo",
+    "ceo_org"
+   ]
   }
  }
 }
