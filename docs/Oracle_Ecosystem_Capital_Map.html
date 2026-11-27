@@ -368,7 +368,9 @@ document.getElementById('hSub').textContent = `資料整理時間：${M.asOf}${M
 })();
 document.getElementById('verifyT').textContent = `資料校驗紀錄（${M.asOf}）`;
 document.getElementById('verifyList').innerHTML = (DATA.verify||[]).map(v=>`<li><b>${v.tag}</b>：${v.html}</li>`).join('') || '<li>無</li>';
-document.getElementById('method').innerHTML = DATA.method||'';
+function listify(h){h=h||'';const p=h.split(/（\d+）/);if(p.length<3)return h;let tail='';const last=p[p.length-1],i=last.search(/<br\s*\/?>/i);if(i>=0){tail=last.slice(i).replace(/^(<br\s*\/?>)+/i,'');p[p.length-1]=last.slice(0,i);}
+ return `<div>${p[0].replace(/[：:]\s*(<\/b>)?\s*$/,'$1')}</div><ol style="margin:6px 0 8px;padding-left:1.6em;line-height:1.8">${p.slice(1).map(x=>`<li>${x.trim()}</li>`).join('')}</ol>${tail?`<div>${tail}</div>`:''}`;}
+document.getElementById('method').innerHTML = listify(DATA.method);
 /* ============================ 共用 ============================ */
 const $ = s=>document.querySelector(s);
 const tip = $('#tip');
