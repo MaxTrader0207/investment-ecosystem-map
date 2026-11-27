@@ -262,7 +262,8 @@ footer{padding:16px 28px 30px;color:var(--muted);font-size:12.5px;border-top:1px
 <div class="note">本網站為公開資訊的整理，<b>不是投資建議</b>。做任何決定前，請以各公司的正式公告與申報文件為準。</div>
 
 <h2 id="pages">全部頁面清單</h2>
-<p><a class="btn" href="Ecosystem_Network_Map.html">🕸 跨實體總網路圖</a></p>
+<p class="hint">點任一家公司會在新分頁開啟它的 Dashboard，本頁保留不動。</p>
+<p><a class="btn" href="Ecosystem_Network_Map.html" target="_blank" rel="noopener">🕸 跨實體總網路圖 ↗</a></p>
 <div class="ents" id="ents"></div>
 
 </main>
@@ -275,7 +276,7 @@ if(G){
  document.getElementById('sub').textContent=`涵蓋 ${G.ents.length} 家公司的 Dashboard 與 1 張總網路圖｜資料截至 ${G.asOf}`;
  document.getElementById('nEnt').textContent=G.ents.length;
  document.getElementById('asOf').textContent=G.asOf;
- document.getElementById('ents').innerHTML=G.ents.map(e=>`<a class="ent" style="--c:${esc(e.accent)}" href="${esc(e.file)}"><b>${esc(e.entity)}</b><small>${esc(e.ticker||'')}・${e.nodes} 個節點・截至 ${esc(e.asOf)}</small></a>`).join('');
+ document.getElementById('ents').innerHTML=G.ents.map(e=>`<a class="ent" style="--c:${esc(e.accent)}" href="${esc(e.file)}" target="_blank" rel="noopener" title="在新分頁開啟 ${esc(e.entity)} 的 Dashboard"><b>${esc(e.entity)}</b><small>${esc(e.ticker||'')}・${e.nodes} 個節點・截至 ${esc(e.asOf)} ↗</small></a>`).join('');
 }
 try{if(localStorage.getItem('ecomap-theme')==='light')document.body.dataset.theme='light'}catch(e){}
 document.getElementById('theme').onclick=()=>{const l=document.body.dataset.theme==='light';document.body.dataset.theme=l?'':'light';try{localStorage.setItem('ecomap-theme',l?'':'light')}catch(e){}};
