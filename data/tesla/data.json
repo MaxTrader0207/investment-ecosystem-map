@@ -384,7 +384,8 @@
    "verified": "2026-11-26",
    "terms": {
     "maturity": "3 年"
-   }
+   },
+   "xnote": "Samsung SDI 是另一家上市公司（電池），Samsung Dashboard 只涵蓋 Samsung Electronics，不另建對應節點"
   }
  ],
  "flows": [

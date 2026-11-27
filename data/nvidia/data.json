@@ -1550,10 +1550,10 @@
    "tk": "000660.KS",
    "cat": "cp",
    "type": "循環對手方（HBM 供應商）",
-   "amt": 24.0,
+   "amt": 26.2,
    "short": "₩35兆（前三季）",
    "date": "2026-11-17",
-   "amtText": "SK hynix 季報顯示前三季對最大客戶營收 ₩34.98 兆（約 $240 億）；申報未具名，業界認為是 NVIDIA。此為供應商端的數字，NVIDIA 未單獨揭露。",
+   "amtText": "SK hynix 季報顯示前三季對最大客戶營收 ₩34.98 兆（約 $262 億，以 ₩1,335／$1 換算）；申報未具名，業界認為是 NVIDIA。此為供應商端的數字，NVIDIA 未單獨揭露。",
    "status": "HBM4 已量產出貨",
    "flow": "NVIDIA 向 SK hynix 採購 HBM",
    "src": [
@@ -1562,7 +1562,7 @@
    "verified": "2026-11-27",
    "amtType": "contract",
    "direction": "out",
-   "annual": 32.0
+   "annual": 34.9
   }
  ],
  "flows": [
