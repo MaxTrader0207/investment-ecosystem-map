@@ -111,7 +111,7 @@ def validate(d):
     if d.get("loopNote"): chk_src("loopNote", d["loopNote"].get("src"), need=False)
     for c in cats.values():
         if not any(n.get("cat") == c["id"] for n in d["nodes"]): warn.append(f"類別 {c['id']} 沒有任何節點")
-    for mk, mv in (D.get("macro") or {}).items():      # 風險總覽的總體面向（地緣政治／匯率／通膨利率）
+    for mk, mv in (d.get("macro") or {}).items():      # 風險總覽的總體面向（地緣政治／匯率／通膨利率）
         if not isinstance(mv, dict): err.append(f"macro.{mk} 必須是物件"); continue
         if mv.get("score") is not None and not (isinstance(mv["score"], (int, float)) and 0 <= mv["score"] <= 100): err.append(f"macro.{mk}.score 必須是 0–100")
         if mv.get("score") is not None and not mv.get("src"): err.append(f"macro.{mk} 有分數但沒有來源")
