@@ -406,6 +406,10 @@
   "mc_debt": [
    "InvestSkill｜NVDA FY2026 總負債 $8.5B、淨現金（依 10-K 整理）",
    "https://raw.githubusercontent.com/yennanliu/InvestSkill/main/site/content/FULL-DEMO-NVDA.md"
+  ],
+  "skh_nv": [
+   "Seoul Economic Daily｜SK hynix 前三季對 NVIDIA 營收約 ₩35 兆（$240 億）（2026-11-17）",
+   "https://en.sedaily.com/business/2026/11/17/sk-hynix-nvidia-sales-double-to-35-trillion-won-on-hbm4-ramp"
   ]
  },
  "categories": [
@@ -1539,6 +1543,26 @@
     "s": 2026,
     "e": 2026
    }
+  },
+  {
+   "id": "skhynix",
+   "name": "SK hynix",
+   "tk": "000660.KS",
+   "cat": "cp",
+   "type": "循環對手方（HBM 供應商）",
+   "amt": 24.0,
+   "short": "₩35兆（前三季）",
+   "date": "2026-11-17",
+   "amtText": "SK hynix 季報顯示前三季對最大客戶營收 ₩34.98 兆（約 $240 億）；申報未具名，業界認為是 NVIDIA。此為供應商端的數字，NVIDIA 未單獨揭露。",
+   "status": "HBM4 已量產出貨",
+   "flow": "NVIDIA 向 SK hynix 採購 HBM",
+   "src": [
+    "skh_nv"
+   ],
+   "verified": "2026-11-27",
+   "amtType": "contract",
+   "direction": "out",
+   "annual": 32.0
   }
  ],
  "flows": [
