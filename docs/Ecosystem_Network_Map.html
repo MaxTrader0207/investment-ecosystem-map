@@ -305,6 +305,8 @@ function risk(k){
     <div class="rcard"><b>風險主要來自</b>${D.filter(d=>d.s!=null).sort((a,b)=>b.s*b.w-a.s*a.w).slice(0,3).map(d=>`<div class="rtop"><i class="rb${RLV(d.s)}"></i><div><div><b>${esc(d.n)}</b> <b class="rc${RLV(d.s)}">${d.s}</b></div><div class="hint">${esc(d.b)}｜貢獻 ${(d.s*d.w/r.cov).toFixed(1)} 分</div></div></div>`).join('')}</div>
     <div class="rcard"><b>全部面向</b>${D.map(d=>`<div class="rrow" title="${esc(d.b)}"><i class="rb${RLV(d.s)}"></i><span>${esc(d.n)}</span><span class="hint">${d.w}%</span><b class="rc${RLV(d.s)}">${d.s==null?'待補':d.s}</b></div>`).join('')}</div>
    </div></div>${strip}${foot}`;}
+ X.insertAdjacentHTML('afterbegin',`<div class="bx rx" style="padding:0 0 8px;margin-bottom:10px"><span class="hint">資料輸出</span><button class="btn" title="把風險總覽整個區塊存成 PNG 圖片">PNG</button></div>`);
+ X.querySelector('.rx button').onclick=()=>elToPNG(X,`風險總覽_${k.replace(/[\\/:*?"<>|／\s]+/g,'_')}_${DATA.asOf}`,'.rx');
  X.querySelectorAll('.rpeer').forEach(b=>b.onclick=()=>brief(b.dataset.k));
 }
 /* ---- 「投資簡覽」兩欄輸出：CSV／Excel／JSON／Markdown／PNG（檔案含全部排名，PNG 為畫面上的前 5 大） ---- */
@@ -414,7 +416,7 @@ function impExport(f){if(!IMP)return;const R=impRows(),nm=`若出事_${IMP.k.rep
 }
 /* 把頁面上一個區塊輸出成 PNG（失敗時改存 SVG）；rm＝輸出前要拿掉的子元素選擇器 */
 function elToPNG(el,nm,rm){const w=Math.ceil(el.getBoundingClientRect().width),c=el.cloneNode(true);if(rm)c.querySelectorAll(rm).forEach(x=>x.remove());
-  const cs=getComputedStyle(document.documentElement),vars=[...document.styleSheets].flatMap(s=>{try{return [...s.cssRules]}catch(e){return []}}).filter(r=>r.selectorText===':root').flatMap(r=>[...r.style]).filter(p=>p.startsWith('--')).map(p=>`${p}:${cs.getPropertyValue(p)}`).join(';');
+  const cs=getComputedStyle(document.body),vars=[...document.styleSheets].flatMap(s=>{try{return [...s.cssRules]}catch(e){return []}}).filter(r=>r.selectorText===':root').flatMap(r=>[...r.style]).filter(p=>p.startsWith('--')).map(p=>`${p}:${cs.getPropertyValue(p)}`).join(';');
   const css=[...document.querySelectorAll('style')].map(s=>s.textContent).join('\n').replace(/@import[^;]+;/g,'');
   const wrap=document.createElement('div');wrap.setAttribute('xmlns','http://www.w3.org/1999/xhtml');if(document.body.dataset.theme)wrap.setAttribute('data-theme',document.body.dataset.theme);wrap.setAttribute('style',`${vars};width:${w}px;padding:10px;box-sizing:border-box;background:${getComputedStyle(document.body).backgroundColor};color:${getComputedStyle(document.body).color};font-family:${getComputedStyle(document.body).fontFamily};font-size:${getComputedStyle(el).fontSize};line-height:${getComputedStyle(el).lineHeight}`);
   const st=document.createElement('style');st.textContent=css;wrap.appendChild(st);c.style.margin='0';wrap.appendChild(c);
