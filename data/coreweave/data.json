@@ -125,6 +125,11 @@
   "corz": [
    "Reuters／Yahoo Finance｜Core Scientific 股東否決 $90 億收購案，協議終止（2025-10-30）",
    "https://finance.yahoo.com/news/core-scientific-terminates-9-billion-143818190.html"
+  ],
+  "q10": [
+   "SEC 10-Q｜CoreWeave 9/30 現金與有價證券 $42 億，另有受限制現金 $23 億",
+   "https://www.sec.gov/Archives/edgar/data/0001769628/000176962826000465/crwv-20260930.htm",
+   "A"
   ]
  },
  "categories": [
@@ -571,10 +576,10 @@
    ]
   },
   {
-   "v": "≤35%",
-   "l": "單一客戶占積壓訂單上限（Q2）",
+   "v": "$42億",
+   "l": "現金與有價證券（9/30）",
    "src": [
-    "cust"
+    "q10"
    ]
   }
  ],
@@ -1013,6 +1018,11 @@
   "note": "2026 全年營收指引中值",
   "src": [
    "q3"
-  ]
+  ],
+  "cash": 4.2,
+  "cashSrc": [
+   "q10"
+  ],
+  "cashNote": "9/30 現金與有價證券，不含受限制現金 $23 億"
  }
 }

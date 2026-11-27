@@ -114,6 +114,13 @@ def validate(d):
     for k in (d.get("fin") or {}).get("src", []):       # 年營收（循環融資占比、現金缺口、情境試算用）
         if k not in S: err.append(f"fin 引用不存在的來源 {k}")
         used.add(k)
+    _cash = (d.get("fin") or {}).get("cash")            # 現金與約當現金（US$ 十億）：風險總覽計算擔保與或有負債時先扣除
+    if _cash is not None:
+        if not isinstance(_cash, (int, float)) or _cash < 0: err.append("fin.cash 需為不小於 0 的數字（US$ 十億）")
+        if not (d.get("fin") or {}).get("cashSrc"): err.append("fin.cash 需要 cashSrc 來源")
+    for k in (d.get("fin") or {}).get("cashSrc", []):
+        if k not in S: err.append(f"fin.cashSrc 引用不存在的來源 {k}")
+        used.add(k)
     for n in d["nodes"]:
         t = n.get("term")
         if t is not None and not (isinstance(t, dict) and isinstance(t.get("s"), int) and isinstance(t.get("e"), int) and t["s"] <= t["e"]): err.append(f"節點 {n['id']}：term 需為 {{s:起始年,e:結束年}}")

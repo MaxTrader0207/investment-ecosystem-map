@@ -208,8 +208,15 @@ for e in ents:
     dv={"high":100,"mid":60,"low":20}; ds=[dv[d] for d in rk["dep"] if d in dv]
     nc=sum(1 for c in cycles if k in c["path"])
     R["loop"]=(_cap(0.7*(sum(ds)/len(ds) if ds else 0)+0.3*min(100,nc*10)),f"{len(ds)} 條資金循環的依賴程度平均（高 {rk['dep'].count('high')}、中 {rk['dep'].count('mid')}、低 {rk['dep'].count('low')}）；參與 {nc} 個跨實體閉環")
-    ga=rk["gamt"]; gr=ga/(ga+tot) if ga>0 else 0
-    R["fin"]=(_cap(0.6*gr*100+0.4*_flag(rk["guar"],n,0.20)),(f"擔保與負債金額 {fmtb(ga)}，相當於「擔保負債＋股權類投資」的 {gr*100:.0f}%（占六成權重）；" if ga>0 else "沒有已揭露金額的擔保或負債節點；")+f"{rk['guar']} 個節點有擔保、負債或財務風險旗標（占四成權重）")
+    # 擔保與或有負債：先扣現金，再與年營收相比（沒有營收的投資機構才退回與股權投資相比）
+    ga=rk["gamt"]; fn=e.get("fin") or {}; cash=fn.get("cash"); rev=fn.get("rev")
+    net=max(0,ga-cash) if isinstance(cash,(int,float)) else ga
+    if ga<=0: gr=0; gb="沒有已揭露金額的擔保或負債節點；"
+    else:
+        gb=f"擔保與負債金額 {fmtb(ga)}"+(f"，扣除現金 {fmtb(cash)} 後淨額 {fmtb(net)}" if isinstance(cash,(int,float)) else "（未取得現金資料，未扣除）")
+        if isinstance(rev,(int,float)) and rev>0: gr=min(1,net/rev); gb+=f"，相當於年營收 {fmtb(rev)} 的 {net/rev*100:.0f}%（達 100% 即滿分，占六成權重）；"
+        else: gr=net/(net+tot) if net>0 else 0; gb+=f"，相當於「擔保負債＋股權類投資」的 {gr*100:.0f}%（無營收資料，占六成權重）；"
+    R["fin"]=(_cap(0.6*gr*100+0.4*_flag(rk["guar"],n,0.20)),gb+f"{rk['guar']} 個節點有擔保、負債或財務風險旗標（占四成權重）")
     cl=[l for l in links if l["ent"]==k and l["amtType"] in ("contract","commitment","inflow","project") and l["amt"] is not None and not l["excl"]]
     bycp={}
     for l in cl: bycp[l["cp"]]=bycp.get(l["cp"],0)+l["amt"]
