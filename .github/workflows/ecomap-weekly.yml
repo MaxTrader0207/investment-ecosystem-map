@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - name: 更新上市持股現值（股數 × 最新收盤價）
+      - name: 更新上市持股現值與各家市值（依最新收盤價）
         run: python update_prices.py .
       - name: 檢查新動態並重建 Dashboard（未設定 ANTHROPIC_API_KEY 時略過檢查）
         env:

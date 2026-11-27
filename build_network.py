@@ -344,7 +344,7 @@ watch.append({"n":"募資或承諾下修、展延","v":f"{len(_cut)} 則","light
 watch.append({"n":"權證或擔保條件變動","v":f"{len(_war)} 則","light":_lt(len(_war),2,1),"rule":"近 120 天達 2 則亮紅燈、1 則亮黃燈（以節點與事件文字比對）","detail":"；".join(f"{_name[k]}：{n}" for k,d,n in _war[:4]) or "未偵測到"})
 # 變動紀錄：與上一期的狀態比較（同一期重建不會覆蓋比較基準）
 def _snap(D0):
-    return {"ents":{e["key"]:{"n":e["entity"],"t":e["risk"]["total"] if e.get("risk") else None,"l":e["risk"]["light"] if e.get("risk") else None,"nodes":e["nodes"],
+    return {"ents":{e["key"]:{"n":e["entity"],"t":e["risk"]["total"] if e.get("risk") else None,"l":e["risk"]["light"] if e.get("risk") else None,"nodes":e["nodes"],"cap":(e.get("mkt") or {}).get("cap"),
                               "gap":round(e["cash"]["out"]-e["cash"]["rev"],1) if e.get("cash") and e["cash"].get("rev") and e["cash"].get("out") else None} for e in D0["ents"]},
             "links":{l["ent"]+"｜"+l["name"]:[l["amt"],l["short"],l["date"]] for l in D0["links"]}}
 _cur=_snap({"ents":ents,"links":links})
@@ -378,9 +378,11 @@ if _log.get("base"):
         if k in be and be[k]["t"] is not None and ce_[k]["t"] is not None and (be[k]["t"]!=ce_[k]["t"] or be[k]["l"]!=ce_[k]["l"]):
             _auto.append({"t":"燈號變動" if be[k]["l"]!=ce_[k]["l"] else "風險分數","e":ce_[k]["n"],"x":f"{be[k]['t']} → {ce_[k]['t']} 分"+(f"，{_LN.get(be[k]['l'],'')} → {_LN.get(ce_[k]['l'],'')}" if be[k]["l"]!=ce_[k]["l"] else ""),
                           "why":"該公司的節點資料有更新" if k in _touched else "計分公式調整，或因全體公司分布改變使權重自動調整"})
+        if k in be and be[k].get("cap") and ce_[k].get("cap") and abs(ce_[k]["cap"]/be[k]["cap"]-1)>=0.02:
+            _auto.append({"t":"市值","e":ce_[k]["n"],"x":f"{fmtb(be[k]['cap'])} → {fmtb(ce_[k]['cap'])}（{(ce_[k]['cap']/be[k]['cap']-1)*100:+.0f}%）","why":"每週依最新收盤價自動更新"})
         if k in be and abs(max(be[k].get("gap") or 0,0)-max(ce_[k].get("gap") or 0,0))>=1:
             _auto.append({"t":"現金缺口","e":ce_[k]["n"],"x":f"每年 {fmtb(max(be[k].get('gap') or 0,0))} → {fmtb(max(ce_[k].get('gap') or 0,0))}","why":"合約或年營收資料有更新"})
-    _ord={"新增公司":0,"移除公司":1,"燈號變動":2,"現金缺口":3,"金額更新":4,"新增節點":5,"移除節點":6,"風險分數":7}; _auto.sort(key=lambda a:(_ord.get(a["t"],9),a["e"]))
+    _ord={"新增公司":0,"移除公司":1,"燈號變動":2,"現金缺口":3,"市值":3.5,"金額更新":4,"新增節點":5,"移除節點":6,"風險分數":7}; _auto.sort(key=lambda a:(_ord.get(a["t"],9),a["e"]))
 _old=next((x for x in _log["log"] if x["d"]==ASOF),None)
 _entry={"d":ASOF,"from":(_log["base"] or {}).get("d"),"auto":_auto,"notes":(_old or {}).get("notes",[])}
 _log["log"]=[_entry]+[x for x in _log["log"] if x["d"]!=ASOF]; _log["log"]=_log["log"][:26]; _log["cur"]={"d":ASOF,"snap":_cur}
