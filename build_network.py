@@ -258,7 +258,7 @@ for e in ents:
     e["risk"].update({"cov":int(round(cov)),"total":int(round(sum(d["s"]*d["w"] for d in dims if d["s"] is not None)/cov)) if cov else None})
     # 燈號：總分 45 以上紅、30–44 黃、29 以下綠；任一面向達 ALERT 分（單項警示）時，總燈號至少升一級，避免嚴重的單一風險被平均稀釋
     t=e["risk"]["total"]; base=0 if t is None else 3 if t>=45 else 2 if t>=30 else 1
-    al=[[d["n"],d["s"]] for d in sorted(dims,key=lambda d:-(d["s"] or 0)) if d["s"] is not None and d["s"]>=ALERT and d["k"]!="info"]   # 資訊可信度反映的是資料品質，不是公司本身的風險，不觸發警示
+    al=[[d["n"],d["s"]] for d in sorted(dims,key=lambda d:-(d["s"] or 0)) if d["s"] is not None and d["s"]>=ALERT and d["k"] not in ("info","fx")]   # 不觸發警示的兩個面向：資訊可信度反映的是資料品質；匯率面向量的是本國以外營收占比，出口型公司天生就高，屬於曝險而不是惡化
     e["risk"].update({"base":base,"alert":al,"light":min(3,base+1) if al and base else base})
 _rank=sorted([e for e in ents if e["risk"]["total"] is not None],key=lambda e:-e["risk"]["total"])
 for i,e in enumerate(_rank): e["risk"]["rank"]=1+sum(1 for x in _rank if x["risk"]["total"]>e["risk"]["total"]); e["risk"]["of"]=len(_rank)

@@ -298,6 +298,10 @@
   "gap_sched2": [
    "FourWeekMBA｜Anthropic S-1/A 合約義務表在 2029 年達高峰",
    "https://fourweekmba.com/ai-anthropics-s-1-a-obligations-table-peaks-at-47-8b-in-2029/"
+  ],
+  "nv_q3call": [
+   "StockAnalysis｜NVIDIA Q3 FY2027 法說會逐字稿（提及 Anthropic 年化營收）",
+   "https://stockanalysis.com/stocks/nvda/transcripts/739383-q3-2027/"
   ]
  },
  "categories": [
@@ -1810,11 +1814,11 @@
   }
  },
  "fin": {
-  "rev": 47.0,
-  "note": "2026/5 年化營收 run-rate",
+  "rev": 68.0,
+  "note": "Q3 單季營收約 $170 億 × 4（自行年化）；NVIDIA 法說會稱 10 月底年化營收已達 $810 億，未採用較高的數字",
   "src": [
-   "series_h",
-   "yh_h"
+   "reg_ant_q3",
+   "nv_q3call"
   ],
   "cash": 244.6,
   "cashSrc": [

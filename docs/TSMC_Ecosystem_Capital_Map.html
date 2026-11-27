@@ -68,6 +68,7 @@ header .sub{color:var(--muted);font-size:calc(12px*var(--fs));margin-top:4px}
 .gov ul.gl .gs a{font-size:calc(11px*var(--fs));margin-right:6px}
 .gov .gmore{margin-top:4px;background:none;border:none;color:var(--fin);cursor:pointer;font-family:inherit;font-size:calc(12px*var(--fs));padding:2px 0}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;padding:12px 22px}
+.finv{padding:0 22px 30px}.finv h3{margin:18px 0 8px;font-size:calc(14.5px*var(--fs))}.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}.fcard{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px}.fcard .v{font-size:calc(20px*var(--fs));font-weight:700;color:var(--nv)}.fcard .l{color:var(--muted);font-size:calc(12px*var(--fs))}.fcard .n{color:var(--muted);font-size:calc(11.5px*var(--fs));line-height:1.6;margin-top:4px}.finv table{margin-top:4px}.finv .sc{display:inline-block;min-width:34px;text-align:center;border-radius:6px;padding:1px 6px;font-weight:700;border:1px solid var(--line)}.finv .sc.r{color:#f87171;border-color:#f87171}.finv .sc.y{color:#facc15;border-color:#facc15}.finv .sc.g{color:#4ade80;border-color:#4ade80}.finv .bar{display:inline-block;height:9px;background:var(--nv);border-radius:2px;vertical-align:middle;margin-right:6px}
 .kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;position:relative}
 .kpi .v{font-size:calc(21px*var(--fs));font-weight:700;color:var(--nv)}
 .kpi .l{color:var(--muted);font-size:calc(12px*var(--fs));margin-top:2px}
@@ -230,6 +231,7 @@ footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs)
 <button data-v="v-table">📋 投資明細表</button>
 <button data-v="v-tl">🕒 時間軸</button>
 <button data-v="v-stress">🧪 壓力測試</button>
+<button data-v="v-fin">💼 財務快照</button>
 </nav>
 <section class="view on" id="v-tree">
 <div class="toolbar">
@@ -269,6 +271,7 @@ footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs)
 <section class="view" id="v-tl"><div class="toolbar"><span class="xslot" data-x="tl"></span></div><div class="tl" id="tl"></div></section>
 <section class="view" id="v-stress"><div class="toolbar"><span class="xslot" data-x="stress"></span><span class="hint">粗估工具：只用本頁已揭露金額做線性假設，不含稅、匯率、對沖與二階效應，不是預測。</span></div>
 <div class="stress"><div class="ctl" id="stCtl"></div><div id="stOut"></div></div></section>
+<section class="view" id="v-fin"><div class="toolbar"><span class="xslot" data-x="fin"></span><span class="hint">本頁實體自己的財務體質與到期壓力，數字都附來源；沒有公開資料的欄位會直接寫明。跨公司比較與風險分數在網路圖頁。</span></div><div class="finv" id="finBody"></div></section>
 <section id="verify" style="margin:0 22px 18px;padding:12px 16px;border:1px solid var(--ok-bd);background:var(--ok-bg);border-radius:8px;font-size:calc(12.5px*var(--fs));line-height:1.75">
 <span class="xslot" data-x="verify" style="float:right"></span><b style="color:var(--nv)" id="verifyT"></b>
 <ul style="margin:6px 0 0;padding-left:20px" id="verifyList"></ul>
@@ -787,6 +790,38 @@ ic:[['Markdown',()=>download(`${PFX}_投委會摘要_${STAMP}.md`,'## 投資委�
 verify:[['Markdown',()=>download(`${PFX}_資料校驗紀錄_${STAMP}.md`,'## 資料校驗紀錄\n\n'+[...document.querySelectorAll('#verify li')].map(li=>'- '+li.innerText).join('\n'),'text/markdown')],
 ['PNG 圖片',()=>elToPNG($('#verify'),`${PFX}_資料校驗紀錄_${STAMP}`)],['列印／PDF',()=>printBlock($('#verify'))]]
 };
+
+/* 財務快照：把 data.json 的 fin、mkt、dues、paySched、macro 與節點上的資本支出、票息整理成一頁 */
+(function(){
+ const F=DATA.fin||{},M=DATA.mkt||{},MA=DATA.macro||{},box=$('#finBody'); if(!box) return;
+ const e=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+ const sl=ks=>(ks||[]).filter(k=>DATA.sources[k]).map(k=>`<a href="${DATA.sources[k][1]}" target="_blank" rel="noopener" title="${e(DATA.sources[k][0])}">↗${e(String(DATA.sources[k][0]).split('｜')[0])}</a>`).join(' ');
+ const B=v=>v==null?'未取得':v>=1000?'$'+(v/1000).toFixed(2)+'兆':fmtB(v);
+ const card=(l,v,n,s)=>`<div class="fcard"><div class="l">${l}</div><div class="v">${v}</div><div class="n">${e(n||'')} ${sl(s)}</div></div>`;
+ const cap=DATA.nodes.filter(n=>n.amtType==='capex'&&n.amt&&(n.per==='year'||n.id==='capex')).sort((a,b)=>b.amt-a.amt)[0];
+ const rows=[], csv=[['項目','數值','說明']];
+ const add=(l,v,n,s)=>{rows.push(card(l,v,n,s));csv.push([l,v,n||''])};
+ add('年營收',B(F.rev),F.rev==null?'沒有公開的營收數字':F.note,F.src);
+ add('帳上現金',B(F.cash),F.cash==null?'尚未建檔或未揭露':F.cashNote,F.cashSrc);
+ add('市值／估值',B(M.cap),M.cap==null?'未上市或尚未建檔':((M.date||'')+(M.note?'；'+M.note:'')+(M.hand?'；'+M.hand:'')),M.src);
+ if(M.cap&&F.rev) add('市值 ÷ 年營收',(M.cap/F.rev).toFixed(1)+' 倍','市值與營收的日期口徑不同，僅供比較');
+ if(cap) add('年度資本支出',B(cap.amt),cap.short+(F.rev?'；約為年營收的 '+Math.round(cap.amt/F.rev*100)+'%':''),(cap.src||[]).map(s=>s.k||s));
+ if(F.burnNote) add('現金消耗','見說明',F.burnNote,F.burnSrc);
+ let h=`<h3>體質一覽</h3><div class="fgrid">${rows.join('')}</div>`;
+ const du=(DATA.dues||[]).slice().sort((a,b)=>a.y-b.y);
+ h+=`<h3>債務到期與已知付款</h3>`+(du.length?`<table><thead><tr><th>年度</th><th>金額</th><th>性質</th><th>內容</th><th>來源</th></tr></thead><tbody>${du.map(d=>`<tr><td class="mono">${d.y}</td><td class="amt">${d.amt==null?'未取得':B(d.amt)}</td><td>${e(d.kind)}</td><td>${e(d.what)}</td><td class="srcmini">${sl(d.src)}</td></tr>`).join('')}</tbody></table>${F.cash!=null&&du.some(d=>d.amt)?`<div class="hint" style="margin-top:6px">未來三年（至 ${new Date(DATA.meta.asOf).getFullYear()+3} 年）已建檔的到期金額合計 ${B(du.filter(d=>d.amt&&d.y<=new Date(DATA.meta.asOf).getFullYear()+3).reduce((a,d)=>a+d.amt,0))}，帳上現金 ${B(F.cash)}。</div>`:''}`:'<div class="hint">尚未建檔逐年到期表。</div>');
+ du.forEach(d=>csv.push(['到期 '+d.y,d.amt==null?'未取得':d.amt,d.what]));
+ const rt=DATA.nodes.filter(n=>n.rate!=null).sort((a,b)=>b.rate-a.rate);
+ if(rt.length){h+=`<h3>新債票息</h3><table><thead><tr><th>債務</th><th>票息（最高一檔）</th><th>金額</th><th>日期</th><th>來源</th></tr></thead><tbody>${rt.map(n=>`<tr><td>${e(n.name)}</td><td class="amt">${n.rate}%</td><td class="amt">${e(n.short)}</td><td class="mono">${e(n.date)}</td><td class="srcmini">${sl((n.src||[]).map(s=>s.k||s))}</td></tr>`).join('')}</tbody></table>`;rt.forEach(n=>csv.push(['票息 '+n.name,n.rate+'%',n.short]))}
+ const ps=DATA.paySched;
+ if(ps&&ps.y){const ys=Object.keys(ps.y).sort(),mx=Math.max(...ys.map(y=>ps.y[y]),1);h+=`<h3>公司揭露的逐年付款義務</h3><table><tbody>${ys.map(y=>`<tr><td class="mono" style="width:70px">${y}</td><td><span class="bar" style="width:${Math.round(ps.y[y]/mx*240)}px"></span>${B(ps.y[y])}</td></tr>`).join('')}${ps.after?`<tr><td class="mono">之後</td><td>${B(ps.after[0])}</td></tr>`:''}</tbody></table><div class="hint" style="margin-top:6px">${e(ps.note||'')} ${sl(ps.src)}</div>`;ys.forEach(y=>csv.push(['付款義務 '+y,ps.y[y],'']))}
+ const C=F.circEst;
+ if(C){h+=`<h3>來自被投資公司的營收（估計）</h3><div class="fgrid">${card('估計區間',B(C.lo)+' – '+B(C.hi),F.rev?'約占年營收 '+Math.round(C.lo/F.rev*100)+'%–'+Math.round(C.hi/F.rev*100)+'%':'',C.src)}${(C.parts||[]).map(p=>card(e(p.k),B(p.lo)+' – '+B(p.hi),p.basis)).join('')}</div><div class="hint" style="margin-top:6px">${e(C.note||'')}</div>`}
+ const MN={geo:'地緣政治（中國營收與出口管制）',fx:'匯率（本國以外營收占比）',infl:'通膨／利率（資本支出與負債相對營收）',ceo:'接班與關鍵人物'};
+ h+=`<h3>總體與治理面向</h3><table><thead><tr><th>面向</th><th>分數</th><th>依據</th><th>來源</th></tr></thead><tbody>${Object.keys(MN).map(k=>{const m=MA[k]||{},s=m.score,na=String(m.basis||'').startsWith('不適用');csv.push([MN[k],s==null?(na?'不適用':'待補'):s,m.basis||'']);return `<tr><td>${MN[k]}${k==='geo'&&m.cn!=null?`<br><span class="hint">中國營收占比 ${m.cn}%</span>`:''}</td><td>${s==null?`<span class="hint">${na?'不適用':'待補'}</span>`:`<span class="sc ${s>=60?'r':s>=40?'y':'g'}">${s}</span>`}</td><td style="line-height:1.6">${e(m.basis||'尚未建檔')}</td><td class="srcmini">${sl(m.src)}</td></tr>`}).join('')}</tbody></table><div class="hint" style="margin-top:6px">分數 0–100，越高風險越大；60 以上紅、40–59 黃。公式與跨公司排名見網路圖頁的風險總覽。</div>`;
+ box.innerHTML=h; window.finCSV=csv;
+})();
+X.fin=[['CSV',()=>download(`${PFX}_財務快照_${STAMP}.csv`,toCSV(window.finCSV||[]),'text/csv')],['PNG 圖片',()=>elToPNG($('#finBody'),`${PFX}_財務快照_${STAMP}`)],['列印／PDF',()=>printBlock($('#finBody'))]];
 document.querySelectorAll('.xslot').forEach(slot=>{
 const items=X[slot.dataset.x]; if(!items) return;
 const w=document.createElement('span'); w.className='xwrap';
