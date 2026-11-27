@@ -153,14 +153,15 @@ function draw(){
  const ge=mk('g',{},g), gn=mk('g',{},g);
  EDGES.forEach(e=>{const col=e.dir==='in'?getComputedStyle(document.body).getPropertyValue('--in'):e.dir==='both'?'#fbbf24':(ENT[e.s.id]?ENT[e.s.id].accent:'#94a3b8');
   const w=e.amt>0?Math.min(7,1.2+Math.log10(e.amt*10+1)*1.6):1.1;
-  const on=(!selected||(e.s.id===selected||e.t.id===selected))&&(!q||hit.has(e.s.id)||hit.has(e.t.id));
+  const on=selected?(e.s.id===selected||e.t.id===selected):(!q||hit.has(e.s.id)||hit.has(e.t.id));
   const p=mk('line',{x1:e.s.x,y1:e.s.y,x2:e.t.x,y2:e.t.y,stroke:col,'stroke-width':w,'stroke-opacity':on?.75:.06,'stroke-dasharray':e.rumor?'5 4':''},ge);
   p.appendChild(document.createElementNS(NS,'title')).textContent=`${e.s.id} ↔ ${e.t.id}：${e.ls.map(l=>`${l.name}｜${AMT[l.amtType]}｜${l.short||'—'}`).join('；')}`;});
- NODES.forEach(n=>{const on=(!selected||nb.has(n.id))&&(!q||qnb.has(n.id));
+ NODES.forEach(n=>{const on=selected?nb.has(n.id):(!q||qnb.has(n.id));   // 有選取時以選取為準，不再被搜尋字串交叉過濾
   const c=n.isE?ENT[n.id].accent:'#94a3b8';
   const gg=mk('g',{class:'node'+(on?'':' dim'),transform:`translate(${n.x},${n.y})`},gn);
   mk('circle',{r:n.r,fill:n.isE?'var(--panel)':c,'fill-opacity':n.isE?1:.85,stroke:n.isE?c:(selected===n.id?'#fff':'var(--bg)'),'stroke-width':n.isE?3:(selected===n.id?2.5:1.2)},gg);
-  if(q&&hit.has(n.id)) mk('circle',{r:n.r+5,fill:'none',stroke:'var(--acc)','stroke-width':2.5,'stroke-dasharray':'4 3'},gg);
+  if(selected===n.id) mk('circle',{r:n.r+6,fill:'none',stroke:'var(--acc)','stroke-width':3.5},gg);
+  else if(q&&hit.has(n.id)) mk('circle',{r:n.r+5,fill:'none',stroke:'var(--acc)','stroke-width':2.5,'stroke-dasharray':'4 3'},gg);
   const t=mk('text',{class:n.isE?'elab':'nlab','text-anchor':'middle',y:n.isE?4:n.r+12},gg);t.textContent=n.id+(n.isE?'':(n.deg>1?` (${n.deg})`:''));
   gg.onclick=ev=>{ev.stopPropagation();selected=selected===n.id?null:n.id;draw();side(selected);};});
  g.onclick=()=>{selected=null;draw();side(null)};
@@ -168,9 +169,17 @@ function draw(){
 /* ---------- 側欄：影響面 ---------- */
 function side(k){
  const S=$('#side');
- if(!k){S.innerHTML=`<h2>如何閱讀</h2><p class="hint" style="line-height:1.8">外圈大圓是已建 Dashboard 的實體；中間小圓是兩個以上實體共同往來的交易對手，數字＝涉及的實體數。線寬依已揭露金額（對數），虛線＝傳聞或未定案。<br><br>點選任一圓點，右側列出每個實體與它的關係、金額口徑、可信度與來源，並估計「若它出事」受影響的範圍。</p>
+ if(!k){S.innerHTML=`<h2>如何閱讀</h2><ul class="hint" style="line-height:1.8;margin:6px 0 0;padding-left:1.3em">
+  <li><b>外圈大圓</b>：已建 Dashboard 的實體。</li>
+  <li><b>中間小圓</b>：兩個以上實體共同往來的交易對手；括號內數字＝涉及的實體數。</li>
+  <li><b>線的粗細</b>：已揭露金額（對數尺度）。</li>
+  <li><b>線的顏色</b>：流出用該實體的代表色、流入用綠色、雙向用黃色。</li>
+  <li><b>虛線</b>：傳聞或未定案。</li>
+  <li><b>點選圓點</b>：圖上只保留它與直接相連的對象，被選的圓點加粗外圈；右側列出每個實體與它的關係、金額口徑、可信度與來源，並估計「若它出事」的影響。</li>
+  <li><b>搜尋公司</b>：符合名稱的圓點加虛線外圈，相連的對象一併顯示。</li>
+  <li><b>取消選取</b>：再點一次同一個圓點，或點圖上空白處。</li></ul>
   <h2 style="margin-top:14px">前 10 大樞紐</h2>${TOPH.slice(0,10).map(h=>`<div><a href="#" data-k="${esc(h.key)}">${esc(h.key)}</a> <span class="hint">— ${h.deg} 個實體、${h.links} 筆關係</span></div>`).join('')}`;
-  S.querySelectorAll('a[data-k]').forEach(a=>a.onclick=ev=>{ev.preventDefault();selected=a.dataset.k;draw();side(selected)});return;}
+  S.querySelectorAll('a[data-k]').forEach(a=>a.onclick=ev=>{ev.preventDefault();selected=a.dataset.k;$('#q').value='';draw();side(selected)});return;}
  const ls=DATA.links.filter(l=>l.cp===k||l.ent===k&&ENT[k]&&false);
  const asCp=DATA.links.filter(l=>l.cp===k);
  const isE=!!ENT[k];
