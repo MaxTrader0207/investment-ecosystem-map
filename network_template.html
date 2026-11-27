@@ -160,7 +160,7 @@ function draw(){
   const c=n.isE?ENT[n.id].accent:'#94a3b8';
   const gg=mk('g',{class:'node'+(on?'':' dim'),transform:`translate(${n.x},${n.y})`},gn);
   mk('circle',{r:n.r,fill:n.isE?'var(--panel)':c,'fill-opacity':n.isE?1:.85,stroke:n.isE?c:(selected===n.id?'#fff':'var(--bg)'),'stroke-width':n.isE?3:(selected===n.id?2.5:1.2)},gg);
-  if(selected===n.id) mk('circle',{r:n.r+6,fill:'none',stroke:'var(--acc)','stroke-width':3.5},gg);
+  if(selected===n.id){const s=n.r+9,L=s*.5;mk('path',{d:`M${-s},${-s+L}V${-s}H${-s+L}M${s-L},${-s}H${s}V${-s+L}M${s},${s-L}V${s}H${s-L}M${-s+L},${s}H${-s}V${s-L}`,fill:'none',stroke:'var(--acc)','stroke-width':4,'stroke-linecap':'round','stroke-linejoin':'round'},gg);}   // 被選者用方形對焦框（四個角括號）標記
   else if(q&&hit.has(n.id)) mk('circle',{r:n.r+5,fill:'none',stroke:'var(--acc)','stroke-width':2.5,'stroke-dasharray':'4 3'},gg);
   const t=mk('text',{class:n.isE?'elab':'nlab','text-anchor':'middle',y:n.isE?4:n.r+12},gg);t.textContent=n.id+(n.isE?'':(n.deg>1?` (${n.deg})`:''));
   gg.onclick=ev=>{ev.stopPropagation();selected=selected===n.id?null:n.id;draw();side(selected);};});
@@ -175,7 +175,7 @@ function side(k){
   <li><b>線的粗細</b>：已揭露金額（對數尺度）。</li>
   <li><b>線的顏色</b>：流出用該實體的代表色、流入用綠色、雙向用黃色。</li>
   <li><b>虛線</b>：傳聞或未定案。</li>
-  <li><b>點選圓點</b>：圖上只保留它與直接相連的對象，被選的圓點加粗外圈；右側列出每個實體與它的關係、金額口徑、可信度與來源，並估計「若它出事」的影響。</li>
+  <li><b>點選圓點</b>：圖上只保留它與直接相連的對象，被選的圓點加上方形對焦框；右側列出每個實體與它的關係、金額口徑、可信度與來源，並估計「若它出事」的影響。</li>
   <li><b>搜尋公司</b>：符合名稱的圓點加虛線外圈，相連的對象一併顯示。</li>
   <li><b>取消選取</b>：再點一次同一個圓點，或點圖上空白處。</li></ul>
   <h2 style="margin-top:14px">前 10 大樞紐</h2>${TOPH.slice(0,10).map(h=>`<div><a href="#" data-k="${esc(h.key)}">${esc(h.key)}</a> <span class="hint">— ${h.deg} 個實體、${h.links} 筆關係</span></div>`).join('')}`;
