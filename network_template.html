@@ -685,7 +685,7 @@ build(); side(null); table(); cmp();
  // 主權與政策層
  {const P=DATA.policy||[],cats=[...new Set(P.map(p=>p.cat))];
   $('#polB').innerHTML=P.length?`<div class="rcard"><div class="legend" style="margin-bottom:8px">${cats.map(c=>`<span><b>${esc(c)}</b> ${P.filter(p=>p.cat===c).length} 則</span>`).join('')}</div>
-   <div style="max-height:460px;overflow:auto"><table class="chgt"><thead><tr><th>類別</th><th>公司</th><th>日期</th><th>事項</th><th>內容</th></tr></thead><tbody>${P.map(p=>`<tr><td>${esc(p.cat)}</td><td><b>${esc(p.ent)}</b></td><td style="white-space:nowrap">${esc(p.d)}</td><td>${esc(p.n)}${p.u?` <a href="${esc(p.u)}" target="_blank" rel="noopener">↗</a>`:''}</td><td class="hint">${esc(p.x)}</td></tr>`).join('')}</tbody></table></div>
+   <div style="max-height:460px;overflow:auto"><table class="chgt"><thead><tr><th>類別</th><th>公司</th><th>日期</th><th>事項</th><th>內容</th></tr></thead><tbody>${P.map(p=>`<tr><td style="white-space:nowrap">${esc(p.cat)}</td><td style="white-space:nowrap"><b>${esc(p.ent)}</b></td><td style="white-space:nowrap">${esc(p.d)}</td><td>${esc(p.n)}${p.u?` <a href="${esc(p.u)}" target="_blank" rel="noopener">↗</a>`:''}</td><td class="hint">${esc(p.x)}</td></tr>`).join('')}</tbody></table></div>
    <div class="hint" style="margin-top:8px;line-height:1.7">從各家 Dashboard 的節點、事件與地緣政治說明中，以關鍵字自動歸類；可能有遺漏或誤歸。關稅目前沒有對應資料。</div></div>`:'<div class="hint">尚無資料。</div>'}
  // 歷史對照
  {const H=DATA.extras&&DATA.extras.history,N=DATA.vfnow||[];
