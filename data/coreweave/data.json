@@ -134,6 +134,10 @@
   "mktcap": [
    "Motley Fool｜AI 類股市值（2026-11-25 收盤，只計流通在外的公開股份）",
    "https://www.fool.com/investing/stock-market/market-sectors/information-technology/ai-stocks/"
+  ],
+  "gap_10k": [
+   "CoreWeave｜FY2025 10-K（地區資訊）",
+   "https://s205.q4cdn.com/133937190/files/doc_financials/2025/q4/CoreWeave-Inc-FY25-10-K-7.pdf"
   ]
  },
  "categories": [
@@ -996,10 +1000,18 @@
  },
  "macro": {
   "geo": {
-   "basis": "待補資料：未取得地區營收占比"
+   "score": 13,
+   "basis": "年報沒有單獨的中國營收；美國以外合計只有 6.4%，中國占比不會高於此數，以上限 6.4% × 2＝13 計（實際應更低）。採購的 GPU 屬美國出口管制品項，但客戶在美國，未加計",
+   "src": [
+    "gap_10k"
+   ]
   },
   "fx": {
-   "basis": "待補資料：未取得地區營收占比"
+   "score": 6,
+   "basis": "2025 年美國營收 $48.0 億 ÷ $51.3 億＝93.6%，美國以外 6.4%（依客戶合約地址）",
+   "src": [
+    "gap_10k"
+   ]
   },
   "infl": {
    "score": 100,

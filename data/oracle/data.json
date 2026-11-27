@@ -137,6 +137,26 @@
   "ceo_co": [
    "Oracle｜Clay Magouyrk 與 Mike Sicilia 升任 CEO，Larry Ellison 續任董事長兼技術長（2025-09-22）",
    "https://investor.oracle.com/investor-news/news-details/2025/Oracle-Corporation-Announces-Promotion-of-Clay-Magouyrk-and-Mike-Sicilia-to-CEOs-Safra-Catz-Appointed-Executive-Vice-Chair-of-the-Board-of-Directors/default.aspx"
+  ],
+  "gap_10q": [
+   "SEC｜Oracle 10-Q（截至 2026/8/31）",
+   "https://www.sec.gov/Archives/edgar/data/1341439/000119312526389274/orcl-20260831.htm"
+  ],
+  "gap_10k": [
+   "SEC｜Oracle 10-K FY2026（借款未來本金償還表）",
+   "https://www.sec.gov/Archives/edgar/data/0001341439/000119312526277521/orcl-20260531.htm"
+  ],
+  "gap_nov": [
+   "SEC｜Oracle 424B2：2026/11 五檔票據條件",
+   "https://www.sec.gov/Archives/edgar/data/1341439/000119312526445846/d181336d424b2.htm"
+  ],
+  "gap_capex": [
+   "sec-api.io｜Oracle Q1 FY2027 申報文件分析（FY2027 資本支出指引）",
+   "https://sec-api.io/insights/oracle-corporation-orcl-financial-and-ratio-analysis-q1-fy2027-filings-cloud-backlog-debt-and-capital-spending-scenarios-to-fy2030"
+  ],
+  "mktcap": [
+   "Trefis｜Oracle 股價與市值（2026/11/10）",
+   "https://www.trefis.com/data/companies/ORCL?from=orcl-2026-08-03"
   ]
  },
  "categories": [
@@ -404,13 +424,14 @@
    "amt": 20,
    "short": "$200億",
    "date": "2026-11-04",
-   "amtText": "8,620 萬股 @$116（約 $99 億淨額）＋$100 億五檔票據（票息 7.00%–8.65%）。投資人日五天前才說至 2030 財年只再募 $200 億，一次用完。",
+   "amtText": "8,620 萬股 @$116（約 $99 億淨額）＋$100 億五檔票據（票息 7.00%–8.65%）。投資人日五天前才說至 2030 財年只再募 $200 億，一次用完。 五檔為 2029 年 $20 億 7.00%、2031 年 $17.5 億 7.45%、2033 年 $22.5 億 7.85%、2037 年 $25 億 8.00%、2046 年 $15 億 8.65%；rate 欄填最高票息，金額加權平均約 7.77%（自行計算）。",
    "status": "已交割",
    "flow": "資本支出、償債與未來投資",
    "src": [
     "or_nov",
     "or_nov2",
-    "or_tt"
+    "or_tt",
+    "gap_nov"
    ],
    "amtType": "liability",
    "direction": "in",
@@ -428,7 +449,8 @@
    "terms": {
     "price": "增資每股 $116",
     "maturity": "票據 2029–2046 到期，票息 7.00%–8.65%"
-   }
+   },
+   "rate": 8.65
   },
   {
    "id": "mich",
@@ -494,6 +516,27 @@
     "liqPref": "股息 6.5%",
     "price": "轉換溢價 25%"
    }
+  },
+  {
+   "id": "capex",
+   "name": "FY2027 資本支出",
+   "tk": "—",
+   "cat": "other",
+   "type": "資料中心與設備",
+   "amt": 92.5,
+   "per": "year",
+   "short": "$900–950億（指引）",
+   "date": "2026-09-14",
+   "amtText": "管理層 FY2027（至 2027/5）資本支出指引 $900–950 億，取中值 $925 億；Q1 單季已支出 $285 億，FY2026 全年為 $557 億。指引數字取自第三方對申報文件的整理，未直接讀到公司原文。",
+   "status": "執行中",
+   "flow": "建置 OCI 產能以履行 RPO；現金不足部分靠發債、增資與客戶預付款",
+   "src": [
+    "gap_capex",
+    "gap_10q"
+   ],
+   "amtType": "capex",
+   "direction": "out",
+   "verified": "2026-11-27"
   }
  ],
  "flows": [
@@ -1049,7 +1092,7 @@
  },
  "macro": {
   "geo": {
-   "basis": "待補資料：未取得中國相關營收占比"
+   "basis": "待補資料：年報只揭露美洲、歐非中東、亞太三區，沒有單獨的中國營收"
   },
   "fx": {
    "score": 37,
@@ -1079,6 +1122,68 @@
   "note": "FY2026",
   "src": [
    "mc_fy26"
-  ]
+  ],
+  "cash": 37.1,
+  "cashSrc": [
+   "gap_10q"
+  ],
+  "cashNote": "8/31 現金、約當現金與有價證券 $370.8 億（不含受限制現金）"
+ },
+ "dues": [
+  {
+   "y": 2027,
+   "amt": 7.21,
+   "kind": "債務到期",
+   "what": "FY2027（至 2027/5）到期的借款本金（5/31 口徑）",
+   "src": [
+    "gap_10k"
+   ]
+  },
+  {
+   "y": 2028,
+   "amt": 10.145,
+   "kind": "債務到期",
+   "what": "FY2028（至 2028/5）到期的借款本金",
+   "src": [
+    "gap_10k"
+   ]
+  },
+  {
+   "y": 2029,
+   "amt": 5.5,
+   "kind": "債務到期",
+   "what": "FY2029（至 2029/5）到期的借款本金；另 2026/11 新發的 $20 億 7.00% 票據於 2029/11 到期（屬 FY2030）",
+   "src": [
+    "gap_10k",
+    "gap_nov"
+   ]
+  },
+  {
+   "y": 2030,
+   "amt": 7.25,
+   "kind": "債務到期",
+   "what": "FY2030 到期的借款本金（未含 2026/11 新發票據）",
+   "src": [
+    "gap_10k"
+   ]
+  },
+  {
+   "y": 2031,
+   "amt": 9.75,
+   "kind": "債務到期",
+   "what": "FY2031 到期的借款本金（未含 2026/11 新發票據）",
+   "src": [
+    "gap_10k"
+   ]
+  }
+ ],
+ "mkt": {
+  "cap": 371.4,
+  "date": "2026-11-10",
+  "src": [
+   "mktcap"
+  ],
+  "pxTk": "ORCL",
+  "note": "11/10 股價 $119.12；其他來源同期介於 $3,620–3,740 億"
  }
 }

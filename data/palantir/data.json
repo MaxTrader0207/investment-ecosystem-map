@@ -128,6 +128,10 @@
   "mktcap": [
    "Motley Fool｜AI 類股市值（2026-11-25 收盤，只計流通在外的公開股份）",
    "https://www.fool.com/investing/stock-market/market-sectors/information-technology/ai-stocks/"
+  ],
+  "gap_10k": [
+   "SEC｜Palantir 10-K FY2025",
+   "https://www.sec.gov/Archives/edgar/data/0001321655/000132165526000011/pltr-20251231.htm"
   ]
  },
  "categories": [
@@ -1139,10 +1143,10 @@
    "basis": "待補資料：未取得中國相關營收占比（公司不在中國營運）"
   },
   "fx": {
-   "score": 16,
-   "basis": "Q3 2026 美國商業 $9.84 億＋美國政府 $9.53 億 ÷ 營收 $23.13 億＝84%，美國以外 16%",
+   "score": 26,
+   "basis": "2025 年營收 74% 來自美國客戶，美國以外 26%",
    "src": [
-    "pr_q3"
+    "gap_10k"
    ]
   },
   "infl": {

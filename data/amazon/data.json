@@ -167,6 +167,18 @@
   "mktcap": [
    "SectorAlpha｜美國市值前十大（2026-11 下旬）",
    "https://www.sectoralpha.in/top-us-companies"
+  ],
+  "gap_10q": [
+   "SEC｜Amazon 10-Q（截至 2026/9/30）",
+   "https://www.sec.gov/Archives/edgar/data/0001018724/000101872426000040/amzn-20260930.htm"
+  ],
+  "gap_debt": [
+   "StreetInsider｜Amazon 10-Q 長期債務附註（2026/9/30）",
+   "https://www.streetinsider.com/dr/news.php?id=27260534"
+  ],
+  "gap_loan": [
+   "FourWeekMBA｜Amazon 設備擔保貸款與 $175 億定期貸款",
+   "https://fourweekmba.com/ai-amazon-can-borrow-up-to-80b-against-the-hardware-it-buys/"
   ]
  },
  "categories": [
@@ -1137,7 +1149,12 @@
   "note": "2025",
   "src": [
    "mc_fy25"
-  ]
+  ],
+  "cash": 114.2,
+  "cashSrc": [
+   "gap_10q"
+  ],
+  "cashNote": "9/30 現金、約當現金與有價證券（年初 $1,230 億）"
  },
  "mkt": {
   "cap": 2670,
@@ -1146,5 +1163,34 @@
    "mktcap"
   ],
   "pxTk": "AMZN"
- }
+ },
+ "dues": [
+  {
+   "y": 2027,
+   "amt": 6.83,
+   "kind": "債務到期",
+   "what": "長期債務一年內到期部分（9/30 起算 12 個月）",
+   "src": [
+    "gap_debt"
+   ]
+  },
+  {
+   "y": 2029,
+   "amt": 17.5,
+   "kind": "債務到期",
+   "what": "2026/9 動用的無擔保定期貸款，2029/9 到期",
+   "src": [
+    "gap_loan"
+   ]
+  },
+  {
+   "y": 2028,
+   "amt": null,
+   "kind": "債務到期",
+   "what": "長期債務面額 $1,809 億的逐年到期表未取得；2026/3 發行的票據最短為兩年期（2028）",
+   "src": [
+    "gap_debt"
+   ]
+  }
+ ]
 }

@@ -213,6 +213,14 @@
   "pif_q3": [
    "Arab News｜PIF 9/30 持有 SpaceX 約 $232.5 億，占其美股申報部位約 80%",
    "https://www.arabnews.com/finance/spacex-makes-up-80-of-saudi-sovereign-wealth-funds-us-stock-investments-3012450"
+  ],
+  "mktcap": [
+   "Motley Fool｜SpaceX (SPCX) 報價與市值",
+   "https://www.fool.com/quote/NASDAQ/SPCX"
+  ],
+  "mktcap2": [
+   "CNN｜11/19 SpaceX 收盤 $138.43",
+   "https://www.cnn.com/2026/11/19/business/live-news/anthropic-ipo"
   ]
  },
  "categories": [
@@ -1421,5 +1429,16 @@
   "src": [
    "alpha_q3"
   ]
+ },
+ "mkt": {
+  "cap": 1880,
+  "date": "2026-11-19",
+  "src": [
+   "mktcap",
+   "mktcap2"
+  ],
+  "pxTk": "SPCX",
+  "hand": "11/19 收盤 $138.43 × 流通股數約 135.8 億股（自行計算）",
+  "note": "各資料商股數口徑不同，同期報價頁介於 $1.89–1.94 兆"
  }
 }

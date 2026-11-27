@@ -138,6 +138,14 @@
   "mktcap": [
    "SectorAlpha｜美國市值前十大（2026-11 下旬）",
    "https://www.sectoralpha.in/top-us-companies"
+  ],
+  "gap_geo": [
+   "StockAnalysis｜Microsoft FY2026 地區營收",
+   "https://stockanalysis.com/stocks/msft/revenue/"
+  ],
+  "gap_cn": [
+   "The Standard／路透｜Microsoft 在中國逐步收縮",
+   "https://www.thestandard.com.hk/china/article/339860/Microsoft-retreats-in-China-but-AI-boom-helps-it-keep-a-window-open"
   ]
  },
  "categories": [
@@ -1016,10 +1024,19 @@
  },
  "macro": {
   "geo": {
-   "basis": "待補資料：未取得中國營收占比"
+   "score": 3,
+   "cn": 1.5,
+   "basis": "公司 2024 年表示中國約占全球營收 1.5%（× 2＝3）；之後未更新數字",
+   "src": [
+    "gap_cn"
+   ]
   },
   "fx": {
-   "basis": "待補資料：未取得美國以外營收占比"
+   "score": 49,
+   "basis": "FY2026 美國營收 $1,708 億占 51.5%，美國以外 48.5%",
+   "src": [
+    "gap_geo"
+   ]
   },
   "infl": {
    "score": 39,

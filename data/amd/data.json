@@ -274,6 +274,18 @@
   "mktcap": [
    "VLSI Korea｜全球半導體市值排名 TOP 20（2026-11-26）",
    "https://www.vlsi.kr/en/global-semiconductor-marketcap-ranking-top20-en/"
+  ],
+  "gap_q3": [
+   "SEC｜AMD 2026 Q3 財報簡報（8-K 附件）",
+   "https://www.sec.gov/Archives/edgar/data/2488/000000248826000188/amdq32026earningsslidesf.htm"
+  ],
+  "gap_10k": [
+   "SEC｜AMD 10-K FY2025（地區營收）",
+   "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm"
+  ],
+  "gap_geo": [
+   "sec-api.io｜AMD 申報文件分析（中國 22.4%、海外 67%）",
+   "https://sec-api.io/insights/financial-analysis-of-amd-q2-2026-filings-and-scenarios-to-2029"
   ]
  },
  "categories": [
@@ -474,7 +486,8 @@
      "x": "貸款擔保＋回租承諾 The Information 報導：AMD 為 Crusoe 向 Goldman Sachs 借的 $3 億貸款提供擔保",
      "auto": true
     }
-   ]
+   ],
+   "rate": 6.0
   },
   {
    "id": "tensorwave",
@@ -1777,17 +1790,30 @@
  },
  "macro": {
   "geo": {
-   "score": 30,
-   "basis": "2025 年因美國對 MI308 的出口管制認列約 $4.4 億費用（＋30）；未取得中國營收占比，分數可能偏低",
+   "score": 75,
+   "cn": 22.4,
+   "basis": "FY2025 中國（含香港）營收 $77.5 億 ÷ $346.4 億＝22.4%（依帳單地）× 2＝45；MI308 出口管制認列約 $4.4 億費用，屬直接影響（＋30）",
    "src": [
+    "gap_10k",
+    "gap_geo",
     "mc_fy25"
    ]
   },
   "fx": {
-   "basis": "待補資料：未取得美國以外營收占比"
+   "score": 67,
+   "basis": "FY2025 美國營收 $113.6 億，占 32.8%；美國以外 67%",
+   "src": [
+    "gap_10k",
+    "gap_geo"
+   ]
   },
   "infl": {
-   "basis": "待補資料：未取得資本支出與有息負債"
+   "score": 20,
+   "basis": "Q3 底總債務 $70.8 億（含 8 月發行的 $47.5 億優先票據）÷ 2025 營收 $346 億＝20%；無晶圓廠，未取得資本支出，僅以負債計",
+   "src": [
+    "gap_q3",
+    "mc_fy25"
+   ]
   },
   "ceo": {
    "score": 40,
@@ -1803,7 +1829,12 @@
   "note": "2025",
   "src": [
    "mc_fy25"
-  ]
+  ],
+  "cash": 15.8,
+  "cashSrc": [
+   "gap_q3"
+  ],
+  "cashNote": "Q3 底現金、約當現金與短期投資"
  },
  "mkt": {
   "cap": 906.8,

@@ -153,6 +153,18 @@
   "mktcap": [
    "SectorAlpha｜美國市值前十大（2026-11 下旬）",
    "https://www.sectoralpha.in/top-us-companies"
+  ],
+  "gap_xbrl": [
+   "Broadcom IR｜10-Q（截至 2026/8/2）債務未來本金償還表",
+   "https://investors.broadcom.com/node/64691/xbrl-viewer"
+  ],
+  "gap_zk": [
+   "Zacks｜Broadcom 的債務是否構成 FY27 風險",
+   "https://www.metatrader.com/en/news/zacks/5103251-does-broadcom-s-debt-load-pose-a-risk-to-the-stock-s"
+  ],
+  "gap_geo": [
+   "Global Banking & Finance｜Broadcom FY2025 年報地區營收",
+   "https://www.globalbankingandfinance.com/markets/avgo/annual-report/"
   ]
  },
  "categories": [
@@ -926,7 +938,11 @@
    "cn": 17
   },
   "fx": {
-   "basis": "待補資料：未取得美國以外營收占比"
+   "score": 74,
+   "basis": "FY2025 美國營收 $165.1 億 ÷ $638.9 億＝25.8%，美國以外 74%（依出貨或帳單地；銷售多以美元計價）。另一家資料商的數字口徑不同，未採用",
+   "src": [
+    "gap_geo"
+   ]
   },
   "infl": {
    "score": 31,
@@ -967,5 +983,53 @@
    "mktcap"
   ],
   "pxTk": "AVGO"
- }
+ },
+ "dues": [
+  {
+   "y": 2026,
+   "amt": 2.252,
+   "kind": "債務到期",
+   "what": "FY2026 剩餘期間（8/2 至 11/1）到期本金；季後已償還 $15 億",
+   "src": [
+    "gap_xbrl"
+   ]
+  },
+  {
+   "y": 2027,
+   "amt": 0,
+   "kind": "債務到期",
+   "what": "FY2027 沒有本金到期",
+   "src": [
+    "gap_xbrl",
+    "gap_zk"
+   ]
+  },
+  {
+   "y": 2028,
+   "amt": 5.127,
+   "kind": "債務到期",
+   "what": "FY2028 到期本金",
+   "src": [
+    "gap_xbrl"
+   ]
+  },
+  {
+   "y": 2029,
+   "amt": 2.405,
+   "kind": "債務到期",
+   "what": "FY2029 到期本金",
+   "src": [
+    "gap_xbrl"
+   ]
+  },
+  {
+   "y": 2030,
+   "amt": 6.406,
+   "kind": "債務到期",
+   "what": "FY2030 到期本金；其後 $448.9 億",
+   "src": [
+    "gap_xbrl"
+   ]
+  }
+ ]
 }

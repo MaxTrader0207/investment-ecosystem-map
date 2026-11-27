@@ -286,6 +286,10 @@
   "due12": [
    "tldr.money｜Anthropic S-1：承諾約 $9,009 億，其中 $707 億在未來 12 個月到期",
    "https://www.tldr.money/articles/ipo/anthropic-ipo-financials-s1"
+  ],
+  "mktcap": [
+   "StockAnalysis｜Anthropic (ANT) 市值",
+   "https://stockanalysis.com/stocks/ant/market-cap/"
   ]
  },
  "categories": [
@@ -1821,5 +1825,14 @@
     "due12"
    ]
   }
- ]
+ ],
+ "mkt": {
+  "cap": 1130,
+  "date": "2026-11-25",
+  "src": [
+   "mktcap"
+  ],
+  "pxTk": "ANT",
+  "note": "11/25 收盤 $82.79；完全稀釋口徑較高（上市首日 $97 時約 $1.76–1.8 兆）"
+ }
 }

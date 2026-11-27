@@ -97,6 +97,14 @@
   "mktcap": [
    "VLSI Korea｜全球半導體市值排名 TOP 20（2026-11-26）",
    "https://www.vlsi.kr/en/global-semiconductor-marketcap-ranking-top20-en/"
+  ],
+  "gap_ceo": [
+   "Korea Who｜郭魯正（Kwak Noh-jung）簡歷",
+   "https://www.koreawho.com/profile/KwakNohjung"
+  ],
+  "gap_f1": [
+   "SEC｜SK hynix Form F-1（董事名單與任期）",
+   "https://www.sec.gov/Archives/edgar/data/2120882/000119312526280172/d32785df1.htm"
   ]
  },
  "categories": [
@@ -861,7 +869,12 @@
    ]
   },
   "ceo": {
-   "basis": "待補資料：執行長為郭魯正，集團會長為崔泰源；任期、年齡與接班安排尚未查證"
+   "score": 25,
+   "basis": "由 SK 集團崔氏家族經 SK Square（持股 20.5%）掌控，比照三星計為家族主導（＋25）；執行長郭魯正非創辦人，是否兼任董事會主席未查證，不計分；董事會另有社長兼研發總管車善鎔，視為有第二號人物（＋0）；郭魯正 1965 年生、61 歲，2022/3 就任、任期至 2028/3（＋0）；近 12 個月無更換（＋0）",
+   "src": [
+    "gap_ceo",
+    "gap_f1"
+   ]
   }
  },
  "fin": {

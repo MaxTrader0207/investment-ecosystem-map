@@ -100,6 +100,14 @@
   "mktcap": [
    "VLSI Korea｜全球半導體市值排名 TOP 20（2026-11-26）",
    "https://www.vlsi.kr/en/global-semiconductor-marketcap-ranking-top20-en/"
+  ],
+  "gap_geo": [
+   "Samsung｜2025 年事業報告書（地區別營收）",
+   "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2025_4Q_Interim_Report.pdf"
+  ],
+  "gap_geo2": [
+   "StockAnalysis｜Samsung Electronics 地區營收",
+   "https://stockanalysis.com/quote/otc/SSNLF/revenue/"
   ]
  },
  "categories": [
@@ -763,7 +771,12 @@
    "cn": 34
   },
   "fx": {
-   "basis": "待補資料：未取得合併口徑的本國以外營收占比"
+   "score": 86,
+   "basis": "2025 年合併營收 ₩333.6 兆中，韓國 ₩46.6 兆占 14.0%，本國以外 86%（美洲 39.9%、歐洲 16.0%、亞非 15.9%、中國 14.2%）。同口徑中國占 14.2%，低於地緣面向採用的非合併口徑 34%",
+   "src": [
+    "gap_geo",
+    "gap_geo2"
+   ]
   },
   "infl": {
    "score": 13,

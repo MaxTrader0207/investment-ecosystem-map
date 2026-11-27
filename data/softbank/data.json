@@ -206,6 +206,14 @@
   "ceo_succ": [
    "Business Standard／Bloomberg｜孫正義：接班人將出自集團內部，但最後一刻才公布",
    "https://www.business-standard.com/world-news/masayoshi-son-prepares-to-pick-successor-from-within-softbank-group-125062700148_1.html"
+  ],
+  "gap_bond": [
+   "Tokyo Brief｜SoftBank 外幣優先債定價，票息最高 9.75%",
+   "https://tokyobrief.com/articles/softbank-group-prices-bonds-final-openai-tranche"
+  ],
+  "gap_bond2": [
+   "BigGo Finance｜SoftBank $110 億非投資級債各檔票息",
+   "https://finance.biggo.com/news/34b9d132-142d-4aa5-a12c-fab62ce140bd"
   ]
  },
  "categories": [
@@ -718,6 +726,29 @@
    "amtType": "inflow",
    "direction": "in",
    "verified": "2026-11-26"
+  },
+  {
+   "id": "sbbond",
+   "name": "2026/9 外幣優先債",
+   "tk": "—",
+   "cat": "fin",
+   "type": "公司債（BB+）",
+   "amt": 11.1,
+   "short": "$100億＋€10億",
+   "date": "2026-09-24",
+   "amtText": "美元債 $100 億：3.5 年期 8.625%、5.5 年期 9.25%、7.5 年期 9.75%；歐元債 €10 億：4 年期 7.125%、6 年期 8.00%。兩家評等機構皆評 BB+。合計約 $111 億。",
+   "status": "已完成",
+   "flow": "支應對 OpenAI $300 億承諾的最後一筆 $100 億；同時取消未動用的過橋額度",
+   "src": [
+    "gap_bond",
+    "gap_bond2"
+   ],
+   "amtType": "none",
+   "direction": "in",
+   "rate": 9.75,
+   "excludeFromSum": true,
+   "xnote": "用來置換過橋貸款，負債已由過橋貸款節點計入，本節點只記錄票息，不重複計入金額",
+   "verified": "2026-11-27"
   }
  ],
  "flows": [
