@@ -176,8 +176,20 @@ cycles.sort(key=lambda c:(c["und"],-c["min"],c["len"]))
 # ---------- 風險總覽：每個實體 10 個面向（0–100）× 權重 → 總風險值與燈號 ----------
 # 前 7 個面向由現有資料依固定公式換算；地緣政治、匯率、通膨／物價／利率需要 data.json 的 macro 欄位
 # （macro:{"geo":{"score":0-100,"basis":"…","src":["key"]},"fx":{…},"infl":{…}}），沒有就標示待補、不計入總分。
-RISK_DIMS=[("geo","地緣政治／出口管制",15),("inv","對外投資集中度",15),("loop","循環融資依賴",15),("fin","擔保與或有負債",10),("conc","客戶與對手集中",10),
-           ("infl","通膨／物價／利率",10),("reg","監管與治理",10),("fx","匯率",5),("exec","執行／未定案",5),("info","資訊可信度",5)]
+# 權重不寫死：每次建置依全部公司的分數自動計算（等權與離散度權重各半，見下方 _weights）
+RISK_DIMS=[("geo","地緣政治／出口管制"),("ceo","經營者與接班"),("inv","對外投資集中度"),("loop","循環融資依賴"),("fin","擔保與或有負債"),("conc","客戶與對手集中"),
+           ("infl","通膨／物價／利率"),("reg","監管與治理"),("fx","匯率"),("exec","執行／未定案"),("info","資訊可信度")]
+def _weights(ents):
+    """離散度權重（標準差法）：某面向在各公司之間的分數差異愈大（愈能區分公司），權重愈高；與等權各半混合以免極端。
+    有分數的公司少於 5 家時只用等權。不用熵權法，因為它會把多數公司為 0 分的面向權重拉得過高。"""
+    K=[k for k,_ in RISK_DIMS]; d={}
+    for i,k in enumerate(K):
+        xs=[e["risk"]["dims"][i]["s"] for e in ents if e["risk"]["dims"][i]["s"] is not None]
+        if len(xs)<5: d[k]=None; continue
+        m=sum(xs)/len(xs); d[k]=(sum((x-m)**2 for x in xs)/len(xs))**0.5
+    ok=[v for v in d.values() if v is not None]; tot=sum(ok); eq=1/len(K)
+    w={k:(0.5*eq+0.5*(d[k]/tot*len(ok)/len(K)) if d[k] is not None and tot>0 else eq) for k in K}
+    z=sum(w.values()); return {k:round(v/z*100,1) for k,v in w.items()}
 _INV=re.compile("股權|特別股|普通股|收購|入股|增資|參與|輪|可轉|認股|權證|認購|配售|PIPE|股東|合資|基金|LP|投資|技術授權|持股")
 _NOTINV=re.compile("採購|雲端|合約|租|代工|資本支出|計畫|投資承諾|發債|公司債|回購|貸款|籌資|訴訟|競爭"); _DEAD=re.compile("撤銷|終止|取消|出清|出售")
 def _cap(v): return int(round(max(0,min(100,v))))
@@ -208,15 +220,20 @@ for e in ents:
     R["exec"]=(_cap(_flag(rk["unc"],n,0.25)),f"{rk['unc']}／{rk['n']} 個節點未定案或有執行風險旗標（占比達 25% 與數量達 5 個各算一半）")
     low=st["grade"]["C"]+st["grade"]["D"]+st["stale"]
     R["info"]=(_cap(_flag(low,n,0.40,8)),f"{st['grade']['C']+st['grade']['D']} 個節點來源等級為 C 或 D、{st['stale']} 個待重新查證（占比達 40% 與數量達 8 個各算一半）")
-    for mk in ("geo","fx","infl"):
+    for mk in ("geo","fx","infl","ceo"):
         m=rk["macro"].get(mk)
         if isinstance(m,dict) and isinstance(m.get("score"),(int,float)): R[mk]=(_cap(m["score"]),m.get("basis",""),m.get("src",[]))
     dims=[]
-    for key,name,w in RISK_DIMS:
+    for key,name in RISK_DIMS:
         r=R.get(key)
-        dims.append({"k":key,"n":name,"w":w,"s":r[0] if r else None,"b":r[1] if r else (rk["macro"].get(key,{}).get("basis") or "待補資料：需要另外查證公開數據後才能評分"),"src":list(r[2]) if r and len(r)>2 else []})
+        dims.append({"k":key,"n":name,"w":0,"s":r[0] if r else None,"b":r[1] if r else (rk["macro"].get(key,{}).get("basis") or "待補資料：需要另外查證公開數據後才能評分"),"src":list(r[2]) if r and len(r)>2 else []})
+    e["risk"]={"dims":dims}
+_W=_weights(ents)
+for e in ents:
+    dims=e["risk"]["dims"]
+    for d in dims: d["w"]=_W[d["k"]]
     cov=sum(d["w"] for d in dims if d["s"] is not None)
-    e["risk"]={"dims":dims,"cov":cov,"total":int(round(sum(d["s"]*d["w"] for d in dims if d["s"] is not None)/cov)) if cov else None}
+    e["risk"].update({"cov":int(round(cov)),"total":int(round(sum(d["s"]*d["w"] for d in dims if d["s"] is not None)/cov)) if cov else None})
 _rank=sorted([e for e in ents if e["risk"]["total"] is not None],key=lambda e:-e["risk"]["total"])
 for i,e in enumerate(_rank): e["risk"]["rank"]=1+sum(1 for x in _rank if x["risk"]["total"]>e["risk"]["total"]); e["risk"]["of"]=len(_rank)
 cycles=cycles[:40]

@@ -133,6 +133,10 @@
   "mc_ar": [
    "Global Banking & Finance｜Oracle 年報摘要：美洲占營收 63.3%（FY2025）",
    "https://www.globalbankingandfinance.com/markets/orcl/annual-report/"
+  ],
+  "ceo_co": [
+   "Oracle｜Clay Magouyrk 與 Mike Sicilia 升任 CEO，Larry Ellison 續任董事長兼技術長（2025-09-22）",
+   "https://investor.oracle.com/investor-news/news-details/2025/Oracle-Corporation-Announces-Promotion-of-Clay-Magouyrk-and-Mike-Sicilia-to-CEOs-Safra-Catz-Appointed-Executive-Vice-Chair-of-the-Board-of-Directors/default.aspx"
   ]
  },
  "categories": [
@@ -1056,6 +1060,13 @@
    "src": [
     "mc_fy26",
     "mc_bs"
+   ]
+  },
+  "ceo": {
+   "score": 40,
+   "basis": "創辦人 Larry Ellison 以董事長兼技術長身分主導（＋25）；兩位共同 CEO 都未兼任董事長（＋0）；採雙 CEO 制，並有執行副董事長（＋0）；Ellison 已逾 65 歲、任職超過 15 年（＋15）；CEO 交接在 2025/9，已超過 12 個月（＋0）",
+   "src": [
+    "ceo_co"
    ]
   }
  }

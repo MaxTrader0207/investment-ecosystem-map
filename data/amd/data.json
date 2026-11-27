@@ -262,6 +262,14 @@
   "mc_fy25": [
    "AMD IR｜2025 全年營收 $346 億；MI308 出口管制相關費用約 $4.4 億（2026-02-03）",
    "https://ir.amd.com/news-events/press-releases/detail/1276/amd-reports-fourth-quarter-and-full-year-2025-financial-results"
+  ],
+  "ceo_su": [
+   "UnifyGTM｜Lisa Su：2014/10 起任 CEO、2022/2 起兼任董事長",
+   "https://www.unifygtm.com/insights/executives/amd-ceo"
+  ],
+  "ceo_agm": [
+   "Barchart｜AMD 2026 股東會：Chair and CEO Lisa Su",
+   "https://www.barchart.com/story/news/1943515/advanced-micro-devices-shareholders-back-board-as-lisa-su-touts-ai-growth"
   ]
  },
  "categories": [
@@ -1776,6 +1784,14 @@
   },
   "infl": {
    "basis": "待補資料：未取得資本支出與有息負債"
+  },
+  "ceo": {
+   "score": 40,
+   "basis": "執行長蘇姿丰不是創辦人（＋0）；2022 年起兼任董事長（＋15）；未查到公開的二號人物或接班人選（＋25）；2014 年接任，任期 12 年（＋0）",
+   "src": [
+    "ceo_su",
+    "ceo_agm"
+   ]
   }
  }
 }

@@ -299,6 +299,14 @@
   "mc_10q": [
    "Alphabet｜2026 Q1 10-Q：長期負債 $775 億",
    "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q1/GOOG-10-Q-Q1-2026.pdf"
+  ],
+  "ceo_pichai": [
+   "TechCrunch｜Pichai 接任 Alphabet CEO（2019-12）",
+   "https://techcrunch.com/?p=1919854"
+  ],
+  "ceo_org": [
+   "Creately｜Alphabet 組織：CEO 直接管轄 Google 與 Other Bets",
+   "https://creately.com/org-chart/fortune-500/alphabet/"
   ]
  },
  "categories": [
@@ -1852,6 +1860,14 @@
     "aiw_q3",
     "mc_10q",
     "mc_fy25"
+   ]
+  },
+  "ceo": {
+   "score": 25,
+   "basis": "執行長 Pichai 不是創辦人（＋0）；CEO 直接管轄各事業，中間沒有營運層級的二號人物（＋25）；2019 年接任 Alphabet CEO，任期未滿 15 年（＋0）",
+   "src": [
+    "ceo_pichai",
+    "ceo_org"
    ]
   }
  }

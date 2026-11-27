@@ -126,6 +126,14 @@
   "mc_fa": [
    "sec-api.io｜Microsoft FY2026：營收 $3,318 億、資本支出 $1,159 億（34.9%）、淨負債 $300 億",
    "https://sec-api.io/insights/financial-analysis-of-microsoft-fy2026-capital-intensity-against-a-record-margin"
+  ],
+  "ceo_chair": [
+   "Fortune／Bloomberg｜Nadella 兼任董事長（2021-06-16）",
+   "https://fortune.com/2021/06/16/microsoft-ceo-satya-nadella-chairman/"
+  ],
+  "ceo_althoff": [
+   "Cloud Wars｜Nadella 任命 Judson Althoff 為商業事業 CEO（2025-10-07）",
+   "https://cloudwars.com/innovation-leadership/satya-nadella-is-going-full-larry-ellison/"
   ]
  },
  "categories": [
@@ -997,6 +1005,14 @@
    "basis": "FY2026 資本支出占營收 34.9%；淨負債 $300 億 ÷ 營收 $3,318 億＝9%",
    "src": [
     "mc_fa"
+   ]
+  },
+  "ceo": {
+   "score": 15,
+   "basis": "執行長 Nadella 不是創辦人（＋0）；2021 年起兼任董事長（＋15）；已任命 Judson Althoff 為商業事業 CEO，有明確的二號人物（＋0）；2014 年接任，任期 12 年（＋0）",
+   "src": [
+    "ceo_chair",
+    "ceo_althoff"
    ]
   }
  }

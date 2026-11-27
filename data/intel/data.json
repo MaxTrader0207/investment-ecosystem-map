@@ -205,6 +205,10 @@
   "mc_debt": [
    "ForensicAnalysis｜Intel FY2025 總負債 $491 億（依 10-K 整理）",
    "https://thekinghippopotamus.github.io/ForensicAnalysis/INTC/"
+  ],
+  "ceo_chair": [
+   "Intel Newsroom｜Craig Barratt 接任獨立董事長、Lip-Bu Tan 為 CEO（2026-03-03）",
+   "https://newsroom.intel.com/corporate/intel-board-chair-frank-d-yeary-to-retire-following-annual-meeting-dr-craig-h-barratt-elected-as-chair"
   ]
  },
  "categories": [
@@ -1374,6 +1378,13 @@
     "mc_capex",
     "mc_debt",
     "mc_fy25"
+   ]
+  },
+  "ceo": {
+   "score": 25,
+   "basis": "執行長陳立武不是創辦人（＋0）；董事長為獨立董事 Craig Barratt（＋0）；未查到公開的二號人物或接班人選（＋25）；執行長到任約一年半，近 12 個月沒有異動（＋0）",
+   "src": [
+    "ceo_chair"
    ]
   }
  }
