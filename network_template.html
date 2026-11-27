@@ -714,5 +714,29 @@ build(); side(null); table(); cmp();
  sel.onchange=()=>brief(sel.value);
  brief((TOPH.find(h=>h.isEntity)||{key:es[0]}).key);})();
 </script>
+<style id="totop-css">
+#toTop{position:fixed;right:14px;top:0;z-index:95;width:64px;height:64px;border-radius:50%;border:1px solid var(--line);background:var(--panel2);color:var(--text);cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;line-height:1.15;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.35);opacity:0;pointer-events:none;transform:translateY(var(--ty,70vh));transition:transform .22s ease-out,opacity .2s,border-color .15s}
+#toTop.show{opacity:.92;pointer-events:auto}
+#toTop:hover,#toTop:focus-visible{opacity:1;border-color:var(--acc,var(--nv,#76b900));outline:none}
+#toTop b{font-size:24px;line-height:1}
+@media (prefers-reduced-motion:reduce){#toTop{transition:opacity .2s}}
+@media print{#toTop{display:none}}
+</style>
+<button id="toTop" type="button" aria-label="回到頁首" title="回到頁首"><b>↑</b>頁首</button>
+<script id="totop-js">
+(function(){
+ const b=document.getElementById('toTop'),H=64,PAD=12;let y=null;
+ const clamp=v=>Math.max(PAD,Math.min(innerHeight-H-PAD,v));
+ const place=()=>b.style.setProperty('--ty',clamp(y==null?innerHeight-H-28:y)+'px');
+ const vis=()=>b.classList.toggle('show',scrollY>300);
+ addEventListener('mousemove',e=>{
+  if(e.clientX>innerWidth-110)return;   // 滑鼠靠近按鈕時停止移動，避免按鈕在指標下亂跑
+  y=e.clientY-H/2;place();
+ },{passive:true});
+ addEventListener('resize',place);addEventListener('scroll',vis,{passive:true});
+ b.addEventListener('click',()=>scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'}));
+ place();vis();
+})();
+</script>
 </body>
 </html>
