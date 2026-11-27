@@ -231,22 +231,22 @@ input[type=checkbox],input[type=radio]{width:20px;height:20px;vertical-align:mid
 <div class="settings">
 <span class="pref l"><button class="btn" id="prefBtn" type="button" aria-haspopup="true" aria-expanded="false" title="背景與字體大小">⚙ 顯示設定</button><div class="prefp" id="prefPanel"><div class="prow"><span class="lbl">背景</span><select id="themeSel"><option value="">深夜（預設）</option><option value="graphite">石墨灰</option><option value="navy">深海藍</option><option value="black">純黑</option><option value="light">淺色</option></select></div><div class="prow"><span class="lbl">自訂背景色</span><input type="color" id="bgPick" value="#0a0e13" title="自訂背景色"></div><div class="prow"><span class="lbl">字體大小</span><span><button class="btn" id="fsDown" type="button" aria-label="縮小字體">A−</button><span class="fsval" id="fsVal">100%</span><button class="btn" id="fsUp" type="button" aria-label="放大字體">A＋</button></span></div><div class="prow"><span class="hint">記在這台瀏覽器，各頁共用</span><button class="btn" id="prefReset" type="button">還原預設</button></div></div></span>
 <span style="flex:1"></span>
-<span id="siteNav" style="display:none"><a class="btn" href="Ecosystem_Network_Map.html" style="text-decoration:none">🕸 總網路圖</a> <a class="btn" href="guide.html" style="text-decoration:none;background:#fbbf24;border-color:#fbbf24;color:#111;font-weight:700" title="操作方式、符號對照、每個功能在哪裡">📖 使用指引</a></span>
+<span id="siteNav" style="display:none"><a class="btn" href="Ecosystem_Network_Map.html" style="text-decoration:none">總網路圖</a> <a class="btn" id="guideLink" href="guide.html" style="text-decoration:none;background:#fbbf24;border-color:#fbbf24;color:#111;font-weight:700" title="操作方式、符號對照、每個功能在哪裡">使用指引</a></span>
 <span class="xslot" data-x="all"></span>
 </div>
 <div class="gov" id="gov"><div class="gh"><b id="govT"></b><span class="rng" id="govR"></span><span class="gf" id="govF"></span><span class="xslot" data-x="gov"></span></div><div class="glead" id="govH"></div><ul class="gl" id="govL"></ul><button class="gmore" id="govM"></button></div>
 <div class="ic" id="ic"></div>
-<div class="shead"><span>📊 關鍵指標</span><span class="xslot" data-x="kpi"></span></div>
+<div class="shead"><span>關鍵指標</span><span class="xslot" data-x="kpi"></span></div>
 <div class="kpis" id="kpis"></div>
 <div class="amtbar" id="amtbar"></div>
 <div class="diffbar" id="diffbar"></div>
 <nav class="tabs">
-<button data-v="v-tree" class="on">🌳 投資族譜圖</button>
-<button data-v="v-flow">🔁 資金循環架構</button>
-<button data-v="v-table">📋 投資明細表</button>
-<button data-v="v-tl">🕒 時間軸</button>
-<button data-v="v-stress">🧪 壓力測試</button>
-<button data-v="v-fin">💼 財務快照</button>
+<button data-v="v-tree" class="on">投資族譜圖</button>
+<button data-v="v-flow">資金循環架構</button>
+<button data-v="v-table">投資明細表</button>
+<button data-v="v-tl">時間軸</button>
+<button data-v="v-stress">壓力測試</button>
+<button data-v="v-fin">財務快照</button>
 </nav>
 <section class="view on" id="v-tree">
 <div class="toolbar">
@@ -263,14 +263,14 @@ input[type=checkbox],input[type=radio]{width:20px;height:20px;vertical-align:mid
 </div>
 <div class="graphwrap">
 <div class="ftree" id="ftree"></div>
-<aside id="detail"><div class="bhead"><span>📌 節點明細</span><span class="xslot" data-x="detail"></span></div><div id="detailBody"></div></aside>
+<aside id="detail"><div class="bhead"><span>節點明細</span><span class="xslot" data-x="detail"></span></div><div id="detailBody"></div></aside>
 </div>
 </section>
 <section class="view" id="v-flow">
 <div class="flowwrap">
 <div class="looplist" id="looplist"></div>
 <svg id="flow" viewBox="-520 -430 1040 860"></svg>
-<div class="loopinfo" id="loopinfo"><div class="bhead"><span>🔁 循環說明</span><span class="xslot" data-x="flow"></span></div><div id="loopBody"></div></div>
+<div class="loopinfo" id="loopinfo"><div class="bhead"><span>循環說明</span><span class="xslot" data-x="flow"></span></div><div id="loopBody"></div></div>
 </div>
 </section>
 <section class="view" id="v-table">
@@ -362,7 +362,7 @@ document.getElementById('hSub').textContent = `資料整理時間：${M.asOf}${M
  list.sort((a,b)=>b.dt-a.dt||(b.d.length-a.d.length));
  const box=document.getElementById('gov');
  if(!list.length&&!N0.html){box.style.display='none';return;}
- document.getElementById('govT').textContent='📰 '+(N0.title||'近半年重大動態');
+ document.getElementById('govT').textContent=''+(N0.title||'近半年重大動態');
  document.getElementById('govR').textContent=`${fmt(start)} ～ ${M.asOf}｜共 ${list.length} 則`;
  const lead=document.getElementById('govH'); if(N0.html) lead.innerHTML='<b>重點摘要</b>：'+N0.html; else lead.style.display='none';
  const tagOf=e=>e.tag||(e.cat==='gov'?'公告／財報':(CAT[e.cat]?CAT[e.cat].name:'事件'));
@@ -392,6 +392,7 @@ function listify(h){h=h||'';const p=h.split(/（\d+）/);if(p.length<3)return h;
 document.getElementById('method').innerHTML = listify(DATA.method);
 /* 放在網站上（http/https）時才顯示回總網路圖與使用指引的連結；單檔離線開啟時隱藏，避免連到不存在的頁面 */
 if(/^https?:$/.test(location.protocol)) document.getElementById('siteNav').style.display='';
+(function(){const a=document.getElementById('guideLink');if(!a)return;try{if(localStorage.getItem('ecomap_guide_seen'))a.style.cssText='text-decoration:none'}catch(e){}a.addEventListener('click',()=>{try{localStorage.setItem('ecomap_guide_seen','1')}catch(e){}})})();
 /* ============================ 共用 ============================ */
 const $ = s=>document.querySelector(s);
 const tip = $('#tip');
@@ -425,7 +426,7 @@ function drawAmtBar(){const tot={};N.forEach(n=>{if(n.amt==null||n.excludeFromSu
  const cnt={};N.forEach(n=>cnt[n.amtType]=(cnt[n.amtType]||0)+1);
  const st=N.filter(n=>n.stale).length, rm=N.filter(n=>n.rumor).length;
  const order=Object.keys(AMT_TYPES).filter(k=>cnt[k]);
- $('#amtbar').innerHTML='<span class="hint" style="margin-right:2px">💰 金額口徑（只加總同口徑，不含對手方）</span>'+order.map(k=>`<span class="ab${IN_TYPES.has(k)?' in':''}" data-k="${k}">${IN_TYPES.has(k)?'↙':'↗'}${AMT_TYPES[k]}<b>${tot[k]?fmtB(tot[k]):'—'}</b> <small style="color:var(--muted)">${cnt[k]} 筆</small></span>`).join('')+
+ $('#amtbar').innerHTML='<span class="hint" style="margin-right:2px">金額口徑（只加總同口徑，不含對手方）</span>'+order.map(k=>`<span class="ab${IN_TYPES.has(k)?' in':''}" data-k="${k}">${IN_TYPES.has(k)?'↙':'↗'}${AMT_TYPES[k]}<b>${tot[k]?fmtB(tot[k]):'—'}</b> <small style="color:var(--muted)">${cnt[k]} 筆</small></span>`).join('')+
  `<span class="lg">可信度（節點最高來源）${['A','B','C','D'].map(g=>gbadge(g)+' '+N.filter(n=>n.grade===g).length).join('　')}　｜　虛線＝傳聞／未定案 ${rm}　｜　<span class="${st?'freshw':''}">🕒 待更新 ${st}</span>（>${STALE_DAYS} 天或未重新查證）</span>`;
  document.querySelectorAll('#amtbar .ab').forEach(b=>b.onclick=()=>{amtFilter=amtFilter===b.dataset.k?'':b.dataset.k;document.querySelectorAll('#amtbar .ab').forEach(x=>x.classList.toggle('on',x.dataset.k===amtFilter));drawTree();});
 }
@@ -444,7 +445,7 @@ const brk=Object.entries(by).map(([k,v])=>`${AMT_TYPES[k]} ${fmtB(v)}`).join('�
 const sub = `${brk}（${disclosed}/${items.length} 家揭露）${c.sumNote?'<br>'+esc(c.sumNote):''}`;
 return `<div class="crow" data-cat="${c.id}">
 <div class="ccard" style="--c:${c.color}"><div class="cn">${c.name}</div><div class="cs">${items.length} 個節點<br>${sub}</div></div>
-<div class="leafgrid">${items.map(n=>`<div class="lcard${n.rumor?' rumor':''}${n.stale?' stale':''}${(n.guarantee||n.type.includes('擔保'))?' hasflag':''}" data-id="${n.id}" style="--c:${c.color}">
+<div class="leafgrid">${items.map(n=>`<div class="lcard${n.rumor?' rumor':''}${n.stale?' stale':''}${(n.guarantee||n.type.includes('擔保'))?' hasflag':''}" data-id="${n.id}" tabindex="0" role="button" style="--c:${c.color}">
 <span class="badges">${(n.guarantee||n.type.includes('擔保'))?'<span class="flag">擔保</span>':''}${gbadge(n.grade)}</span>
 <div class="ln">${esc(n.name)}<small>${esc(n.tk&&n.tk!=='未上市'?n.tk:'')}</small></div>
 <div class="la">${esc(n.short||'—')}${n.per==='year'?'<span class="moic">年度金額，不計入加總</span>':''}${n.moic!=null?`<span class="moic">現值 ${fmtB(n.val)}・${n.moic.toFixed(2)}x</span>`:(n.val!=null&&n.costUnknown?`<span class="moic">現值 ${fmtB(n.val)}</span>`:'')}</div>
@@ -453,7 +454,7 @@ ${n.risks.length||posOf(n)?`<div class="rks">${posOf(n)?`<span class="pos">${POS
 <div class="bar"><i style="width:${barW(n)}%"></i></div></div>`).join('')}</div></div>`}).join('');
 $('#ftree').innerHTML=`<svg class="links"></svg><div class="froot" id="froot"><b>${esc(M.entity)}</b><span>${esc(M.ticker||'')}・${esc(M.centerLabel||'資本中樞')}</span></div><div class="rows">${rows||'<p class="hint">無符合條件的節點</p>'}</div>`;
 $('#froot').onclick=showCenter;
-document.querySelectorAll('.lcard').forEach(card=>card.onclick=()=>{selected=card.dataset.id;showDetail(NODE[selected]);applyHighlight()});
+document.querySelectorAll('.lcard').forEach(card=>{card.onclick=()=>{selected=card.dataset.id;showDetail(NODE[selected]);applyHighlight()};card.onkeydown=ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();card.onclick()}}});
 applyHighlight(); drawLinks();
 }
 function drawLinks(){
@@ -610,7 +611,7 @@ function drawIC(){
   ['觀察觸發事件',ic.triggers?li(ic.triggers):'',ic.triggers?'':`<b>觀察觸發事件${auto}</b><ul>${(fut.length||pendN.length)?li([...fut,...pendN].slice(0,5)):'<li>無已排定事件</li>'}</ul>`]];
  const pend=(DATA.pending||[]);
  if(!ic.thesis&&!N.length){box.style.display='none';return;}
- box.innerHTML=`<div class="ich"><b>🧭 投資委員會摘要</b><span class="hint">${ic.thesis?'「判斷」由分析師撰寫，與事實資料分開':'尚未撰寫判斷，以下為自動整理'}</span><span class="xslot" data-x="ic"></span></div>
+ box.innerHTML=`<div class="ich"><b>投資委員會摘要</b><span class="hint">${ic.thesis?'「判斷」由分析師撰寫，與事實資料分開':'尚未撰寫判斷，以下為自動整理'}</span><span class="xslot" data-x="ic"></span></div>
  ${ic.thesis?`<p class="thesis"><b>資本策略（判斷）</b>：${esc(ic.thesis)}${srcLinks(ic.src)}</p>`:''}
  <div class="icg">${cols.map(([t,man,au])=>man?`<div><b>${t}（判斷）</b><ul>${man}</ul></div>`:`<div>${au}</div>`).join('')}
  ${pend.length?`<div><b>🔔 待人工確認（${pend.length}）</b><ul>${pend.slice(0,6).map(p=>`<li class="pend">${p.d?`<span class="mono">${esc(p.d)}</span> `:''}${esc(p.t)}${p.url?` <a href="${p.url}" target="_blank">↗</a>`:''}</li>`).join('')}</ul></div>`:''}</div>`;

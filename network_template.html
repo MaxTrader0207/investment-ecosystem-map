@@ -153,13 +153,20 @@ input[type=checkbox],input[type=radio]{width:20px;height:20px;vertical-align:mid
 .fsval{display:inline-block;min-width:48px;text-align:center;font-family:Consolas,monospace}
 @media (max-width:640px){.prefp,.pref.l .prefp{position:fixed;left:12px;right:12px;top:auto;bottom:12px}}
 @media print{.pref{display:none}}
+
+/* —— 細節：空欄縮成一行、看過指引後按鈕縮小、圓點鍵盤焦點 —— */
+.bgrid.one{grid-template-columns:1fr}
+.bnone{margin-top:8px;padding:8px 12px;border:1px dashed var(--line);border-radius:8px;color:var(--muted);font-size:calc(13px*var(--fs))}
+.gbtn.seen,[data-theme="light"] .gbtn.seen{background:var(--panel2);color:var(--text);border:1px solid var(--line);box-shadow:none;padding:5px 10px;min-height:32px;border-radius:6px}
+.gbtn.seen small{display:none}.gbtn.seen b{font-weight:400;font-size:calc(14px*var(--fs))}.gbtn.seen:hover{transform:none;box-shadow:none;border-color:var(--acc)}
+g.node:focus{outline:none}g.node:focus-visible circle{stroke:var(--acc);stroke-width:5}
 </style>
 </head>
 <body>
 <header>
 <div><h1><b>跨實體投資生態總網路圖</b>・系統性樞紐與影響面</h1>
 <div class="sub" id="sub"></div></div>
-<div class="hact"><a class="gbtn" id="guideLink" href="guide.html" style="display:none" title="第一次使用？先看這裡：操作方式、符號對照、每個功能在哪裡"><span class="gi">📖</span><span><b>使用指引與功能地圖</b><small>第一次使用？先看這裡</small></span></a><button class="btn" id="secAll" type="button">全部展開</button><span class="pref"><button class="btn" id="prefBtn" type="button" aria-haspopup="true" aria-expanded="false" title="背景與字體大小">⚙ 顯示設定</button><div class="prefp" id="prefPanel"><div class="prow"><span class="lbl">背景</span><select id="themeSel"><option value="">深夜（預設）</option><option value="graphite">石墨灰</option><option value="navy">深海藍</option><option value="black">純黑</option><option value="light">淺色</option></select></div><div class="prow"><span class="lbl">自訂背景色</span><input type="color" id="bgPick" value="#0a0e13" title="自訂背景色"></div><div class="prow"><span class="lbl">字體大小</span><span><button class="btn" id="fsDown" type="button" aria-label="縮小字體">A−</button><span class="fsval" id="fsVal">100%</span><button class="btn" id="fsUp" type="button" aria-label="放大字體">A＋</button></span></div><div class="prow"><span class="hint">記在這台瀏覽器，各頁共用</span><button class="btn" id="prefReset" type="button">還原預設</button></div></div></span></div>
+<div class="hact"><a class="gbtn" id="guideLink" href="guide.html" style="display:none" title="第一次使用？先看這裡：操作方式、符號對照、每個功能在哪裡"><span><b>使用指引與功能地圖</b><small>第一次使用？先看這裡</small></span></a><button class="btn" id="secAll" type="button">全部展開</button><span class="pref"><button class="btn" id="prefBtn" type="button" aria-haspopup="true" aria-expanded="false" title="背景與字體大小">⚙ 顯示設定</button><div class="prefp" id="prefPanel"><div class="prow"><span class="lbl">背景</span><select id="themeSel"><option value="">深夜（預設）</option><option value="graphite">石墨灰</option><option value="navy">深海藍</option><option value="black">純黑</option><option value="light">淺色</option></select></div><div class="prow"><span class="lbl">自訂背景色</span><input type="color" id="bgPick" value="#0a0e13" title="自訂背景色"></div><div class="prow"><span class="lbl">字體大小</span><span><button class="btn" id="fsDown" type="button" aria-label="縮小字體">A−</button><span class="fsval" id="fsVal">100%</span><button class="btn" id="fsUp" type="button" aria-label="放大字體">A＋</button></span></div><div class="prow"><span class="hint">記在這台瀏覽器，各頁共用</span><button class="btn" id="prefReset" type="button">還原預設</button></div></div></span></div>
 <div class="legend">
 <span><i style="border-color:#94a3b8"></i>流出（實體出資／採購）</span>
 <span><i style="border-color:var(--in)"></i>流入（對方投入資金）</span>
@@ -169,13 +176,13 @@ input[type=checkbox],input[type=radio]{width:20px;height:20px;vertical-align:mid
 </div>
 </header>
 <nav class="toc" id="toc"></nav>
-<div class="sec" id="s-top">📌 本期結論</div>
+<div class="sec" id="s-top">本期結論</div>
 <div class="brief" id="topBox"></div>
-<div class="sec" id="s-watch">🚨 預警指標（定期追蹤的領先訊號；燈號＝水位＋與上期相比的方向）</div>
+<div class="sec" id="s-watch">預警指標（定期追蹤的領先訊號；燈號＝水位＋與上期相比的方向）</div>
 <div class="brief" id="watch"></div>
-<div class="sec" id="s-hist">📉 歷史走勢（每期留一筆，看風險與預警指標往哪個方向走）</div>
+<div class="sec" id="s-hist">歷史走勢（每期留一筆，看風險與預警指標往哪個方向走）</div>
 <div class="brief" id="histB"></div>
-<div class="sec" id="s-net">🕸️ 關係網路圖（點圓點看它和誰有關、涉及多少錢）</div>
+<div class="sec" id="s-net">關係網路圖（點圓點看它和誰有關、涉及多少錢）</div>
 <div class="kpis" id="kpis"></div>
 <div class="toolbar">
 <label>顯示交易對手：<select id="minDeg"><option value="2" selected>出現在 ≥2 個實體</option><option value="3">≥3 個實體</option><option value="1">全部（含單一實體）</option></select></label>
@@ -191,45 +198,45 @@ input[type=checkbox],input[type=radio]{width:20px;height:20px;vertical-align:mid
 <svg id="g" viewBox="-560 -420 1120 840"></svg>
 <aside id="side"></aside>
 </div>
-<div class="sec">🧾 投資簡覽（點選圖上的公司，或從這裡選擇）　<select id="briefSel"></select></div>
+<div class="sec">投資簡覽（點選圖上的公司，或從這裡選擇）　<select id="briefSel"></select></div>
 <div class="brief" id="brief"></div>
-<div class="sec">🚦 風險總覽（跟著上方選擇的公司切換）</div>
+<div class="sec">風險總覽（跟著上方選擇的公司切換）</div>
 <div class="brief" id="riskBox"></div>
-<div class="sec">💧 循環融資與現金缺口（把多年期合約換算成每年金額，再和年營收比較）</div>
+<div class="sec">循環融資與現金缺口（把多年期合約換算成每年金額，再和年營收比較）</div>
 <div class="tablewrap" style="padding-bottom:6px"><table id="cashT"></table><div class="hint" id="cashN" style="margin-top:8px;line-height:1.7"></div></div>
-<div class="sec">🧱 付款時程（各年度已承諾要付的金額，依付款方堆疊）　<select id="wallM"><option value="flat">沒有逐年表的合約：平均攤提</option><option value="ramp">沒有逐年表的合約：前低後高（假設）</option></select></div>
+<div class="sec">付款時程（各年度已承諾要付的金額，依付款方堆疊）　<select id="wallM"><option value="flat">沒有逐年表的合約：平均攤提</option><option value="ramp">沒有逐年表的合約：前低後高（假設）</option></select></div>
 <div class="brief" id="wall"></div>
 <div class="brief" id="due"></div>
-<div class="sec" id="s-scen">🧪 情境試算：選一個事件，看各家每年的曝險金額　<select id="scE"></select>　<span id="scKw"><select id="scK"></select>　</span><span id="scHl">付款減少</span> <select id="scH"></select></div>
+<div class="sec" id="s-scen">情境試算：選一個事件，看各家每年的曝險金額　<select id="scE"></select>　<span id="scKw"><select id="scK"></select>　</span><span id="scHl">付款減少</span> <select id="scH"></select></div>
 <div class="brief" id="scen"></div>
-<div class="sec" id="s-mine">🧮 我的曝險：輸入持有的部位，看穿透後實際押在誰身上（只存在這台瀏覽器，不會上傳）</div>
+<div class="sec" id="s-mine">我的曝險：輸入持有的部位，看穿透後實際押在誰身上（只存在這台瀏覽器，不會上傳）</div>
 <div class="brief" id="mine"></div>
-<div class="sec" id="s-val">💰 估值與風險（市值相對年營收的倍數，對照風險分數）</div>
+<div class="sec" id="s-val">估值與風險（市值相對年營收的倍數，對照風險分數）</div>
 <div class="brief" id="valB"></div>
-<div class="sec" id="s-fs">🏦 資金來源結構（近 24 個月的募資與舉債，依工具分類）</div>
+<div class="sec" id="s-fs">資金來源結構（近 24 個月的募資與舉債，依工具分類）</div>
 <div class="brief" id="fsB"></div>
-<div class="sec" id="s-phy">🏭 實體瓶頸（資金循環最後卡在哪些實體環節）</div>
+<div class="sec" id="s-phy">實體瓶頸（資金循環最後卡在哪些實體環節）</div>
 <div class="brief" id="phyB"></div>
-<div class="sec" id="s-pol">🏛️ 主權與政策層（出口許可、政府入股與補助、主權基金入股、國安審查）</div>
+<div class="sec" id="s-pol">主權與政策層（出口許可、政府入股與補助、主權基金入股、國安審查）</div>
 <div class="brief" id="polB"></div>
-<div class="sec" id="s-his">📜 歷史對照：2000 年電信設備商的供應商融資</div>
+<div class="sec" id="s-his">歷史對照：2000 年電信設備商的供應商融資</div>
 <div class="brief" id="hisB"></div>
-<div class="sec" id="s-fresh">🗓️ 資料新鮮度（各家營收、現金、市值是哪一天的數字）</div>
+<div class="sec" id="s-fresh">資料新鮮度（各家營收、現金、市值是哪一天的數字）</div>
 <div class="brief" id="freshB"></div>
-<div class="sec" id="s-grow">📈 營收成長（最近四季與最新一季的年增率）</div>
+<div class="sec" id="s-grow">營收成長（最近四季與最新一季的年增率）</div>
 <div class="brief" id="growB"></div>
-<div class="sec" id="s-cal">📅 財報日曆（哪一週該重查誰的數字）</div>
+<div class="sec" id="s-cal">財報日曆（哪一週該重查誰的數字）</div>
 <div class="brief" id="calB"></div>
-<div class="sec" id="s-chg">📝 變動紀錄（每次更新後，與上一期相比哪些數字改了、為什麼）</div>
+<div class="sec" id="s-chg">變動紀錄（每次更新後，與上一期相比哪些數字改了、為什麼）</div>
 <div class="brief" id="chg"></div>
-<div class="sec">⚖️ 多實體比較（勾選 2–3 家並排）</div>
+<div class="sec">多實體比較（勾選 2–3 家並排）</div>
 <div class="toolbar" id="cmpPick"></div>
 <div class="tablewrap"><table id="cmp"></table></div>
-<div class="sec">🔎 跨實體一致性檢查（同一筆關係在不同 Dashboard 的金額是否對得上）</div>
+<div class="sec">跨實體一致性檢查（同一筆關係在不同 Dashboard 的金額是否對得上）</div>
 <div class="tablewrap"><table id="chk"></table></div>
-<div class="sec">🔁 跨實體資金閉環（由全部 Dashboard 的金額關係自動偵測；依「金額最小的一段」排序）</div>
+<div class="sec">跨實體資金閉環（由全部 Dashboard 的金額關係自動偵測；依「金額最小的一段」排序）</div>
 <div class="tablewrap"><table id="cyc"></table></div>
-<div class="sec">🏛️ 系統性樞紐排行（跨越 ≥2 個實體的交易對手）</div>
+<div class="sec">系統性樞紐排行（跨越 ≥2 個實體的交易對手）</div>
 <div class="tablewrap"><table id="tbl"><thead></thead><tbody></tbody></table></div>
 <footer id="foot"></footer>
 <script>
@@ -295,7 +302,7 @@ function draw(){
   p.appendChild(document.createElementNS(NS,'title')).textContent=`${e.s.id} ↔ ${e.t.id}：${e.ls.map(l=>`${l.name}｜${AMT[l.amtType]}｜${l.short||'—'}`).join('；')}`;});
  NODES.forEach(n=>{const on=selected?nb.has(n.id):(!q||qnb.has(n.id));   // 有選取時以選取為準，不再被搜尋字串交叉過濾
   const c=n.isE?ENT[n.id].accent:'#94a3b8';
-  const gg=mk('g',{class:'node'+(on?'':' dim'),'data-id':n.id,transform:`translate(${n.x},${n.y})`},gn);gg.onmouseenter=()=>hov(n.id);gg.onmouseleave=()=>hov(null);
+  const gg=mk('g',{class:'node'+(on?'':' dim'),'data-id':n.id,transform:`translate(${n.x},${n.y})`},gn);gg.onmouseenter=()=>hov(n.id);gg.onmouseleave=()=>hov(null);if(n.isE){gg.setAttribute('tabindex','0');gg.setAttribute('role','button');gg.setAttribute('aria-label',n.id);gg.onkeydown=ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();gg.onclick(ev)}};}
   mk('circle',{r:n.r,fill:n.isE?'var(--panel)':c,'fill-opacity':n.isE?1:.85,stroke:n.isE?c:(selected===n.id?'#fff':'var(--bg)'),'stroke-width':n.isE?3:(selected===n.id?2.5:1.2)},gg);
   if(selected===n.id){const s=n.r+9,L=s*.5;mk('path',{d:`M${-s},${-s+L}V${-s}H${-s+L}M${s-L},${-s}H${s}V${-s+L}M${s},${s-L}V${s}H${s-L}M${-s+L},${s}H${-s}V${s-L}`,fill:'none',stroke:'var(--acc)','stroke-width':4,'stroke-linecap':'round','stroke-linejoin':'round'},gg);}   // 被選者用方形對焦框（四個角括號）標記
   else if(q&&hit.has(n.id)) mk('circle',{r:n.r+5,fill:'none',stroke:'var(--acc)','stroke-width':2.5,'stroke-dasharray':'4 3'},gg);
@@ -350,10 +357,11 @@ function brief(k){
  const nmK=e?e.entity:k;
  const xrow=(w,rs)=>rs.length?`<div class="bx"><span class="hint">資料輸出</span>${['CSV','Excel','JSON','Markdown','PNG'].map(f=>`<button class="btn" data-w="${w}" data-x="${f}" title="輸出這個區塊為 ${f}">${f}</button>`).join('')}</div>`:'';
  B.innerHTML=`<div class="bintro" style="--c:${c}">${intro}</div>
- <div class="bgrid">
-  <div class="bcol" id="briefOut">${xrow('out',out)}<h4>↗ ${esc(nmK)} 對外投資前 5 大<small>${cap(out)}</small></h4>${tbl(out,'被投資方')}</div>
-  <div class="bcol" id="briefIn">${xrow('in',inn)}<h4>↙ ${esc(nmK)} 被投資前 5 大<small>${cap(inn)}</small></h4>${tbl(inn,'投資方')}</div>
+ <div class="bgrid${out.length&&inn.length?'':' one'}">
+  ${out.length?`<div class="bcol" id="briefOut">${xrow('out',out)}<h4>↗ ${esc(nmK)} 對外投資前 5 大<small>${cap(out)}</small></h4>${tbl(out,'被投資方')}</div>`:''}
+  ${inn.length?`<div class="bcol" id="briefIn">${xrow('in',inn)}<h4>↙ ${esc(nmK)} 被投資前 5 大<small>${cap(inn)}</small></h4>${tbl(inn,'投資方')}</div>`:''}
  </div>
+ ${out.length?'':`<div class="bnone">↗ ${esc(nmK)} 對外投資前 5 大：目前的資料中沒有已揭露金額的項目。</div>`}${inn.length?'':`<div class="bnone">↙ ${esc(nmK)} 被投資前 5 大：目前的資料中沒有已揭露金額的項目。</div>`}
  <div class="hint" style="margin-top:8px">只計入有揭露金額的股權類項目（股權、特別股、可轉債、權證、收購、合資與入股承諾），依金額由大到小排列；採購、雲端與租約等合約不算投資，請看右側明細或各家 Dashboard。金額統一換算成美元比較，「≈」後為換算值。兩家都有 Dashboard 時，同一筆關係只列一次，並以出資方那份的金額（投入成本）為準；有現值時另行標示。</div>`;
  B.querySelectorAll('.bx button').forEach(x=>x.onclick=()=>briefExport(x.dataset.w,x.dataset.x));
  risk(k);
@@ -536,6 +544,8 @@ $('#csv').onclick=()=>{const rows=window._rows||[];const head=['交易對手','�
 /* CSV 開頭的 BOM 由下一行補上，避免 Excel 中文亂碼 */
 (function(){const B=window.Blob;window.Blob=function(parts,opt){if(opt&&opt.type==='text/csv')parts=[String.fromCharCode(65279),...parts.map(p=>typeof p==='string'?p.replace(/^/,''):p)];return new B(parts,opt)};})();
 if(DATA.guide){$('#guideLink').href=DATA.guide;$('#guideLink').style.display='inline-flex'}
+try{if(localStorage.getItem('ecomap_guide_seen'))$('#guideLink').classList.add('seen')}catch(e){}
+$('#guideLink').addEventListener('click',()=>{try{localStorage.setItem('ecomap_guide_seen','1')}catch(e){}});
 window.onPrefs=()=>{try{draw()}catch(e){}};
 ['#minDeg','#dirSel','#cpChk','#top10'].forEach(s=>$(s).onchange=()=>{build();side(selected)});
 $('#q').oninput=draw; $('#reset').onclick=()=>{selected=null;$('#q').value='';$('#minDeg').value='2';$('#dirSel').value='';$('#cpChk').checked=true;$('#top10').checked=false;build();side(null)};

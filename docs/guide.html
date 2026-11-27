@@ -89,7 +89,7 @@ input[type=checkbox],input[type=radio]{width:20px;height:20px;vertical-align:mid
 <header>
 <div><h1><b>使用者指引</b>與網站功能地圖</h1>
 <div class="sub" id="sub"></div></div>
-<div><a class="btn" href="Ecosystem_Network_Map.html">🕸 回總網路圖</a> <span class="pref"><button class="btn" id="prefBtn" type="button" aria-haspopup="true" aria-expanded="false" title="背景與字體大小">⚙ 顯示設定</button><div class="prefp" id="prefPanel"><div class="prow"><span class="lbl">背景</span><select id="themeSel"><option value="">深夜（預設）</option><option value="graphite">石墨灰</option><option value="navy">深海藍</option><option value="black">純黑</option><option value="light">淺色</option></select></div><div class="prow"><span class="lbl">自訂背景色</span><input type="color" id="bgPick" value="#0a0e13" title="自訂背景色"></div><div class="prow"><span class="lbl">字體大小</span><span><button class="btn" id="fsDown" type="button" aria-label="縮小字體">A−</button><span class="fsval" id="fsVal">100%</span><button class="btn" id="fsUp" type="button" aria-label="放大字體">A＋</button></span></div><div class="prow"><span class="hint">記在這台瀏覽器，各頁共用</span><button class="btn" id="prefReset" type="button">還原預設</button></div></div></span></div>
+<div><a class="btn" href="Ecosystem_Network_Map.html">回總網路圖</a> <span class="pref"><button class="btn" id="prefBtn" type="button" aria-haspopup="true" aria-expanded="false" title="背景與字體大小">⚙ 顯示設定</button><div class="prefp" id="prefPanel"><div class="prow"><span class="lbl">背景</span><select id="themeSel"><option value="">深夜（預設）</option><option value="graphite">石墨灰</option><option value="navy">深海藍</option><option value="black">純黑</option><option value="light">淺色</option></select></div><div class="prow"><span class="lbl">自訂背景色</span><input type="color" id="bgPick" value="#0a0e13" title="自訂背景色"></div><div class="prow"><span class="lbl">字體大小</span><span><button class="btn" id="fsDown" type="button" aria-label="縮小字體">A−</button><span class="fsval" id="fsVal">100%</span><button class="btn" id="fsUp" type="button" aria-label="放大字體">A＋</button></span></div><div class="prow"><span class="hint">記在這台瀏覽器，各頁共用</span><button class="btn" id="prefReset" type="button">還原預設</button></div></div></span></div>
 </header>
 <div class="wrap">
 <nav class="toc">
@@ -128,7 +128,7 @@ input[type=checkbox],input[type=radio]{width:20px;height:20px;vertical-align:mid
 </div>
 <div class="map">
 <div class="mcol" style="--c:var(--net)">
-<h3>🕸 總網路圖</h3>
+<h3>總網路圖</h3>
 <div class="hint">跨公司的關係：誰和誰有金流、誰是共同的樞紐。</div>
 <ul class="tree">
 <li><span class="k">章節目錄</span> <span class="d">頁面最上方一排固定的章節按鈕，捲動時留在頂端，點了直接跳到該段</span></li>
@@ -143,48 +143,48 @@ input[type=checkbox],input[type=radio]{width:20px;height:20px;vertical-align:mid
  <ul><li><span class="k">如何閱讀、前 10 大樞紐</span> <span class="d">未選取時顯示</span></li>
  <li><span class="k">若它出事</span> <span class="d">逐家列出受影響項目、金額、占比、影響程度；可輸出 5 種格式</span></li>
  <li><span class="k">關係明細與來源</span> <span class="d">每筆關係的可信度與原始連結</span></li></ul></li>
-<li><span class="k">🧾 投資簡覽</span> <span class="d">點選圖上的公司或用下拉選單，看該公司的簡介、對外投資前 5 大與被投資前 5 大（依金額排序）；兩欄各自可輸出 5 種格式</span></li>
-<li><span class="k">🚦 風險總覽</span> <span class="d">左邊是總風險值、紅黃綠燈與在全部公司中的排名，右邊是各風險面向的雷達圖，下方是全部公司的燈號一覽（點選可切換）。查不到公開數據的面向標「待補」，公式套不上的標「不適用」，兩者都不計入總分</span></li>
-<li><span class="k">💧 循環融資與現金缺口</span> <span class="d">把多年期合約換算成每年金額：被投資方每年回頭付多少、占營收多少、每年承諾支出是否超過營收</span></li>
-<li><span class="k">🧱 付款時程</span> <span class="d">2026–2036 各年度已承諾要付的金額，依付款方堆疊，可看出付款高峰在哪一年。付款方有揭露逐年義務表的，依揭露的形狀分配；其餘合約可用選單切換「平均攤提」或「前低後高（假設）」</span></li>
-<li><span class="k">🧪 情境試算</span> <span class="d">選一個事件（某公司募資失敗、出口管制收緊、大型業者削減資本支出）與幅度，看各家每年的曝險金額，以及損失如何一層一層傳到下游</span></li>
-<li><span class="k">💧 缺口靠誰補</span> <span class="d">循環融資與現金缺口表的最後一欄：現金（或近 12 個月的募資與舉債）可以支應幾年的缺口、錢從哪裡來；晶片商來自被投資公司的營收若未揭露，會以「估計區間」列出並附假設</span></li>
-<li><span class="k">🧱 未來 36 個月到期事項</span> <span class="d">付款時程圖下方：未來三年每年的合約付款、已建檔的債務到期，以及尚未解除的擔保與供應商融資</span></li>
-<li><span class="k">🧮 我的曝險</span> <span class="d">輸入自己持有的公司與金額，依各公司的營收依賴往上追三層，看穿透後實際押在哪個付款方身上；資料只存在瀏覽器，不會上傳</span></li>
-<li><span class="k">💰 估值與風險</span> <span class="d">市值相對年營收的倍數對照風險分數，以中位數切成四個位置（風險高且貴、風險高但便宜等）</span></li>
-<li><span class="k">🏦 資金來源結構</span> <span class="d">近 24 個月的募資與舉債，分成私募信貸與表外、其他借款、可轉債、公開債券、股權五類</span></li>
-<li><span class="k">🏭 實體瓶頸</span> <span class="d">變壓器交期、併網排隊、燃氣渦輪、先進封裝、高頻寬記憶體五個實體環節的現況（人工維護）；每張卡片列出對應到的已建檔公司，點了可切換過去。風險總覽也會列出該公司受哪些瓶頸影響，但不計入分數</span></li>
-<li><span class="k">🏛️ 主權與政策層</span> <span class="d">從各家資料自動歸類的出口許可、政府入股與補助、主權基金入股、國安審查事項</span></li>
-<li><span class="k">📜 歷史對照</span> <span class="d">2000 年電信設備商的供應商融資比率，與現在 AI 供應商的擔保與融資上限並列</span></li>
-<li><span class="k">📌 本期結論</span> <span class="d">頁面最上方的三到五句話：目前循環的狀態、最脆弱的環節、與上一期相比的變化，由資料自動產生</span></li>
-<li><span class="k">🚨 預警指標</span> <span class="d">八個定期追蹤的領先訊號（承諾支出相對營收、循環收入占營收、付款高峰、新債票息、承諾下修、權證或擔保條件變動、紅燈家數、供應商融資總額），每個都標示燈號與判定規則。燈號＝水位＋與上一期相比的方向：比上期惡化升一級，紅燈水位但持平降為黃燈，改善降一級。「承諾下修」與「擔保條件變動」只計人工確認過的事件，文字比對到但未確認的另列「待確認」</span></li>
-<li><span class="k">📉 歷史走勢</span> <span class="d">每次更新留一筆紀錄，可選紅燈家數、平均風險總分、任一預警指標或任一公司的總分看走勢線；每週自動累積。數字跳動可能是改了計算口徑或補了資料，要對照變動紀錄</span></li>
-<li><span class="k">📈 營收成長</span> <span class="d">各家最近四季年增率與最新一季年增率並列；最新一季明顯高於最近四季標為加速，明顯低於標為減速。標「估」的是反推或外部估計</span></li>
-<li><span class="k">📅 財報日曆</span> <span class="d">各家下次財報日與還有幾天，未來三週內要公布的會列在最上面；日期分成公司已確認、市場預期、推估三種。財報公布後該公司的數字要重查</span></li>
-<li><span class="k">🗓️ 資料新鮮度</span> <span class="d">各家營收、現金、市值是哪一天的數字、距今幾天；營收與現金超過約兩季標紅，市值超過 45 天標紅，提醒該重查了</span></li>
-<li><span class="k">📝 變動紀錄</span> <span class="d">每次更新後自動與上一期比較，逐筆列出哪些數字改了、為什麼；保留最近數期</span></li>
-<li><span class="k">⚖️ 多實體比較</span> <span class="d">勾選 2–3 家並排，金額只在同口徑內比較</span></li>
-<li><span class="k">🔎 跨實體一致性檢查</span> <span class="d">同一筆關係在不同 Dashboard 的金額是否對得上</span></li>
-<li><span class="k">🔁 跨實體資金閉環</span> <span class="d">自動找出 2–4 個環節的資金循環，標出金額最小的一段</span></li>
-<li><span class="k">🏛️ 系統性樞紐排行</span> <span class="d">跨越 2 家以上的交易對手列表</span></li>
+<li><span class="k">投資簡覽</span> <span class="d">點選圖上的公司或用下拉選單，看該公司的簡介、對外投資前 5 大與被投資前 5 大（依金額排序）；兩欄各自可輸出 5 種格式</span></li>
+<li><span class="k">風險總覽</span> <span class="d">左邊是總風險值、紅黃綠燈與在全部公司中的排名，右邊是各風險面向的雷達圖，下方是全部公司的燈號一覽（點選可切換）。查不到公開數據的面向標「待補」，公式套不上的標「不適用」，兩者都不計入總分</span></li>
+<li><span class="k">循環融資與現金缺口</span> <span class="d">把多年期合約換算成每年金額：被投資方每年回頭付多少、占營收多少、每年承諾支出是否超過營收</span></li>
+<li><span class="k">付款時程</span> <span class="d">2026–2036 各年度已承諾要付的金額，依付款方堆疊，可看出付款高峰在哪一年。付款方有揭露逐年義務表的，依揭露的形狀分配；其餘合約可用選單切換「平均攤提」或「前低後高（假設）」</span></li>
+<li><span class="k">情境試算</span> <span class="d">選一個事件（某公司募資失敗、出口管制收緊、大型業者削減資本支出）與幅度，看各家每年的曝險金額，以及損失如何一層一層傳到下游</span></li>
+<li><span class="k">缺口靠誰補</span> <span class="d">循環融資與現金缺口表的最後一欄：現金（或近 12 個月的募資與舉債）可以支應幾年的缺口、錢從哪裡來；晶片商來自被投資公司的營收若未揭露，會以「估計區間」列出並附假設</span></li>
+<li><span class="k">未來 36 個月到期事項</span> <span class="d">付款時程圖下方：未來三年每年的合約付款、已建檔的債務到期，以及尚未解除的擔保與供應商融資</span></li>
+<li><span class="k">我的曝險</span> <span class="d">輸入自己持有的公司與金額，依各公司的營收依賴往上追三層，看穿透後實際押在哪個付款方身上；資料只存在瀏覽器，不會上傳</span></li>
+<li><span class="k">估值與風險</span> <span class="d">市值相對年營收的倍數對照風險分數，以中位數切成四個位置（風險高且貴、風險高但便宜等）</span></li>
+<li><span class="k">資金來源結構</span> <span class="d">近 24 個月的募資與舉債，分成私募信貸與表外、其他借款、可轉債、公開債券、股權五類</span></li>
+<li><span class="k">實體瓶頸</span> <span class="d">變壓器交期、併網排隊、燃氣渦輪、先進封裝、高頻寬記憶體五個實體環節的現況（人工維護）；每張卡片列出對應到的已建檔公司，點了可切換過去。風險總覽也會列出該公司受哪些瓶頸影響，但不計入分數</span></li>
+<li><span class="k">主權與政策層</span> <span class="d">從各家資料自動歸類的出口許可、政府入股與補助、主權基金入股、國安審查事項</span></li>
+<li><span class="k">歷史對照</span> <span class="d">2000 年電信設備商的供應商融資比率，與現在 AI 供應商的擔保與融資上限並列</span></li>
+<li><span class="k">本期結論</span> <span class="d">頁面最上方的三到五句話：目前循環的狀態、最脆弱的環節、與上一期相比的變化，由資料自動產生</span></li>
+<li><span class="k">預警指標</span> <span class="d">八個定期追蹤的領先訊號（承諾支出相對營收、循環收入占營收、付款高峰、新債票息、承諾下修、權證或擔保條件變動、紅燈家數、供應商融資總額），每個都標示燈號與判定規則。燈號＝水位＋與上一期相比的方向：比上期惡化升一級，紅燈水位但持平降為黃燈，改善降一級。「承諾下修」與「擔保條件變動」只計人工確認過的事件，文字比對到但未確認的另列「待確認」</span></li>
+<li><span class="k">歷史走勢</span> <span class="d">每次更新留一筆紀錄，可選紅燈家數、平均風險總分、任一預警指標或任一公司的總分看走勢線；每週自動累積。數字跳動可能是改了計算口徑或補了資料，要對照變動紀錄</span></li>
+<li><span class="k">營收成長</span> <span class="d">各家最近四季年增率與最新一季年增率並列；最新一季明顯高於最近四季標為加速，明顯低於標為減速。標「估」的是反推或外部估計</span></li>
+<li><span class="k">財報日曆</span> <span class="d">各家下次財報日與還有幾天，未來三週內要公布的會列在最上面；日期分成公司已確認、市場預期、推估三種。財報公布後該公司的數字要重查</span></li>
+<li><span class="k">資料新鮮度</span> <span class="d">各家營收、現金、市值是哪一天的數字、距今幾天；營收與現金超過約兩季標紅，市值超過 45 天標紅，提醒該重查了</span></li>
+<li><span class="k">變動紀錄</span> <span class="d">每次更新後自動與上一期比較，逐筆列出哪些數字改了、為什麼；保留最近數期</span></li>
+<li><span class="k">多實體比較</span> <span class="d">勾選 2–3 家並排，金額只在同口徑內比較</span></li>
+<li><span class="k">跨實體一致性檢查</span> <span class="d">同一筆關係在不同 Dashboard 的金額是否對得上</span></li>
+<li><span class="k">跨實體資金閉環</span> <span class="d">自動找出 2–4 個環節的資金循環，標出金額最小的一段</span></li>
+<li><span class="k">系統性樞紐排行</span> <span class="d">跨越 2 家以上的交易對手列表</span></li>
 <li><span class="k">方法與注意事項</span> <span class="d">統計口徑、可信度定義、已納入公司的連結</span></li>
 </ul>
 </div>
 <div class="mcol" style="--c:var(--dash)">
-<h3>📊 單家 Dashboard</h3>
+<h3>單家 Dashboard</h3>
 <div class="hint">一家公司的投資族譜：投了誰、多少錢、錢怎麼回來。</div>
 <ul class="tree">
 <li><span class="k">設定列</span> <span class="d">5 種背景主題與自訂色、字體縮放、整頁輸出</span></li>
 <li><span class="k">重大動態橫幅</span> <span class="d">近半年治理或財務的重要變化</span></li>
-<li><span class="k">📊 關鍵指標</span> <span class="d">約 8 個數字，各附來源</span></li>
+<li><span class="k">關鍵指標</span> <span class="d">約 8 個數字，各附來源</span></li>
 <li><span class="k">投資委員會摘要</span> <span class="d">核心論點、機會、風險、觀察重點；每週自動檢查的「待人工確認」也在這裡</span></li>
 <li><span class="k">六個分頁</span>
- <ul><li><span class="k">🌳 投資族譜圖</span> <span class="d">依類別排列的節點卡片；可依類別、交易型態、可信度、風險、部位篩選與搜尋。點卡片看金額說明、現值與倍數、條款、風險、來源</span></li>
- <li><span class="k">🔁 資金循環架構</span> <span class="d">3–6 條循環的流向圖、回流金額與依存度</span></li>
- <li><span class="k">📋 投資明細表</span> <span class="d">全部節點的表格，點欄位標題排序</span></li>
- <li><span class="k">🕒 時間軸</span> <span class="d">依年份排列的事件</span></li>
- <li><span class="k">🧪 壓力測試</span> <span class="d">假設特定對象出問題時，受影響最大的節點</span></li>
- <li><span class="k">💼 財務快照</span> <span class="d">這家公司自己的體質：年營收、帳上現金、市值、年度資本支出占營收比、債務到期表、新債票息，以及地緣、匯率、通膨利率、接班四個面向的分數與計算依據</span></li></ul></li>
+ <ul><li><span class="k">投資族譜圖</span> <span class="d">依類別排列的節點卡片；可依類別、交易型態、可信度、風險、部位篩選與搜尋。點卡片看金額說明、現值與倍數、條款、風險、來源</span></li>
+ <li><span class="k">資金循環架構</span> <span class="d">3–6 條循環的流向圖、回流金額與依存度</span></li>
+ <li><span class="k">投資明細表</span> <span class="d">全部節點的表格，點欄位標題排序</span></li>
+ <li><span class="k">時間軸</span> <span class="d">依年份排列的事件</span></li>
+ <li><span class="k">壓力測試</span> <span class="d">假設特定對象出問題時，受影響最大的節點</span></li>
+ <li><span class="k">財務快照</span> <span class="d">這家公司自己的體質：年營收、帳上現金、市值、年度資本支出占營收比、債務到期表、新債票息，以及地緣、匯率、通膨利率、接班四個面向的分數與計算依據</span></li></ul></li>
 <li><span class="k">資料校驗紀錄</span> <span class="d">已驗算、已修正、仍有分歧、未定案的項目</span></li>
 <li><span class="k">與上一版差異</span> <span class="d">這次更新新增、移除、變動了哪些節點</span></li>
 <li><span class="k">方法與注意事項</span> <span class="d">該公司特有的換算與口徑說明</span></li>
@@ -326,7 +326,7 @@ input[type=checkbox],input[type=radio]{width:20px;height:20px;vertical-align:mid
 
 <h2 id="pages">全部頁面清單</h2>
 <p class="hint">點任一家公司會在新分頁開啟它的 Dashboard，本頁保留不動。</p>
-<p><a class="btn" href="Ecosystem_Network_Map.html" target="_blank" rel="noopener">🕸 跨實體總網路圖 ↗</a></p>
+<p><a class="btn" href="Ecosystem_Network_Map.html" target="_blank" rel="noopener">跨實體總網路圖 ↗</a></p>
 <div class="ents" id="ents"></div>
 
 </main>
@@ -342,6 +342,7 @@ if(G){
  document.getElementById('ents').innerHTML=G.ents.map(e=>`<a class="ent" style="--c:${esc(e.accent)}" href="${esc(e.file)}" target="_blank" rel="noopener" title="在新分頁開啟 ${esc(e.entity)} 的 Dashboard"><b>${esc(e.entity)}</b><small>${esc(e.ticker||'')}・${e.nodes} 個節點・截至 ${esc(e.asOf)} ↗</small></a>`).join('');
 }
 </script>
+<script>try{localStorage.setItem('ecomap_guide_seen','1')}catch(e){}</script>
 <script id="pref-js">
 (function(){const R=document.documentElement,B=document.body,K='ecomap_prefs_v1',g=i=>document.getElementById(i);
  let p={theme:'',bg:'',fs:1};
