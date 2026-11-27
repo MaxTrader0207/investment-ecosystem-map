@@ -254,6 +254,10 @@
    "Yahoo Finance｜META 2026-11-25 收盤 609.89",
    "https://finance.yahoo.com/quote/META",
    "B"
+  ],
+  "debt_sched": [
+   "SEC 10-Q｜Meta 2026 Q3：票據逐年本金到期表（合計 $840 億）",
+   "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066773/R32.htm"
   ]
  },
  "categories": [
@@ -1688,9 +1692,45 @@
    "y": 2027,
    "amt": 2.75,
    "kind": "債務到期",
-   "what": "2027/8 到期的票據；其餘 $812.5 億分散到 2066 年，逐年金額未取得",
+   "what": "2027/8 到期的票據",
    "src": [
-    "gap_10q"
+    "debt_sched"
+   ]
+  },
+  {
+   "y": 2028,
+   "amt": 1.5,
+   "kind": "債務到期",
+   "what": "2028 年到期的票據本金",
+   "src": [
+    "debt_sched"
+   ]
+  },
+  {
+   "y": 2029,
+   "amt": 1.0,
+   "kind": "債務到期",
+   "what": "2029 年到期的票據本金",
+   "src": [
+    "debt_sched"
+   ]
+  },
+  {
+   "y": 2030,
+   "amt": 5.0,
+   "kind": "債務到期",
+   "what": "2030 年到期的票據本金",
+   "src": [
+    "debt_sched"
+   ]
+  },
+  {
+   "y": 2031,
+   "amt": null,
+   "kind": "債務到期",
+   "what": "2031 年以後合計 $737.5 億，分散到 2066 年，10-Q 沒有再逐年拆分；9/30 面額合計 $840 億，未含 11 月新發的票據",
+   "src": [
+    "debt_sched"
    ]
   }
  ]

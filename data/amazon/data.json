@@ -208,6 +208,10 @@
    "Yahoo Finance｜AMZN 2026-11-25 收盤 244.43",
    "https://finance.yahoo.com/quote/AMZN",
    "B"
+  ],
+  "vf_inv": [
+   "Investing.com｜Amazon 設立最高 $800 億供應商融資，以所購硬體為抵押（2026-10-30）",
+   "https://www.investing.com/news/stock-market-news/amazon-sets-up-80-billion-supplier-financing-for-ai-hardware-4988386"
   ]
  },
  "categories": [
@@ -553,6 +557,27 @@
    "amtType": "none",
    "direction": "out",
    "verified": "2026-11-26"
+  },
+  {
+   "id": "vendorfin",
+   "name": "供應商融資額度",
+   "tk": "—",
+   "cat": "fin",
+   "type": "設備抵押貸款額度（未動用）",
+   "amt": 80.0,
+   "short": "≤$800億（未動用）",
+   "date": "2026-10-29",
+   "amtText": "10-Q 揭露的供應商融資安排：最高約 $800 億的抵押貸款額度，可在 2027 Q1 至 2028 Q3 依採購訂單動用，浮動利率，每筆自動用日起五年到期，並以部分所購資產設定擔保權益。貸款方與抵押資產範圍未揭露。",
+   "status": "尚未動用；2027 Q1 起可動用",
+   "flow": "Amazon 是借款方：先向供應商或其融資方借錢買設備，五年內償還；這是 Amazon 首次用設備抵押的方式為資料中心籌資",
+   "src": [
+    "debt_10q",
+    "vf_inv"
+   ],
+   "amtType": "liability",
+   "direction": "in",
+   "excludeFromSum": true,
+   "verified": "2026-11-27"
   }
  ],
  "flows": [
@@ -1050,6 +1075,16 @@
    "cat": "lab",
    "src": [
     "axios_ant"
+   ]
+  },
+  {
+   "d": "2026-10-29",
+   "t": "10-Q 揭露最高 $800 億供應商融資額度",
+   "x": "以所購設備為抵押，2027 Q1 至 2028 Q3 可動用，每筆五年到期；尚未動用。",
+   "cat": "fin",
+   "src": [
+    "debt_10q",
+    "vf_inv"
    ]
   }
  ],
