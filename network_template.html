@@ -130,6 +130,8 @@ footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs)
 <div class="brief" id="topBox"></div>
 <div class="sec" id="s-watch">🚨 預警指標（定期追蹤的領先訊號；燈號＝水位＋與上期相比的方向）</div>
 <div class="brief" id="watch"></div>
+<div class="sec" id="s-hist">📉 歷史走勢（每期留一筆，看風險與預警指標往哪個方向走）</div>
+<div class="brief" id="histB"></div>
 <div class="kpis" id="kpis"></div>
 <div class="toolbar">
 <label>顯示交易對手：<select id="minDeg"><option value="2" selected>出現在 ≥2 個實體</option><option value="3">≥3 個實體</option><option value="1">全部（含單一實體）</option></select></label>
@@ -171,6 +173,8 @@ footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs)
 <div class="brief" id="freshB"></div>
 <div class="sec" id="s-grow">📈 營收成長（最近四季與最新一季的年增率）</div>
 <div class="brief" id="growB"></div>
+<div class="sec" id="s-cal">📅 財報日曆（哪一週該重查誰的數字）</div>
+<div class="brief" id="calB"></div>
 <div class="sec" id="s-chg">📝 變動紀錄（每次更新後，與上一期相比哪些數字改了、為什麼）</div>
 <div class="brief" id="chg"></div>
 <div class="sec">⚖️ 多實體比較（勾選 2–3 家並排）</div>
@@ -535,7 +539,7 @@ build(); side(null); table(); cmp();
   <td style="text-align:right">${c.rev!=null?bn(c.rev):'—'}</td>
   <td style="text-align:right">${c.circIn?bn(c.circIn):(E?`估計 ${bn(E.lo)}–${bn(E.hi)}`:'—')}<div class="hint">${c.circIn?lst(c.circFrom):(E?'未揭露，為假設推估':'')}</div></td><td style="text-align:right"><b class="rc${c.rev&&c.circIn/c.rev>=.2?3:c.rev&&c.circIn/c.rev>=.05?2:E?2:1}">${c.circIn?pc(c.circIn,c.rev):(E?`${pc(E.lo,c.rev)}–${pc(E.hi,c.rev)}`:'—')}</b></td>
   <td style="text-align:right">${c.in?bn(c.in):'—'}</td><td style="text-align:right">${c.in?pc(c.in,c.rev):'—'}</td>
-  <td style="text-align:right">${c.out?bn(c.out):'—'}<div class="hint">${c.out?lst(c.outTo):''}</div></td><td style="text-align:right"><b class="rc${c.rev&&c.out/c.rev>=1?3:c.rev&&c.out/c.rev>=.3?2:1}">${c.out?pc(c.out,c.rev):'—'}</b></td>
+  <td style="text-align:right">${c.out?bn(c.out):'—'}<div class="hint">${c.out?lst(c.outTo):''}</div></td><td style="text-align:right"><b class="rc${c.rev&&c.out/c.rev>=1?3:c.rev&&c.out/c.rev>=.3?2:1}">${c.out?pc(c.out,c.rev):'—'}</b>${c.out&&c.run?`<div class="hint" title="${esc((e.fin&&e.fin.revRunLabel)||'')}">最新一季年化 ${pc(c.out,c.run)}</div>`:''}</td>
   <td style="text-align:right">${gap!=null&&gap>0?`<b class="rc3">${bn(gap)}</b>`:(c.out?'營收足以支應':'—')}</td>
   <td class="hint" style="min-width:190px;line-height:1.6">${gap>0?`${yrs(e,gap)}${e.fund&&e.fund.top.length?'<br>資金來源：'+e.fund.top.map(f=>esc(f[0])+' '+bn(f[1])).join('、'):''}${e.fin&&e.fin.burnNote?'<br>'+esc(e.fin.burnNote):''}`:''}</td></tr>`}).join('')+'</tbody>';
  const EST=DATA.ents.filter(est);
@@ -545,7 +549,7 @@ build(); side(null); table(); cmp();
   <div class="hint" style="margin-top:4px">來源：${E.src.map(s=>`<a href="${esc(s[1])}" target="_blank" rel="noopener">${esc(s[0])}</a>`).join('；')}</div></div>`}).join(''));
  document.querySelectorAll('#cashT a[data-k]').forEach(a=>a.onclick=ev=>{ev.preventDefault();brief(a.dataset.k);$('#brief').scrollIntoView({behavior:'smooth',block:'center'})});
  const noTerm=DATA.links.filter(l=>l.amtType==='contract'&&l.amt!=null&&!l.term&&!l.annual&&!l.excl).length;
- $('#cashN').innerHTML=`「被投資方每年回頭付的錢」＝這家公司入股的對象，每年依合約付給它的金額，是循環融資最直接的量化。每年金額＝合約總額 ÷ 合約年數（平均攤提，實際付款多半前低後高）；已揭露實際年金額的用實際值。「每年缺口」＝每年承諾支出 − 年營收，大於零代表光靠營收付不完，需要靠募資或舉債。只納入有揭露年期的 ${F.length} 筆合約；另有 ${noTerm} 筆合約沒有揭露年期，沒有計入，所以支出與缺口是下限。晶片商收到的多半是客戶向雲端業者付款後的間接採購，金額沒有逐家揭露；有標「估計」的是依公開數字加假設推出的區間，明細與假設列在表格下方。「缺口靠誰補」列出現金（或近 12 個月的募資與舉債）可以支應幾年的缺口。`;
+ $('#cashN').innerHTML=`「被投資方每年回頭付的錢」＝這家公司入股的對象，每年依合約付給它的金額，是循環融資最直接的量化。每年金額＝合約總額 ÷ 合約年數（平均攤提，實際付款多半前低後高）；已揭露實際年金額的用實際值。「每年缺口」＝每年承諾支出 − 年營收，大於零代表光靠營收付不完，需要靠募資或舉債。年營收用最近四季合計；成長很快的公司最近四季會明顯低於最新一季乘以 4，所以「占營收」下方另列「最新一季年化」的算法，兩個數字之間就是合理區間。只納入有揭露年期的 ${F.length} 筆合約；另有 ${noTerm} 筆合約沒有揭露年期，沒有計入，所以支出與缺口是下限。晶片商收到的多半是客戶向雲端業者付款後的間接採購，金額沒有逐家揭露；有標「估計」的是依公開數字加假設推出的區間，明細與假設列在表格下方。「缺口靠誰補」列出現金（或近 12 個月的募資與舉債）可以支應幾年的缺口。`;
  // 付款時程：有逐年表的付款方依揭露的形狀分配；其餘依選單平均攤提，或假設逐年等差遞增（第 i 年權重 i）
  const Y=[];for(let y=2026;y<=2036;y++)Y.push(y);
  const payers=[...new Set(F.filter(f=>f.s).map(f=>f.from))].map(k=>({k,t:F.filter(f=>f.from===k&&f.s).reduce((a,f)=>a+f.total,0)})).sort((a,b)=>b.t-a.t);
@@ -565,6 +569,20 @@ build(); side(null); table(); cmp();
  // 資料新鮮度
  {const FR=DATA.fresh||[], cell=(x,no)=>no?'<td class="rc3">有數字但未標示基準日</td>':!x?'<td class="hint">沒有這項數字</td>':`<td class="rc${x[2]}" title="距今 ${x[1]} 天">${esc(x[0])}<span class="hint">　${x[1]} 天前</span></td>`, st=FR.filter(r=>r.stale.length);
   $('#freshB').innerHTML=`<div class="hint" style="margin-bottom:8px;line-height:1.7">${st.length?`<b class="rc3">有 ${st.length} 家的數字過期或未標示：</b>${st.map(r=>`<a href="#" data-pk="${esc(r.key)}">${esc(r.entity)}</a>（${r.stale.join('、')}）`).join('、')}。`:'目前沒有過期的數字。'}以建置當天為準：營收與現金的基準日超過 200 天（約兩季）標紅、超過 150 天標黃；市值超過 45 天標紅。每週自動更新只會更新市值，營收與現金要等人工查證後才會換新，所以這張表會隨時間自動轉紅，提醒該重查了。營收一律採「最近四季」合計（最近四個已公布季度相加，不做年化）；標「含推算」的是未上市或沒有季報的公司，有一段期間是用全年與半年數字反推。成長很快的公司，最近四季會明顯低於最新一季乘以 4。</div><div style="overflow:auto"><table><thead><tr><th>公司</th><th>營收口徑</th><th>營收基準日</th><th>現金基準日</th><th>市值日期</th><th>最後整體查證</th></tr></thead><tbody>${FR.map(r=>`<tr><td><a href="#" data-pk="${esc(r.key)}">${esc(r.entity)}</a></td><td class="hint">${esc(r.basis||'—')}</td>${cell(r.rev,r.revNo)}${cell(r.cash,r.cashNo)}${cell(r.mkt)}${cell(r.chk)}</tr>`).join('')}</tbody></table></div>`;}
+ // 歷史走勢：DATA.hist 每期一筆 {d,red,yel,grn,n,avg,e:{key:[總分,燈號]},w:{指標:數值}}
+ {const H=DATA.hist||[], WN=[...new Set(H.flatMap(h=>Object.keys(h.w||{})))], opts=[['red','紅燈家數'],['avg','平均風險總分'],...WN.map(n=>['w:'+n,'預警｜'+n]),...DATA.ents.map(e=>['e:'+e.key,'公司｜'+e.entity])];
+  const val=(h,k)=>k==='red'?h.red:k==='avg'?h.avg:k.startsWith('w:')?(h.w||{})[k.slice(2)]:((h.e||{})[k.slice(2)]||[])[0];
+  const draw=()=>{const k=$('#histK').value, P=H.map(h=>[h.d,val(h,k)]).filter(p=>p[1]!=null), W=720,Ht=190,L=46,R=14,T=14,Bm=30;
+   if(!P.length){$('#histC').innerHTML='<span class="hint">這個項目還沒有紀錄</span>';return}
+   const vs=P.map(p=>p[1]),mn=Math.min(...vs),mx=Math.max(...vs),pad=(mx-mn)*0.15||Math.max(Math.abs(mx)*0.1,1),lo=mn-pad,hi=mx+pad,x=i=>P.length===1?(L+(W-L-R)/2):L+(W-L-R)*i/(P.length-1),y=v=>T+(Ht-T-Bm)*(1-(v-lo)/(hi-lo));
+   const f=v=>Math.abs(v)>=100?Math.round(v).toLocaleString():(+v.toFixed(2)).toString();
+   const d1=P[0][1],d2=P[P.length-1][1],chg=d2-d1;
+   $('#histC').innerHTML=`<svg viewBox="0 0 ${W} ${Ht}" style="width:100%;max-width:${W}px;height:auto" role="img" aria-label="歷史走勢"><line x1="${L}" y1="${y(lo)}" x2="${W-R}" y2="${y(lo)}" stroke="var(--line)"/>${[lo+pad,(mn+mx)/2,hi-pad].map(v=>`<line x1="${L}" y1="${y(v)}" x2="${W-R}" y2="${y(v)}" stroke="var(--line)" stroke-dasharray="3 4" opacity=".6"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="var(--muted)">${f(v)}</text>`).join('')}${P.length>1?`<polyline fill="none" stroke="var(--accent,#38bdf8)" stroke-width="2" points="${P.map((p,i)=>x(i)+','+y(p[1])).join(' ')}"/>`:''}${P.map((p,i)=>`<circle cx="${x(i)}" cy="${y(p[1])}" r="3.5" fill="var(--accent,#38bdf8)"><title>${p[0]}：${f(p[1])}</title></circle>${(P.length<=12||i===0||i===P.length-1||i%Math.ceil(P.length/8)===0)?`<text x="${x(i)}" y="${Ht-10}" text-anchor="${i===0&&P.length>1?'start':i===P.length-1&&P.length>1?'end':'middle'}" font-size="11" fill="var(--muted)">${p[0].slice(5)}</text>`:''}`).join('')}</svg><div class="hint" style="margin-top:4px">${P.length>1?`${P[0][0]} 的 ${f(d1)} → ${P[P.length-1][0]} 的 <b>${f(d2)}</b>（${chg>0?'+':''}${f(chg)}）`:`目前只有 ${P[0][0]} 一期（${f(d2)}），累積兩期後才會畫出線`}</div>`};
+  $('#histB').innerHTML=H.length?`<div class="hint" style="margin-bottom:8px;line-height:1.7">每次建置留一筆紀錄（同一天重建只留最後一次），每週自動更新會自動累積。共 ${H.length} 期：${H[0].d}${H.length>1?' 至 '+H[H.length-1].d:''}。數字跳動不一定是實際變化，也可能是改了計算口徑或補了資料，請對照下方「變動紀錄」。</div><label class="hint">項目 <select id="histK">${opts.map(o=>`<option value="${esc(o[0])}">${esc(o[1])}</option>`).join('')}</select></label><div id="histC" style="margin-top:8px"></div><div style="overflow:auto;margin-top:8px"><table><thead><tr><th>日期</th><th style="text-align:right">紅燈</th><th style="text-align:right">黃燈</th><th style="text-align:right">綠燈</th><th style="text-align:right">追蹤家數</th><th style="text-align:right">平均總分</th></tr></thead><tbody>${H.slice(-8).reverse().map(h=>`<tr><td>${esc(h.d)}</td><td style="text-align:right" class="rc3">${h.red}</td><td style="text-align:right" class="rc2">${h.yel}</td><td style="text-align:right" class="rc1">${h.grn}</td><td style="text-align:right">${h.n}</td><td style="text-align:right">${h.avg==null?'—':h.avg}</td></tr>`).join('')}</tbody></table></div>`:'<span class="hint">尚無歷史紀錄</span>';
+  if(H.length){$('#histK').onchange=draw;draw()}}
+ // 財報日曆：DATA.cal 每家一筆 {entity,last,next,st,days}；st＝conf 公司已確認、exp 市場預期（未確認）、est 以上次公布日加 91 天推估、none 未建檔
+ {const C=DATA.cal||[], SL={conf:'<b class="rc1">公司已確認</b>',exp:'市場預期，未確認',est:'推估（上次公布日＋91 天）',none:'未建檔'}, up=C.filter(c=>c.days!=null&&c.days>=0&&c.days<=21);
+  $('#calB').innerHTML=C.length?`<div class="hint" style="margin-bottom:8px;line-height:1.7">${up.length?`<b class="rc2">未來三週內要公布財報：</b>${up.map(c=>`<a href="#" data-pk="${esc(c.key)}">${esc(c.entity)}</a>（${esc(c.next.slice(5))}，${c.days} 天後）`).join('、')}。`:'未來三週內沒有已知的財報公布。'}財報公布後，該公司的營收、現金、資本支出與成長率都要重查。推估日只是提醒用；年報季（第四季財報）通常比推估晚一到兩週。未上市或沒有固定公布日的公司列為未建檔。</div><div style="overflow:auto"><table><thead><tr><th>公司</th><th>下次財報日</th><th style="text-align:right">還有幾天</th><th>日期來源</th><th>上次公布日</th></tr></thead><tbody>${C.map(c=>`<tr><td><a href="#" data-pk="${esc(c.key)}">${esc(c.entity)}</a></td><td>${c.next?esc(c.next):'<span class="hint">—</span>'}</td><td style="text-align:right" class="${c.days!=null&&c.days<0?'rc3':c.days!=null&&c.days<=21?'rc2':''}">${c.days==null?'—':c.days<0?'已過 '+(-c.days)+' 天，應重查':c.days}</td><td class="hint">${SL[c.st]||''}${c.src&&c.src[0]?` <a href="${esc(c.src[0][1])}" target="_blank" rel="noopener">↗</a>`:''}</td><td class="hint">${c.last?esc(c.last):'—'}</td></tr>`).join('')}</tbody></table></div>`:'<span class="hint">尚未建檔</span>';}
  // 營收成長：最近四季年增與最新一期年增，並比較兩者看加速或減速（資料來自各檔 fin.growth＝{ttm,q,qLabel,note,est}，單位為百分比）
  {const GR=DATA.ents.filter(e=>e.fin&&e.fin.growth).map(e=>({k:e.key,n:e.entity,r:e.fin.rev,g:e.fin.growth})).sort((a,b)=>(b.g.ttm==null?(b.g.q==null?-1e9:b.g.q):b.g.ttm)-(a.g.ttm==null?(a.g.q==null?-1e9:a.g.q):a.g.ttm));
   const pf=v=>v==null?'<span class="hint">未取得</span>':`<b class="${v>=0?'rc1':'rc3'}">${v>=0?'+':''}${Math.abs(v)>=100?Math.round(v).toLocaleString():v.toFixed(1)}%</b>`;

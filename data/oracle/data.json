@@ -1156,6 +1156,13 @@
    "qLabel": "FY2027 Q1",
    "note": "前一年同期四季合計約 $592 億，由各期年增率反推",
    "est": true
+  },
+  "revRun": 77.2,
+  "revRunLabel": "FY2027 Q1 × 4",
+  "rep": {
+   "last": "2026-09-10",
+   "next": "2026-12-10",
+   "conf": false
   }
  },
  "dues": [

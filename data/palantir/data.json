@@ -1188,6 +1188,11 @@
    "qLabel": "2026 Q3",
    "note": "前一年同期四季合計 $39.0 億",
    "est": false
+  },
+  "revRun": 9.25,
+  "revRunLabel": "2026 Q3 × 4",
+  "rep": {
+   "last": "2026-11-02"
   }
  },
  "mkt": {

@@ -121,7 +121,7 @@ def validate(d):
     for k in (d.get("fin") or {}).get("cashSrc", []):
         if k not in S: err.append(f"fin.cashSrc 引用不存在的來源 {k}")
         used.add(k)
-    for k in ((d.get("fin") or {}).get("circEst") or {}).get("src", []) + (d.get("fin") or {}).get("burnSrc", []):   # 循環收入估計區間、燒錢預估
+    for k in ((d.get("fin") or {}).get("circEst") or {}).get("src", []) + (d.get("fin") or {}).get("burnSrc", []) + ((d.get("fin") or {}).get("rep") or {}).get("src", []):   # rep＝財報日 {last,next,conf,src}   # 循環收入估計區間、燒錢預估
         if k not in S: err.append(f"fin 的估計來源 {k} 不存在")
         used.add(k)
     if d.get("mkt") is not None:                        # 市值或最新估值（US$ 十億）：{cap, date, src, note?}

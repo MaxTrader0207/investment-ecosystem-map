@@ -165,6 +165,10 @@
   "gap_geo": [
    "Global Banking & Finance｜Broadcom FY2025 年報地區營收",
    "https://www.globalbankingandfinance.com/markets/avgo/annual-report/"
+  ],
+  "rep_dt": [
+   "Broadcom IR｜FY2026 Q4 財報將於 2026-12-09 盤後公布（2026-11-09）",
+   "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announce-fourth-quarter-and-fiscal-year-2026"
   ]
  },
  "categories": [
@@ -983,6 +987,16 @@
    "qLabel": "FY2026 Q3",
    "note": "前一年同期四季合計約 $599 億；前期數字取自公司已公布的歷史財報",
    "est": false
+  },
+  "revRun": 118.36,
+  "revRunLabel": "FY2026 Q3 × 4",
+  "rep": {
+   "last": "2026-09-02",
+   "next": "2026-12-09",
+   "conf": true,
+   "src": [
+    "rep_dt"
+   ]
   }
  },
  "mkt": {

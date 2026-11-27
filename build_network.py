@@ -60,7 +60,7 @@ for fp in FILES:
     ents.append({"key":ek,"entity":M["entity"],"ticker":M.get("ticker",""),"accent":M.get("accent","#888"),"file":f,"asOf":M["asOf"],"nodes":len(D["nodes"]),"st":st,"sub":M.get("subtitle",""),"thesis":(D.get("ic") or {}).get("thesis","") if isinstance(D.get("ic"),dict) else "",
         "fin":(dict(D["fin"],src=[[S[x][0],S[x][1]] for x in D["fin"].get("src",[]) if x in S],
                     cashSrc=[[S[x][0],S[x][1]] for x in D["fin"].get("cashSrc",[]) if x in S],burnSrc=[[S[x][0],S[x][1]] for x in D["fin"].get("burnSrc",[]) if x in S],
-                    circEst=(dict(D["fin"]["circEst"],src=[[S[x][0],S[x][1]] for x in D["fin"]["circEst"].get("src",[]) if x in S]) if isinstance(D["fin"].get("circEst"),dict) else None)) if isinstance(D.get("fin"),dict) else None),
+                    rep=(dict(D["fin"]["rep"],src=[[S[x][0],S[x][1]] for x in D["fin"]["rep"].get("src",[]) if x in S]) if isinstance(D["fin"].get("rep"),dict) else None),circEst=(dict(D["fin"]["circEst"],src=[[S[x][0],S[x][1]] for x in D["fin"]["circEst"].get("src",[]) if x in S]) if isinstance(D["fin"].get("circEst"),dict) else None)) if isinstance(D.get("fin"),dict) else None),
         "mkt":(dict(D["mkt"],src=[[S[k][0],S[k][1]] for k in D["mkt"].get("src",[]) if k in S]) if isinstance(D.get("mkt"),dict) else None),
         "dues":[dict(x,src=[[S[k][0],S[k][1]] for k in x.get("src",[]) if k in S]) for x in D.get("dues",[])],
         "rk":{"n":sum(1 for n in D["nodes"] if not cats.get(n["cat"],{}).get("counterparty")),
@@ -291,7 +291,7 @@ _inv|={(l["cp"],l["ent"]) for l in links if l["dir"]=="in" and l["amt"] is not N
 for e in ents:
     k=e["key"]; rev=(e.get("fin") or {}).get("rev")
     cin=[f for f in flows if f["to"]==k and (k,f["from"]) in _inv]; out=[f for f in flows if f["from"]==k]; inn=[f for f in flows if f["to"]==k]
-    e["cash"]={"rev":rev,"circIn":round(sum(f["annual"] for f in cin),2),"circFrom":[[f["from"],f["annual"]] for f in cin],"in":round(sum(f["annual"] for f in inn),2),
+    e["cash"]={"rev":rev,"run":(e.get("fin") or {}).get("revRun"),"circIn":round(sum(f["annual"] for f in cin),2),"circFrom":[[f["from"],f["annual"]] for f in cin],"in":round(sum(f["annual"] for f in inn),2),
                "out":round(sum(f["annual"] for f in out),2),"outTo":[[f["to"],f["annual"]] for f in out]}
 # ---------- 預警指標／變動紀錄／本期結論 ----------
 import datetime as _dt
@@ -380,7 +380,7 @@ _rates=sorted([(r,_name[k],n,d) for k,v in _X.items() for d,n,r in v["rates"] if
 _gtot=round(sum(v["gonly"] for v in _X.values()),1); _reds=[e for e in ents if e["risk"]["light"]==3]
 def _lt(v,red,yel): return 3 if v>=red else 2 if v>=yel else 1
 watch=[]
-if _gap: g,ge=_gap[0]; watch.append({"n":"承諾支出相對營收","v":f"{ge['entity']} {g:.1f} 倍","x":round(g,2),"light":_lt(g,2,1),"rule":"最高者達 2 倍亮紅燈、1 倍亮黃燈","detail":"、".join(f"{e['entity']} {r:.1f} 倍" for r,e in _gap[:3])})
+if _gap: g,ge=_gap[0]; watch.append({"n":"承諾支出相對營收","v":f"{ge['entity']} {g:.1f} 倍","x":round(g,2),"light":_lt(g,2,1),"rule":"最高者達 2 倍亮紅燈、1 倍亮黃燈","detail":"、".join(f"{e['entity']} {r:.1f} 倍" for r,e in _gap[:3])+("｜若改用最新一季年化營收："+"、".join(f"{e['entity']} {e['cash']['out']/e['cash']['run']:.1f} 倍" for r,e in _gap[:3] if e["cash"].get("run")) if any(e["cash"].get("run") for r,e in _gap[:3]) else "")})
 if _circ: c,ce=_circ[0]; watch.append({"n":"循環收入占營收","v":f"{ce['entity']} {c*100:.0f}%","x":round(c*100,1),"light":_lt(c,0.2,0.1),"rule":"最高者達 20% 亮紅燈、10% 亮黃燈","detail":"、".join(f"{e['entity']} {r*100:.0f}%" for r,e in _circ[:3])})
 if _pky: yl=_pky[0]-int(ASOF[:4]); watch.append({"n":"距離付款高峰","v":f"{_pky[0]}–{_pky[-1]} 年" if len(_pky)>1 else f"{_pky[0]} 年","x":yl,"dir":-1,"light":3 if yl<=1 else 2 if yl<=3 else 1,"rule":"高峰在 1 年內亮紅燈、3 年內亮黃燈","detail":f"高峰每年約 {fmtb(_pk)}（只含有揭露年期的合約）"})
 watch.append({"n":"新債票息","v":f"{_rates[0][0]:g}%（{_rates[0][1]}）" if _rates else "尚無資料","x":(_rates[0][0] if _rates else None),"light":(_lt(_rates[0][0],9,7) if _rates else 0),"rule":"近 12 個月新債最高票息達 9% 亮紅燈、7% 亮黃燈","detail":"；".join(f"{a} {n} {r:g}%" for r,a,n,d in _rates[:3]) if _rates else "負債節點尚未填入票息（rate 欄位）"})
@@ -443,7 +443,27 @@ for w in watch:
         w["tr"]=1 if _d>_tol else -1 if _d<-_tol else 0; w["pv"]=_p[1]
         w["light"]=min(3,w["lvl"]+1) if w["tr"]==1 else max(1,w["lvl"]-1) if w["tr"]==-1 else min(w["lvl"],2)
 _log["cur"]["snap"]["watch"]={w["n"]:[w.get("x"),w["v"]] for w in watch}
+# 歷史走勢：每一期留一筆（同一天重建會覆蓋當天那筆），供總網路圖畫走勢線；第一次執行時用上一期的快照補一筆
+def _hrow(d,E,W):
+    T=[v["t"] for v in E.values() if v.get("t") is not None]
+    return {"d":d,"red":sum(1 for v in E.values() if v.get("l")==3),"yel":sum(1 for v in E.values() if v.get("l")==2),"grn":sum(1 for v in E.values() if v.get("l")==1),"n":len(E),
+            "avg":round(sum(T)/len(T),1) if T else None,"e":{k:[v.get("t"),v.get("l")] for k,v in E.items()},"w":{k:v[0] for k,v in (W or {}).items() if isinstance(v[0],(int,float))}}
+_hist=_log.get("hist") or []
+if not _hist and _log.get("base"): _hist=[_hrow(_log["base"]["d"],_log["base"]["snap"]["ents"],_log["base"]["snap"].get("watch"))]
+_hist=[h for h in _hist if h["d"]!=ASOF]+[_hrow(ASOF,_cur["ents"],_log["cur"]["snap"]["watch"])]
+_log["hist"]=sorted(_hist,key=lambda h:h["d"])[-104:]
 json.dump(_log,open(LOGF,"w",encoding="utf-8"),ensure_ascii=False)
+# 財報日曆：fin.rep={last:上次公布日, next:下次公布日, conf:是否公司已確認}；沒有 next 時以上次公布日加 91 天推估
+cal=[]
+for e in ents:
+    _r=(e.get("fin") or {}).get("rep") or {}
+    if not _r.get("last") and not _r.get("next"): cal.append({"key":e["key"],"entity":e["entity"],"last":None,"next":None,"st":"none"}); continue
+    _nx=_r.get("next"); _st="conf" if (_nx and _r.get("conf")) else "exp" if _nx else "est"
+    if not _nx:
+        try: _nx=str(_dt.date.fromisoformat(_r["last"])+_dt.timedelta(days=91))
+        except Exception: _nx=None
+    cal.append({"key":e["key"],"entity":e["entity"],"last":_r.get("last"),"next":_nx,"st":_st,"days":((_dt.date.fromisoformat(_nx)-_dt.date.today()).days if _nx else None),"src":_r.get("src") or []})
+cal.sort(key=lambda c:(c["next"] is None,c["next"] or ""))
 # 本期結論：三到五句
 _top=sorted(ents,key=lambda e:e["risk"]["rank"])[0]; head=[]
 head.append(f"目前追蹤 {len(ents)} 家，其中 {len(_reds)} 家紅燈；有揭露年期的合約付款高峰在 {_pky[0]}"+(f"–{_pky[-1]}" if len(_pky)>1 else "")+f" 年，每年約 {fmtb(_pk)}。" if _pky else f"目前追蹤 {len(ents)} 家，其中 {len(_reds)} 家紅燈。")
@@ -457,7 +477,7 @@ if _entry["from"]:
     for a in _auto: _cnt[a["t"]]=_cnt.get(a["t"],0)+1
     _new=[a["e"] for a in _auto if a["t"]=="新增公司"]; _lc=[a["e"]+"（"+a["x"].split("，")[-1]+"）" for a in _auto if a["t"]=="燈號變動"]
     head.append(f"與上一期（{_entry['from']}）相比："+("；".join(filter(None,[("新增 "+"、".join(_new)) if _new else "",("燈號變動 "+"、".join(_lc[:4])) if _lc else "",f"金額更新 {_cnt.get('金額更新',0)} 筆、新增節點 {_cnt.get('新增節點',0)} 個" if _cnt.get('金額更新') or _cnt.get('新增節點') else ""])) or "沒有數字變動")+"。")
-data={"asOf":ASOF,"ents":ents,"links":links,"hubs":hubs,"amt":AMT,"checks":checks,"cycles":cycles,"flows":flows,"watch":watch,"head":head,"due":due,"guar":guar,"policy":policy,"extras":extras,"fresh":fresh,"vfnow":vfnow,"chg":[{k:x[k] for k in ("d","from","auto","notes")} for x in _log["log"][:8]]}
+data={"asOf":ASOF,"ents":ents,"links":links,"hubs":hubs,"amt":AMT,"checks":checks,"cycles":cycles,"flows":flows,"watch":watch,"head":head,"due":due,"guar":guar,"policy":policy,"extras":extras,"fresh":fresh,"vfnow":vfnow,"hist":_log.get("hist",[]),"cal":cal,"chg":[{k:x[k] for k in ("d","from","auto","notes")} for x in _log["log"][:8]]}
 # 使用者指引：network template 旁邊若有 guide_template.html，就一併產生 guide.html（公司清單隨資料更新）
 GT=os.path.join(os.path.dirname(os.path.abspath(TPL)),"guide_template.html")
 if os.path.exists(GT):
