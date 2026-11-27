@@ -32,25 +32,28 @@ def ask(entity, ticker, since, known):
 
 def main(root="."):
     summary = []
+    has_key = bool((os.environ.get("ANTHROPIC_API_KEY") or "").strip())
+    if not has_key: print("ℹ️ 未設定 ANTHROPIC_API_KEY：略過新動態檢查，只重建各家 Dashboard（讓更新後的現值與市值反映到頁面）")
     for slug in sorted(os.listdir(os.path.join(root, "data"))):
         p = os.path.join(root, "data", slug, "data.json")
         if not os.path.exists(p): continue
         d = json.load(open(p, encoding="utf-8")); M = d["meta"]
         known = [n["name"] for n in d["nodes"]]
         seen = {e.get("t") for e in d.get("events", [])}
-        try: items = [i for i in ask(M["entity"], M.get("ticker", ""), M["asOf"], known) if i.get("t") not in seen]
-        except Exception as e:
-            print(f"⚠️ {slug}：查詢失敗 {e}"); continue
+        items = []
+        if has_key:
+            try: items = [i for i in ask(M["entity"], M.get("ticker", ""), M["asOf"], known) if i.get("t") not in seen]
+            except Exception as e: print(f"⚠️ {slug}：查詢失敗 {e}（仍會重建頁面）")
         pend_p = os.path.join(root, "data", slug, "pending.json")
         old = json.load(open(pend_p, encoding="utf-8")) if os.path.exists(pend_p) else []
         urls = {o.get("url") for o in old}
         merged = old + [i for i in items if i.get("url") not in urls]
-        json.dump(merged, open(pend_p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        if merged != old: json.dump(merged, open(pend_p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         out = os.path.join(root, "docs", f"{M.get('fileSlug', slug)}_Ecosystem_Capital_Map.html")
         subprocess.run([sys.executable, os.path.join(root, "build.py"), p, os.path.join(root, "template.html"), out], check=True)
         new = len(merged) - len(old)
         summary.append(f"| {M['entity']} | {new} | {len(merged)} |")
-        print(f"✅ {M['entity']}：新增待確認 {new} 筆（累計 {len(merged)}）")
+        if has_key: print(f"✅ {M['entity']}：新增待確認 {new} 筆（累計 {len(merged)}）")
     s = os.environ.get("GITHUB_STEP_SUMMARY")
     if s:
         with open(s, "a", encoding="utf-8") as f:
