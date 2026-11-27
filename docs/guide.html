@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>使用者指引與網站功能地圖｜投資生態圈</title>
+<style>
+:root{--bg:#0a0e13;--panel:#11171f;--panel2:#161e28;--line:#243041;--text:#e6edf3;--muted:#8b9bb0;--acc:#fbbf24;--in:#4ade80;--net:#38bdf8;--dash:#a78bfa}
+[data-theme="light"]{--bg:#f5f7fa;--panel:#fff;--panel2:#eef2f6;--line:#d5dde7;--text:#111827;--muted:#5b6b80;--acc:#b45309;--in:#15803d;--net:#0369a1;--dash:#6d28d9}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;font-size:15px;line-height:1.75}
+a{color:var(--net);text-decoration:none}a:hover{text-decoration:underline}
+header{padding:22px 28px 16px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-end}
+header h1{margin:0;font-size:24px;letter-spacing:.5px}header h1 b{color:var(--acc)}
+header .sub{color:var(--muted);font-size:13px;margin-top:4px}
+.btn{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:6px;padding:6px 12px;cursor:pointer;font:inherit;font-size:13px;display:inline-block}
+.btn:hover{border-color:var(--acc);text-decoration:none}
+.wrap{display:grid;grid-template-columns:230px minmax(0,1fr);gap:0;max-width:1320px;margin:0 auto}
+nav.toc{position:sticky;top:0;align-self:start;max-height:100vh;overflow:auto;padding:20px 14px 20px 28px;border-right:1px solid var(--line);font-size:13.5px}
+nav.toc b{display:block;color:var(--muted);font-size:12px;margin:12px 0 4px;letter-spacing:1px}
+nav.toc a{display:block;color:var(--text);padding:3px 8px;border-radius:5px}
+nav.toc a:hover{background:var(--panel2);text-decoration:none}
+main{padding:8px 28px 60px;min-width:0}
+h2{font-size:20px;margin:34px 0 10px;padding-top:10px;border-top:1px solid var(--line)}
+h2:first-child{border-top:none;margin-top:14px}
+h3{font-size:16px;margin:22px 0 6px}
+p{margin:6px 0}.hint{color:var(--muted);font-size:13.5px}
+ul,ol{margin:6px 0;padding-left:1.5em}li{margin:3px 0}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:12px 0}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.step .n{display:inline-block;width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--acc);color:#111;font-weight:700;margin-right:8px}
+.step b{font-size:15px}.step p{color:var(--muted);font-size:13.5px;margin:6px 0 0}
+/* 功能地圖 */
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px;margin:14px 0}
+.mcol{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:10px;padding:12px 14px}
+.mcol>h3{margin:0 0 2px;color:var(--c)}
+.mcol>.hint{margin-bottom:8px}
+.tree,.tree ul{list-style:none;margin:0;padding:0}
+.tree ul{margin-left:9px;padding-left:14px;border-left:1.5px solid var(--line)}
+.tree li{margin:5px 0;position:relative}
+.tree ul>li::before{content:"";position:absolute;left:-14px;top:.85em;width:10px;border-top:1.5px solid var(--line)}
+.tree .k{font-weight:600}
+.tree .d{color:var(--muted);font-size:13px}
+.root{display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:12px 0 0}
+.root .pill{border:1.5px solid var(--c);color:var(--c);border-radius:999px;padding:2px 12px;font-weight:600;font-size:13.5px}
+.root .arr{color:var(--muted)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin:8px 0}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:var(--panel2);font-weight:600;white-space:nowrap}
+.gb{display:inline-block;min-width:16px;text-align:center;font-size:11px;font-weight:700;padding:0 5px;border-radius:4px;color:#0a0e13;font-family:Consolas,monospace}
+.gA{background:#4ade80}.gB{background:#38bdf8}.gC{background:#fbbf24}.gD{background:#f87171}
+.lvb{display:inline-block;font-size:12px;font-weight:700;padding:0 9px;border-radius:999px;color:#fff}
+.lvb3{background:#dc2626}.lvb2{background:#b45309}.lvb1{background:#15803d}.lvb0{background:#475569}
+.sw{display:inline-block;width:26px;height:0;border-top:3px solid var(--c);vertical-align:middle;margin-right:6px}
+.sw.dash{border-top-style:dashed}
+.ents{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin:10px 0}
+.ent{display:block;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:8px;padding:8px 11px;color:var(--text)}
+.ent:hover{border-color:var(--c);text-decoration:none}
+.ent small{display:block;color:var(--muted);font-size:12px}
+.note{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:13.5px}
+footer{padding:16px 28px 30px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);text-align:center}
+@media (max-width:900px){.wrap{grid-template-columns:1fr}nav.toc{position:static;max-height:none;border-right:none;border-bottom:1px solid var(--line);padding:12px 20px}main{padding:8px 18px 40px}}
+@media print{nav.toc,.btn{display:none}.wrap{display:block}}
+</style>
+</head>
+<body>
+<header>
+<div><h1><b>使用者指引</b>與網站功能地圖</h1>
+<div class="sub" id="sub"></div></div>
+<div><a class="btn" href="Ecosystem_Network_Map.html">🕸 回總網路圖</a> <button class="btn" id="theme">🌓 淺色／深色</button></div>
+</header>
+<div class="wrap">
+<nav class="toc">
+<b>開始</b>
+<a href="#quick">三步驟快速上手</a>
+<a href="#map">網站功能地圖</a>
+<b>怎麼用</b>
+<a href="#tasks">我想知道… 去哪裡看</a>
+<a href="#net">總網路圖怎麼操作</a>
+<a href="#dash">單家 Dashboard 怎麼操作</a>
+<a href="#export">資料輸出</a>
+<b>怎麼讀</b>
+<a href="#legend">符號與顏色對照</a>
+<a href="#terms">金額口徑與名詞</a>
+<a href="#data">資料來源與更新</a>
+<a href="#limits">限制與注意事項</a>
+<b>頁面</b>
+<a href="#pages">全部頁面清單</a>
+</nav>
+<main>
+
+<h2 id="quick">三步驟快速上手</h2>
+<div class="steps">
+<div class="step"><span class="n">1</span><b>從總網路圖看全貌</b><p>外圈大圓是已建檔的公司，中間小圓是多家公司共同往來的對象。線越粗，已揭露金額越大。</p></div>
+<div class="step"><span class="n">2</span><b>點一個圓點</b><p>右側會列出誰和它有關、金額多少、若它出事誰受影響。這個區塊可以直接輸出成檔案。</p></div>
+<div class="step"><span class="n">3</span><b>進單家 Dashboard 看細節</b><p>每筆投資的金額、條款、風險、資金怎麼回流，以及每一項的來源連結。</p></div>
+</div>
+
+<h2 id="map">網站功能地圖</h2>
+<p class="hint">整個網站只有兩種頁面：一張「總網路圖」，加上每家公司各一份「Dashboard」。下面列出每種頁面裡有哪些功能、各自回答什麼問題。</p>
+<div class="root">
+<span class="pill" style="--c:var(--muted)">網站入口</span><span class="arr">→ 自動轉到 →</span>
+<span class="pill" style="--c:var(--net)">總網路圖（1 頁）</span><span class="arr">⇄ 點圓點或頁尾連結 ⇄</span>
+<span class="pill" style="--c:var(--dash)">單家 Dashboard（<span id="nEnt"></span> 頁）</span><span class="arr">・</span>
+<span class="pill" style="--c:var(--acc)">本頁：使用指引</span>
+</div>
+<div class="map">
+<div class="mcol" style="--c:var(--net)">
+<h3>🕸 總網路圖</h3>
+<div class="hint">跨公司的關係：誰和誰有金流、誰是共同的樞紐。</div>
+<ul class="tree">
+<li><span class="k">頂部統計卡</span> <span class="d">已建檔公司數、交易對手數、跨公司樞紐數、最大樞紐</span></li>
+<li><span class="k">工具列</span>
+ <ul><li><span class="k">顯示交易對手</span> <span class="d">只看出現在 2 家以上的對象，或全部</span></li>
+ <li><span class="k">方向篩選</span> <span class="d">只看流出或只看流入</span></li>
+ <li><span class="k">搜尋公司</span> <span class="d">符合者加虛線外圈，相連對象一併顯示</span></li>
+ <li><span class="k">樞紐排行 CSV、淺色／深色</span></li></ul></li>
+<li><span class="k">網路圖</span> <span class="d">點圓點選取（加方形對焦框），再點一次或點空白處取消</span></li>
+<li><span class="k">右側面板</span>
+ <ul><li><span class="k">如何閱讀、前 10 大樞紐</span> <span class="d">未選取時顯示</span></li>
+ <li><span class="k">若它出事</span> <span class="d">逐家列出受影響項目、金額、占比、影響程度；可輸出 5 種格式</span></li>
+ <li><span class="k">關係明細與來源</span> <span class="d">每筆關係的可信度與原始連結</span></li></ul></li>
+<li><span class="k">⚖️ 多實體比較</span> <span class="d">勾選 2–3 家並排，金額只在同口徑內比較</span></li>
+<li><span class="k">🔎 跨實體一致性檢查</span> <span class="d">同一筆關係在不同 Dashboard 的金額是否對得上</span></li>
+<li><span class="k">🔁 跨實體資金閉環</span> <span class="d">自動找出 2–4 個環節的資金循環，標出金額最小的一段</span></li>
+<li><span class="k">🏛️ 系統性樞紐排行</span> <span class="d">跨越 2 家以上的交易對手列表</span></li>
+<li><span class="k">方法與注意事項</span> <span class="d">統計口徑、可信度定義、已納入公司的連結</span></li>
+</ul>
+</div>
+<div class="mcol" style="--c:var(--dash)">
+<h3>📊 單家 Dashboard</h3>
+<div class="hint">一家公司的投資族譜：投了誰、多少錢、錢怎麼回來。</div>
+<ul class="tree">
+<li><span class="k">設定列</span> <span class="d">5 種背景主題與自訂色、字體縮放、整頁輸出</span></li>
+<li><span class="k">重大動態橫幅</span> <span class="d">近半年治理或財務的重要變化</span></li>
+<li><span class="k">📊 關鍵指標</span> <span class="d">約 8 個數字，各附來源</span></li>
+<li><span class="k">投資委員會摘要</span> <span class="d">核心論點、機會、風險、觀察重點；每週自動檢查的「待人工確認」也在這裡</span></li>
+<li><span class="k">五個分頁</span>
+ <ul><li><span class="k">🌳 投資族譜圖</span> <span class="d">依類別排列的節點卡片；可依類別、交易型態、可信度、風險、部位篩選與搜尋。點卡片看金額說明、現值與倍數、條款、風險、來源</span></li>
+ <li><span class="k">🔁 資金循環架構</span> <span class="d">3–6 條循環的流向圖、回流金額與依存度</span></li>
+ <li><span class="k">📋 投資明細表</span> <span class="d">全部節點的表格，點欄位標題排序</span></li>
+ <li><span class="k">🕒 時間軸</span> <span class="d">依年份排列的事件</span></li>
+ <li><span class="k">🧪 壓力測試</span> <span class="d">假設特定對象出問題時，受影響最大的節點</span></li></ul></li>
+<li><span class="k">資料校驗紀錄</span> <span class="d">已驗算、已修正、仍有分歧、未定案的項目</span></li>
+<li><span class="k">與上一版差異</span> <span class="d">這次更新新增、移除、變動了哪些節點</span></li>
+<li><span class="k">方法與注意事項</span> <span class="d">該公司特有的換算與口徑說明</span></li>
+<li><span class="k">每個區塊右上的「⬇ 輸出」</span> <span class="d">PNG、CSV、Excel、JSON、Markdown、列印 PDF</span></li>
+</ul>
+</div>
+</div>
+
+<h2 id="tasks">我想知道… 去哪裡看</h2>
+<table>
+<thead><tr><th>問題</th><th>去哪一頁</th><th>怎麼操作</th></tr></thead>
+<tbody>
+<tr><td>某家公司出事，誰會受影響、影響多大？</td><td>總網路圖</td><td>點該公司的圓點，看右側「若它出事」；需要留存就按 Excel 或 PNG</td></tr>
+<tr><td>哪些對象是多家公司共同依賴的？</td><td>總網路圖</td><td>看右側「前 10 大樞紐」，或頁面下方「系統性樞紐排行」</td></tr>
+<tr><td>錢是不是在幾家公司之間繞圈？</td><td>總網路圖</td><td>看「跨實體資金閉環」表；單家內部的循環看該公司 Dashboard 的「資金循環架構」</td></tr>
+<tr><td>兩三家公司的投資規模怎麼比？</td><td>總網路圖</td><td>「多實體比較」勾選 2–3 家</td></tr>
+<tr><td>某家公司投了哪些對象、各多少？</td><td>該公司 Dashboard</td><td>「投資族譜圖」看卡片，或「投資明細表」排序</td></tr>
+<tr><td>某筆投資現在值多少、賺幾倍？</td><td>該公司 Dashboard</td><td>點節點卡片，看「成本 vs 現值」</td></tr>
+<tr><td>這個數字哪裡來的、可不可信？</td><td>兩種頁面都有</td><td>看 A–D 徽章，點來源連結開原文</td></tr>
+<tr><td>最近有什麼新變化？</td><td>該公司 Dashboard</td><td>看重大動態橫幅、時間軸、「與上一版差異」</td></tr>
+<tr><td>兩份 Dashboard 對同一筆交易的說法一致嗎？</td><td>總網路圖</td><td>「跨實體一致性檢查」表</td></tr>
+</tbody>
+</table>
+
+<h2 id="net">總網路圖怎麼操作</h2>
+<ul>
+<li><b>選取</b>：點任一圓點。圖上只保留它與直接相連的對象，被選者加上方形對焦框，右側顯示明細。</li>
+<li><b>取消</b>：再點一次同一個圓點，或點圖上空白處；「重設」會連篩選條件一起清掉。</li>
+<li><b>搜尋</b>：輸入公司名稱的一部分即可（不分大小寫）。有選取時以選取為準，搜尋字串不會把畫面過濾成空白。</li>
+<li><b>滑鼠停在線上</b>：顯示這條線代表哪些關係與金額。</li>
+<li><b>進入單家頁面</b>：右側面板的「已建 Dashboard」標籤、關係明細的「開啟 Dashboard」，或頁尾的公司連結。</li>
+</ul>
+<h3>「若它出事」怎麼讀</h3>
+<ul>
+<li>每家受影響的公司一段，列出每筆關係的方向、金額、口徑、占比，以及可能的後果。</li>
+<li><b>影響程度</b>：該筆金額占該公司「同口徑、同方向」已揭露金額的比例。<span class="lvb lvb3">高</span> 30% 以上、<span class="lvb lvb2">中</span> 10–30%、<span class="lvb lvb1">低</span> 10% 以下、<span class="lvb lvb0">無法量化</span> 金額未揭露。一家有多筆時取最高。</li>
+<li>這是暴露範圍的估計，不代表實際損失，也沒有考慮找替代來源的難易。</li>
+</ul>
+
+<h2 id="dash">單家 Dashboard 怎麼操作</h2>
+<ul>
+<li><b>切換分頁</b>：點上方五個分頁標籤。</li>
+<li><b>看節點明細</b>：在「投資族譜圖」點卡片，右側顯示金額說明、最新狀態、回流機制、條款、風險與來源。</li>
+<li><b>篩選</b>：點類別色標可開關該類別；下拉選單可依交易型態、可信度、風險、部位篩選；搜尋框可找公司或代號。</li>
+<li><b>看循環</b>：在「資金循環架構」左側選一條循環，中間是流向圖，右側是說明、回流金額與依存度。</li>
+<li><b>調整外觀</b>：設定列可換背景主題、自訂背景色、放大或縮小字體；「還原預設」可復原。</li>
+</ul>
+<div class="note">卡片上的<b>虛線框</b>代表傳聞或未定案；<b>灰階</b>代表超過 90 天未重新查證；紅色「擔保」標籤代表這筆含擔保或背書。</div>
+
+<h2 id="export">資料輸出</h2>
+<table>
+<thead><tr><th>格式</th><th>適合用途</th><th>說明</th></tr></thead>
+<tbody>
+<tr><td>Excel（.xlsx）</td><td>排序、計算、留存</td><td>真正的活頁簿，欄寬自動調整、首列凍結；「若它出事」會依流入（淺綠）與流出（淺橘）為整列上色</td></tr>
+<tr><td>CSV</td><td>匯入其他程式</td><td>純文字，沒有欄寬與顏色</td></tr>
+<tr><td>JSON</td><td>接到自己的工具</td><td>含完整欄位與各口徑合計</td></tr>
+<tr><td>Markdown</td><td>貼到筆記</td><td>精簡表格加說明</td></tr>
+<tr><td>PNG</td><td>簡報、分享</td><td>沿用當下的深色或淺色主題</td></tr>
+<tr><td>列印 PDF</td><td>存檔</td><td>僅單家 Dashboard 的區塊提供</td></tr>
+</tbody>
+</table>
+<p class="hint">總網路圖的輸出按鈕在「若它出事」區塊第一行，以及工具列的「樞紐排行 CSV」。單家 Dashboard 每個區塊右上角都有「⬇ 輸出」，設定列最右邊可輸出整頁全部資料。</p>
+
+<h2 id="legend">符號與顏色對照</h2>
+<table>
+<thead><tr><th>符號</th><th>意思</th></tr></thead>
+<tbody>
+<tr><td><span class="gb gA">A</span></td><td>公司公告或監管申報的原文</td></tr>
+<tr><td><span class="gb gB">B</span></td><td>主流財經媒體</td></tr>
+<tr><td><span class="gb gC">C</span></td><td>其他媒體或彙整</td></tr>
+<tr><td><span class="gb gD">D</span></td><td>傳聞或推估</td></tr>
+<tr><td><span class="sw" style="--c:#94a3b8"></span>該公司代表色的線</td><td>流出：該公司對外出資、採購或承諾</td></tr>
+<tr><td><span class="sw" style="--c:var(--in)"></span>綠色的線</td><td>流入：對方投入該公司的資金</td></tr>
+<tr><td><span class="sw" style="--c:#fbbf24"></span>黃色的線</td><td>雙向都有</td></tr>
+<tr><td><span class="sw dash" style="--c:#94a3b8"></span>虛線</td><td>傳聞或未定案</td></tr>
+<tr><td>↗ 與 ↙</td><td>↗ 流出、↙ 流入</td></tr>
+<tr><td>「—」</td><td>沒有這類交易</td></tr>
+<tr><td>「有，但未加總」</td><td>有節點，但金額未揭露、是年度金額，或為避免重複而不加總</td></tr>
+</tbody>
+</table>
+
+<h2 id="terms">金額口徑與名詞</h2>
+<p class="hint">金額依口徑分開統計，不同口徑不可相加。金額單位預設為美元，「億」指億美元。</p>
+<table>
+<thead><tr><th>名詞</th><th>意思</th></tr></thead>
+<tbody>
+<tr><td>股權成本</td><td>買股權實際或宣布投入的金額</td></tr>
+<tr><td>承諾上限</td><td>承諾投資或採購的最高金額，不等於已支付</td></tr>
+<tr><td>合約價值</td><td>多年期合約的總額，不是單年支出</td></tr>
+<tr><td>自建投資</td><td>自己蓋廠、建資料中心等資本支出</td></tr>
+<tr><td>流入資金</td><td>別人投進這家公司的錢</td></tr>
+<tr><td>處分回收、股東回饋</td><td>賣出持股收回的錢；配息與買回庫藏股</td></tr>
+<tr><td>現值與倍數</td><td>持股目前估值，以及相對成本的倍數；部分減持時以剩餘部位的成本計算</td></tr>
+<tr><td>樞紐</td><td>被 2 家以上已建檔公司列為交易對手的對象</td></tr>
+<tr><td>資金循環／閉環</td><td>錢從 A 流到 B，再以採購或投資的形式流回 A</td></tr>
+<tr><td>循環對手方</td><td>不是持股對象，只是出現在資金循環中的公司</td></tr>
+<tr><td>依存度</td><td>循環對該公司的重要程度：高、中、低</td></tr>
+</tbody>
+</table>
+
+<h2 id="data">資料來源與更新</h2>
+<ul>
+<li><b>資料截止日</b>：每頁標題下方都有標示；目前全站最新為 <b id="asOf"></b>。</li>
+<li><b>來源</b>：每個節點、指標、事件、循環都附原始連結。沒有來源的數字不會放上來。</li>
+<li><b>每週自動更新</b>：每週一早上更新上市持股的現值（股數 × 最新收盤價），重建全部頁面並做測試，通過才發布。</li>
+<li><b>新動態不會自動寫入</b>：自動檢查到的新消息只會列在「待人工確認」，要人工查證後才併入正式資料。</li>
+<li><b>說法分歧時並列</b>：不同來源數字不同時，兩種都寫出來，並記在「資料校驗紀錄」。</li>
+</ul>
+
+<h2 id="limits">限制與注意事項</h2>
+<ul>
+<li>未上市公司的財務數字多來自媒體報導，不是經審計的財報。</li>
+<li>合約與承諾金額是多年期總額或上限，不等於已經付出的錢。</li>
+<li>同一交易對手是用名稱與代號自動合併的，可能仍有少數未合併或誤合併。</li>
+<li>跨公司的資金閉環只能從已建檔的節點接起來，沒有建檔的關係不會出現。</li>
+<li>「若它出事」的影響程度是依已揭露金額算出的占比，分母只含有揭露金額的節點。</li>
+</ul>
+<div class="note">本網站為公開資訊的整理，<b>不是投資建議</b>。做任何決定前，請以各公司的正式公告與申報文件為準。</div>
+
+<h2 id="pages">全部頁面清單</h2>
+<p><a class="btn" href="Ecosystem_Network_Map.html">🕸 跨實體總網路圖</a></p>
+<div class="ents" id="ents"></div>
+
+</main>
+</div>
+<footer>使用者指引由建置程式自動產生，公司清單會隨資料更新。本頁為資訊整理，非投資建議。</footer>
+<script>
+const G={"asOf": "2026-11-26", "ents": [{"entity": "Amazon", "ticker": "AMZN", "accent": "#ff9900", "file": "Amazon_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 11}, {"entity": "AMD", "ticker": "AMD", "accent": "#ed1c24", "file": "AMD_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 26}, {"entity": "Anthropic", "ticker": "ANT", "accent": "#d97757", "file": "Anthropic_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 25}, {"entity": "Apple", "ticker": "AAPL", "accent": "#a3a3a3", "file": "Apple_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 12}, {"entity": "ByteDance 字節跳動", "ticker": "未上市", "accent": "#fe2c55", "file": "ByteDance_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 19}, {"entity": "CATL 寧德時代", "ticker": "300750.SZ / 3750.HK", "accent": "#00a0e9", "file": "CATL_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 33}, {"entity": "Google（Alphabet）", "ticker": "GOOGL", "accent": "#4285f4", "file": "Google_Alphabet_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 25}, {"entity": "Intel", "ticker": "INTC", "accent": "#0071c5", "file": "Intel_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 18}, {"entity": "Meta", "ticker": "META", "accent": "#0866ff", "file": "Meta_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 23}, {"entity": "Microsoft", "ticker": "MSFT", "accent": "#00a4ef", "file": "Microsoft_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 13}, {"entity": "MediaTek 聯發科", "ticker": "2454.TW", "accent": "#f39800", "file": "MediaTek_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 16}, {"entity": "NVIDIA", "ticker": "NVDA", "accent": "#76b900", "file": "NVIDIA_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 45}, {"entity": "OpenAI", "ticker": "未上市", "accent": "#10a37f", "file": "OpenAI_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 22}, {"entity": "Oracle", "ticker": "ORCL", "accent": "#f80000", "file": "Oracle_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 13}, {"entity": "Palantir", "ticker": "PLTR", "accent": "#a3a3a3", "file": "Palantir_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 14}, {"entity": "SoftBank Group 軟銀集團", "ticker": "9984.T", "accent": "#e6b800", "file": "SoftBank_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 17}, {"entity": "SpaceX", "ticker": "SPCX", "accent": "#22d3ee", "file": "SpaceX_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 20}, {"entity": "Tesla", "ticker": "TSLA", "accent": "#e82127", "file": "Tesla_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 9}, {"entity": "TSMC 台積電", "ticker": "2330／TSM", "accent": "#e11d48", "file": "TSMC_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 16}, {"entity": "Unitree 宇樹科技", "ticker": "688836.SH", "accent": "#22c55e", "file": "Unitree_Ecosystem_Capital_Map.html", "asOf": "2026-11-26", "nodes": 28}]};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+if(G){
+ document.getElementById('sub').textContent=`涵蓋 ${G.ents.length} 家公司的 Dashboard 與 1 張總網路圖｜資料截至 ${G.asOf}`;
+ document.getElementById('nEnt').textContent=G.ents.length;
+ document.getElementById('asOf').textContent=G.asOf;
+ document.getElementById('ents').innerHTML=G.ents.map(e=>`<a class="ent" style="--c:${esc(e.accent)}" href="${esc(e.file)}"><b>${esc(e.entity)}</b><small>${esc(e.ticker||'')}・${e.nodes} 個節點・截至 ${esc(e.asOf)}</small></a>`).join('');
+}
+try{if(localStorage.getItem('ecomap-theme')==='light')document.body.dataset.theme='light'}catch(e){}
+document.getElementById('theme').onclick=()=>{const l=document.body.dataset.theme==='light';document.body.dataset.theme=l?'':'light';try{localStorage.setItem('ecomap-theme',l?'':'light')}catch(e){}};
+</script>
+</body>
+</html>

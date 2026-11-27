@@ -215,6 +215,7 @@ footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs)
 <span class="sep"></span>
 <button class="btn" id="prefReset">還原預設</button>
 <span style="flex:1"></span>
+<span id="siteNav" style="display:none"><a class="btn" href="Ecosystem_Network_Map.html" style="text-decoration:none">🕸 總網路圖</a> <a class="btn" href="guide.html" style="text-decoration:none">📖 使用指引</a></span>
 <span class="xslot" data-x="all"></span>
 </div>
 <div class="gov" id="gov"><div class="gh"><b id="govT"></b><span class="rng" id="govR"></span><span class="gf" id="govF"></span><span class="xslot" data-x="gov"></span></div><div class="glead" id="govH"></div><ul class="gl" id="govL"></ul><button class="gmore" id="govM"></button></div>
@@ -371,6 +372,8 @@ document.getElementById('verifyList').innerHTML = (DATA.verify||[]).map(v=>`<li>
 function listify(h){h=h||'';const p=h.split(/（\d+）/);if(p.length<3)return h;let tail='';const last=p[p.length-1],i=last.search(/<br\s*\/?>/i);if(i>=0){tail=last.slice(i).replace(/^(<br\s*\/?>)+/i,'');p[p.length-1]=last.slice(0,i);}
  return `<div>${p[0].replace(/[：:]\s*(<\/b>)?\s*$/,'$1')}</div><ol style="margin:6px 0 8px;padding-left:1.6em;line-height:1.8">${p.slice(1).map(x=>`<li>${x.trim()}</li>`).join('')}</ol>${tail?`<div>${tail}</div>`:''}`;}
 document.getElementById('method').innerHTML = listify(DATA.method);
+/* 放在網站上（http/https）時才顯示回總網路圖與使用指引的連結；單檔離線開啟時隱藏，避免連到不存在的頁面 */
+if(/^https?:$/.test(location.protocol)) document.getElementById('siteNav').style.display='';
 /* ============================ 共用 ============================ */
 const $ = s=>document.querySelector(s);
 const tip = $('#tip');

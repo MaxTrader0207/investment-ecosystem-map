@@ -165,6 +165,12 @@ def walk(start,path):
 for s in sorted(G): walk(s,[s])
 cycles.sort(key=lambda c:(c["und"],-c["min"],c["len"])); cycles=cycles[:40]
 data={"asOf":max(e["asOf"] for e in ents),"ents":ents,"links":links,"hubs":hubs,"amt":AMT,"checks":checks,"cycles":cycles}
+# 使用者指引：network template 旁邊若有 guide_template.html，就一併產生 guide.html（公司清單隨資料更新）
+GT=os.path.join(os.path.dirname(os.path.abspath(TPL)),"guide_template.html")
+if os.path.exists(GT):
+    gd={"asOf":data["asOf"],"ents":[{"entity":e["entity"],"ticker":e["ticker"],"accent":e["accent"],"file":e["file"],"asOf":e["asOf"],"nodes":e["nodes"]} for e in ents]}
+    open(os.path.join(os.path.dirname(os.path.abspath(OUT)),"guide.html"),"w",encoding="utf-8").write(open(GT,encoding="utf-8").read().replace("/*__GUIDE__*/null",json.dumps(gd,ensure_ascii=False).replace("</","<\\/")))
+    data["guide"]="guide.html"; print("📖 已產生使用者指引 guide.html")
 tpl=open(TPL,encoding="utf-8").read()
 if "/*__DATA__*/null" not in tpl: sys.exit("network template 缺少 /*__DATA__*/null 佔位符")
 open(OUT,"w",encoding="utf-8").write(tpl.replace("/*__DATA__*/null",json.dumps(data,ensure_ascii=False).replace("</","<\\/")))

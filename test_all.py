@@ -17,6 +17,13 @@ async def main(folder):
             if first: await first.click()
             card = await pg.query_selector(".lcard") or await pg.query_selector("#g .node")
             if card: await card.click(); await pg.wait_for_timeout(80)
+            if os.path.basename(f) == "guide.html":   # 使用者指引：檢查公司清單有產生、目錄連結都指得到、連到的頁面都存在
+                ents = await pg.query_selector_all("#ents a.ent")
+                miss = await pg.evaluate("()=>[...document.querySelectorAll('nav.toc a')].map(a=>a.getAttribute('href')).filter(h=>!document.querySelector(h))")
+                gone = [h for h in await pg.evaluate("()=>[...document.querySelectorAll('a[href$=\".html\"]')].map(a=>a.getAttribute('href'))") if not os.path.exists(os.path.join(folder, h))]
+                ok = not errs and ents and not miss and not gone
+                print(("✅" if ok else "❌"), "guide.html", f"公司連結 {len(ents)}", (errs[:2] or miss or gone or ""))
+                bad += not ok; await pg.close(); continue
             cards = len(await pg.query_selector_all(".lcard, #g .node"))
             print(("✅" if not errs and cards else "❌"), os.path.basename(f), f"節點 {cards}", errs[:2] or "")
             bad += bool(errs) or not cards; await pg.close()

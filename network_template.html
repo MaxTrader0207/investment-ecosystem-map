@@ -80,6 +80,7 @@ footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs)
 <button class="btn" id="reset">重設</button>
 <button class="btn" id="csv">⬇ 樞紐排行 CSV</button>
 <button class="btn" id="theme">🌓 淺色／深色</button>
+<a class="btn" id="guideLink" href="guide.html" style="display:none;text-decoration:none">📖 使用指引與功能地圖</a>
 <span class="hint">點選圓點看「哪些實體與它有關、涉及多少錢、若它出事影響誰」。</span>
 </div>
 <div class="wrap">
@@ -284,6 +285,7 @@ $('#csv').onclick=()=>{const rows=window._rows||[];const head=['交易對手','�
  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([''+csv],{type:'text/csv'}));a.download=`生態系樞紐排行_${DATA.asOf}.csv`;a.click();};
 /* CSV 開頭的 BOM 由下一行補上，避免 Excel 中文亂碼 */
 (function(){const B=window.Blob;window.Blob=function(parts,opt){if(opt&&opt.type==='text/csv')parts=[String.fromCharCode(65279),...parts.map(p=>typeof p==='string'?p.replace(/^/,''):p)];return new B(parts,opt)};})();
+if(DATA.guide){$('#guideLink').href=DATA.guide;$('#guideLink').style.display=''}
 $('#theme').onclick=()=>{document.body.dataset.theme=document.body.dataset.theme==='light'?'':'light';draw()};
 ['#minDeg','#dirSel','#cpChk'].forEach(s=>$(s).onchange=()=>{build();side(selected)});
 $('#q').oninput=draw; $('#reset').onclick=()=>{selected=null;$('#q').value='';$('#minDeg').value='2';$('#dirSel').value='';$('#cpChk').checked=true;build();side(null)};

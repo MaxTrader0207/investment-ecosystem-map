@@ -2,7 +2,8 @@
 
 - 網址：https://maxtrader0207.github.io/investment-ecosystem-map/ （自動轉到總網路圖，各家 Dashboard 從圖上點進去）
 - `data/<slug>/data.json`：各家主資料（人工維護，唯一真實來源）
-- `docs/`：產出的頁面（GitHub Pages）
+- `docs/`：產出的頁面（GitHub Pages），含 `guide.html` 使用者指引與網站功能地圖
+- `guide_template.html`：使用者指引的版型；`build_network.py` 會連同總網路圖一起產生 `docs/guide.html`，公司清單自動更新
 - `build.py`／`template.html`：單家 Dashboard 建置；`build_network.py`／`network_template.html`：總網路圖、一致性檢查與資金閉環偵測
 - `update_prices.py`、`check_updates.py`、`test_all.py`：每週流程用的現值更新、新動態檢查、全頁面測試
 
