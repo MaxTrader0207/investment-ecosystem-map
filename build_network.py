@@ -248,7 +248,7 @@ for e in ents:
     dims=[]
     for key,name in RISK_DIMS:
         r=R.get(key)
-        dims.append({"k":key,"n":name,"w":0,"s":r[0] if r else None,"b":r[1] if r else (rk["macro"].get(key,{}).get("basis") or "待補資料：需要另外查證公開數據後才能評分"),"src":list(r[2]) if r and len(r)>2 else []})
+        dims.append({"k":key,"n":name,"w":0,"s":r[0] if r else None,"b":r[1] if r else (rk["macro"].get(key,{}).get("basis") or "待補資料：需要另外查證公開數據後才能評分"),"src":list(r[2]) if r and len(r)>2 else [],"na":(not r) and str(rk["macro"].get(key,{}).get("basis") or "").startswith("不適用")})
     e["risk"]={"dims":dims}
 _W=_weights(ents)
 for e in ents:
@@ -336,12 +336,12 @@ _rates=sorted([(r,_name[k],n,d) for k,v in _X.items() for d,n,r in v["rates"] if
 _gtot=round(sum(v["gonly"] for v in _X.values()),1); _reds=[e for e in ents if e["risk"]["light"]==3]
 def _lt(v,red,yel): return 3 if v>=red else 2 if v>=yel else 1
 watch=[]
-if _gap: g,ge=_gap[0]; watch.append({"n":"承諾支出相對營收","v":f"{ge['entity']} {g:.1f} 倍","light":_lt(g,2,1),"rule":"最高者達 2 倍亮紅燈、1 倍亮黃燈","detail":"、".join(f"{e['entity']} {r:.1f} 倍" for r,e in _gap[:3])})
-if _circ: c,ce=_circ[0]; watch.append({"n":"循環收入占營收","v":f"{ce['entity']} {c*100:.0f}%","light":_lt(c,0.2,0.1),"rule":"最高者達 20% 亮紅燈、10% 亮黃燈","detail":"、".join(f"{e['entity']} {r*100:.0f}%" for r,e in _circ[:3])})
-if _pky: yl=_pky[0]-int(ASOF[:4]); watch.append({"n":"距離付款高峰","v":f"{_pky[0]}–{_pky[-1]} 年" if len(_pky)>1 else f"{_pky[0]} 年","light":3 if yl<=1 else 2 if yl<=3 else 1,"rule":"高峰在 1 年內亮紅燈、3 年內亮黃燈","detail":f"高峰每年約 {fmtb(_pk)}（只含有揭露年期的合約）"})
-watch.append({"n":"新債票息","v":f"{_rates[0][0]:g}%（{_rates[0][1]}）" if _rates else "尚無資料","light":(_lt(_rates[0][0],9,7) if _rates else 0),"rule":"近 12 個月新債最高票息達 9% 亮紅燈、7% 亮黃燈","detail":"；".join(f"{a} {n} {r:g}%" for r,a,n,d in _rates[:3]) if _rates else "負債節點尚未填入票息（rate 欄位）"})
-watch.append({"n":"募資或承諾下修、展延","v":f"{len(_cut)} 則","light":_lt(len(_cut),3,1),"rule":"近 120 天達 3 則亮紅燈、1 則亮黃燈（以節點與事件文字比對）","detail":"；".join(f"{_name[k]}：{n}" for k,d,n in sorted(_cut,key=lambda x:x[1],reverse=True)[:4]) or "未偵測到"})
-watch.append({"n":"權證或擔保條件變動","v":f"{len(_war)} 則","light":_lt(len(_war),2,1),"rule":"近 120 天達 2 則亮紅燈、1 則亮黃燈（以節點與事件文字比對）","detail":"；".join(f"{_name[k]}：{n}" for k,d,n in _war[:4]) or "未偵測到"})
+if _gap: g,ge=_gap[0]; watch.append({"n":"承諾支出相對營收","v":f"{ge['entity']} {g:.1f} 倍","x":round(g,2),"light":_lt(g,2,1),"rule":"最高者達 2 倍亮紅燈、1 倍亮黃燈","detail":"、".join(f"{e['entity']} {r:.1f} 倍" for r,e in _gap[:3])})
+if _circ: c,ce=_circ[0]; watch.append({"n":"循環收入占營收","v":f"{ce['entity']} {c*100:.0f}%","x":round(c*100,1),"light":_lt(c,0.2,0.1),"rule":"最高者達 20% 亮紅燈、10% 亮黃燈","detail":"、".join(f"{e['entity']} {r*100:.0f}%" for r,e in _circ[:3])})
+if _pky: yl=_pky[0]-int(ASOF[:4]); watch.append({"n":"距離付款高峰","v":f"{_pky[0]}–{_pky[-1]} 年" if len(_pky)>1 else f"{_pky[0]} 年","x":yl,"dir":-1,"light":3 if yl<=1 else 2 if yl<=3 else 1,"rule":"高峰在 1 年內亮紅燈、3 年內亮黃燈","detail":f"高峰每年約 {fmtb(_pk)}（只含有揭露年期的合約）"})
+watch.append({"n":"新債票息","v":f"{_rates[0][0]:g}%（{_rates[0][1]}）" if _rates else "尚無資料","x":(_rates[0][0] if _rates else None),"light":(_lt(_rates[0][0],9,7) if _rates else 0),"rule":"近 12 個月新債最高票息達 9% 亮紅燈、7% 亮黃燈","detail":"；".join(f"{a} {n} {r:g}%" for r,a,n,d in _rates[:3]) if _rates else "負債節點尚未填入票息（rate 欄位）"})
+watch.append({"n":"募資或承諾下修、展延","v":f"{len(_cut)} 則","x":len(_cut),"light":_lt(len(_cut),3,1),"rule":"近 120 天達 3 則亮紅燈、1 則亮黃燈（以節點與事件文字比對）","detail":"；".join(f"{_name[k]}：{n}" for k,d,n in sorted(_cut,key=lambda x:x[1],reverse=True)[:4]) or "未偵測到"})
+watch.append({"n":"權證或擔保條件變動","v":f"{len(_war)} 則","x":len(_war),"light":_lt(len(_war),2,1),"rule":"近 120 天達 2 則亮紅燈、1 則亮黃燈（以節點與事件文字比對）","detail":"；".join(f"{_name[k]}：{n}" for k,d,n in _war[:4]) or "未偵測到"})
 # 變動紀錄：與上一期的狀態比較（同一期重建不會覆蓋比較基準）
 def _snap(D0):
     return {"ents":{e["key"]:{"n":e["entity"],"t":e["risk"]["total"] if e.get("risk") else None,"l":e["risk"]["light"] if e.get("risk") else None,"nodes":e["nodes"],"cap":(e.get("mkt") or {}).get("cap"),
@@ -388,15 +388,26 @@ _entry={"d":ASOF,"from":(_log["base"] or {}).get("d"),"auto":_auto,"notes":(_old
 _log["log"]=[_entry]+[x for x in _log["log"] if x["d"]!=ASOF]; _log["log"]=_log["log"][:26]; _log["cur"]={"d":ASOF,"snap":_cur}
 json.dump(_log,open(LOGF,"w",encoding="utf-8"),ensure_ascii=False)
 _bg=((_log["base"] or {}).get("snap") or {}).get("ents",{}); _pr=sum(1 for v in _bg.values() if v.get("l")==3) if _bg else None
-watch.append({"n":"紅燈家數","v":f"{len(_reds)}／{len(ents)} 家"+(f"（上期 {_pr} 家）" if _pr is not None else ""),"light":_lt(len(_reds)/len(ents),0.4,0.2),"rule":"紅燈占比達 40% 亮紅燈、20% 亮黃燈","detail":"、".join(e["entity"] for e in sorted(_reds,key=lambda e:e["risk"]["rank"])[:6])})
-watch.append({"n":"供應商融資與擔保總額","v":fmtb(_gtot) if _gtot else "無","light":_lt(_gtot,100,30),"rule":"全體合計達 $1,000 億亮紅燈、$300 億亮黃燈（不含公司自身的借款）","detail":"、".join(f"{_name[k]} {fmtb(v['gonly'])}" for k,v in sorted(_X.items(),key=lambda kv:-kv[1]["gonly"]) if v["gonly"]>0)[:160] or "沒有已揭露金額的擔保"})
+watch.append({"n":"紅燈家數","v":f"{len(_reds)}／{len(ents)} 家"+(f"（上期 {_pr} 家）" if _pr is not None else ""),"x":len(_reds),"light":_lt(len(_reds)/len(ents),0.4,0.2),"rule":"紅燈占比達 40% 亮紅燈、20% 亮黃燈","detail":"、".join(e["entity"] for e in sorted(_reds,key=lambda e:e["risk"]["rank"])[:6])})
+watch.append({"n":"供應商融資與擔保總額","v":fmtb(_gtot) if _gtot else "無","x":_gtot,"light":_lt(_gtot,100,30),"rule":"全體合計達 $1,000 億亮紅燈、$300 億亮黃燈（不含公司自身的借款）","detail":"、".join(f"{_name[k]} {fmtb(v['gonly'])}" for k,v in sorted(_X.items(),key=lambda kv:-kv[1]["gonly"]) if v["gonly"]>0)[:160] or "沒有已揭露金額的擔保"})
+# 預警燈號＝水位＋與上一期相比的方向：惡化時升一級、高檔持平時紅降為黃、改善時降一級；沒有上期數值就只看水位
+_bw=((_log["base"] or {}).get("snap") or {}).get("watch") or {}
+for w in watch:
+    w["lvl"]=w["light"]; w["tr"]=None; _p=_bw.get(w["n"])
+    if _p and w.get("x") is not None and _p[0] is not None and w["lvl"]:
+        _d=(w["x"]-_p[0])*w.get("dir",1); _tol=max(abs(_p[0])*0.03,1e-9)
+        w["tr"]=1 if _d>_tol else -1 if _d<-_tol else 0; w["pv"]=_p[1]
+        w["light"]=min(3,w["lvl"]+1) if w["tr"]==1 else max(1,w["lvl"]-1) if w["tr"]==-1 else min(w["lvl"],2)
+_log["cur"]["snap"]["watch"]={w["n"]:[w.get("x"),w["v"]] for w in watch}
+json.dump(_log,open(LOGF,"w",encoding="utf-8"),ensure_ascii=False)
 # 本期結論：三到五句
 _top=sorted(ents,key=lambda e:e["risk"]["rank"])[0]; head=[]
 head.append(f"目前追蹤 {len(ents)} 家，其中 {len(_reds)} 家紅燈；有揭露年期的合約付款高峰在 {_pky[0]}"+(f"–{_pky[-1]}" if len(_pky)>1 else "")+f" 年，每年約 {fmtb(_pk)}。" if _pky else f"目前追蹤 {len(ents)} 家，其中 {len(_reds)} 家紅燈。")
 if _gap:
     g,ge=_gap[0]; head.append(f"最脆弱的環節是 {ge['entity']}：每年承諾支出約 {fmtb(ge['cash']['out'])}，是年營收的 {g:.1f} 倍，缺口約 {fmtb(ge['cash']['out']-ge['cash']['rev'])} 要靠募資或舉債補上；風險總分最高的是 {_top['entity']}（{_top['risk']['total']} 分）。")
 if _circ: c,ce=_circ[0]; head.append(f"循環融資最集中的是 {ce['entity']}：約 {c*100:.0f}% 的年營收來自它自己入股或融資的對象（"+"、".join(_name.get(k,k) for k,_ in ce["cash"]["circFrom"][:2])+"）。")
-_rw=[w for w in watch if w["light"]==3]; head.append(f"{len(watch)} 項預警指標中有 {len(_rw)} 項亮紅燈"+("："+"、".join(w["n"] for w in _rw[:4]) if _rw else "")+"。")
+_rw=[w for w in watch if w["light"]==3]; _wz=[w for w in watch if w["tr"]==1]; _hi=[w for w in watch if w["lvl"]==3]
+head.append(f"{len(watch)} 項預警指標中有 {len(_hi)} 項處於紅燈水位"+(f"，其中 {len(_wz)} 項比上期惡化（"+"、".join(w["n"] for w in _wz[:4])+"）" if _wz else ("，沒有比上期惡化的項目" if any(w["tr"] is not None for w in watch) else "；與上期的方向比較從下一期開始"))+"。")
 if _entry["from"]:
     _cnt={}; 
     for a in _auto: _cnt[a["t"]]=_cnt.get(a["t"],0)+1

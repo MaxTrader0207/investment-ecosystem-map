@@ -53,7 +53,9 @@ table{border-collapse:collapse;width:100%;font-size:calc(12.5px*var(--fs))}
 th,td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
 th{background:var(--panel2);position:sticky;top:0;cursor:pointer;white-space:nowrap}
 tr:hover td{background:var(--panel2)}
-.sec{padding:14px 22px 0;font-weight:700;font-size:calc(15px*var(--fs))}
+.toc{position:sticky;top:0;z-index:40;background:var(--bg);border-bottom:1px solid var(--line);padding:6px 22px;display:flex;gap:6px;overflow-x:auto;white-space:nowrap;scrollbar-width:thin}.toc a{font-size:calc(12px*var(--fs));padding:3px 9px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--text);text-decoration:none;flex:none}.toc a:hover,.toc a.on{border-color:var(--nv,#76b900)}
+@media print{.toc{display:none}}
+.sec{scroll-margin-top:46px;padding:14px 22px 0;font-weight:700;font-size:calc(15px*var(--fs))}
 .brief{padding:10px 22px 6px}
 .bintro{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c,var(--acc));border-radius:10px;padding:11px 14px;line-height:1.7;font-size:calc(13px*var(--fs))}
 .bintro h3{margin:0 0 4px;font-size:calc(17px*var(--fs))}.bintro h3 small{font-weight:400;color:var(--muted);font-size:calc(12px*var(--fs));margin-left:6px}
@@ -123,9 +125,10 @@ footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs)
 <span>⬤ 大圓＝已建 Dashboard 的實體　● 小圓＝共同交易對手（越大＝跨越越多實體）</span>
 </div>
 </header>
+<nav class="toc" id="toc"></nav>
 <div class="sec" id="s-top">📌 本期結論</div>
 <div class="brief" id="topBox"></div>
-<div class="sec" id="s-watch">🚨 預警指標（定期追蹤的領先訊號，燈號依下方規則自動判定）</div>
+<div class="sec" id="s-watch">🚨 預警指標（定期追蹤的領先訊號；燈號＝水位＋與上期相比的方向）</div>
 <div class="brief" id="watch"></div>
 <div class="kpis" id="kpis"></div>
 <div class="toolbar">
@@ -306,11 +309,11 @@ function risk(k){
  const peers=DATA.ents.filter(x=>x.risk&&x.risk.total!=null).sort((a,b)=>b.risk.total-a.risk.total||a.key.localeCompare(b.key,'zh-Hant'));
  const strip=`<div class="rcard" style="margin-top:14px"><b>全部公司一覽</b> <span class="hint">依總風險值由高到低；點選可切換公司</span>
   <div class="rpeers">${peers.map(p=>`<button class="rpeer${p.key===k?' on':''}" data-k="${esc(p.key)}" title="${esc(p.entity)}：總風險值 ${p.risk.total}（${RLAMP[p.risk.light]}）"><i class="rb${p.risk.light}"></i><span>${esc(p.entity)}${p.risk.alert.length?' <b class="rwarn" title="單項警示：'+esc(p.risk.alert.map(a=>a[0]+' '+a[1]).join('、'))+(p.risk.light>p.risk.base?'（燈號因此升一級）':'')+'">!</b>':''}</span><b class="rc${p.risk.light}">${p.risk.total}</b></button>`).join('')}</div></div>`;
- const foot=`<div class="hint" style="margin-top:8px;line-height:1.7">總風險值＝各面向分數（0–100）× 權重後相加，再依已有資料的權重換算成 0–100。權重每次更新時自動計算：一半是各面向等權，一半依該面向在全部公司之間的分數差異（標準差）分配，差異愈大、愈能區分公司的面向權重愈高。任一面向（資訊可信度除外）達 85 分會標示「單項警示」，總燈號並至少升一級（綠升黃、黃升紅），避免嚴重的單一風險被平均稀釋。經營者與接班＝創辦人主導 25、執行長兼董事長 15、沒有公開的二號人物或接班安排 25、主導者滿 65 歲或任期滿 15 年 15、近 12 個月有執行長異動 20。總風險值的燈號：45 以上紅燈（高）、30–44 黃燈（中）、29 以下綠燈（低）。單一面向的燈號：60 以上紅燈、40–59 黃燈、39 以下綠燈；雷達圖上的紅色虛線是 60 分。總分是各面向的加權平均，分布比單一面向集中，所以門檻較低。地緣政治＝中國（含港）營收占比 × 2，受出口管制或強制分拆直接影響再加 30；匯率＝本國以外營收占比；通膨／物價／利率＝資本支出占營收 × 2 與有息負債占營收的平均。這幾項取自公開財報與公告，「全部面向」的 ↗ 可開啟來源；查不到公開數據的面向標示待補、不計入總分。其餘面向反映各家 Dashboard 記錄到的投資與資金循環結構。總分不是公司整體的信用評等；滑鼠移到圓點或清單可看計算依據。非投資建議。</div>`;
+ const foot=`<div class="hint" style="margin-top:8px;line-height:1.7">總風險值＝各面向分數（0–100）× 權重後相加，再依已有資料的權重換算成 0–100。權重每次更新時自動計算：一半是各面向等權，一半依該面向在全部公司之間的分數差異（標準差）分配，差異愈大、愈能區分公司的面向權重愈高。任一面向（資訊可信度除外）達 85 分會標示「單項警示」，總燈號並至少升一級（綠升黃、黃升紅），避免嚴重的單一風險被平均稀釋。經營者與接班＝創辦人主導 25、執行長兼董事長 15、沒有公開的二號人物或接班安排 25、主導者滿 65 歲或任期滿 15 年 15、近 12 個月有執行長異動 20。總風險值的燈號：45 以上紅燈（高）、30–44 黃燈（中）、29 以下綠燈（低）。單一面向的燈號：60 以上紅燈、40–59 黃燈、39 以下綠燈；雷達圖上的紅色虛線是 60 分。總分是各面向的加權平均，分布比單一面向集中，所以門檻較低。地緣政治＝中國（含港）營收占比 × 2，受出口管制或強制分拆直接影響再加 30；匯率＝本國以外營收占比；通膨／物價／利率＝資本支出占營收 × 2 與有息負債占營收的平均。這幾項取自公開財報與公告，「全部面向」的 ↗ 可開啟來源；查不到公開數據的面向標示待補，公式套不上的（例如主權基金沒有營收）標示不適用，兩者都不計入總分。其餘面向反映各家 Dashboard 記錄到的投資與資金循環結構。總分不是公司整體的信用評等；滑鼠移到圓點或清單可看計算依據。非投資建議。</div>`;
  if(!e||!e.risk||e.risk.total==null){X.innerHTML=`<div class="rcard"><b>${esc(k)}</b> <span class="hint">尚未建立專屬 Dashboard，沒有足夠資料計算風險值。請從下方選擇已建 Dashboard 的公司。</span></div>${strip}${foot}`;}
  else{
   const r=e.risk, lv=r.light, D=r.dims, n=D.length, R=150;
-  const cnt=[1,2,3].map(v=>D.filter(d=>RLV(d.s)===v).length), miss=D.filter(d=>d.s==null);
+  const cnt=[1,2,3].map(v=>D.filter(d=>RLV(d.s)===v).length), miss=D.filter(d=>d.s==null&&!d.na), nas=D.filter(d=>d.na);
   const top=D.filter(d=>d.s!=null).sort((a,b)=>b.s*b.w-a.s*a.w)[0];
   const pt=(i,rr)=>{const a=-Math.PI/2+i*2*Math.PI/n;return [+(Math.cos(a)*rr).toFixed(1),+(Math.sin(a)*rr).toFixed(1)]};
   const ring=v=>D.map((d,i)=>pt(i,R*v/100).join(',')).join(' ');
@@ -322,18 +325,18 @@ function risk(k){
    <polygon points="${D.map((d,i)=>pt(i,R*(d.s||0)/100).join(',')).join(' ')}" fill="${col}" fill-opacity=".18" stroke="${col}" stroke-width="2"/>
    ${D.map((d,i)=>{const v=RLV(d.s),p=pt(i,R*(d.s||0)/100),l=pt(i,R+20),an=Math.abs(l[0])<20?'middle':l[0]>0?'start':'end';
     return `<g><title>${esc(d.n)}（權重 ${d.w}%）：${d.s==null?'待補':d.s+' 分'}\n${esc(d.b)}</title>${d.s==null?'':`<circle cx="${p[0]}" cy="${p[1]}" r="6.5" class="rf${v}" stroke="var(--panel)" stroke-width="2"/>`}
-    <text x="${l[0]}" y="${l[1]-2}" text-anchor="${an}"${d.s==null?' class="m"':''}>${esc(d.n)}</text><text x="${l[0]}" y="${l[1]+14}" text-anchor="${an}" class="${d.s==null?'m':'t'+v}">${d.s==null?'待補資料':d.s+'・'+RLN[v]}</text></g>`}).join('')}</svg>`;
+    <text x="${l[0]}" y="${l[1]-2}" text-anchor="${an}"${d.s==null?' class="m"':''}>${esc(d.n)}</text><text x="${l[0]}" y="${l[1]+14}" text-anchor="${an}" class="${d.s==null?'m':'t'+v}">${d.s==null?(d.na?'不適用':'待補資料'):d.s+'・'+RLN[v]}</text></g>`}).join('')}</svg>`;
   X.innerHTML=`<div class="rgrid">
    <div class="rcard rtot"><div class="hint">${esc(e.entity)}｜總風險值</div>
     <div style="display:flex;gap:16px;align-items:center"><div class="rlight" aria-hidden="true"><i class="${lv===3?'on3':''}"></i><i class="${lv===2?'on2':''}"></i><i class="${lv===1?'on1':''}"></i></div><div class="rnum rc${lv}">${r.total}</div></div>
     <div class="rc${lv}" style="font-size:calc(17px*var(--fs));font-weight:700">${RLN[lv]}度風險（${RLAMP[lv]}）</div>
     <div class="rrank">${r.of} 間公司中排名第 ${r.rank} 高</div>
     ${r.alert.length?`<div class="ralert"><b>單項警示</b>（單一面向 85 分以上）<br>${r.alert.map(a=>esc(a[0])+' '+a[1]).join('、')}${r.light>r.base?`<br>總分 ${r.total} 原為${RLAMP[r.base]}，因單項警示升為${RLAMP[r.light]}`:''}</div>`:''}
-    <div class="hint" style="line-height:1.7">${cnt[2]} 個面向紅燈、${cnt[1]} 個黃燈、${cnt[0]} 個綠燈${miss.length?`、${miss.length} 個待補`:''}<br>最大來源：${top?esc(top.n)+'（'+top.s+' 分）':'—'}${r.cov<100?`<br>目前依權重 ${r.cov}% 的面向計算`:''}</div></div>
+    <div class="hint" style="line-height:1.7">${cnt[2]} 個面向紅燈、${cnt[1]} 個黃燈、${cnt[0]} 個綠燈${miss.length?`、${miss.length} 個待補`:''}${nas.length?`、${nas.length} 個不適用`:''}<br>最大來源：${top?esc(top.n)+'（'+top.s+' 分）':'—'}${r.cov<100?`<br>目前依權重 ${r.cov}% 的面向計算`:''}</div></div>
    <div class="rcard rradar">${svg}</div>
    <div class="rside">
     <div class="rcard"><b>風險主要來自</b>${D.filter(d=>d.s!=null).sort((a,b)=>b.s*b.w-a.s*a.w).slice(0,3).map(d=>`<div class="rtop"><i class="rb${RLV(d.s)}"></i><div><div><b>${esc(d.n)}</b> <b class="rc${RLV(d.s)}">${d.s}</b></div><div class="hint">${esc(d.b)}｜貢獻 ${(d.s*d.w/r.cov).toFixed(1)} 分</div></div></div>`).join('')}</div>
-    <div class="rcard"><b>全部面向</b>${D.map(d=>`<div class="rrow" title="${esc(d.b)}"><i class="rb${RLV(d.s)}"></i><span>${esc(d.n)}</span><span class="hint">${d.w}%</span>${d.src&&d.src[0]?`<a href="${esc(d.src[0][1])}" target="_blank" rel="noopener" title="${esc(d.src.map(x=>x[0]).join('\n'))}">↗</a>`:'<span style="width:.8em"></span>'}<b class="rc${RLV(d.s)}">${d.s==null?'待補':d.s}</b></div>`).join('')}</div>
+    <div class="rcard"><b>全部面向</b>${D.map(d=>`<div class="rrow" title="${esc(d.b)}"><i class="rb${RLV(d.s)}"></i><span>${esc(d.n)}</span><span class="hint">${d.w}%</span>${d.src&&d.src[0]?`<a href="${esc(d.src[0][1])}" target="_blank" rel="noopener" title="${esc(d.src.map(x=>x[0]).join('\n'))}">↗</a>`:'<span style="width:.8em"></span>'}<b class="rc${RLV(d.s)}">${d.s==null?(d.na?'不適用':'待補'):d.s}</b></div>`).join('')}</div>
    </div></div>${strip}${foot}`;}
  X.insertAdjacentHTML('afterbegin',`<div class="bx rx" style="padding:0 0 8px;margin-bottom:10px"><span class="hint">資料輸出</span><button class="btn" title="把風險總覽整個區塊存成 PNG 圖片">PNG</button></div>`);
  X.querySelector('.rx button').onclick=()=>elToPNG(X,`風險總覽_${k.replace(/[\\/:*?"<>|／\s]+/g,'_')}_${DATA.asOf}`,'.rx');
@@ -660,7 +663,9 @@ build(); side(null); table(); cmp();
  // 本期結論／預警指標／變動紀錄
  $('#topBox').innerHTML=`<div class="rcard"><ol class="topl">${(DATA.head||[]).map(s=>`<li>${esc(s)}</li>`).join('')}</ol><div class="hint" style="margin-top:6px">資料截至 ${esc(DATA.asOf)}，由資料自動產生。細節見 <a href="#s-watch">預警指標</a>、<a href="#s-scen">情境試算</a>、<a href="#s-chg">變動紀錄</a>。非投資建議。</div></div>`;
  const LN=['無資料','綠燈','黃燈','紅燈'];
- $('#watch').innerHTML=`<div class="wgrid">${(DATA.watch||[]).map(w=>`<div class="wcard w${w.light}"><b>${esc(w.n)} <span class="rc${w.light}" style="float:right">● ${LN[w.light]}</span></b><div class="wv">${esc(w.v)}</div><div class="hint" style="line-height:1.6">${esc(w.detail)}</div><div class="hint" style="margin-top:4px;opacity:.8">規則：${esc(w.rule)}</div></div>`).join('')}</div>`;
+ $('#watch').innerHTML=`<div class="wgrid">${(DATA.watch||[]).map(w=>`<div class="wcard w${w.light}"><b>${esc(w.n)} <span class="rc${w.light}" style="float:right">● ${LN[w.light]}</span></b><div class="wv">${esc(w.v)}</div><div class="hint" style="line-height:1.6">${esc(w.detail)}</div><div class="hint" style="margin-top:4px">${w.tr==null?'水位 '+LN[w.lvl==null?w.light:w.lvl]+'・上期沒有可比的數值':'水位 '+LN[w.lvl]+'・較上期'+['改善 ↓','持平 →','惡化 ↑'][w.tr+1]+'（上期 '+esc(w.pv||'')+'）'}</div><div class="hint" style="margin-top:4px;opacity:.8">水位規則：${esc(w.rule)}</div></div>`).join('')}</div><div class="hint" style="margin-top:8px;line-height:1.7">燈號怎麼定：先依各卡片的水位規則得到水位，再和上一期的數值比較（變動在 3% 以內視為持平）。比上期惡化就升一級（綠→黃、黃→紅）；紅燈水位但持平，降為黃燈，表示「高檔但沒有再惡化」；比上期改善就降一級。上期沒有可比數值時只看水位。</div>`;
+ const TOC=[...document.querySelectorAll('.sec')].map((s,i)=>{if(!s.id)s.id='s-a'+i;let x='';for(const n of s.childNodes){if(n.nodeType===3)x+=n.textContent;else break}return `<a href="#${s.id}">${esc(x.split(/[（：　]/)[0].trim())}</a>`}).join('');
+ $('#toc').innerHTML=TOC;
  const CG=DATA.chg||[];
  $('#chg').innerHTML=CG.length?CG.map((c,i)=>{const by={};c.auto.forEach(a=>{by[a.t]=(by[a.t]||0)+1});
   return `<details class="rcard" style="margin-bottom:8px"${i===0?' open':''}><summary style="cursor:pointer"><b>${esc(c.d)}</b> <span class="hint">${c.from?'與 '+esc(c.from)+' 相比：':'首次建立紀錄，沒有可比較的上一期'}${Object.entries(by).map(([k,v])=>k+' '+v).join('、')}</span></summary>
