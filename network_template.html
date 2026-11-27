@@ -148,16 +148,19 @@ function draw(){
  const g=$('#g');g.innerHTML='';
  const q=$('#q').value.trim().toLowerCase();
  const nb=new Set();if(selected){nb.add(selected);EDGES.forEach(e=>{if(e.s.id===selected)nb.add(e.t.id);if(e.t.id===selected)nb.add(e.s.id)});}
+ // 搜尋：符合名稱的節點＋與它直接相連的節點都保持顯示；符合者加外圈標記
+ const hit=new Set(),qnb=new Set();if(q){NODES.forEach(n=>{if(n.id.toLowerCase().includes(q))hit.add(n.id)});hit.forEach(h=>qnb.add(h));EDGES.forEach(e=>{if(hit.has(e.s.id))qnb.add(e.t.id);if(hit.has(e.t.id))qnb.add(e.s.id)});}
  const ge=mk('g',{},g), gn=mk('g',{},g);
  EDGES.forEach(e=>{const col=e.dir==='in'?getComputedStyle(document.body).getPropertyValue('--in'):e.dir==='both'?'#fbbf24':(ENT[e.s.id]?ENT[e.s.id].accent:'#94a3b8');
   const w=e.amt>0?Math.min(7,1.2+Math.log10(e.amt*10+1)*1.6):1.1;
-  const on=!selected||(e.s.id===selected||e.t.id===selected);
+  const on=(!selected||(e.s.id===selected||e.t.id===selected))&&(!q||hit.has(e.s.id)||hit.has(e.t.id));
   const p=mk('line',{x1:e.s.x,y1:e.s.y,x2:e.t.x,y2:e.t.y,stroke:col,'stroke-width':w,'stroke-opacity':on?.75:.06,'stroke-dasharray':e.rumor?'5 4':''},ge);
   p.appendChild(document.createElementNS(NS,'title')).textContent=`${e.s.id} ↔ ${e.t.id}：${e.ls.map(l=>`${l.name}｜${AMT[l.amtType]}｜${l.short||'—'}`).join('；')}`;});
- NODES.forEach(n=>{const on=(!selected||nb.has(n.id))&&(!q||n.id.toLowerCase().includes(q));
+ NODES.forEach(n=>{const on=(!selected||nb.has(n.id))&&(!q||qnb.has(n.id));
   const c=n.isE?ENT[n.id].accent:'#94a3b8';
   const gg=mk('g',{class:'node'+(on?'':' dim'),transform:`translate(${n.x},${n.y})`},gn);
   mk('circle',{r:n.r,fill:n.isE?'var(--panel)':c,'fill-opacity':n.isE?1:.85,stroke:n.isE?c:(selected===n.id?'#fff':'var(--bg)'),'stroke-width':n.isE?3:(selected===n.id?2.5:1.2)},gg);
+  if(q&&hit.has(n.id)) mk('circle',{r:n.r+5,fill:'none',stroke:'var(--acc)','stroke-width':2.5,'stroke-dasharray':'4 3'},gg);
   const t=mk('text',{class:n.isE?'elab':'nlab','text-anchor':'middle',y:n.isE?4:n.r+12},gg);t.textContent=n.id+(n.isE?'':(n.deg>1?` (${n.deg})`:''));
   gg.onclick=ev=>{ev.stopPropagation();selected=selected===n.id?null:n.id;draw();side(selected);};});
  g.onclick=()=>{selected=null;draw();side(null)};
