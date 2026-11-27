@@ -144,6 +144,10 @@
   "mktcap": [
    "SectorAlpha｜美國市值前十大（2026-11 下旬）",
    "https://www.sectoralpha.in/top-us-companies"
+  ],
+  "cash_fy26": [
+   "FourWeekMBA｜Apple FY2026 淨現金（依 10-K 資產負債表計算）",
+   "https://fourweekmba.com/ai-apples-net-cash-rose-23b-in-the-year-it-dropped-its-target/"
   ]
  },
  "categories": [
@@ -1157,7 +1161,12 @@
   "note": "FY2026",
   "src": [
    "mc_fy26"
-  ]
+  ],
+  "cash": 136.9,
+  "cashSrc": [
+   "cash_fy26"
+  ],
+  "cashNote": "9/26 現金與有價證券（含非流動）；同日商業本票與定期債務 $801 億"
  },
  "mkt": {
   "cap": 4980,

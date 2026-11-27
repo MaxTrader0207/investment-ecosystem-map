@@ -213,6 +213,10 @@
   "mktcap": [
    "VLSI Korea｜全球半導體市值排名 TOP 20（2026-11-26）",
    "https://www.vlsi.kr/en/global-semiconductor-marketcap-ranking-top20-en/"
+  ],
+  "rev_q3": [
+   "Intel｜2026 年第三季財報",
+   "https://www.intc.com/news-events/press-releases/detail/1786/intel-reports-third-quarter-2026-financial-results"
   ]
  },
  "categories": [
@@ -1377,12 +1381,13 @@
    ]
   },
   "infl": {
-   "score": 80,
-   "basis": "資本支出 $180 億 ÷ 營收 $529 億＝34%；有息負債 $491 億 ÷ 營收＝93%",
+   "score": 64,
+   "basis": "資本支出 $180 億 ÷ Q3 年化營收 $660 億＝27%；有息負債 $491 億 ÷ 營收＝74%",
    "src": [
     "mc_capex",
     "mc_debt",
-    "mc_fy25"
+    "mc_fy25",
+    "rev_q3"
    ]
   },
   "ceo": {
@@ -1394,10 +1399,10 @@
   }
  },
  "fin": {
-  "rev": 52.9,
-  "note": "2025",
+  "rev": 66.0,
+  "note": "2026 Q3 營收 $165 億 × 4（自行年化）；Q4 指引 $150–160 億",
   "src": [
-   "mc_fy25"
+   "rev_q3"
   ]
  },
  "mkt": {

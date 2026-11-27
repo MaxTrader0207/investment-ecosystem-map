@@ -237,6 +237,10 @@
   "gap_cn": [
    "Operation Shamrock｜路透調查摘要：Meta 中國廣告營收",
    "https://www.operationshamrock.org/library/2025-12-reuters-meta-revenue"
+  ],
+  "rev_q3": [
+   "Meta IR｜2026 年第三季財報",
+   "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/"
   ]
  },
  "categories": [
@@ -1601,11 +1605,12 @@
    ]
   },
   "infl": {
-   "score": 70,
-   "basis": "2026 資本支出指引中值 $1,400 億 ÷ 2025 營收 $2,010 億＝70%；長期負債 $809 億 ÷ 營收＝40%",
+   "score": 71,
+   "basis": "2026 資本支出指引中值 $1,400 億 ÷ Q3 年化營收 $2,584 億＝54%，× 2 後達上限 100；票據面額 $840 億（9/30）加 11 月新發約 $254 億，合計 $1,094 億 ÷ 營收＝42%",
    "src": [
     "q3",
-    "mc_rev"
+    "mc_rev",
+    "rev_q3"
    ]
   },
   "ceo": {
@@ -1619,10 +1624,10 @@
   }
  },
  "fin": {
-  "rev": 200.97,
-  "note": "2025",
+  "rev": 258.4,
+  "note": "2026 Q3 營收 $646 億 × 4（自行年化）",
   "src": [
-   "mc_rev"
+   "rev_q3"
   ],
   "cash": 82.45,
   "cashSrc": [

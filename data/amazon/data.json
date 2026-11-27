@@ -179,6 +179,10 @@
   "gap_loan": [
    "FourWeekMBA｜Amazon 設備擔保貸款與 $175 億定期貸款",
    "https://fourweekmba.com/ai-amazon-can-borrow-up-to-80b-against-the-hardware-it-buys/"
+  ],
+  "rev_q3": [
+   "Amazon IR｜2026 年第三季財報",
+   "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Third-Quarter-Results/"
   ]
  },
  "categories": [
@@ -1129,11 +1133,12 @@
    ]
   },
   "infl": {
-   "score": 37,
-   "basis": "2026 年資本支出約 $2,200 億 ÷ 2025 淨銷售 $7,169 億＝31%；2026 年發債約 $890 億 ÷ 淨銷售＝12%（僅新發行，非全部負債）",
+   "score": 38,
+   "basis": "2026 年資本支出約 $2,200 億 ÷ Q3 年化淨銷售 $8,076 億＝27%；長期債務面額 $1,809 億（9/30）÷ 淨銷售＝22%",
    "src": [
     "cr_q3",
-    "mc_fy25"
+    "mc_fy25",
+    "rev_q3"
    ]
   },
   "ceo": {
@@ -1145,10 +1150,10 @@
   }
  },
  "fin": {
-  "rev": 716.9,
-  "note": "2025",
+  "rev": 807.6,
+  "note": "2026 Q3 淨銷售 $2,019 億 × 4（自行年化）；Q4 指引 $2,400–2,470 億",
   "src": [
-   "mc_fy25"
+   "rev_q3"
   ],
   "cash": 114.2,
   "cashSrc": [

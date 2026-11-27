@@ -182,6 +182,14 @@
   "mktcap": [
    "Visual Capitalist｜全球市值前 50 大（2026-11-13 收盤，CompaniesMarketCap）",
    "https://www.visualcapitalist.com/ranked-worlds-50-most-valuable-companies-anthropic-2026/"
+  ],
+  "rev_q3": [
+   "TSMC｜2026 年第三季財報",
+   "https://pr.tsmc.com/english/news/3346"
+  ],
+  "rev_g": [
+   "Longbridge｜TSMC 第三季法說會重點（全年成長約 44%）",
+   "https://longbridge.com/en/news/301950804"
   ]
  },
  "categories": [
@@ -1277,11 +1285,12 @@
    ]
   },
   "infl": {
-   "score": 100,
-   "basis": "2026 資本支出指引中值 $620 億 ÷ 2025 營收 $1,224 億＝51%；未取得有息負債，僅以資本支出計",
+   "score": 70,
+   "basis": "2026 資本支出指引中值 $620 億 ÷ 2026 全年估計營收 $1,763 億＝35%；未取得有息負債，僅以資本支出計",
    "src": [
     "crn_q3",
-    "mc_fy25"
+    "mc_fy25",
+    "rev_q3"
    ]
   },
   "ceo": {
@@ -1294,10 +1303,11 @@
   }
  },
  "fin": {
-  "rev": 122.42,
-  "note": "2025",
+  "rev": 176.3,
+  "note": "2026 全年估計：2025 年 $1,224 億 × 公司預期的全年成長約 44%；Q3 單季 $467 億",
   "src": [
-   "mc_fy25"
+   "rev_q3",
+   "rev_g"
   ]
  },
  "mkt": {

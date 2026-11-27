@@ -247,6 +247,10 @@
   "ceo_board": [
    "同花順｜寧德時代高管：聯席董事長潘健、副董事長周佳與李平",
    "https://basic.10jqka.com.cn/176/HK3750/manager.html"
+  ],
+  "rev_q3": [
+   "Tiger Brokers｜CATL 2026 前三季財報",
+   "https://www.itiger.com/news/1149301684"
   ]
  },
  "categories": [
@@ -1802,5 +1806,12 @@
     "ceo_board"
    ]
   }
+ },
+ "fin": {
+  "rev": 87.3,
+  "note": "2026 前三季營收 RMB 4,421.4 億年化，以 ¥6.75／$1 換算（自行計算）",
+  "src": [
+   "rev_q3"
+  ]
  }
 }

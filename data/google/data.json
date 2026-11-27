@@ -319,6 +319,10 @@
   "gap_sum": [
    "sec-api.io｜Alphabet Q3 2026 申報文件分析",
    "https://sec-api.io/insights/alphabet-googl-q3-2026-earnings-sec-filing-analysis"
+  ],
+  "rev_q3": [
+   "9to5Google｜Alphabet 2026 Q3 營收 $1,276 億",
+   "https://9to5google.com/2026/10/28/alphabet-q3-2026-earnings/"
   ]
  },
  "categories": [
@@ -1887,12 +1891,13 @@
    ]
   },
   "infl": {
-   "score": 59,
-   "basis": "2026 資本支出指引中值約 $2,000 億 ÷ 2025 營收 $4,028 億＝50%；長期負債 $775 億（2026/3）÷ 營收＝19%",
+   "score": 52,
+   "basis": "2026 資本支出指引中值約 $2,000 億 ÷ Q3 年化營收 $5,103 億＝39%；債務 $1,261 億（9/30）÷ 營收＝25%",
    "src": [
     "aiw_q3",
     "mc_10q",
-    "mc_fy25"
+    "mc_fy25",
+    "rev_q3"
    ]
   },
   "ceo": {
@@ -1905,10 +1910,10 @@
   }
  },
  "fin": {
-  "rev": 402.8,
-  "note": "2025",
+  "rev": 510.3,
+  "note": "2026 Q3 營收 $1,275.8 億 × 4（自行年化）",
   "src": [
-   "mc_fy25"
+   "rev_q3"
   ],
   "cash": 265.1,
   "cashSrc": [

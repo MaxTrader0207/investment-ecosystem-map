@@ -132,6 +132,10 @@
   "mktcap": [
    "SectorAlpha｜美國市值前十大（2026-11 下旬）",
    "https://www.sectoralpha.in/top-us-companies"
+  ],
+  "rev_q3": [
+   "The EV Report｜Tesla 2026 Q3 財報",
+   "https://theevreport.com/tesla-q3-2026-results-energy-storage-semi"
   ]
  },
  "categories": [
@@ -909,11 +913,12 @@
    ]
   },
   "infl": {
-   "score": 26,
-   "basis": "2026 資本支出上限 $200 億 ÷ FY2025 營收 $948 億＝21%；負債與融資租賃 $95 億 ÷ 營收＝10%",
+   "score": 22,
+   "basis": "2026 資本支出上限 $200 億 ÷ Q3 年化營收 $1,122 億＝18%；負債與融資租賃 $95 億 ÷ 營收＝8%",
    "src": [
     "ts_q3c",
-    "mc_fa"
+    "mc_fa",
+    "rev_q3"
    ]
   },
   "ceo": {
@@ -926,11 +931,16 @@
   }
  },
  "fin": {
-  "rev": 94.8,
-  "note": "2025",
+  "rev": 112.2,
+  "note": "2026 Q3 營收 $280.5 億 × 4（自行年化）；公司稱近四季營收連兩季高於 $1,000 億",
   "src": [
-   "mc_fa"
-  ]
+   "rev_q3"
+  ],
+  "cash": 45.45,
+  "cashSrc": [
+   "rev_q3"
+  ],
+  "cashNote": "Q3 底現金、約當現金與短期投資"
  },
  "mkt": {
   "cap": 1370,

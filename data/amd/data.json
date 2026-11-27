@@ -286,6 +286,10 @@
   "gap_geo": [
    "sec-api.io｜AMD 申報文件分析（中國 22.4%、海外 67%）",
    "https://sec-api.io/insights/financial-analysis-of-amd-q2-2026-filings-and-scenarios-to-2029"
+  ],
+  "rev_q3": [
+   "Finviz／GlobeNewswire｜AMD 2026 年第三季財報",
+   "https://finviz.com/news/414840/amd-reports-third-quarter-2026-financial-results"
   ]
  },
  "categories": [
@@ -1808,11 +1812,12 @@
    ]
   },
   "infl": {
-   "score": 20,
-   "basis": "Q3 底總債務 $70.8 億（含 8 月發行的 $47.5 億優先票據）÷ 2025 營收 $346 億＝20%；無晶圓廠，未取得資本支出，僅以負債計",
+   "score": 13,
+   "basis": "Q3 底總債務 $70.8 億 ÷ Q3 年化營收 $536 億＝13%；無晶圓廠，未取得資本支出，僅以負債計",
    "src": [
     "gap_q3",
-    "mc_fy25"
+    "mc_fy25",
+    "rev_q3"
    ]
   },
   "ceo": {
@@ -1825,10 +1830,10 @@
   }
  },
  "fin": {
-  "rev": 34.6,
-  "note": "2025",
+  "rev": 53.6,
+  "note": "2026 Q3 營收 $134 億 × 4（自行年化）；Q4 指引約 $170 億",
   "src": [
-   "mc_fy25"
+   "rev_q3"
   ],
   "cash": 15.8,
   "cashSrc": [
