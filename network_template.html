@@ -79,6 +79,7 @@ tr:hover td{background:var(--panel2)}
 .rlight i{width:32px;height:32px;border-radius:50%;display:block;background:#2a3038}
 .rlight i.on3{background:#ef4444;box-shadow:0 0 16px #ef4444}.rlight i.on2{background:#f59e0b;box-shadow:0 0 16px #f59e0b}.rlight i.on1{background:#22c55e;box-shadow:0 0 16px #22c55e}
 .rnum{font-size:calc(70px*var(--fs));font-weight:800;line-height:1}
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}.wcard{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--muted);border-radius:10px;padding:10px 12px}.wcard.w3{border-left-color:#ef4444}.wcard.w2{border-left-color:#f59e0b}.wcard.w1{border-left-color:#22c55e}.wcard b{display:block}.wv{font-size:calc(17px*var(--fs));font-weight:700;margin:2px 0}.topl{margin:0;padding-left:20px;line-height:1.9;font-size:calc(14.5px*var(--fs))}.chgt td,.chgt th{font-size:calc(12.5px*var(--fs))}
 .rc3{color:#f87171}.rc2{color:#fbbf24}.rc1{color:#4ade80}.rc0{color:var(--muted)}
 [data-theme="light"] .rc3{color:#b91c1c}[data-theme="light"] .rc2{color:#92400e}[data-theme="light"] .rc1{color:#166534}
 .rf3{fill:#ef4444}.rf2{fill:#f59e0b}.rf1{fill:#22c55e}.rf0{fill:#64748b}
@@ -122,6 +123,10 @@ footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs)
 <span>⬤ 大圓＝已建 Dashboard 的實體　● 小圓＝共同交易對手（越大＝跨越越多實體）</span>
 </div>
 </header>
+<div class="sec" id="s-top">📌 本期結論</div>
+<div class="brief" id="topBox"></div>
+<div class="sec" id="s-watch">🚨 預警指標（定期追蹤的領先訊號，燈號依下方規則自動判定）</div>
+<div class="brief" id="watch"></div>
 <div class="kpis" id="kpis"></div>
 <div class="toolbar">
 <label>顯示交易對手：<select id="minDeg"><option value="2" selected>出現在 ≥2 個實體</option><option value="3">≥3 個實體</option><option value="1">全部（含單一實體）</option></select></label>
@@ -144,8 +149,10 @@ footer{padding:16px 22px 30px;color:var(--muted);font-size:calc(11.5px*var(--fs)
 <div class="tablewrap" style="padding-bottom:6px"><table id="cashT"></table><div class="hint" id="cashN" style="margin-top:8px;line-height:1.7"></div></div>
 <div class="sec">🧱 付款時程（各年度已承諾要付的金額，依付款方堆疊）</div>
 <div class="brief" id="wall"></div>
-<div class="sec">🧪 情境試算：如果某家公司付不出錢，會一層一層傳到誰　<select id="scK"></select>　付款減少 <select id="scH"><option value="0.25">25%</option><option value="0.5" selected>50%</option><option value="0.75">75%</option><option value="1">100%</option></select></div>
+<div class="sec" id="s-scen">🧪 情境試算：選一個事件，看各家每年的曝險金額　<select id="scE"></select>　<span id="scKw"><select id="scK"></select>　</span><span id="scHl">付款減少</span> <select id="scH"></select></div>
 <div class="brief" id="scen"></div>
+<div class="sec" id="s-chg">📝 變動紀錄（每次更新後，與上一期相比哪些數字改了、為什麼）</div>
+<div class="brief" id="chg"></div>
 <div class="sec">⚖️ 多實體比較（勾選 2–3 家並排）</div>
 <div class="toolbar" id="cmpPick"></div>
 <div class="tablewrap"><table id="cmp"></table></div>
@@ -522,22 +529,55 @@ build(); side(null); table(); cmp();
  svg+='</svg>';
  $('#wall').innerHTML=`<div class="rcard">${svg}<div class="legend" style="margin-top:6px">${payers.map(p=>`<span><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${col(p.k)};margin-right:4px"></i>${esc(nm(p.k))}（合計 ${bn(p.t)}）</span>`).join('')}</div>
   <div class="hint" style="margin-top:8px;line-height:1.7">每年金額為合約總額平均攤到合約年數；滑鼠移到色塊可看金額。${Y.map((y,i)=>[y,tot[i]]).sort((a,b)=>b[1]-a[1]).slice(0,1).map(([y,v])=>`付款高峰在 ${y} 年，約 ${bn(v)}。`).join('')}沒有揭露年期的合約與公司債到期未納入。</div></div>`;
- // 情境試算
+ // 情境試算：三種事件共用同一套「付款比例縮減 → 沿合約傳導三層」的算法
  const sk=$('#scK'), cand=[...new Set(F.map(f=>f.from))].filter(k=>F.some(f=>f.from===k)).sort((a,b)=>F.filter(f=>f.from===b).reduce((x,f)=>x+f.annual,0)-F.filter(f=>f.from===a).reduce((x,f)=>x+f.annual,0));
  sk.innerHTML=cand.map(k=>`<option value="${esc(k)}">${esc(nm(k))}</option>`).join('');
- function scen(){const X=sk.value,h=+$('#scH').value;let shock={[X]:h},seen=new Set([X]),L=[];
+ const EV={fund:{n:'某家公司募資失敗、付不出合約款',lab:'付款減少',sev:[.25,.5,.75,1],def:.5},
+  exp:{n:'出口管制收緊、中國營收受限',lab:'中國營收減少',sev:[.25,.5,1],def:.5},
+  capex:{n:'大型業者削減資本支出',lab:'資本支出減少',sev:[.1,.3,.5],def:.3}};
+ const se=$('#scE'),sh=$('#scH');se.innerHTML=Object.entries(EV).map(([k,v])=>`<option value="${k}">${v.n}</option>`).join('');
+ function setEv(){const v=EV[se.value];$('#scHl').textContent=v.lab;sh.innerHTML=v.sev.map(s=>`<option value="${s}"${s===v.def?' selected':''}>${s*100}%</option>`).join('');$('#scKw').style.display=se.value==='fund'?'':'none';scen()}
+ const revOf=k=>ENT[k]&&ENT[k].cash?ENT[k].cash.rev:null;
+ function spread(shock0,seen0){let shock=shock0,seen=new Set(seen0),L=[];
   for(let layer=1;layer<=3;layer++){const loss={};Object.entries(shock).forEach(([k,r])=>F.filter(f=>f.from===k&&!seen.has(f.to)).forEach(f=>{(loss[f.to]=loss[f.to]||{v:0,from:[]}).v+=f.annual*r;loss[f.to].from.push(nm(k))}));
-   const next={};Object.entries(loss).forEach(([k,o])=>{const rev=ENT[k]&&ENT[k].cash?ENT[k].cash.rev:null,r=rev?Math.min(1,o.v/rev):null;L.push({layer,k,v:o.v,rev,r,from:[...new Set(o.from)]});if(r)next[k]=r});
+   const next={};Object.entries(loss).forEach(([k,o])=>{const rev=revOf(k),r=rev?Math.min(1,o.v/rev):null;L.push({layer,k,v:o.v,rev,r,from:[...new Set(o.from)]});if(r)next[k]=r});
    Object.keys(loss).forEach(k=>seen.add(k));shock=next;if(!Object.keys(next).length)break;}
-  const eq=DATA.links.filter(l=>l.amt!=null&&!l.excl&&((l.cp===X&&l.dir!=='in'&&isInvOut(l))||(l.ent===X&&l.dir==='in'&&isInvIn(l)))).map(l=>({k:l.cp===X?l.ent:l.cp,v:l.amt}));
-  const eb={};eq.forEach(x=>{eb[x.k]=Math.max(eb[x.k]||0,x.v)});
-  $('#scen').innerHTML=`<div class="rgrid" style="grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)">
-   <div class="rcard"><b>每年少收的錢</b> <span class="hint">假設 ${esc(nm(X))} 的合約付款減少 ${h*100}%；收款方營收受損的比例，會等比例反映在它自己對外的付款上</span>
-    <table style="margin-top:8px"><thead><tr><th>層級</th><th>公司</th><th style="text-align:right">每年少收</th><th style="text-align:right">占年營收</th><th>傳自</th></tr></thead><tbody>${L.length?L.map(x=>`<tr><td>第 ${x.layer} 層</td><td><b>${esc(nm(x.k))}</b></td><td style="text-align:right">${bn(x.v)}</td><td style="text-align:right"><b class="rc${x.r==null?0:x.r>=.2?3:x.r>=.05?2:1}">${x.r==null?'未取得營收':(x.r*100).toFixed(x.r<.1?1:0)+'%'}</b></td><td class="hint">${esc(x.from.join('、'))}</td></tr>`).join(''):'<tr><td colspan="5" class="hint">沒有可計算的下游合約。</td></tr>'}</tbody></table></div>
+  return L}
+ const pct=r=>r==null?'未取得營收':(r*100).toFixed(r<.1?1:0)+'%', cls=r=>r==null?0:r>=.2?3:r>=.05?2:1;
+ const lossT=(L,ttl,sub)=>`<div class="rcard"><b>${ttl}</b> <span class="hint">${sub}</span>
+    <table style="margin-top:8px"><thead><tr><th>層級</th><th>公司</th><th style="text-align:right">每年少收</th><th style="text-align:right">占年營收</th><th>傳自</th></tr></thead><tbody>${L.length?L.map(x=>`<tr><td>${x.layer?'第 '+x.layer+' 層':'直接'}</td><td><b>${esc(nm(x.k))}</b></td><td style="text-align:right">${bn(x.v)}</td><td style="text-align:right"><b class="rc${cls(x.r)}">${pct(x.r)}</b></td><td class="hint">${esc((x.from||[]).join('、'))}</td></tr>`).join(''):'<tr><td colspan="5" class="hint">沒有可計算的對象。</td></tr>'}</tbody></table></div>`;
+ const foot='<div class="hint" style="margin-top:8px;line-height:1.7">這是機械式的比例推算，用來看傳導方向與相對大小，不是預測。只沿著有揭露年期的合約傳導；沒有年營收資料的公司無法再往下傳。實際情況還會受合約是否可取消、擔保與重新議約影響。非投資建議。</div>';
+ function scen(){const ev=se.value,h=+sh.value;
+  if(ev==='fund'){const X=sk.value,L=spread({[X]:h},[X]);
+   const eq=DATA.links.filter(l=>l.amt!=null&&!l.excl&&((l.cp===X&&l.dir!=='in'&&isInvOut(l))||(l.ent===X&&l.dir==='in'&&isInvIn(l)))).map(l=>({k:l.cp===X?l.ent:l.cp,v:l.amt}));
+   const eb={};eq.forEach(x=>{eb[x.k]=Math.max(eb[x.k]||0,x.v)});
+   $('#scen').innerHTML=`<div class="rgrid" style="grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)">${lossT(L,'每年少收的錢',`假設 ${esc(nm(X))} 的合約付款減少 ${h*100}%；收款方營收受損的比例，會等比例反映在它自己對外的付款上`)}
    <div class="rcard"><b>股東的持股減損（一次性）</b> <span class="hint">持股成本 × ${h*100}%，只是比例示意</span>
-    <table style="margin-top:8px"><thead><tr><th>股東</th><th style="text-align:right">投入金額</th><th style="text-align:right">減損</th></tr></thead><tbody>${Object.keys(eb).length?Object.entries(eb).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<tr><td><b>${esc(nm(k))}</b></td><td style="text-align:right">${bn(v)}</td><td style="text-align:right">${bn(v*h)}</td></tr>`).join(''):'<tr><td colspan="3" class="hint">資料中沒有已揭露金額的股東。</td></tr>'}</tbody></table></div></div>
-   <div class="hint" style="margin-top:8px;line-height:1.7">這是機械式的比例推算，用來看傳導方向與相對大小，不是預測。只沿著有揭露年期的合約傳導；沒有年營收資料的公司（多為未建 Dashboard 的供應商）無法再往下傳。實際情況還會受合約是否可取消、擔保與重新議約影響。非投資建議。</div>`;}
- sk.onchange=scen;$('#scH').onchange=scen;scen();
+    <table style="margin-top:8px"><thead><tr><th>股東</th><th style="text-align:right">投入金額</th><th style="text-align:right">減損</th></tr></thead><tbody>${Object.keys(eb).length?Object.entries(eb).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<tr><td><b>${esc(nm(k))}</b></td><td style="text-align:right">${bn(v)}</td><td style="text-align:right">${bn(v*h)}</td></tr>`).join(''):'<tr><td colspan="3" class="hint">資料中沒有已揭露金額的股東。</td></tr>'}</tbody></table></div></div>${foot}`;return}
+  if(ev==='exp'){const D0=DATA.ents.filter(e=>e.scen&&e.scen.cn!=null&&revOf(e.key)).map(e=>({layer:0,k:e.key,v:revOf(e.key)*e.scen.cn/100*h,rev:revOf(e.key),r:e.scen.cn/100*h,from:['中國營收占 '+e.scen.cn+'%']})).sort((a,b)=>b.v-a.v);
+   const shock={};D0.forEach(x=>shock[x.k]=x.r);const L=spread(shock,D0.map(x=>x.k));
+   const miss=DATA.ents.filter(e=>!(e.scen&&e.scen.cn!=null)||!revOf(e.key)).map(e=>e.entity);
+   $('#scen').innerHTML=`<div class="rgrid" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr)">${lossT(D0,'直接損失','各家年營收 × 中國營收占比 × '+h*100+'%')}${lossT(L,'傳導損失','直接受損的公司等比例減少對外付款後，下游每年少收的錢')}</div>
+   <div class="hint" style="margin-top:8px;line-height:1.7">直接損失合計約 ${bn(D0.reduce((a,x)=>a+x.v,0))}。以下 ${miss.length} 家沒有中國營收占比或年營收資料，未納入：${esc(miss.join('、'))}。占比取自各家 Dashboard 的地緣政治面向。</div>${foot}`;return}
+  const SUP=['NVIDIA','Broadcom','AMD','TSMC 台積電','SK hynix','Samsung','Intel'].filter(k=>revOf(k)),sr=SUP.reduce((a,k)=>a+revOf(k),0);
+  const C=DATA.ents.filter(e=>e.scen&&e.scen.capex&&!SUP.includes(e.key)).map(e=>({k:e.key,cap:e.scen.capex,v:e.scen.capex*h,rev:revOf(e.key)})).sort((a,b)=>b.v-a.v),tot=C.reduce((a,x)=>a+x.v,0);
+  const shock={};C.forEach(x=>shock[x.k]=h);const L=spread(shock,C.map(x=>x.k));
+  $('#scen').innerHTML=`<div class="rgrid" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr)">
+   <div class="rcard"><b>各家削減的資本支出</b> <span class="hint">年度資本支出 × ${h*100}%，也就是供應商每年少掉的訂單總額</span>
+    <table style="margin-top:8px"><thead><tr><th>公司</th><th style="text-align:right">年度資本支出</th><th style="text-align:right">每年削減</th><th style="text-align:right">相當於自身營收</th></tr></thead><tbody>${C.map(x=>`<tr><td><b>${esc(nm(x.k))}</b></td><td style="text-align:right">${bn(x.cap)}</td><td style="text-align:right">${bn(x.v)}</td><td style="text-align:right">${x.rev?pct(x.v/x.rev):'—'}</td></tr>`).join('')}<tr><td><b>合計</b></td><td></td><td style="text-align:right"><b>${bn(tot)}</b></td><td></td></tr></tbody></table>
+    <div class="hint" style="margin-top:8px;line-height:1.7">各家資本支出流向哪些供應商沒有逐家揭露。如果這 ${bn(tot)} 全數落在網內的晶片與記憶體供應商（${esc(SUP.map(nm).join('、'))}），約占它們合計年營收 ${bn(sr)} 的 <b class="rc${cls(tot/sr)}">${pct(tot/sr)}</b>，這是上限示意，不是估計值。</div></div>
+   ${lossT(L,'沿已揭露合約傳導的損失','假設這些公司對外的合約付款同樣減少 '+h*100+'%')}</div>
+   <div class="hint" style="margin-top:8px;line-height:1.7">只納入資料檔中有年度資本支出節點的 ${C.length} 家買方（晶片與記憶體供應商自己的資本支出不算在內）；Meta、Google、Oracle 等尚未建立年度資本支出節點，未納入，所以合計是下限。</div>${foot}`}
+ sk.onchange=scen;sh.onchange=scen;se.onchange=setEv;setEv();
+ // 本期結論／預警指標／變動紀錄
+ $('#topBox').innerHTML=`<div class="rcard"><ol class="topl">${(DATA.head||[]).map(s=>`<li>${esc(s)}</li>`).join('')}</ol><div class="hint" style="margin-top:6px">資料截至 ${esc(DATA.asOf)}，由資料自動產生。細節見 <a href="#s-watch">預警指標</a>、<a href="#s-scen">情境試算</a>、<a href="#s-chg">變動紀錄</a>。非投資建議。</div></div>`;
+ const LN=['無資料','綠燈','黃燈','紅燈'];
+ $('#watch').innerHTML=`<div class="wgrid">${(DATA.watch||[]).map(w=>`<div class="wcard w${w.light}"><b>${esc(w.n)} <span class="rc${w.light}" style="float:right">● ${LN[w.light]}</span></b><div class="wv">${esc(w.v)}</div><div class="hint" style="line-height:1.6">${esc(w.detail)}</div><div class="hint" style="margin-top:4px;opacity:.8">規則：${esc(w.rule)}</div></div>`).join('')}</div>`;
+ const CG=DATA.chg||[];
+ $('#chg').innerHTML=CG.length?CG.map((c,i)=>{const by={};c.auto.forEach(a=>{by[a.t]=(by[a.t]||0)+1});
+  return `<details class="rcard" style="margin-bottom:8px"${i===0?' open':''}><summary style="cursor:pointer"><b>${esc(c.d)}</b> <span class="hint">${c.from?'與 '+esc(c.from)+' 相比：':'首次建立紀錄，沒有可比較的上一期'}${Object.entries(by).map(([k,v])=>k+' '+v).join('、')}</span></summary>
+  ${(c.notes||[]).length?`<ul style="margin:8px 0 0;padding-left:20px;line-height:1.8">${c.notes.map(n=>`<li>${esc(n)}</li>`).join('')}</ul>`:''}
+  ${c.auto.length?`<div style="max-height:420px;overflow:auto;margin-top:8px"><table class="chgt"><thead><tr><th>類別</th><th>公司</th><th>改了什麼</th><th>為什麼</th></tr></thead><tbody>${c.auto.map(a=>`<tr><td>${esc(a.t)}</td><td><b>${esc(a.e)}</b></td><td>${esc(a.x)}</td><td class="hint">${esc(a.why)}</td></tr>`).join('')}</tbody></table></div>`:(c.from?'<div class="hint" style="margin-top:8px">沒有數字變動。</div>':'')}</details>`}).join(''):'<div class="hint">尚無紀錄。</div>';
 })();
 (function(){const sel=$('#briefSel');
  const es=DATA.ents.map(e=>e.key).sort((a,b)=>a.localeCompare(b,'zh-Hant')), hs=DATA.hubs.filter(h=>!h.isEntity&&h.deg>=2).sort((a,b)=>b.deg-a.deg||a.key.localeCompare(b.key,'zh-Hant')).map(h=>h.key);

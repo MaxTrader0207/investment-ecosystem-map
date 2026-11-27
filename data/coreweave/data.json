@@ -429,7 +429,8 @@
    "amtType": "liability",
    "direction": "in",
    "excludeFromSum": true,
-   "verified": "2026-11-27"
+   "verified": "2026-11-27",
+   "rate": 9.75
   },
   {
    "id": "ddtl5",
@@ -470,7 +471,8 @@
    "amtType": "liability",
    "direction": "in",
    "excludeFromSum": true,
-   "verified": "2026-11-27"
+   "verified": "2026-11-27",
+   "rate": 2.875
   },
   {
    "id": "capex",
