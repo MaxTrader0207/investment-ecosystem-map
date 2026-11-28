@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>生態資本投資循環架構｜投資族譜 Dashboard</title>
+<title>CoreWeave｜投資族譜 Dashboard</title>
+<meta name="description" content="CoreWeave 的投資族譜、資金循環與財務快照，資料截至 2026-11-27，每個節點都附來源。">
+<meta property="og:title" content="CoreWeave｜投資族譜 Dashboard">
+<meta property="og:description" content="CoreWeave 的投資族譜、資金循環與財務快照，資料截至 2026-11-27，每個節點都附來源。">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27%3E%3Crect width=%2724%27 height=%2724%27 rx=%275%27 fill=%27%230a0e13%27/%3E%3Cg fill=%27none%27 stroke=%27%23facc15%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%3E%3Ccircle cx=%277%27 cy=%277%27 r=%272.3%27/%3E%3Ccircle cx=%2717%27 cy=%279%27 r=%272.3%27/%3E%3Ccircle cx=%2711%27 cy=%2717.5%27 r=%272.3%27/%3E%3Cpath d=%27m9.2 7.6 5.6 1M7.8 9.2l2.4 6.2M15.8 11l-3.6 4.6%27/%3E%3C/g%3E%3C/svg%3E">
 <style>
 :root{
 --bg:#0a0e13; --panel:#11171f; --panel2:#161e28; --line:#243041; --text:#e6edf3; --muted:#8b9bb0;
@@ -205,7 +210,7 @@ input[type=checkbox],input[type=radio]{width:20px;height:20px;vertical-align:mid
 
 /* —— 區塊的輸出鈕：平時只留淡淡的圖示 —— */
 .xslot:not([data-x="all"]) .xl{display:none}
-.xslot:not([data-x="all"]) .xbtn{opacity:.4;min-width:32px;padding:4px 6px;transition:opacity .15s}
+.xslot:not([data-x="all"]) .xbtn{opacity:.6;min-width:32px;padding:4px 6px;transition:opacity .15s}
 *:hover>.xslot .xbtn,.xslot .xbtn:hover,.xslot .xbtn:focus-visible,.xwrap:has(.xmenu.on) .xbtn{opacity:1}
 @media (hover:none){.xslot:not([data-x="all"]) .xbtn{opacity:1}}
 
@@ -236,6 +241,11 @@ body #toTop{transform:translateY(max(64px,var(--ty,70vh)))}
 
 /* —— 中等寬度（約 1001–1100px）右側明細不再超出畫面 —— */
 .graphwrap{grid-template-columns:minmax(0,1fr) 370px}.ftree{min-width:0}
+
+/* —— 淺色背景的文字對比：代表色與彩色標籤自動加深 —— */
+:root{--nv:var(--nv0,#76b900)}
+[data-theme="light"]{--nv:color-mix(in srgb,var(--nv0,#76b900) 55%,#000)}
+[data-theme="light"] :is(.rk,.gtag,.gmore,.add,.del,.chg,.flag,.froot span){filter:brightness(.6) saturate(1.5)}
 </style>
 </head>
 <body>
@@ -363,7 +373,7 @@ const KPI = (DATA.kpis||[]).map(k=>[k.v,k.l,k.src||[]]);
 const EV = (DATA.events||[]).map(e=>[e.d,e.t,e.x||'',e.cat,e.src||[]]);
 const LOOPS = (DATA.loops||[]).map(l=>({...l,nodes:l.nodes.map(([lab,c])=>[lab,colorOf(c)]),src:src(...(l.src||[]))}));
 document.title = `${M.entity} 生態資本投資循環架構｜投資族譜 Dashboard`;
-document.documentElement.style.setProperty('--nv', M.accent||'#76b900');
+document.documentElement.style.setProperty('--nv0', M.accent||'#76b900');   // 代表色存在 --nv0；--nv 由樣式決定，淺色背景會自動加深
 document.getElementById('hEnt').textContent = M.entity;
 document.getElementById('hSub').textContent = `資料整理時間：${M.asOf}${M.tz?'（'+M.tz+'）':''}｜${M.subtitle||'涵蓋股權投資、認股權證、擔保、收購、技術授權與融資合作'}｜每個節點均附資訊來源`;
 (function(){

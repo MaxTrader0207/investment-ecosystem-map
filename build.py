@@ -191,6 +191,12 @@ def main():
     tpl = open(tpl_p, encoding="utf-8").read()
     if "/*__DATA_JSON__*/null" not in tpl: sys.exit("template 缺少 /*__DATA_JSON__*/null 佔位符")
     js = json.dumps(d, ensure_ascii=False).replace("</", "<\\/")
+    # 分頁標題與分享摘要帶入公司名稱（原本 26 個頁面的分頁標題都一樣，開多個分頁時分不出來）
+    _e = str(d["meta"].get("entity", "")).replace("&", "&amp;").replace("<", "&lt;").replace('"', "&quot;")
+    _t = "<title>生態資本投資循環架構｜投資族譜 Dashboard</title>"
+    if _e and _t in tpl:
+        _d = f"{_e} 的投資族譜、資金循環與財務快照，資料截至 {d['meta'].get('asOf', '')}，每個節點都附來源。"
+        tpl = tpl.replace(_t, f'<title>{_e}｜投資族譜 Dashboard</title>\n<meta name="description" content="{_d}">\n<meta property="og:title" content="{_e}｜投資族譜 Dashboard">\n<meta property="og:description" content="{_d}">\n<meta property="og:type" content="website">')
     open(out_p, "w", encoding="utf-8").write(tpl.replace("/*__DATA_JSON__*/null", js))
     n = d["nodes"]
     print(f"✅ 已輸出 {out_p}｜節點 {len(n)}、類別 {len(d['categories'])}、循環 {len(d.get('loops', []))}、"

@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>跨實體投資生態總網路圖｜系統性樞紐與影響面</title>
+<meta name="description" content="AI 產業主要公司之間的投資、採購與擔保關係總覽：誰的錢流向誰、錢怎麼繞回來、哪裡最脆弱。每個數字都附來源，每週更新。">
+<meta property="og:title" content="跨實體投資生態總網路圖">
+<meta property="og:description" content="AI 產業主要公司之間的投資、採購與擔保關係總覽，含預警指標、風險燈號與情境試算。">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27%3E%3Crect width=%2724%27 height=%2724%27 rx=%275%27 fill=%27%230a0e13%27/%3E%3Cg fill=%27none%27 stroke=%27%23facc15%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%3E%3Ccircle cx=%277%27 cy=%277%27 r=%272.3%27/%3E%3Ccircle cx=%2717%27 cy=%279%27 r=%272.3%27/%3E%3Ccircle cx=%2711%27 cy=%2717.5%27 r=%272.3%27/%3E%3Cpath d=%27m9.2 7.6 5.6 1M7.8 9.2l2.4 6.2M15.8 11l-3.6 4.6%27/%3E%3C/g%3E%3C/svg%3E">
 <style>
 :root{--bg:#0a0e13;--panel:#11171f;--panel2:#161e28;--line:#243041;--text:#e6edf3;--muted:#8b9bb0;--acc:#facc15;--in:#4ade80;--fs:1}
 [data-theme="graphite"]{--bg:#18181b;--panel:#222226;--panel2:#2a2a2f;--line:#3a3a42;--text:#f4f4f5;--muted:#a1a1aa}
@@ -99,7 +104,7 @@ tr:hover td{background:var(--panel2)}
 .rpeer{display:flex;align-items:center;gap:7px;padding:7px 9px;border-radius:8px;background:var(--panel2);border:1px solid var(--line);color:var(--text);font-family:inherit;font-size:calc(14px*var(--fs));cursor:pointer;text-align:left;line-height:1.35}
 .rpeer:hover{border-color:var(--acc)}.rpeer.on{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc) inset}
 .rpeer i{width:12px;height:12px;border-radius:50%;flex:none}.rpeer span{flex:1;overflow-wrap:anywhere}.rpeer b{flex:none}
-.rwarn{display:inline-block;min-width:1.25em;text-align:center;border-radius:999px;background:#ef4444;color:#fff;font-size:.85em;line-height:1.25em}
+.rwarn{display:inline-block;min-width:1.25em;text-align:center;border-radius:999px;background:#dc2626;font-weight:700;color:#fff;font-size:.85em;line-height:1.25em}
 .ralert{border:1px solid #ef4444;border-radius:8px;padding:6px 10px;font-size:calc(14px*var(--fs));line-height:1.6;color:var(--text);background:color-mix(in srgb,#ef4444 12%,transparent)}
 .rb3{background:#ef4444}.rb2{background:#eab308}.rb1{background:#22c55e}.rb0{background:#64748b}
 .bx{display:flex;gap:4px;align-items:center;padding:6px 10px;border-bottom:1px dashed var(--line)}.bx .hint{margin-right:auto;white-space:nowrap}.bx .btn{padding:2px 7px;font-size:calc(12px*var(--fs))}
@@ -178,6 +183,10 @@ body #toTop{transform:translateY(max(64px,var(--ty,70vh)))}
 @media (min-width:901px){.rradar{align-self:start;position:sticky;top:60px}}
 .rradar svg{width:100%;max-width:820px}
 .rgrid{align-items:start}   /* 其他兩欄並排的區塊（到期事項、情境試算、我的曝險、歷史對照）：短的那欄不硬撐 */
+
+/* —— 淺色背景的文字對比：以公司代表色或狀態色寫的字自動加深 —— */
+[data-theme="light"] [style^="color:"]{filter:brightness(.6) saturate(1.4)}
+[data-theme="light"] .toc a.on{color:#fff}[data-theme="light"] .gbtn small{opacity:1}
 </style>
 </head>
 <body>
