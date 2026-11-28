@@ -118,6 +118,26 @@
    "Yahoo Finance｜000660.KS 2026-11-27 收盤 1110000.0",
    "https://finance.yahoo.com/quote/000660.KS",
    "B"
+  ],
+  "cx_9m": [
+   "ZDNet Korea｜SK hynix 2026 前三季設備投資 ₩31.216 兆，去年同期 ₩17.825 兆（年增 75.1%）",
+   "https://zdnet.co.kr/view/?no=20261116175638",
+   "B"
+  ],
+  "cx_fy25": [
+   "中央經濟新聞｜SK hynix 2025 全年設備投資 ₩30.173 兆；2026 全年預估 40 兆後半",
+   "https://www.joongangenews.com/news/articleView.html?idxno=564318",
+   "C"
+  ],
+  "rep_last": [
+   "SEC 6-K｜SK hynix 2026 Q3 業績說明會：2026-10-28 上午 9:00（首爾時間）",
+   "https://www.sec.gov/Archives/edgar/data/0002120882/000119312526434994/d162547d6k.htm",
+   "A"
+  ],
+  "rep_next": [
+   "Investing.com｜SK hynix 下次財報預估 2027-01-28（Earnings Whispers 估 01-27；公司尚未公告）",
+   "https://www.investing.com/equities/sk-hynix-inc-earnings",
+   "C"
   ]
  },
  "categories": [
@@ -874,13 +894,15 @@
    ]
   },
   "infl": {
-   "score": 16,
-   "basis": "前三季設備投資 ₩31.2 兆 ÷ 同期營收 ₩236.5 兆＝13%，×2＝26；有息負債 ₩15.8 兆 ÷ 最近四季營收 ₩269.3 兆＝6%；兩項平均",
+   "score": 19,
+   "basis": "最近四季設備投資 ₩43.6 兆：2025 Q4 ₩12.3 兆（2025 全年 ₩30.2 兆減前三季 ₩17.8 兆）＋2026 前三季 ₩31.2 兆；÷ 最近四季營收 ₩269.3 兆＝16%，×2＝32；有息負債 ₩15.8 兆 ÷ 營收＝6%；兩項平均",
    "src": [
     "q3k",
     "q3cash",
     "ttm_q1",
-    "ttm_q2"
+    "ttm_q2",
+    "cx_9m",
+    "cx_fy25"
    ]
   },
   "ceo": {
@@ -916,7 +938,16 @@
    "est": true
   },
   "revRun": 0.31,
-  "revRunLabel": "2026 Q3 × 4"
+  "revRunLabel": "2026 Q3 × 4",
+  "rep": {
+   "last": "2026-10-28",
+   "next": "2027-01-28",
+   "conf": false,
+   "src": [
+    "rep_last",
+    "rep_next"
+   ]
+  }
  },
  "mkt": {
   "cap": 661.3,

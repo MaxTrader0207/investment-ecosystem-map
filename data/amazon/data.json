@@ -212,6 +212,11 @@
   "vf_inv": [
    "Investing.com｜Amazon 設立最高 $800 億供應商融資，以所購硬體為抵押（2026-10-30）",
    "https://www.investing.com/news/stock-market-news/amazon-sets-up-80-billion-supplier-financing-for-ai-hardware-4988386"
+  ],
+  "geo_js": [
+   "Jungle Scout｜中國賣家占 Amazon 站上總銷售額 35.1%、第三方銷售額 48.9%（2025-06-15，第三方工具估計）",
+   "https://www.junglescout.com/resources/reports/tariff-index-2025/",
+   "C"
   ]
  },
  "categories": [
@@ -1184,9 +1189,10 @@
  },
  "macro": {
   "geo": {
-   "basis": "待補資料：公司沒有單獨揭露中國營收。曝險主要是間接的：年報說明中國賣家占第三方賣家服務與廣告營收的「重大部分」，中國供應商也提供大量商品與零組件，但沒有可用來計分的比例",
+   "basis": "待補資料：公司沒有單獨揭露中國營收。曝險主要是間接的：年報說明中國賣家占第三方賣家服務與廣告營收的「重大部分」，中國供應商也提供大量商品與零組件，但沒有可用來計分的比例。第三方工具 Jungle Scout 估中國賣家占站上總銷售額約 35%、第三方銷售額約 49%（2025 年 6 月），但這是賣家的銷售額，不是 Amazon 自己的營收，所以不拿來計分",
    "src": [
-    "geo_cn"
+    "geo_cn",
+    "geo_js"
    ]
   },
   "fx": {

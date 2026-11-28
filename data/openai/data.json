@@ -241,6 +241,11 @@
   "rev_2024": [
    "Exploding Topics｜OpenAI 2024 年營收 $37 億、2025 年 $130.7 億",
    "https://explodingtopics.com/blog/openai-revenue"
+  ],
+  "cash_nov": [
+   "Yahoo Finance｜OpenAI 新一輪首批約 $110 億已於 2026-11-06 入帳（估值 $1.25 兆）",
+   "https://finance.yahoo.com/technology/ai/articles/openai-just-raised-11-billion-133842228.html",
+   "B"
   ]
  },
  "categories": [
@@ -1501,9 +1506,10 @@
   },
   "cash": 73.0,
   "cashSrc": [
-   "cash_q1"
+   "cash_q1",
+   "cash_nov"
   ],
-  "cashNote": "3/31 現金與有價證券逾 $730 億（2025 年底約 $400 億），為媒體引述的未經審計數字；之後各季未取得",
+  "cashNote": "3/31 現金與有價證券逾 $730 億（2025 年底約 $400 億），為媒體引述的未經審計數字。Q2、Q3 的現金餘額未見報導（11/10 投資人更新只流出營收與虧損）；之後已知的變動是新一輪首批約 $110 億於 11/6 入帳",
   "cashDate": "2026-03-31",
   "revRun": 40.0,
   "revRunLabel": "2026 Q3 × 4"

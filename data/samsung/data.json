@@ -122,9 +122,15 @@
    "Korea Herald｜Samsung 2026 年設備投資計畫 ₩84.4 兆，隨 Q3 財報於 2026-10-29 公布",
    "https://biz.heraldcorp.com/article/10918720"
   ],
-  "cx_fy25": [
-   "Samsung IR｜2025 年設備投資實績約 ₩52.7 兆（2026-01-29）",
-   "https://www.samsung.com/global/ir/reports-disclosures/public-disclosure-view.84547/"
+  "cx_9m26": [
+   "Korea Herald｜Samsung 2026 前三季設備投資 ₩56.94 兆（去年同期 ₩32.25 兆）；9 月底現金 ₩214.8 兆",
+   "https://www.koreaherald.com/article/10939605",
+   "B"
+  ],
+  "cx_q425": [
+   "Korea Herald｜Samsung 2025 Q4 設備投資 ₩20.4 兆，2025 全年 ₩52.7 兆",
+   "https://www.koreaherald.com/article/10665176",
+   "B"
   ]
  },
  "categories": [
@@ -796,14 +802,15 @@
    ]
   },
   "infl": {
-   "score": 16,
-   "basis": "2026 全年設備投資計畫 ₩84.4 兆（前三季已執行 ₩56.9 兆；2025 年實績 ₩52.7 兆）÷ 最近四季營收約 ₩594.4 兆＝14%，×2＝28。最近四季實際數需要 2025 Q4 單季金額，未取得，所以用全年計畫代替；現金 ₩214.8 兆 − 淨現金 ₩197.6 兆＝有息負債約 ₩17.2 兆，÷ 營收＝3%；兩項平均",
+   "score": 14,
+   "basis": "最近四季設備投資 ₩77.3 兆（2025 Q4 ₩20.4 兆＋2026 前三季 ₩56.9 兆）÷ 最近四季營收約 ₩594.4 兆＝13%，×2＝26；現金 ₩214.8 兆 − 淨現金 ₩197.6 兆＝有息負債約 ₩17.2 兆，÷ 營收＝3%；兩項平均。2026 全年計畫為 ₩84.4 兆",
    "src": [
     "q3call",
     "q3sl",
     "ttm_q4",
     "cx_plan",
-    "cx_fy25"
+    "cx_q425",
+    "cx_9m26"
    ]
   },
   "ceo": {
