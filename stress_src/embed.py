@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""把 tpl2.html（壓力測試的獨立版）轉成可嵌進 network_template.html 的片段：
+"""把壓力測試的獨立版（stress_standalone.html）轉成 stress_module.html：
    <template id="stress-tpl">（樣式＋版面，放進 shadow DOM，不和主頁的樣式互相影響）與 <script id="stress-js">。
-   用法：python3 embed.py tpl2.html network_template.html"""
+   build_network.py 建置時會把 stress_module.html 放進 network_template.html 的 <!--__STRESS__--> 位置。
+   用法：python3 stress_src/embed.py stress_src/stress_standalone.html stress_module.html"""
 import re, sys
 src, net = sys.argv[1], sys.argv[2]
 t = open(src, encoding='utf-8').read()
@@ -46,15 +47,5 @@ tpl = ('<template id="stress-tpl"><style>\n' + css + '</style>\n<div class="page
 script = ('<script id="stress-js">\n/* ---------- 付款高峰壓力測試：樣式與版面在 <template id="stress-tpl">，放進 shadow DOM ---------- */\n(function(){\n'
           ' const host=document.getElementById(\'stress\'),tp=document.getElementById(\'stress-tpl\');if(!host||!tp||!host.attachShadow)return;\n'
           ' const root=host.attachShadow({mode:\'open\'});root.appendChild(tp.content.cloneNode(true));\n' + js + '})();\n</script>')
-n = open(net, encoding='utf-8').read()
-# 重複執行時先拿掉舊片段
-n = re.sub(r'<template id="stress-tpl">.*?</template>\n', '', n, flags=re.S)
-n = re.sub(r'<script id="stress-js">.*?</script>\n', '', n, flags=re.S)
-A = '<div class="brief" id="stress"></div>\n'
-assert n.count(A) == 1, '找不到 #stress 區塊'
-n = n.replace(A, A + tpl + '\n')
-B = '<script id="sec-js">'
-assert n.count(B) == 1
-n = n.replace(B, script + '\n' + B)
-open(net, 'w', encoding='utf-8').write(n)
+open(net, 'w', encoding='utf-8').write(tpl + '\n' + script + '\n')
 print('ok', len(tpl), len(script))

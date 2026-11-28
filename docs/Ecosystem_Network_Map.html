@@ -266,118 +266,7 @@ body #toTop{transform:translateY(max(64px,var(--ty,70vh)))}
 <div class="sec" id="s-cash">循環融資與現金缺口（把多年期合約換算成每年金額，再和年營收比較）</div>
 <div class="tablewrap" style="padding-bottom:6px"><table id="cashT"></table><div class="hint" id="cashN" style="margin-top:8px;line-height:1.7"></div></div>
 <div class="sec" id="s-stress">付款高峰壓力測試（哪一年最吃緊、誰付不出來、出事時一層一層誰受影響）</div>
-<div class="brief" id="stress"></div>
-<template id="stress-tpl"><style>
-*{box-sizing:border-box}
-:host{display:block;color:var(--text);font-size:calc(15px*var(--fs,1));line-height:1.6;--r:var(--st-r,#f87171);--y:var(--st-y,#fbbf24);--g:var(--st-g,#4ade80)}
-.page{padding:0}
-.sub{color:var(--muted);font-size:calc(13.5px*var(--fs,1))}
-.assume{margin:14px 0 0;padding:10px 12px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:12px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
-.assume b{font-size:calc(14px*var(--fs,1))}
-.sec{margin:28px 0 10px;font-size:calc(17px*var(--fs,1));font-weight:700;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.sec .n{background:var(--acc);color:#0a0e13;border-radius:6px;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:calc(14px*var(--fs,1));flex:none}
-.sec span.h{font-weight:400;font-size:calc(13.5px*var(--fs,1));color:var(--muted)}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
-.hint{color:var(--muted);font-size:calc(13px*var(--fs,1))}
-.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:12px}
-.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
-.kpi .l{color:var(--muted);font-size:calc(13px*var(--fs,1))}.kpi .v{font-size:calc(24px*var(--fs,1));font-weight:800;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.kpi .x{font-size:calc(13px*var(--fs,1));color:var(--muted);margin-top:2px}
-.concl{margin:12px 0 0;padding:12px 16px 12px 2.2em;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:12px;line-height:1.9}
-.concl li b{color:var(--text)}
-.c3{color:var(--r)}.c2{color:var(--y)}.c1{color:var(--g)}.c0{color:var(--muted)}
-.b3{background:#ef4444}.b2{background:#eab308}.b1{background:#22c55e}.b0{background:#64748b}
-i.dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px}
-table{border-collapse:collapse;width:100%;font-size:calc(14px*var(--fs,1))}
-th,td{border-bottom:1px solid var(--line);padding:8px 9px;text-align:left;vertical-align:top}
-th{background:var(--panel2);white-space:nowrap;font-weight:600}
-td.r,th.r{text-align:right;white-space:nowrap}td.nw{white-space:nowrap}
-.scroll{overflow-x:auto}
-input[type=number]{width:64px;background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:7px;padding:5px 6px;font:inherit;font-size:calc(14px*var(--fs,1));text-align:right}
-select{max-width:100%}label{max-width:100%;flex-wrap:wrap}
-select,button{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:7px;padding:6px 10px;font:inherit;font-size:calc(14px*var(--fs,1))}
-button{cursor:pointer}button:hover{border-color:var(--acc)}
-label{color:var(--muted);font-size:calc(13.5px*var(--fs,1));display:inline-flex;gap:6px;align-items:center}
-.tabs{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
-.tabs button{border:0;border-radius:0;background:var(--panel2)}.tabs button.on{background:var(--acc);color:#0a0e13;font-weight:700}
-.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:calc(13px*var(--fs,1));color:var(--muted);margin-top:8px}
-.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
-svg text{font-family:inherit}
-.bar{cursor:pointer}.bar:hover rect.bg{fill:rgba(255,255,255,.05)}
-.basis{display:flex;height:10px;border-radius:5px;overflow:hidden;margin:10px 0 4px;background:var(--line)}
-.heat td,.heat th{text-align:center;padding:6px 6px;white-space:nowrap}.heat td:first-child,.heat th:first-child{text-align:left}
-.heat td.cell{cursor:pointer;font-weight:600;font-size:calc(13.5px*var(--fs,1))}.heat td.sel,.heat th.sel{box-shadow:inset 2px 0 0 var(--acc),inset -2px 0 0 var(--acc)}
-.h3{background:color-mix(in srgb,#ef4444 34%,transparent)}.h2{background:color-mix(in srgb,#eab308 26%,transparent)}.h1{background:color-mix(in srgb,#22c55e 16%,transparent)}.h0{color:var(--muted)}
-.gapmark{color:var(--r);font-size:calc(11px*var(--fs,1));vertical-align:1px;margin-left:2px}
-.ctl{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-bottom:12px}
-.casc{display:grid;grid-template-columns:minmax(0,.9fr) 28px minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr);align-items:start}
-.casc .arr{align-self:center;text-align:center;color:var(--muted);font-size:calc(20px*var(--fs,1))}
-.col h4{margin:0 0 8px;font-size:calc(14px*var(--fs,1))}.col h4 small{font-weight:400;color:var(--muted)}
-.node{border:1px solid var(--line);border-left:4px solid var(--c,#64748b);background:var(--panel2);border-radius:9px;padding:9px 11px;margin-bottom:8px}
-.node b{font-size:calc(14.5px*var(--fs,1))}.node .m{display:flex;justify-content:space-between;gap:8px;margin-top:3px;font-size:calc(13.5px*var(--fs,1))}.node .f{color:var(--muted);font-size:calc(12.5px*var(--fs,1));margin-top:2px}
-.node.ev{border-color:var(--r);--c:var(--r);background:color-mix(in srgb,#ef4444 12%,transparent)}
-.empty{color:var(--muted);font-size:calc(13.5px*var(--fs,1));border:1px dashed var(--line);border-radius:9px;padding:10px}
-.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
-ul.note{margin:6px 0 0;padding-left:1.3em;color:var(--muted);font-size:calc(13.5px*var(--fs,1));line-height:1.85}ul.note b{color:var(--text);font-weight:600}
-@media (max-width:1100px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.casc{grid-template-columns:1fr}.casc .arr{transform:rotate(90deg);padding:2px 0}.three{grid-template-columns:1fr}.casc>*,.three>*{min-width:0}}
-</style>
-<div class="page">
-<div class="sub" id="sub"></div>
-
-<div class="assume"><b>假設（改了以下全部重算）</b>
- <label>未來營收 <select id="gs"><option value="flat">維持目前營收（最保守）</option><option value="d50" selected>各家年增率逐年減半（上限 50%）</option><option value="d100">各家年增率逐年減半（上限 100%）</option><option value="u15">全部每年 +15%</option><option value="u30">全部每年 +30%</option></select></label>
- <label>營收中可用來付這些合約的比例 <select id="av"><option value="0.2">20%</option><option value="0.3">30%</option><option value="0.5" selected>50%</option><option value="0.7">70%</option><option value="1">100%</option></select></label>
- <label>沒有逐年表的合約 <select id="rp"><option value="flat">平均攤提</option><option value="ramp">前低後高</option></select></label>
- <button id="thBtn" type="button">燈號門檻 ▾</button><button id="rst" type="button">還原預設</button>
- <div id="thP" hidden style="flex:1 1 100%;border-top:1px solid var(--line);padding-top:10px;display:none;flex-wrap:wrap;gap:8px 22px;align-items:center">
-  <label>快速套用 <select id="thS"><option value="std">標準</option><option value="strict">嚴格（較容易亮紅燈）</option><option value="loose">寬鬆</option><option value="custom">自訂</option></select></label>
-  <label>付款方壓力（要付的錢占營收）　紅 ≥ <input type="number" id="t_p3" min="1" max="999" step="5">%　黃 ≥ <input type="number" id="t_p2" min="1" max="999" step="5">%</label>
-  <label>收款方依賴（應收占營收）　紅 ≥ <input type="number" id="t_r3" min="1" max="999" step="5">%　黃 ≥ <input type="number" id="t_r2" min="1" max="999" step="5">%</label>
-  <label>事件影響（少收占營收）　嚴重 ≥ <input type="number" id="t_h3" min="1" max="999" step="1">%　明顯 ≥ <input type="number" id="t_h2" min="1" max="999" step="1">%</label>
- </div>
-</div>
-
-<ul class="concl" id="concl"></ul>
-<div class="kpis" id="kpis"></div>
-
-<div class="sec"><span class="n">1</span>哪一年最吃緊<span class="h">各年度已承諾要付的金額，依付款方堆疊；點任一年切換下方內容</span></div>
-<div class="card"><div id="chart"></div><div class="legend" id="lg"></div>
- <div style="margin-top:14px"><b id="basisT"></b><div class="basis" id="basis"></div><div class="legend" id="basisL" style="margin-top:2px"></div></div></div>
-
-<div class="sec"><span class="n">2</span>壓力地圖<span class="h">每家付款方每一年要付的錢，占它當年（推估）營收的比例；▲ 表示當年錢不夠、要動用現金或對外募資</span></div>
-<div class="card scroll"><table class="heat" id="heat"></table></div>
-
-<div class="sec"><span class="n">3</span><span id="t3"></span><span class="tabs"><button id="tabP" class="on">誰要付錢</button><button id="tabR">誰等著收錢</button></span></div>
-<div class="card scroll"><table id="src"></table><div class="hint" id="srcN" style="margin-top:8px"></div></div>
-
-<div class="sec"><span class="n">4</span>資金缺口與現金撐多久<span class="h">把每年不夠的錢累加起來，和手上現金比</span></div>
-<div class="card scroll"><table id="gap"></table></div>
-
-<div class="sec"><span class="n">5</span>發生特殊事件時，一層一層誰受影響<span class="h">以選定年度計算</span></div>
-<div class="card">
- <div class="ctl">
-  <label>事件 <select id="ev"><optgroup label="資金面"><option value="fund">募資市場關閉：有缺口的公司只付得起自己賺的與手上的現金</option><option value="worst">最壞情境：募資市場關閉，而且營收不再成長</option><option value="pay">某一家公司付不出合約款</option><option value="cut">全部付款方同步縮減付款</option></optgroup><optgroup label="營運面"><option value="delay">資料中心延後完工：某一家公司的付款整體延後一年</option><option value="capex">大型業者削減資本支出</option></optgroup><optgroup label="政策面"><option value="exp">出口管制收緊：中國營收受限</option></optgroup><optgroup label="利率與實體瓶頸"><option value="rate">利率上升：到期債務與新借的錢都變貴</option><option value="power">電力與併網延後：新的算力晚上線</option><option value="chip">先進封裝與 HBM 缺口擴大：晶片出貨不足</option></optgroup></select></label>
-  <label id="whoL">公司 <select id="who"></select></label>
-  <label id="sevL"><span id="sevT">少付</span> <select id="sev"></select></label>
-  <label id="moL">延後時間 <select id="mo"><option value="6">6 個月</option><option value="12" selected>12 個月</option><option value="18">18 個月</option></select></label>
-  <label>年度 <select id="yr"></select></label>
- </div>
- <div class="casc" id="casc"></div>
- <div class="three">
-  <div><b>各層合計</b><div class="scroll"><table id="sum" style="margin-top:6px"></table></div></div>
-  <div><b>股東層：持股可能減損</b> <span class="hint">投入金額 × 受衝擊比例，只是比例示意</span><div class="scroll"><table id="eq" style="margin-top:6px"></table></div></div>
-  <div><b>擔保層：可能被連帶觸發</b><div class="scroll"><table id="gu" style="margin-top:6px"></table></div></div>
- </div>
-</div>
-
-<div class="sec"><span class="n">6</span>利率與實體瓶頸用到的資料<span class="h">事件試算就是用這些數字</span></div>
-<div class="card scroll"><b>債務到期與浮動利率部位</b><table id="dbt" style="margin-top:6px"></table><div class="hint" id="dbtN" style="margin-top:8px"></div></div>
-<div class="card scroll" style="margin-top:12px"><b>取決於新資料中心通電的算力合約</b><table id="pwt" style="margin-top:6px"></table></div>
-<div class="card scroll" style="margin-top:12px"><b>實體瓶頸現況</b><table id="bnt" style="margin-top:6px"></table></div>
-<div class="card scroll" style="margin-top:12px"><b>尚未解除的擔保與供應商融資</b> <span class="hint">被擔保的對象付不出錢時，擔保方要代付</span><table id="gall" style="margin-top:6px"></table></div>
-
-<div class="sec"><span class="n">7</span>怎麼算、有哪些限制</div>
-<div class="card"><ul class="note" id="note"></ul></div>
-</div></template>
+<div class="brief" id="stress"><div class="hint" style="padding:10px 22px">壓力測試模組（stress_module.html）不在範本旁邊，這一區沒有產生。</div></div>
 <div class="sec" id="s-mine">我的曝險：輸入持有的部位，看穿透後實際押在誰身上（只存在這台瀏覽器，不會上傳）</div>
 <div class="brief" id="mine"></div>
 <div class="sec" id="s-val">估值與風險（市值相對年營收的倍數，對照風險分數）</div>
@@ -919,6 +808,117 @@ build(); side(null); table(); cmp();
  document.querySelectorAll('#toc a').forEach(a=>{const k=a.getAttribute('href').slice(3);if(IC[k])a.insertAdjacentHTML('afterbegin',ico(k))});
 })();
 </script>
+<template id="stress-tpl"><style>
+*{box-sizing:border-box}
+:host{display:block;color:var(--text);font-size:calc(15px*var(--fs,1));line-height:1.6;--r:var(--st-r,#f87171);--y:var(--st-y,#fbbf24);--g:var(--st-g,#4ade80)}
+.page{padding:0}
+.sub{color:var(--muted);font-size:calc(13.5px*var(--fs,1))}
+.assume{margin:14px 0 0;padding:10px 12px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:12px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.assume b{font-size:calc(14px*var(--fs,1))}
+.sec{margin:28px 0 10px;font-size:calc(17px*var(--fs,1));font-weight:700;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.sec .n{background:var(--acc);color:#0a0e13;border-radius:6px;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:calc(14px*var(--fs,1));flex:none}
+.sec span.h{font-weight:400;font-size:calc(13.5px*var(--fs,1));color:var(--muted)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.hint{color:var(--muted);font-size:calc(13px*var(--fs,1))}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:12px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.kpi .l{color:var(--muted);font-size:calc(13px*var(--fs,1))}.kpi .v{font-size:calc(24px*var(--fs,1));font-weight:800;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.kpi .x{font-size:calc(13px*var(--fs,1));color:var(--muted);margin-top:2px}
+.concl{margin:12px 0 0;padding:12px 16px 12px 2.2em;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:12px;line-height:1.9}
+.concl li b{color:var(--text)}
+.c3{color:var(--r)}.c2{color:var(--y)}.c1{color:var(--g)}.c0{color:var(--muted)}
+.b3{background:#ef4444}.b2{background:#eab308}.b1{background:#22c55e}.b0{background:#64748b}
+i.dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+table{border-collapse:collapse;width:100%;font-size:calc(14px*var(--fs,1))}
+th,td{border-bottom:1px solid var(--line);padding:8px 9px;text-align:left;vertical-align:top}
+th{background:var(--panel2);white-space:nowrap;font-weight:600}
+td.r,th.r{text-align:right;white-space:nowrap}td.nw{white-space:nowrap}
+.scroll{overflow-x:auto}
+input[type=number]{width:64px;background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:7px;padding:5px 6px;font:inherit;font-size:calc(14px*var(--fs,1));text-align:right}
+select{max-width:100%}label{max-width:100%;flex-wrap:wrap}
+select,button{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:7px;padding:6px 10px;font:inherit;font-size:calc(14px*var(--fs,1))}
+button{cursor:pointer}button:hover{border-color:var(--acc)}
+label{color:var(--muted);font-size:calc(13.5px*var(--fs,1));display:inline-flex;gap:6px;align-items:center}
+.tabs{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.tabs button{border:0;border-radius:0;background:var(--panel2)}.tabs button.on{background:var(--acc);color:#0a0e13;font-weight:700}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:calc(13px*var(--fs,1));color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+svg text{font-family:inherit}
+.bar{cursor:pointer}.bar:hover rect.bg{fill:rgba(255,255,255,.05)}
+.basis{display:flex;height:10px;border-radius:5px;overflow:hidden;margin:10px 0 4px;background:var(--line)}
+.heat td,.heat th{text-align:center;padding:6px 6px;white-space:nowrap}.heat td:first-child,.heat th:first-child{text-align:left}
+.heat td.cell{cursor:pointer;font-weight:600;font-size:calc(13.5px*var(--fs,1))}.heat td.sel,.heat th.sel{box-shadow:inset 2px 0 0 var(--acc),inset -2px 0 0 var(--acc)}
+.h3{background:color-mix(in srgb,#ef4444 34%,transparent)}.h2{background:color-mix(in srgb,#eab308 26%,transparent)}.h1{background:color-mix(in srgb,#22c55e 16%,transparent)}.h0{color:var(--muted)}
+.gapmark{color:var(--r);font-size:calc(11px*var(--fs,1));vertical-align:1px;margin-left:2px}
+.ctl{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-bottom:12px}
+.casc{display:grid;grid-template-columns:minmax(0,.9fr) 28px minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr);align-items:start}
+.casc .arr{align-self:center;text-align:center;color:var(--muted);font-size:calc(20px*var(--fs,1))}
+.col h4{margin:0 0 8px;font-size:calc(14px*var(--fs,1))}.col h4 small{font-weight:400;color:var(--muted)}
+.node{border:1px solid var(--line);border-left:4px solid var(--c,#64748b);background:var(--panel2);border-radius:9px;padding:9px 11px;margin-bottom:8px}
+.node b{font-size:calc(14.5px*var(--fs,1))}.node .m{display:flex;justify-content:space-between;gap:8px;margin-top:3px;font-size:calc(13.5px*var(--fs,1))}.node .f{color:var(--muted);font-size:calc(12.5px*var(--fs,1));margin-top:2px}
+.node.ev{border-color:var(--r);--c:var(--r);background:color-mix(in srgb,#ef4444 12%,transparent)}
+.empty{color:var(--muted);font-size:calc(13.5px*var(--fs,1));border:1px dashed var(--line);border-radius:9px;padding:10px}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
+ul.note{margin:6px 0 0;padding-left:1.3em;color:var(--muted);font-size:calc(13.5px*var(--fs,1));line-height:1.85}ul.note b{color:var(--text);font-weight:600}
+@media (max-width:1100px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.casc{grid-template-columns:1fr}.casc .arr{transform:rotate(90deg);padding:2px 0}.three{grid-template-columns:1fr}.casc>*,.three>*{min-width:0}}
+</style>
+<div class="page">
+<div class="sub" id="sub"></div>
+
+<div class="assume"><b>假設（改了以下全部重算）</b>
+ <label>未來營收 <select id="gs"><option value="flat">維持目前營收（最保守）</option><option value="d50" selected>各家年增率逐年減半（上限 50%）</option><option value="d100">各家年增率逐年減半（上限 100%）</option><option value="u15">全部每年 +15%</option><option value="u30">全部每年 +30%</option></select></label>
+ <label>營收中可用來付這些合約的比例 <select id="av"><option value="0.2">20%</option><option value="0.3">30%</option><option value="0.5" selected>50%</option><option value="0.7">70%</option><option value="1">100%</option></select></label>
+ <label>沒有逐年表的合約 <select id="rp"><option value="flat">平均攤提</option><option value="ramp">前低後高</option></select></label>
+ <button id="thBtn" type="button">燈號門檻 ▾</button><button id="rst" type="button">還原預設</button>
+ <div id="thP" hidden style="flex:1 1 100%;border-top:1px solid var(--line);padding-top:10px;display:none;flex-wrap:wrap;gap:8px 22px;align-items:center">
+  <label>快速套用 <select id="thS"><option value="std">標準</option><option value="strict">嚴格（較容易亮紅燈）</option><option value="loose">寬鬆</option><option value="custom">自訂</option></select></label>
+  <label>付款方壓力（要付的錢占營收）　紅 ≥ <input type="number" id="t_p3" min="1" max="999" step="5">%　黃 ≥ <input type="number" id="t_p2" min="1" max="999" step="5">%</label>
+  <label>收款方依賴（應收占營收）　紅 ≥ <input type="number" id="t_r3" min="1" max="999" step="5">%　黃 ≥ <input type="number" id="t_r2" min="1" max="999" step="5">%</label>
+  <label>事件影響（少收占營收）　嚴重 ≥ <input type="number" id="t_h3" min="1" max="999" step="1">%　明顯 ≥ <input type="number" id="t_h2" min="1" max="999" step="1">%</label>
+ </div>
+</div>
+
+<ul class="concl" id="concl"></ul>
+<div class="kpis" id="kpis"></div>
+
+<div class="sec"><span class="n">1</span>哪一年最吃緊<span class="h">各年度已承諾要付的金額，依付款方堆疊；點任一年切換下方內容</span></div>
+<div class="card"><div id="chart"></div><div class="legend" id="lg"></div>
+ <div style="margin-top:14px"><b id="basisT"></b><div class="basis" id="basis"></div><div class="legend" id="basisL" style="margin-top:2px"></div></div></div>
+
+<div class="sec"><span class="n">2</span>壓力地圖<span class="h">每家付款方每一年要付的錢，占它當年（推估）營收的比例；▲ 表示當年錢不夠、要動用現金或對外募資</span></div>
+<div class="card scroll"><table class="heat" id="heat"></table></div>
+
+<div class="sec"><span class="n">3</span><span id="t3"></span><span class="tabs"><button id="tabP" class="on">誰要付錢</button><button id="tabR">誰等著收錢</button></span></div>
+<div class="card scroll"><table id="src"></table><div class="hint" id="srcN" style="margin-top:8px"></div></div>
+
+<div class="sec"><span class="n">4</span>資金缺口與現金撐多久<span class="h">把每年不夠的錢累加起來，和手上現金比</span></div>
+<div class="card scroll"><table id="gap"></table></div>
+
+<div class="sec"><span class="n">5</span>發生特殊事件時，一層一層誰受影響<span class="h">以選定年度計算</span></div>
+<div class="card">
+ <div class="ctl">
+  <label>事件 <select id="ev"><optgroup label="資金面"><option value="fund">募資市場關閉：有缺口的公司只付得起自己賺的與手上的現金</option><option value="worst">最壞情境：募資市場關閉，而且營收不再成長</option><option value="pay">某一家公司付不出合約款</option><option value="cut">全部付款方同步縮減付款</option></optgroup><optgroup label="營運面"><option value="delay">資料中心延後完工：某一家公司的付款整體延後一年</option><option value="capex">大型業者削減資本支出</option></optgroup><optgroup label="政策面"><option value="exp">出口管制收緊：中國營收受限</option></optgroup><optgroup label="利率與實體瓶頸"><option value="rate">利率上升：到期債務與新借的錢都變貴</option><option value="power">電力與併網延後：新的算力晚上線</option><option value="chip">先進封裝與 HBM 缺口擴大：晶片出貨不足</option></optgroup></select></label>
+  <label id="whoL">公司 <select id="who"></select></label>
+  <label id="sevL"><span id="sevT">少付</span> <select id="sev"></select></label>
+  <label id="moL">延後時間 <select id="mo"><option value="6">6 個月</option><option value="12" selected>12 個月</option><option value="18">18 個月</option></select></label>
+  <label>年度 <select id="yr"></select></label>
+ </div>
+ <div class="casc" id="casc"></div>
+ <div class="three">
+  <div><b>各層合計</b><div class="scroll"><table id="sum" style="margin-top:6px"></table></div></div>
+  <div><b>股東層：持股可能減損</b> <span class="hint">投入金額 × 受衝擊比例，只是比例示意</span><div class="scroll"><table id="eq" style="margin-top:6px"></table></div></div>
+  <div><b>擔保層：可能被連帶觸發</b><div class="scroll"><table id="gu" style="margin-top:6px"></table></div></div>
+ </div>
+</div>
+
+<div class="sec"><span class="n">6</span>利率與實體瓶頸用到的資料<span class="h">事件試算就是用這些數字</span></div>
+<div class="card scroll"><b>債務到期與浮動利率部位</b><table id="dbt" style="margin-top:6px"></table><div class="hint" id="dbtN" style="margin-top:8px"></div></div>
+<div class="card scroll" style="margin-top:12px"><b>取決於新資料中心通電的算力合約</b><table id="pwt" style="margin-top:6px"></table></div>
+<div class="card scroll" style="margin-top:12px"><b>實體瓶頸現況</b><table id="bnt" style="margin-top:6px"></table></div>
+<div class="card scroll" style="margin-top:12px"><b>尚未解除的擔保與供應商融資</b> <span class="hint">被擔保的對象付不出錢時，擔保方要代付</span><table id="gall" style="margin-top:6px"></table></div>
+
+<div class="sec"><span class="n">7</span>怎麼算、有哪些限制</div>
+<div class="card"><ul class="note" id="note"></ul></div>
+</div></template>
 <script id="stress-js">
 /* ---------- 付款高峰壓力測試：樣式與版面在 <template id="stress-tpl">，放進 shadow DOM ---------- */
 (function(){
@@ -1098,6 +1098,7 @@ $('#gall').innerHTML=`<thead><tr><th>擔保方</th><th>對象</th><th class="r">
 all(false);extra();
 })();
 </script>
+
 <script id="sec-js">
 (function(){
  const KEEP=new Set(['s-top','s-watch','s-net']),K='ecomap_sec_v1';let st={};try{st=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){}

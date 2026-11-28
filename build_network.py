@@ -503,6 +503,9 @@ if os.path.exists(GT):
     open(os.path.join(os.path.dirname(os.path.abspath(OUT)),"guide.html"),"w",encoding="utf-8").write(open(GT,encoding="utf-8").read().replace("/*__GUIDE__*/null",json.dumps(gd,ensure_ascii=False).replace("</","<\\/")))
     data["guide"]="guide.html"; print("📖 已產生使用者指引 guide.html")
 tpl=open(TPL,encoding="utf-8").read()
+# 付款高峰壓力測試：模組放在範本旁邊的 stress_module.html（和使用者指引一樣不內嵌在範本裡），建置時放進 <!--__STRESS__-->
+_SM=os.path.join(os.path.dirname(os.path.abspath(TPL)),"stress_module.html")
+tpl=tpl.replace("<!--__STRESS__-->",open(_SM,encoding="utf-8").read() if os.path.exists(_SM) else "")
 if "/*__DATA__*/null" not in tpl: sys.exit("network template 缺少 /*__DATA__*/null 佔位符")
 open(OUT,"w",encoding="utf-8").write(tpl.replace("/*__DATA__*/null",json.dumps(data,ensure_ascii=False).replace("</","<\\/")))
 multi=sorted([h for h in hubs if h["deg"]>=2],key=lambda h:-h["deg"])
