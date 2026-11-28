@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  issues: write
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -34,3 +35,8 @@ jobs:
             git pull --rebase origin main
             git push
           fi
+      - name: 有公司燈號變動時開 Issue 通知（repo 擁有者會收到 email）
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python notify_changes.py .

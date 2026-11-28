@@ -8,6 +8,8 @@
 <meta property="og:title" content="跨實體投資生態總網路圖">
 <meta property="og:description" content="AI 產業主要公司之間的投資、採購與擔保關係總覽，含預警指標、風險燈號與情境試算。">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://maxtrader0207.github.io/investment-ecosystem-map/og.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27%3E%3Crect width=%2724%27 height=%2724%27 rx=%275%27 fill=%27%230a0e13%27/%3E%3Cg fill=%27none%27 stroke=%27%23facc15%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%3E%3Ccircle cx=%277%27 cy=%277%27 r=%272.3%27/%3E%3Ccircle cx=%2717%27 cy=%279%27 r=%272.3%27/%3E%3Ccircle cx=%2711%27 cy=%2717.5%27 r=%272.3%27/%3E%3Cpath d=%27m9.2 7.6 5.6 1M7.8 9.2l2.4 6.2M15.8 11l-3.6 4.6%27/%3E%3C/g%3E%3C/svg%3E">
 <style>
 :root{--bg:#0a0e13;--panel:#11171f;--panel2:#161e28;--line:#243041;--text:#e6edf3;--muted:#8b9bb0;--acc:#facc15;--in:#4ade80;--fs:1}
@@ -50,7 +52,7 @@ aside h2{margin:0 0 4px;font-size:calc(20px*var(--fs))}
 .lvb{display:inline-block;font-size:calc(12px*var(--fs));font-weight:700;padding:1px 9px;border-radius:999px;color:#fff;white-space:nowrap}
 .lvb3{background:#dc2626}.lvb2{background:#b45309}.lvb1{background:#15803d}.lvb0{background:#475569}
 .imp b.lvt3{color:#fca5a5}.imp b.lvt2{color:#fcd34d}.imp b.lvt1{color:#86efac}.imp b.lvt0{color:#cbd5e1}
-[data-theme="light"] .imp b.lvt3{color:#b91c1c}[data-theme="light"] .imp b.lvt2{color:#a67c00}[data-theme="light"] .imp b.lvt1{color:#166534}[data-theme="light"] .imp b.lvt0{color:#475569}
+[data-theme="light"] .imp b.lvt3{color:#b91c1c}[data-theme="light"] .imp b.lvt2{color:#8a6500}[data-theme="light"] .imp b.lvt1{color:#166534}[data-theme="light"] .imp b.lvt0{color:#475569}
 svg text{font-family:inherit}
 .nlab{fill:var(--text);font-size:11px;pointer-events:none;paint-order:stroke;stroke:var(--bg);stroke-width:3px}
 .elab{fill:var(--text);font-size:13px;font-weight:700;pointer-events:none;paint-order:stroke;stroke:var(--bg);stroke-width:4px}
@@ -91,13 +93,13 @@ tr:hover td{background:var(--panel2)}
 .rnum{font-size:calc(70px*var(--fs));font-weight:800;line-height:1}
 .wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}.wcard{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--muted);border-radius:10px;padding:10px 12px}.wcard.w3{border-left-color:#ef4444}.wcard.w2{border-left-color:#eab308}.wcard.w1{border-left-color:#22c55e}.wcard b{display:block}.wv{font-size:calc(16px*var(--fs));font-weight:700;margin:2px 0}.topl{margin:0;padding-left:20px;line-height:1.9;font-size:calc(16px*var(--fs))}.chgt td,.chgt th{font-size:calc(14px*var(--fs))}
 .rc3{color:#f87171}.rc2{color:#fbbf24}.rc1{color:#4ade80}.rc0{color:var(--muted)}
-[data-theme="light"] .rc3{color:#b91c1c}[data-theme="light"] .rc2{color:#a67c00}[data-theme="light"] .rc1{color:#166534}
+[data-theme="light"] .rc3{color:#b91c1c}[data-theme="light"] .rc2{color:#8a6500}[data-theme="light"] .rc1{color:#166534}
 .rf3{fill:#ef4444}.rf2{fill:#eab308}.rf1{fill:#22c55e}.rf0{fill:#64748b}
 .rrank{font-size:calc(14px*var(--fs));font-weight:700;border:1px solid var(--line);border-radius:999px;padding:3px 12px;background:var(--panel2)}
 .rradar{display:flex;justify-content:center;align-items:center;overflow:auto}
 .rradar text{fill:var(--text);font-size:12.5px}.rradar text.m{fill:var(--muted)}
 .rradar text.t3{fill:#f87171;font-weight:700}.rradar text.t2{fill:#fbbf24;font-weight:700}.rradar text.t1{fill:#4ade80;font-weight:700}
-[data-theme="light"] .rradar text.t3{fill:#b91c1c}[data-theme="light"] .rradar text.t2{fill:#a67c00}[data-theme="light"] .rradar text.t1{fill:#166534}
+[data-theme="light"] .rradar text.t3{fill:#b91c1c}[data-theme="light"] .rradar text.t2{fill:#8a6500}[data-theme="light"] .rradar text.t1{fill:#166534}
 .rpeers{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin-top:10px}
 @media (max-width:1100px){.rpeers{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (max-width:640px){.rpeers{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -187,13 +189,39 @@ body #toTop{transform:translateY(max(64px,var(--ty,70vh)))}
 /* —— 淺色背景的文字對比：以公司代表色或狀態色寫的字自動加深 —— */
 [data-theme="light"] [style^="color:"]{filter:brightness(.6) saturate(1.4)}
 [data-theme="light"] .toc a.on{color:#fff}[data-theme="light"] .gbtn small{opacity:1}
+
+/* —— 全站搜尋 —— */
+.gsw{position:relative;display:inline-block}
+.gsw input{width:230px;max-width:60vw;background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:6px;padding:5px 10px;font:inherit;font-size:calc(14px*var(--fs))}
+.gsr{position:absolute;right:0;top:calc(100% + 6px);z-index:97;width:min(440px,92vw);max-height:70vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.35);text-align:left;padding:4px 0 6px}
+.gsr h4{margin:8px 12px 2px;font-size:calc(12px*var(--fs));color:var(--muted);font-weight:400}
+.gsr .it{display:flex;justify-content:space-between;gap:10px;align-items:center;width:100%;padding:6px 12px;border:0;background:none;color:var(--text);font:inherit;font-size:calc(14px*var(--fs));text-align:left;cursor:pointer;text-decoration:none;min-height:36px}
+.gsr .it:hover,.gsr .it:focus-visible{background:var(--panel2)}.gsr .it small{color:var(--muted);font-size:calc(12px*var(--fs));flex:none}.gsr .none{padding:10px 12px;color:var(--muted)}
+@media (max-width:700px){.gsw{flex:1 1 100%}.gsw input{width:100%;max-width:none}.gsr{left:0;right:auto}}
+/* —— 提示、上次來之後的變化、手機選公司 —— */
+.xtoast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--panel);border:1px solid var(--acc);color:var(--text);padding:8px 14px;border-radius:8px;z-index:99;opacity:0;pointer-events:none;transition:opacity .2s}.xtoast.on{opacity:1}
+.since{margin:10px 22px 0;padding:10px 14px;border:1px solid var(--acc);border-left-width:4px;border-radius:10px;background:var(--panel);display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;line-height:1.7}.since>span{flex:1 1 320px}
+.mpick{display:none}
+@media (max-width:900px){.mpick{display:flex;gap:6px;overflow-x:auto;padding:8px 14px;align-items:center;white-space:nowrap;border-top:1px solid var(--line)}.mpick button{flex:none}.mpick button.on{border-color:var(--acc);font-weight:700}}
+/* —— 列印：白底、單欄、不印操作元件、卡片不跨頁 —— */
+@media print{
+ @page{margin:12mm}
+ :root,[data-theme],body{--bg:#fff!important;--panel:#fff!important;--panel2:#f3f4f6!important;--line:#cbd5e1!important;--text:#111827!important;--muted:#475569!important;--acc:#b45309!important}
+ .hact,.toolbar,.bx,.secx,.mpick,.since,.xtoast,.gsw,.wrule summary{display:none!important}
+ .wrule>div{display:block}details.wrule>*{display:block!important}
+ .wrap,.rgrid,.bgrid{display:block}.wrap aside{border-left:none;max-height:none;min-height:0;overflow:visible}
+ .rtot,.rradar{position:static}
+ .rcard,.wcard,.kpi,.bcol,tr,svg{break-inside:avoid}.sec{break-after:avoid;cursor:auto}
+ table{font-size:11px}.tablewrap,.rcard{overflow:visible}
+ a{color:inherit;text-decoration:none}
+}
 </style>
 </head>
 <body>
 <header>
 <div><h1><b>跨實體投資生態總網路圖</b>・系統性樞紐與影響面</h1>
 <div class="sub" id="sub"></div></div>
-<div class="hact"><a class="gbtn" id="guideLink" href="guide.html" style="display:none" title="第一次使用？先看這裡：操作方式、符號對照、每個功能在哪裡"><span><b>使用指引與功能地圖</b><small>第一次使用？先看這裡</small></span></a><button class="btn" id="secAll" type="button">全部展開</button><span class="pref"><button class="btn" id="prefBtn" type="button" aria-haspopup="true" aria-expanded="false" title="背景與字體大小">⚙ 顯示設定</button><div class="prefp" id="prefPanel"><div class="prow"><span class="lbl">背景</span><select id="themeSel"><option value="">深夜（預設）</option><option value="graphite">石墨灰</option><option value="navy">深海藍</option><option value="black">純黑</option><option value="light">淺色</option></select></div><div class="prow"><span class="lbl">自訂背景色</span><input type="color" id="bgPick" value="#0a0e13" title="自訂背景色"></div><div class="prow"><span class="lbl">字體大小</span><span><button class="btn" id="fsDown" type="button" aria-label="縮小字體">A−</button><span class="fsval" id="fsVal">100%</span><button class="btn" id="fsUp" type="button" aria-label="放大字體">A＋</button></span></div><div class="prow"><span class="hint">記在這台瀏覽器，各頁共用</span><button class="btn" id="prefReset" type="button">還原預設</button></div></div></span></div>
+<div class="hact"><span class="gsw"><input type="search" id="gs" placeholder="搜尋公司、交易對手、區塊…" aria-label="全站搜尋" autocomplete="off"><div class="gsr" id="gsr" hidden></div></span><a class="gbtn" id="guideLink" href="guide.html" style="display:none" title="第一次使用？先看這裡：操作方式、符號對照、每個功能在哪裡"><span><b>使用指引與功能地圖</b><small>第一次使用？先看這裡</small></span></a><button class="btn" id="secAll" type="button">全部展開</button><span class="pref"><button class="btn" id="prefBtn" type="button" aria-haspopup="true" aria-expanded="false" title="背景與字體大小">⚙ 顯示設定</button><div class="prefp" id="prefPanel"><div class="prow"><span class="lbl">背景</span><select id="themeSel"><option value="">深夜（預設）</option><option value="graphite">石墨灰</option><option value="navy">深海藍</option><option value="black">純黑</option><option value="light">淺色</option></select></div><div class="prow"><span class="lbl">自訂背景色</span><input type="color" id="bgPick" value="#0a0e13" title="自訂背景色"></div><div class="prow"><span class="lbl">字體大小</span><span><button class="btn" id="fsDown" type="button" aria-label="縮小字體">A−</button><span class="fsval" id="fsVal">100%</span><button class="btn" id="fsUp" type="button" aria-label="放大字體">A＋</button></span></div><div class="prow"><span class="hint">記在這台瀏覽器，各頁共用</span><button class="btn" id="prefReset" type="button">還原預設</button></div></div></span></div>
 <div class="legend">
 <span><i style="border-color:#94a3b8"></i>流出（實體出資／採購）</span>
 <span><i style="border-color:var(--in)"></i>流入（對方投入資金）</span>
@@ -218,6 +246,7 @@ body #toTop{transform:translateY(max(64px,var(--ty,70vh)))}
 <label><input type="checkbox" id="top10"> 只看前 10 大樞紐</label>
 <input type="search" id="q" placeholder="搜尋公司…">
 <button class="btn" id="reset">重設</button>
+<button class="btn" id="shareBtn" type="button" title="把目前選取的公司與篩選條件存進網址，複製後可以分享或存書籤">複製此畫面連結</button>
 <button class="btn" id="csv">⬇ 樞紐排行 CSV</button>
 <span class="hint">滑鼠移到圓點上，只亮出它的關係線；點選圓點看「哪些實體與它有關、涉及多少錢、若它出事影響誰」。</span>
 </div>
@@ -886,6 +915,64 @@ build(); side(null); table(); cmp();
   const a=links[k];nav.scrollTo({left:a.offsetLeft-nav.clientWidth/2+a.offsetWidth/2})};
  addEventListener('scroll',()=>{if(!tk)tk=requestAnimationFrame(spy)},{passive:true});
  edge();spy();setTimeout(edge,300);
+})();
+</script>
+<script id="x-js">
+(function(){
+ const g=id=>document.getElementById(id),esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+ const toast=t=>{let x=g('xtoast');if(!x){x=document.createElement('div');x.id='xtoast';x.className='xtoast';x.setAttribute('role','status');document.body.appendChild(x)}x.textContent=t;x.classList.add('on');clearTimeout(x._t);x._t=setTimeout(()=>x.classList.remove('on'),2400)};
+ const openSec=id=>{const b=g(id+'-body'),h=g(id);if(b&&h&&b.hasAttribute('hidden')){const x=h.querySelector('.secx');if(x)x.click()}};
+ const goSec=id=>{openSec(id);const t=g(id);if(t)requestAnimationFrame(()=>t.scrollIntoView())};
+ // 選取一家公司或交易對手；圖上沒有顯示時自動改成顯示全部
+ const selectNode=(k,scroll)=>{selected=k||null;if(k&&!NODES.find(n=>n.id===k)){g('minDeg').value='1';g('top10').checked=false;build();}draw();side(selected);mark();if(scroll)goSec('s-net')};
+ // —— 分享連結：把選取與篩選寫進網址 ——
+ const stateUrl=()=>{const p=new URLSearchParams();if(selected)p.set('sel',selected);const q=g('q').value.trim();if(q)p.set('q',q);if(g('minDeg').value!=='2')p.set('deg',g('minDeg').value);if(g('dirSel').value)p.set('dir',g('dirSel').value);if(!g('cpChk').checked)p.set('cp','0');if(g('top10').checked)p.set('top','1');const t=p.toString();return location.origin+location.pathname+(t?'?'+t:'')+'#s-net'};
+ g('shareBtn').onclick=()=>{const u=stateUrl();try{history.replaceState(null,'',u)}catch(e){}
+  const fb=()=>{const i=document.createElement('input');i.value=u;document.body.appendChild(i);i.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}i.remove();toast(ok?'已複製連結':'網址列已更新，請自行複製')};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(u).then(()=>toast('已複製連結'),fb);else fb()};
+ // —— 手機：公司名稱一排，點了直接選取 ——
+ const mp=document.createElement('div');mp.className='mpick';mp.id='mpick';
+ mp.innerHTML='<span class="hint">點名稱選取：</span>'+DATA.ents.map(e=>`<button class="btn" type="button" data-k="${esc(e.key)}">${esc(e.key)}</button>`).join('');
+ const wrap=document.querySelector('.wrap');if(wrap)wrap.parentNode.insertBefore(mp,wrap);
+ const mark=()=>mp.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.k===selected));
+ mp.addEventListener('click',e=>{const b=e.target.closest('button[data-k]');if(!b)return;selectNode(selected===b.dataset.k?null:b.dataset.k);const s=g('side');if(selected&&s)s.scrollIntoView({block:'start'})});
+ // —— 全站搜尋 ——
+ const IDX=[];
+ DATA.ents.forEach(e=>IDX.push({g:'公司（已建 Dashboard）',l:e.key,k:(e.key+' '+(e.entity||'')+' '+(e.ticker||'')).toLowerCase(),sub:e.ticker||'',sel:e.key,href:e.file}));
+ const isE=new Set(DATA.ents.map(e=>e.key)),cps={};DATA.links.forEach(l=>{if(!isE.has(l.cp))(cps[l.cp]=cps[l.cp]||new Set()).add(l.ent)});
+ Object.keys(cps).sort((a,b)=>cps[b].size-cps[a].size).forEach(c=>IDX.push({g:'交易對手',l:c,k:c.toLowerCase(),sub:'涉及 '+cps[c].size+' 家',sel:c}));
+ document.querySelectorAll('.sec[id]').forEach(s=>{const t=[...s.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent).join('').trim();if(t)IDX.push({g:'區塊',l:t.split(/[（：　]/)[0].trim(),k:t.toLowerCase(),sub:'跳到這一區',sec:s.id})});
+ DATA.links.forEach(l=>{if(l.name)IDX.push({g:'各公司 Dashboard 的節點',l:l.ent+' → '+l.name,k:(l.name+' '+l.ent+' '+l.cp).toLowerCase(),sub:l.short||'',href:(DATA.ents.find(e=>e.key===l.ent)||{}).file})});
+ const gs=g('gs'),gr=g('gsr');let hits=[];
+ const close=()=>{gr.hidden=true};
+ const run=()=>{const q=gs.value.trim().toLowerCase();if(!q){close();return}
+  const by={};hits=[];IDX.forEach(x=>{if(x.k.includes(q)){(by[x.g]=by[x.g]||[]).push(x)}});
+  const cap={'公司（已建 Dashboard）':6,'交易對手':6,'區塊':5,'各公司 Dashboard 的節點':8};let h='';
+  Object.keys(cap).forEach(G=>{const a=(by[G]||[]).slice(0,cap[G]);if(!a.length)return;h+=`<h4>${G}${by[G].length>a.length?`（前 ${a.length}／共 ${by[G].length} 筆）`:''}</h4>`;
+   a.forEach(x=>{const i=hits.push(x)-1;h+=(x.sel||x.sec)?`<button class="it" type="button" data-i="${i}"><span>${esc(x.l)}</span><small>${esc(x.sub)}</small></button>`:`<a class="it" href="${esc(x.href||'#')}" target="_blank" rel="noopener"><span>${esc(x.l)}</span><small>${esc(x.sub)} ↗</small></a>`;
+    if(x.sel&&x.href)h+=`<a class="it" href="${esc(x.href)}" style="padding-left:28px;min-height:30px"><span class="hint">開啟 ${esc(x.l)} 的完整 Dashboard</span><small>↗</small></a>`})});
+  gr.innerHTML=h||'<div class="none">找不到符合的項目。試試公司英文名、代號，或區塊名稱。</div>';gr.hidden=false};
+ const pick=x=>{if(!x)return;close();gs.blur();if(x.sec)goSec(x.sec);else if(x.sel)selectNode(x.sel,true)};
+ gs.addEventListener('input',run);gs.addEventListener('focus',run);
+ gs.addEventListener('keydown',e=>{if(e.key==='Escape'){close();gs.blur()}else if(e.key==='Enter'){const x=hits[0];if(x&&(x.sel||x.sec))pick(x);else if(x&&x.href)location.href=x.href}});
+ gr.addEventListener('click',e=>{const b=e.target.closest('button[data-i]');if(b)pick(hits[+b.dataset.i])});
+ document.addEventListener('click',e=>{if(!e.target.closest('.gsw'))close()});
+ // —— 上次來之後變了什麼（以資料日期比對，記在這台瀏覽器） ——
+ try{const K='ecomap_seen_v1',seen=localStorage.getItem(K),now=DATA.asOf;
+  if(!seen)localStorage.setItem(K,now);
+  else if(seen<now){const es=(DATA.chg||[]).filter(c=>c.d>seen),items=es.flatMap(c=>c.auto||[]),lt=items.filter(i=>i.t==='燈號變動'),ad=items.filter(i=>i.t==='新增公司'),ot=items.length-lt.length-ad.length;
+   const parts=[];if(lt.length)parts.push(`燈號變動 ${lt.length} 家（${lt.slice(0,4).map(i=>esc(i.e)+'：'+esc((i.x||'').split('，').pop())).join('；')}${lt.length>4?'…':''}）`);if(ad.length)parts.push(`新增 ${ad.length} 家公司`);if(ot>0)parts.push(`其他變動 ${ot} 項`);
+   const d=document.createElement('div');d.className='since';d.innerHTML=`<span>你上次看到的是 <b>${esc(seen)}</b> 的資料，現在已更新到 <b>${esc(now)}</b>。${parts.length?'這段期間：'+parts.join('、')+'。':'詳細內容請看變動紀錄。'}</span><a class="btn" href="#s-chg">看變動紀錄</a><button class="btn" type="button">知道了</button>`;
+   d.querySelector('button').onclick=()=>{try{localStorage.setItem(K,now)}catch(e){}d.remove()};
+   const first=document.querySelector('.sec');if(first)first.parentNode.insertBefore(d,first)}
+ }catch(e){}
+ // —— 從分享連結進來：還原選取與篩選 ——
+ const P=new URLSearchParams(location.search);
+ if(['sel','q','deg','dir','cp','top'].some(k=>P.has(k))){
+  const setv=(id,v)=>{const el=g(id);if(v!=null&&[...el.options].some(o=>o.value===v))el.value=v};
+  setv('minDeg',P.get('deg'));setv('dirSel',P.get('dir'));if(P.get('cp')==='0')g('cpChk').checked=false;if(P.get('top')==='1')g('top10').checked=true;if(P.get('q'))g('q').value=P.get('q');
+  build();selectNode(P.get('sel')||null);
+ }
 })();
 </script>
 <style id="totop-css">
