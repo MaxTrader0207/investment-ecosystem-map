@@ -333,6 +333,14 @@
    "TradingView｜ANT 下次財報預估 2027-02-24（第三方推估，公司未確認）",
    "https://www.tradingview.com/symbols/NASDAQ-ANT/",
    "C"
+  ],
+  "gw_msft": [
+   "DCD｜Anthropic 採購 $300 億 Azure 算力，並可另簽最多 1GW 容量",
+   "https://www.datacenterdynamics.com/en/news/anthropic-to-purchase-30bn-in-microsoft-azure-credits-nvidia-and-microsoft-to-invest-in-ai-company"
+  ],
+  "gw_tpu26": [
+   "Yahoo Finance／Quartz｜Broadcom 今年為 Anthropic 提供 1GW 的 Google TPU 算力",
+   "https://finance.yahoo.com/sectors/technology/articles/anthropic-google-broadcom-tpu-deal-113234906.html"
   ]
  },
  "categories": [
@@ -398,7 +406,8 @@
     "fw_gstake",
     "fool_ipo",
     "st_own",
-    "cb_rev"
+    "cb_rev",
+    "gw_tpu26"
    ],
    "amtType": "commitment",
    "direction": "out",
@@ -411,7 +420,9 @@
     "s": 2026,
     "e": 2033
    },
-   "pw": true
+   "pw": true,
+   "gw": 1.0,
+   "gwNote": "2026 年的供應量，和合約金額的對應關係未揭露"
   },
   {
    "id": "amazon",
@@ -441,7 +452,8 @@
     "e": 2036
    },
    "pw": true,
-   "gw": 5.0
+   "gw": 5.0,
+   "gwNote": "上限"
   },
   {
    "id": "microsoft",
@@ -459,7 +471,8 @@
     "ms_blog",
     "cb_895",
     "fw_place",
-    "axios_msnv"
+    "axios_msnv",
+    "gw_msft"
    ],
    "amtType": "commitment",
    "direction": "out",
@@ -468,7 +481,9 @@
     "s": 2027,
     "e": 2033
    },
-   "pw": true
+   "pw": true,
+   "gw": 1.0,
+   "gwNote": "上限"
   },
   {
    "id": "broadcom",
@@ -546,7 +561,8 @@
     "firm": 45
    },
    "pw": true,
-   "gw": 0.3
+   "gw": 0.3,
+   "gwNote": "下限（300MW 以上）"
   },
   {
    "id": "fluidstack",

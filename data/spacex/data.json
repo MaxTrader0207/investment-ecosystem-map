@@ -250,6 +250,14 @@
   "fool_debt": [
    "Motley Fool｜SpaceX 公開說明書：總債務 $291 億，過橋貸款須在 IPO 後六個月內償還",
    "https://www.fool.com/research/spacex-stock-ipo-prospectus/"
+  ],
+  "bond25": [
+   "Mexico Business News｜SpaceX 首次發債 $250 億，2031–2056 年到期，資金用於全額償還過橋貸款",
+   "https://mexicobusiness.news/aerospace/news/spacex-raises-us25-billion-debut-bond-sale-ai-expansion"
+  ],
+  "bond_cpn": [
+   "Asianet Newsable｜SpaceX 五批優先無擔保票據，票面利率 5.35%–6.65%",
+   "https://newsable.asianetnews.com/markets/spcx-falls-overnight-spacex-prices-25b-bond-sale-to-refinance-x-xai-debt-analyst-says-wait-for-better-entry-articleshow-klsbaf6"
   ]
  },
  "categories": [
@@ -1509,26 +1517,28 @@
  },
  "dues": [
   {
-   "y": 2027,
-   "amt": 20.0,
+   "y": 2031,
+   "amt": null,
    "kind": "債務到期",
-   "what": "2026/3 的 $200 億過橋貸款，2027/9 到期（可延兩次、各三個月）；條款規定 IPO 後六個月內須償還，是否已用 IPO 資金還清尚未確認",
+   "what": "2026/6 發行 $250 億優先無擔保票據，分五批、2031–2056 年到期，最早一批 2031 年到期（各批金額未取得）；原本 2027/9 到期的 $200 億過橋貸款，公司表示以這筆資金全額償還",
    "src": [
+    "bond25",
+    "bond_cpn",
     "tnw_bridge",
     "fool_debt"
    ]
   }
  ],
  "debt": {
-  "total": 29.1,
-  "asOf": "2026-03-31",
-  "float": null,
-  "after": null,
-  "afterY": 2027,
-  "note": "S-1 口徑的總債務 $291 億，其中 $200 億是過橋貸款；其餘債務的到期年份未取得",
+  "total": 38.8,
+  "asOf": "2026-09-30",
+  "float": 0,
+  "after": 25.0,
+  "afterY": 2030,
+  "note": "負債與融資租賃 $388 億（9/30）。$200 億過橋貸款已由 2026/6 發行的 $250 億固定利率票據取代（票面 5.35%–6.65%，2031–2056 年到期），2027–2030 年沒有已知的大額到期；償還完成的申報文件未另外查證，依公司發債時的說明記載",
   "src": [
-   "tnw_bridge",
-   "fool_debt"
+   "bond25",
+   "bond_cpn"
   ]
  }
 }

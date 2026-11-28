@@ -176,6 +176,18 @@
   "ms_debt26": [
    "SEC｜Microsoft 10-K FY2026 債務附註：長期債務到期時程（2026/6/30）",
    "https://www.sec.gov/Archives/edgar/data/0000789019/000119312526323660/msft-20260630.htm"
+  ],
+  "gw_iren": [
+   "The Block｜IREN 向 Microsoft 交付四期中的第一期（50MW），四期合計 200MW IT 容量（2026-08-17）",
+   "https://theblock.co/news/business/2026-08-17-iren-delivers-first-four-ai-cloud-deployments-microsoft-under-9-7-billion-deal-412016"
+  ],
+  "gw_nebius": [
+   "Windows Central｜Nebius Vineland 資料中心首期 300MW",
+   "https://www.windowscentral.com/microsoft/a-data-center-the-size-of-a-power-plant-microsofts-usd17-4b-ai-engine-roars-to-life"
+  ],
+  "gw_nscale": [
+   "Investing.com｜Nscale 與 Microsoft：德州 240MW 園區、約 10.4 萬顆 GB300，另有 700MW 選擇權",
+   "https://ng.investing.com/news/stock-market-news/nscale-secures-deal-for-200000-nvidia-gb300-gpus-with-microsoft-93CH-2146324"
   ]
  },
  "categories": [
@@ -346,7 +358,8 @@
     "fw_neo",
     "aiw_neo",
     "ti_neo",
-    "lds_neo"
+    "lds_neo",
+    "gw_nscale"
    ],
    "amtType": "contract",
    "direction": "out",
@@ -364,7 +377,9 @@
     "s": 2026,
     "e": 2033
    },
-   "pw": true
+   "pw": true,
+   "gw": 0.24,
+   "gwNote": "只有德州園區首期，其餘三個據點未揭露"
   },
   {
    "id": "nebius",
@@ -380,7 +395,8 @@
    "flow": "同上",
    "src": [
     "fw_neo",
-    "lds_neo"
+    "lds_neo",
+    "gw_nebius"
    ],
    "amtType": "contract",
    "direction": "out",
@@ -398,7 +414,9 @@
     "s": 2026,
     "e": 2031
    },
-   "pw": true
+   "pw": true,
+   "gw": 0.3,
+   "gwNote": "Vineland 園區首期容量，合約未明定"
   },
   {
    "id": "iren",
@@ -415,7 +433,8 @@
    "src": [
     "wr_iren",
     "aiw_neo",
-    "fw_neo"
+    "fw_neo",
+    "gw_iren"
    ],
    "amtType": "contract",
    "direction": "out",
@@ -434,7 +453,9 @@
     "s": 2026,
     "e": 2031
    },
-   "pw": true
+   "pw": true,
+   "gw": 0.2,
+   "gwNote": ""
   },
   {
    "id": "lambda",
