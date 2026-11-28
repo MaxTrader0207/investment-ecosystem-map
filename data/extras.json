@@ -143,5 +143,15 @@
     "https://www.micheljohannsen.com/blog/vendor-financing-loops-1999-vs-2026"
    ]
   ]
+ },
+ "aiRev": {
+  "Broadcom": {
+   "v": 58.0,
+   "note": "FY2026 AI 半導體營收指引"
+  },
+  "AMD": {
+   "v": 34.0,
+   "note": "2026 Q3 資料中心營收 $85 億年化"
+  }
  }
 }

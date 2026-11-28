@@ -62,6 +62,7 @@ for fp in FILES:
                     cashSrc=[[S[x][0],S[x][1]] for x in D["fin"].get("cashSrc",[]) if x in S],burnSrc=[[S[x][0],S[x][1]] for x in D["fin"].get("burnSrc",[]) if x in S],
                     rep=(dict(D["fin"]["rep"],src=[[S[x][0],S[x][1]] for x in D["fin"]["rep"].get("src",[]) if x in S]) if isinstance(D["fin"].get("rep"),dict) else None),circEst=(dict(D["fin"]["circEst"],src=[[S[x][0],S[x][1]] for x in D["fin"]["circEst"].get("src",[]) if x in S]) if isinstance(D["fin"].get("circEst"),dict) else None)) if isinstance(D.get("fin"),dict) else None),
         "mkt":(dict(D["mkt"],src=[[S[k][0],S[k][1]] for k in D["mkt"].get("src",[]) if k in S]) if isinstance(D.get("mkt"),dict) else None),
+        "debt":D.get("debt"),   # 債務總額、浮動利率部位與說明（壓力測試的利率事件用）
         "dues":[dict(x,src=[[S[k][0],S[k][1]] for k in x.get("src",[]) if k in S]) for x in D.get("dues",[])],
         "rk":{"n":sum(1 for n in D["nodes"] if not cats.get(n["cat"],{}).get("counterparty")),
               "eq":[n["amt"] for n in D["nodes"] if not cats.get(n["cat"],{}).get("counterparty") and n.get("amtType","equity")=="equity" and n.get("direction","out")!="in" and n.get("amt") is not None and not n.get("excludeFromSum") and not n.get("per")],
@@ -93,7 +94,7 @@ for fp in FILES:
           "amtType":n.get("amtType","none"),"dir":n.get("direction","out"),"amt":n.get("amt"),"short":n.get("short",""),"date":n.get("date",""),
           "status":n.get("status",""),"grade":g,"rumor":bool(n.get("unconfirmed")) or g=="D","excl":bool(n.get("excludeFromSum") or n.get("per")),"risks":[r["k"] for r in n.get("risks",[])],
           "src":[[S[s][0],S[s][1]] for s in n["src"] if s in S][:3],
-          "val":n.get("val"),"valDate":n.get("valDate",""),"xnote":n.get("xnote",""),"per":n.get("per",""),"term":n.get("term"),"annual":n.get("annual")})
+          "val":n.get("val"),"valDate":n.get("valDate",""),"xnote":n.get("xnote",""),"per":n.get("per",""),"term":n.get("term"),"annual":n.get("annual"),"pw":n.get("pw"),"gw":n.get("gw"),"gwNote":n.get("gwNote","")})
 entkeys={e["key"] for e in ents}
 from collections import defaultdict
 by=defaultdict(list)
@@ -285,7 +286,24 @@ for l in links:
     if _sc: f["sched"]=_sc
     k=(payer,payee)
     if k not in _fl or (l["ent"]==payer and _fl[k]["by"]!=payer): _fl[k]=f
+# 取決於新資料中心通電的算力合約（pw）與電力容量（gw，單位 GW）：兩邊檔案任一邊有標記就算
+for l in links:
+    if not l.get("pw"): continue
+    k=(l["cp"],l["ent"]) if l["dir"]=="in" else (l["ent"],l["cp"])
+    if k in _fl:
+        _fl[k]["pw"]=True
+        if l.get("gw"): _fl[k]["gw"]=l["gw"]; _fl[k]["gwn"]=l.get("gwNote","")
 flows=sorted(_fl.values(),key=lambda f:-f["annual"])
+# 誰持有誰的股權（投入金額）：壓力測試的「股東層」用。規則與前端判斷股權投資的方式一致
+def _invok(l,types): return l["amt"] is not None and not l.get("per") and not l.get("excl") and not _DEAD.search(l["type"] or "") and not re.search("已撤銷|已終止|已取消|已出清",l.get("status") or "") and (l["amtType"]=="equity" or (l["amtType"] in types and _INV.search(l["type"] or "") and not _NOTINV.search(l["type"] or "")))
+_hold={}
+for l in links:
+    if l["dir"]!="in" and _invok(l,("commitment","project")): _i,_t=l["ent"],l["cp"]
+    elif l["dir"]=="in" and _invok(l,("inflow","commitment","project")): _i,_t=l["cp"],l["ent"]
+    else: continue
+    _hold.setdefault(_t,{}); _hold[_t][_i]=max(_hold[_t].get(_i,0),l["amt"])
+_fk={f["from"] for f in flows}|{f["to"] for f in flows}
+holders={k:sorted([[a,round(b,2)] for a,b in v.items()],key=lambda x:-x[1])[:8] for k,v in _hold.items() if k in _fk}
 _inv={(l["ent"],l["cp"]) for l in links if l["dir"]!="in" and l["amt"] is not None and not _DEAD.search(l["type"]) and (l["amtType"]=="equity" or (l["amtType"] in ("commitment","project") and _INV.search(l["type"]) and not _NOTINV.search(l["type"])))}
 _inv|={(l["cp"],l["ent"]) for l in links if l["dir"]=="in" and l["amt"] is not None and l["amtType"] in ("equity","inflow") and _INV.search(l["type"])}
 for e in ents:
@@ -477,7 +495,7 @@ if _entry["from"]:
     for a in _auto: _cnt[a["t"]]=_cnt.get(a["t"],0)+1
     _new=[a["e"] for a in _auto if a["t"]=="新增公司"]; _lc=[a["e"]+"（"+a["x"].split("，")[-1]+"）" for a in _auto if a["t"]=="燈號變動"]
     head.append(f"與上一期（{_entry['from']}）相比："+("；".join(filter(None,[("新增 "+"、".join(_new)) if _new else "",("燈號變動 "+"、".join(_lc[:4])) if _lc else "",f"金額更新 {_cnt.get('金額更新',0)} 筆、新增節點 {_cnt.get('新增節點',0)} 個" if _cnt.get('金額更新') or _cnt.get('新增節點') else ""])) or "沒有數字變動")+"。")
-data={"asOf":ASOF,"ents":ents,"links":links,"hubs":hubs,"amt":AMT,"checks":checks,"cycles":cycles,"flows":flows,"watch":watch,"head":head,"due":due,"guar":guar,"policy":policy,"extras":extras,"fresh":fresh,"vfnow":vfnow,"hist":_log.get("hist",[]),"cal":cal,"chg":[{k:x[k] for k in ("d","from","auto","notes")} for x in _log["log"][:8]]}
+data={"asOf":ASOF,"ents":ents,"links":links,"hubs":hubs,"amt":AMT,"checks":checks,"cycles":cycles,"flows":flows,"holders":holders,"watch":watch,"head":head,"due":due,"guar":guar,"policy":policy,"extras":extras,"fresh":fresh,"vfnow":vfnow,"hist":_log.get("hist",[]),"cal":cal,"chg":[{k:x[k] for k in ("d","from","auto","notes")} for x in _log["log"][:8]]}
 # 使用者指引：network template 旁邊若有 guide_template.html，就一併產生 guide.html（公司清單隨資料更新）
 GT=os.path.join(os.path.dirname(os.path.abspath(TPL)),"guide_template.html")
 if os.path.exists(GT):
