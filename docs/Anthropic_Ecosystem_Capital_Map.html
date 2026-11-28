@@ -233,6 +233,9 @@ body #toTop{transform:translateY(max(64px,var(--ty,70vh)))}
 /* —— 線條圖示（自繪，24×24，跟著文字顏色） —— */
 .ico{width:1.15em;height:1.15em;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.2em;margin-right:.3em}
 .looplist>:not(button){flex:1 1 100%}
+
+/* —— 中等寬度（約 1001–1100px）右側明細不再超出畫面 —— */
+.graphwrap{grid-template-columns:minmax(0,1fr) 370px}.ftree{min-width:0}
 </style>
 </head>
 <body>
@@ -875,6 +878,9 @@ applyPrefs();
  document.querySelectorAll('nav.tabs button[data-v]').forEach(b=>{const k=T[b.dataset.v];if(k)b.insertAdjacentHTML('afterbegin',ico(k))});
  const H={'關鍵指標':'kpi','節點明細':'pin','循環說明':'cyc','投資委員會摘要':'ic'};
  document.querySelectorAll('.shead>span:first-child,.bhead>span:first-child,.ich>b').forEach(e=>{const k=H[e.textContent.trim()];if(k)e.insertAdjacentHTML('afterbegin',ico(k))});
+ // 「近半年重大動態」的標題切換篩選時會重畫，所以每次重畫後補回圖示
+ const gov=document.getElementById('gov'),addGov=()=>{const t=document.getElementById('govT');if(t&&t.textContent.trim()&&!t.querySelector('.ico'))t.insertAdjacentHTML('afterbegin',ico('his'))};
+ if(gov){addGov();new MutationObserver(addGov).observe(gov,{childList:true,subtree:true,characterData:true})}
 })();
 </script>
 <script id="pref-toggle">
