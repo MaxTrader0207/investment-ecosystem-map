@@ -87,6 +87,77 @@ input[type=checkbox],input[type=radio]{width:20px;height:20px;vertical-align:mid
 /* —— 回頁首按鈕：上緣避開置頂導覽列；觸控裝置固定在右下角 —— */
 body #toTop{transform:translateY(max(64px,var(--ty,70vh)))}
 @media (hover:none){body #toTop{transform:none;top:auto;bottom:24px}}
+
+/* ===== 說明頁改版 ===== */
+.hero{margin:18px 0 6px;padding:18px 20px;border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:12px;background:var(--panel)}
+.lead{font-size:calc(16px*var(--fs,1));margin:0 0 12px;line-height:1.8}
+.cta{display:flex;flex-wrap:wrap;gap:8px}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:#111;font-weight:700}[data-theme="light"] .btn.pri{color:#fff}
+nav.toc a.on{background:var(--panel2);box-shadow:inset 3px 0 0 var(--acc);font-weight:700}
+h2{scroll-margin-top:12px}h2 .ico{color:var(--acc)}
+.ico{width:1.15em;height:1.15em;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.2em}
+/* 畫面導覽 */
+.tour{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin:12px 0}
+.wf{margin:0;background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:10px;padding:10px 12px 12px}
+.wf figcaption{font-weight:700;color:var(--c);margin-bottom:8px}
+.wfb{position:relative;display:flex;flex-direction:column;gap:6px;padding-right:0}
+.wr{display:flex;gap:6px}.wr.tall .wb{min-height:108px;align-items:flex-start}
+.wb{display:flex;align-items:center;gap:7px;border:1px dashed var(--line);background:var(--panel2);border-radius:6px;padding:6px 9px;font-size:calc(13px*var(--fs,1));line-height:1.45;min-width:0}
+.wb.grow{flex:1}.wb.side{flex:0 0 38%}.wb.thin{padding-top:4px;padding-bottom:4px}.wb.dim{color:var(--muted)}
+.wb i,.wfab i{flex:none;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--c);color:#0a0e13;font-style:normal;font-weight:700;font-size:calc(12px*var(--fs,1))}
+.wfab{position:absolute;right:8px;bottom:44px;display:flex;align-items:center;gap:5px;border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:3px 10px 3px 4px;font-size:calc(12px*var(--fs,1));box-shadow:0 4px 12px rgba(0,0,0,.3)}
+/* 每週流程 */
+.flow{list-style:none;counter-reset:f;padding:0;margin:12px 0;display:grid;gap:8px}
+.flow li{counter-increment:f;display:grid;grid-template-columns:34px minmax(110px,170px) 1fr;gap:10px;align-items:baseline;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:0}
+.flow li::before{content:counter(f);display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--acc);color:#111;font-weight:700;align-self:center}
+.flow span{color:var(--muted);font-size:calc(13.5px*var(--fs,1))}
+/* 功能卡 */
+.fgroup{margin:16px 0 4px}.fgroup>h3{margin:0 0 2px;display:flex;align-items:center;gap:8px}.fgroup>h3 small{font-weight:400;color:var(--muted);font-size:calc(13px*var(--fs,1))}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:8px;margin:8px 0;align-items:start}
+.fc{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c,var(--net));border-radius:8px}
+.fc[open]{border-color:var(--c,var(--net))}
+.fc summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:24px 1fr;gap:2px 8px;padding:9px 12px;align-items:center}
+.fc summary::-webkit-details-marker{display:none}
+.fc summary .ico{grid-row:1/3;color:var(--c,var(--net));width:20px;height:20px;align-self:start;margin-top:3px}
+.fc summary b{font-size:calc(15px*var(--fs,1))}.fc summary span{grid-column:2;color:var(--muted);font-size:calc(13px*var(--fs,1));line-height:1.5}
+.fc summary:hover b{color:var(--c,var(--net))}
+.fc p{margin:0;padding:0 12px 10px 44px;font-size:calc(13.5px*var(--fs,1));color:var(--text)}
+.fc .go{display:inline-block;margin:0 12px 10px 44px;font-size:calc(13px*var(--fs,1));font-weight:600}
+/* 篩選 */
+.tfilter{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:10px 0}
+.tfilter input{flex:1 1 280px;max-width:460px;background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:8px 12px;font:inherit;font-size:calc(14px*var(--fs,1))}
+#ttbl td:nth-child(2){white-space:nowrap;font-weight:600}
+/* 操作卡 */
+.ops{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px;margin:10px 0}
+.ops>div{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:9px 12px}
+.ops b{display:block}.ops span{color:var(--muted);font-size:calc(13.5px*var(--fs,1));line-height:1.6;display:block}
+/* 燈號 */
+.lights{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:10px 0}
+.lt{display:grid;grid-template-columns:22px 1fr;gap:0 8px;align-items:center;background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--c);border-radius:8px;padding:8px 12px}
+.lt::before{content:"";grid-row:1/3;width:16px;height:16px;border-radius:50%;background:var(--c);box-shadow:0 0 10px var(--c)}
+.lt span{grid-column:2;color:var(--muted);font-size:calc(13px*var(--fs,1))}
+/* 更新方式 */
+.upd{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin:10px 0}
+.upd>div{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:8px;padding:10px 12px}
+.upd ul{margin:4px 0 0;padding-left:1.2em;color:var(--muted);font-size:calc(13.5px*var(--fs,1))}
+/* 常見問題 */
+.faq{display:grid;gap:6px;margin:10px 0}
+.faq details{background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.faq summary{cursor:pointer;padding:10px 14px;font-weight:600;list-style:none;display:flex;gap:8px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}.faq summary::before{content:"＋";color:var(--acc);font-weight:700;flex:none}
+.faq details[open] summary::before{content:"－"}
+.faq p{margin:0;padding:0 14px 12px 38px;color:var(--muted)}
+table{display:table}
+@media (max-width:900px){
+ nav.toc{position:sticky;top:0;z-index:30;background:var(--bg);display:flex;gap:6px;overflow-x:auto;white-space:nowrap;padding:8px 14px;scrollbar-width:none}
+ nav.toc b{display:none}nav.toc a{flex:none;border:1px solid var(--line);border-radius:999px;padding:5px 12px;background:var(--panel)}
+ nav.toc a.on{background:var(--acc);border-color:var(--acc);color:#111;box-shadow:none}
+ h2{scroll-margin-top:60px}
+ .flow li{grid-template-columns:34px 1fr}.flow span{grid-column:2}
+ main table{display:block;overflow-x:auto}
+ .wb.side{flex-basis:44%}
+}
+@media print{.hero .cta,.tfilter{display:none}.fc p,.faq p{display:block}details>*{display:block!important}}
 </style>
 </head>
 <body>
@@ -96,163 +167,184 @@ body #toTop{transform:translateY(max(64px,var(--ty,70vh)))}
 <div><a class="btn" href="Ecosystem_Network_Map.html">回總網路圖</a> <span class="pref"><button class="btn" id="prefBtn" type="button" aria-haspopup="true" aria-expanded="false" title="背景與字體大小">⚙ 顯示設定</button><div class="prefp" id="prefPanel"><div class="prow"><span class="lbl">背景</span><select id="themeSel"><option value="">深夜（預設）</option><option value="graphite">石墨灰</option><option value="navy">深海藍</option><option value="black">純黑</option><option value="light">淺色</option></select></div><div class="prow"><span class="lbl">自訂背景色</span><input type="color" id="bgPick" value="#0a0e13" title="自訂背景色"></div><div class="prow"><span class="lbl">字體大小</span><span><button class="btn" id="fsDown" type="button" aria-label="縮小字體">A−</button><span class="fsval" id="fsVal">100%</span><button class="btn" id="fsUp" type="button" aria-label="放大字體">A＋</button></span></div><div class="prow"><span class="hint">記在這台瀏覽器，各頁共用</span><button class="btn" id="prefReset" type="button">還原預設</button></div></div></span></div>
 </header>
 <div class="wrap">
-<nav class="toc">
+<nav class="toc" id="gtoc">
 <b>開始</b>
 <a href="#quick">三步驟快速上手</a>
+<a href="#tour">畫面導覽</a>
+<a href="#routine">每週 5 分鐘怎麼看</a>
+<b>功能</b>
 <a href="#map">網站功能地圖</a>
-<b>怎麼用</b>
 <a href="#tasks">我想知道… 去哪裡看</a>
+<b>操作</b>
 <a href="#net">總網路圖怎麼操作</a>
 <a href="#dash">單家 Dashboard 怎麼操作</a>
+<a href="#ui">顯示設定、收合、鍵盤與手機</a>
 <a href="#export">資料輸出</a>
 <b>怎麼讀</b>
+<a href="#lights">燈號與風險分數</a>
 <a href="#legend">符號與顏色對照</a>
 <a href="#terms">金額口徑與名詞</a>
 <a href="#data">資料來源與更新</a>
 <a href="#limits">限制與注意事項</a>
-<b>頁面</b>
+<b>其他</b>
+<a href="#faq">常見問題</a>
 <a href="#pages">全部頁面清單</a>
 </nav>
 <main>
 
+<section class="hero">
+<p class="lead">這個網站整理 AI 產業主要公司之間的投資、採購與擔保關係，回答三件事：<b>誰的錢流向誰</b>、<b>錢怎麼繞回來</b>、<b>哪裡最脆弱</b>。每個數字都附來源連結。</p>
+<div class="cta"><a class="btn pri" href="Ecosystem_Network_Map.html">開啟總網路圖</a><a class="btn" href="#pages">直接找某家公司</a><a class="btn" href="#tasks">我有一個問題想查</a></div>
+</section>
+
 <h2 id="quick">三步驟快速上手</h2>
 <div class="steps">
-<div class="step"><span class="n">1</span><b>從總網路圖看全貌</b><p>外圈大圓是已建檔的公司，中間小圓是多家公司共同往來的對象。線越粗，已揭露金額越大。</p></div>
-<div class="step"><span class="n">2</span><b>點一個圓點</b><p>右側會列出誰和它有關、金額多少、若它出事誰受影響。這個區塊可以直接輸出成檔案。</p></div>
+<div class="step"><span class="n">1</span><b>先看最上面兩塊</b><p>「本期結論」用幾句話講完現況；「預警指標」八張卡片告訴你哪幾項亮紅燈。這兩塊預設就是展開的。</p></div>
+<div class="step"><span class="n">2</span><b>在網路圖上找一家公司</b><p>滑鼠移到圓點，只會亮出它的關係線；點下去，右側列出誰和它有關、金額多少、若它出事誰受影響。</p></div>
 <div class="step"><span class="n">3</span><b>進單家 Dashboard 看細節</b><p>每筆投資的金額、條款、風險、資金怎麼回流，以及每一項的來源連結。</p></div>
 </div>
 
+<h2 id="tour">畫面導覽</h2>
+<p class="hint">整個網站只有兩種頁面：一張「總網路圖」，加上每家公司各一份「Dashboard」（目前 <span id="nEnt"></span> 份）。下面兩張示意圖標出各區塊的位置。</p>
+<div class="tour">
+<figure class="wf" style="--c:var(--net)">
+<figcaption>總網路圖</figcaption>
+<div class="wfb">
+ <div class="wr"><span class="wb grow"><i>1</i>標題</span><span class="wb"><i>2</i>使用指引｜全部展開｜顯示設定</span></div>
+ <div class="wr"><span class="wb grow thin"><i>3</i>導覽列：點了跳到該區，黃底是目前所在</span></div>
+ <div class="wr"><span class="wb grow"><i>4</i>本期結論</span></div>
+ <div class="wr"><span class="wb grow"><i>5</i>預警指標（8 張卡片）</span></div>
+ <div class="wr tall"><span class="wb grow"><i>6</i>關係網路圖</span><span class="wb side"><i>7</i>右側面板：明細與「若它出事」</span></div>
+ <div class="wr"><span class="wb grow thin dim"><i>8</i>其餘 20 個區塊：預設收合，點標題展開</span></div>
+ <span class="wfab"><i>9</i>頁首</span>
+</div>
+</figure>
+<figure class="wf" style="--c:var(--dash)">
+<figcaption>單家 Dashboard</figcaption>
+<div class="wfb">
+ <div class="wr"><span class="wb grow"><i>1</i>公司名稱與類別圖例</span></div>
+ <div class="wr"><span class="wb"><i>2</i>顯示設定</span><span class="wb grow thin"> </span><span class="wb"><i>3</i>總網路圖｜使用指引｜輸出</span></div>
+ <div class="wr"><span class="wb grow"><i>4</i>近半年重大動態</span></div>
+ <div class="wr"><span class="wb grow"><i>5</i>投資委員會摘要</span></div>
+ <div class="wr"><span class="wb grow"><i>6</i>關鍵指標</span></div>
+ <div class="wr"><span class="wb grow thin"><i>7</i>六個分頁：族譜圖｜資金循環｜明細表｜時間軸｜壓力測試｜財務快照</span></div>
+ <div class="wr tall"><span class="wb grow"><i>8</i>節點卡片（點卡片）</span><span class="wb side"><i>9</i>節點明細與來源</span></div>
+</div>
+</figure>
+</div>
+
+<h2 id="routine">每週 5 分鐘怎麼看</h2>
+<p class="hint">網站每週一早上自動更新一次。下面是一套固定的看法，照順序走一遍大約五分鐘。</p>
+<ol class="flow">
+<li><a href="Ecosystem_Network_Map.html#s-top"><b>本期結論</b></a><span>第 5 句會寫這一期和上一期差在哪：新增了誰、哪家燈號變了。</span></li>
+<li><a href="Ecosystem_Network_Map.html#s-watch"><b>預警指標</b></a><span>看哪幾張是紅燈，以及卡片上寫的「較上期惡化 ↑／持平 →／改善 ↓」。</span></li>
+<li><a href="Ecosystem_Network_Map.html#s-chg"><b>變動紀錄</b></a><span>逐筆列出哪些數字改了、為什麼改。數字跳動有時是補了資料或改了算法，不一定是實際變化。</span></li>
+<li><a href="Ecosystem_Network_Map.html#s-cal"><b>財報日曆</b></a><span>未來三週誰要公布財報；公布後那家公司的營收、現金要等人工更新。</span></li>
+<li><a href="Ecosystem_Network_Map.html#s-fresh"><b>資料新鮮度</b></a><span>有紅字的公司，代表數字放太久了，引用前先留意基準日。</span></li>
+</ol>
+
 <h2 id="map">網站功能地圖</h2>
-<p class="hint">整個網站只有兩種頁面：一張「總網路圖」，加上每家公司各一份「Dashboard」。下面列出每種頁面裡有哪些功能、各自回答什麼問題。</p>
-<div class="root">
-<span class="pill" style="--c:var(--muted)">網站入口</span><span class="arr">→ 自動轉到 →</span>
-<span class="pill" style="--c:var(--net)">總網路圖（1 頁）</span><span class="arr">⇄ 點圓點或頁尾連結 ⇄</span>
-<span class="pill" style="--c:var(--dash)">單家 Dashboard（<span id="nEnt"></span> 頁）</span><span class="arr">・</span>
-<span class="pill" style="--c:var(--acc)">本頁：使用指引</span>
-</div>
-<div class="map">
-<div class="mcol" style="--c:var(--net)">
-<h3>總網路圖</h3>
-<div class="hint">跨公司的關係：誰和誰有金流、誰是共同的樞紐。</div>
-<ul class="tree">
-<li><span class="k">章節目錄</span> <span class="d">頁面最上方一排固定的章節按鈕，捲動時留在頂端，點了直接跳到該段</span></li>
-<li><span class="k">頂部統計卡</span> <span class="d">已建檔公司數、交易對手數、跨公司樞紐數、最大樞紐</span></li>
-<li><span class="k">工具列</span>
- <ul><li><span class="k">顯示交易對手</span> <span class="d">只看出現在 2 家以上的對象，或全部</span></li>
- <li><span class="k">方向篩選</span> <span class="d">只看流出或只看流入</span></li>
- <li><span class="k">搜尋公司</span> <span class="d">符合者加虛線外圈，相連對象一併顯示</span></li>
- <li><span class="k">樞紐排行 CSV、淺色／深色</span></li></ul></li>
-<li><span class="k">網路圖</span> <span class="d">點圓點選取（加方形對焦框），再點一次或點空白處取消</span></li>
-<li><span class="k">右側面板</span>
- <ul><li><span class="k">如何閱讀、前 10 大樞紐</span> <span class="d">未選取時顯示</span></li>
- <li><span class="k">若它出事</span> <span class="d">逐家列出受影響項目、金額、占比、影響程度；可輸出 5 種格式</span></li>
- <li><span class="k">關係明細與來源</span> <span class="d">每筆關係的可信度與原始連結</span></li></ul></li>
-<li><span class="k">投資簡覽</span> <span class="d">點選圖上的公司或用下拉選單，看該公司的簡介、對外投資前 5 大與被投資前 5 大（依金額排序）；兩欄各自可輸出 5 種格式</span></li>
-<li><span class="k">風險總覽</span> <span class="d">左邊是總風險值、紅黃綠燈與在全部公司中的排名，右邊是各風險面向的雷達圖，下方是全部公司的燈號一覽（點選可切換）。查不到公開數據的面向標「待補」，公式套不上的標「不適用」，兩者都不計入總分</span></li>
-<li><span class="k">循環融資與現金缺口</span> <span class="d">把多年期合約換算成每年金額：被投資方每年回頭付多少、占營收多少、每年承諾支出是否超過營收</span></li>
-<li><span class="k">付款時程</span> <span class="d">2026–2036 各年度已承諾要付的金額，依付款方堆疊，可看出付款高峰在哪一年。付款方有揭露逐年義務表的，依揭露的形狀分配；其餘合約可用選單切換「平均攤提」或「前低後高（假設）」</span></li>
-<li><span class="k">情境試算</span> <span class="d">選一個事件（某公司募資失敗、出口管制收緊、大型業者削減資本支出）與幅度，看各家每年的曝險金額，以及損失如何一層一層傳到下游</span></li>
-<li><span class="k">缺口靠誰補</span> <span class="d">循環融資與現金缺口表的最後一欄：現金（或近 12 個月的募資與舉債）可以支應幾年的缺口、錢從哪裡來；晶片商來自被投資公司的營收若未揭露，會以「估計區間」列出並附假設</span></li>
-<li><span class="k">未來 36 個月到期事項</span> <span class="d">付款時程圖下方：未來三年每年的合約付款、已建檔的債務到期，以及尚未解除的擔保與供應商融資</span></li>
-<li><span class="k">我的曝險</span> <span class="d">輸入自己持有的公司與金額，依各公司的營收依賴往上追三層，看穿透後實際押在哪個付款方身上；資料只存在瀏覽器，不會上傳</span></li>
-<li><span class="k">估值與風險</span> <span class="d">市值相對年營收的倍數對照風險分數，以中位數切成四個位置（風險高且貴、風險高但便宜等）</span></li>
-<li><span class="k">資金來源結構</span> <span class="d">近 24 個月的募資與舉債，分成私募信貸與表外、其他借款、可轉債、公開債券、股權五類</span></li>
-<li><span class="k">實體瓶頸</span> <span class="d">變壓器交期、併網排隊、燃氣渦輪、先進封裝、高頻寬記憶體五個實體環節的現況（人工維護）；每張卡片列出對應到的已建檔公司，點了可切換過去。風險總覽也會列出該公司受哪些瓶頸影響，但不計入分數</span></li>
-<li><span class="k">主權與政策層</span> <span class="d">從各家資料自動歸類的出口許可、政府入股與補助、主權基金入股、國安審查事項</span></li>
-<li><span class="k">歷史對照</span> <span class="d">2000 年電信設備商的供應商融資比率，與現在 AI 供應商的擔保與融資上限並列</span></li>
-<li><span class="k">本期結論</span> <span class="d">頁面最上方的三到五句話：目前循環的狀態、最脆弱的環節、與上一期相比的變化，由資料自動產生</span></li>
-<li><span class="k">預警指標</span> <span class="d">八個定期追蹤的領先訊號（承諾支出相對營收、循環收入占營收、付款高峰、新債票息、承諾下修、權證或擔保條件變動、紅燈家數、供應商融資總額），每個都標示燈號與判定規則。燈號＝水位＋與上一期相比的方向：比上期惡化升一級，紅燈水位但持平降為黃燈，改善降一級。「承諾下修」與「擔保條件變動」只計人工確認過的事件，文字比對到但未確認的另列「待確認」</span></li>
-<li><span class="k">歷史走勢</span> <span class="d">每次更新留一筆紀錄，可選紅燈家數、平均風險總分、任一預警指標或任一公司的總分看走勢線；每週自動累積。數字跳動可能是改了計算口徑或補了資料，要對照變動紀錄</span></li>
-<li><span class="k">營收成長</span> <span class="d">各家最近四季年增率與最新一季年增率並列；最新一季明顯高於最近四季標為加速，明顯低於標為減速。標「估」的是反推或外部估計</span></li>
-<li><span class="k">財報日曆</span> <span class="d">各家下次財報日與還有幾天，未來三週內要公布的會列在最上面；日期分成公司已確認、市場預期、推估三種。財報公布後該公司的數字要重查</span></li>
-<li><span class="k">資料新鮮度</span> <span class="d">各家營收、現金、市值是哪一天的數字、距今幾天；營收與現金超過約兩季標紅，市值超過 45 天標紅，提醒該重查了</span></li>
-<li><span class="k">變動紀錄</span> <span class="d">每次更新後自動與上一期比較，逐筆列出哪些數字改了、為什麼；保留最近數期</span></li>
-<li><span class="k">多實體比較</span> <span class="d">勾選 2–3 家並排，金額只在同口徑內比較</span></li>
-<li><span class="k">跨實體一致性檢查</span> <span class="d">同一筆關係在不同 Dashboard 的金額是否對得上</span></li>
-<li><span class="k">跨實體資金閉環</span> <span class="d">自動找出 2–4 個環節的資金循環，標出金額最小的一段</span></li>
-<li><span class="k">系統性樞紐排行</span> <span class="d">跨越 2 家以上的交易對手列表</span></li>
-<li><span class="k">方法與注意事項</span> <span class="d">統計口徑、可信度定義、已納入公司的連結</span></li>
-</ul>
-</div>
-<div class="mcol" style="--c:var(--dash)">
-<h3>單家 Dashboard</h3>
-<div class="hint">一家公司的投資族譜：投了誰、多少錢、錢怎麼回來。</div>
-<ul class="tree">
-<li><span class="k">設定列</span> <span class="d">5 種背景主題與自訂色、字體縮放、整頁輸出</span></li>
-<li><span class="k">重大動態橫幅</span> <span class="d">近半年治理或財務的重要變化</span></li>
-<li><span class="k">關鍵指標</span> <span class="d">約 8 個數字，各附來源</span></li>
-<li><span class="k">投資委員會摘要</span> <span class="d">核心論點、機會、風險、觀察重點；每週自動檢查的「待人工確認」也在這裡</span></li>
-<li><span class="k">六個分頁</span>
- <ul><li><span class="k">投資族譜圖</span> <span class="d">依類別排列的節點卡片；可依類別、交易型態、可信度、風險、部位篩選與搜尋。點卡片看金額說明、現值與倍數、條款、風險、來源</span></li>
- <li><span class="k">資金循環架構</span> <span class="d">3–6 條循環的流向圖、回流金額與依存度</span></li>
- <li><span class="k">投資明細表</span> <span class="d">全部節點的表格，點欄位標題排序</span></li>
- <li><span class="k">時間軸</span> <span class="d">依年份排列的事件</span></li>
- <li><span class="k">壓力測試</span> <span class="d">假設特定對象出問題時，受影響最大的節點</span></li>
- <li><span class="k">財務快照</span> <span class="d">這家公司自己的體質：年營收、帳上現金、市值、年度資本支出占營收比、債務到期表、新債票息，以及地緣、匯率、通膨利率、接班四個面向的分數與計算依據</span></li></ul></li>
-<li><span class="k">資料校驗紀錄</span> <span class="d">已驗算、已修正、仍有分歧、未定案的項目</span></li>
-<li><span class="k">與上一版差異</span> <span class="d">這次更新新增、移除、變動了哪些節點</span></li>
-<li><span class="k">方法與注意事項</span> <span class="d">該公司特有的換算與口徑說明</span></li>
-<li><span class="k">每個區塊右上的「⬇ 輸出」</span> <span class="d">PNG、CSV、Excel、JSON、Markdown、列印 PDF</span></li>
-</ul>
-</div>
+<p class="hint">總網路圖有 23 個區塊，依「你想做什麼」分成五組。點任一項看詳細說明，「前往」會直接開到那一區並自動展開。</p>
+<div class="fgroups" id="fmap"></div>
+
+<h3>單家 Dashboard 有什麼</h3>
+<div class="fgrid">
+<details class="fc" style="--c:var(--dash)"><summary><i data-ic="his"></i><b>近半年重大動態</b><span>治理或財務的重要變化，可依類型篩選</span></summary><p>最上方的橫幅。先讀「重點摘要」一段，再看逐筆事件；每筆都有日期、距今多久與來源連結。</p></details>
+<details class="fc" style="--c:var(--dash)"><summary><i data-ic="ic"></i><b>投資委員會摘要</b><span>核心論點、機會、風險、觀察重點</span></summary><p>標「判斷」的段落是分析師的看法，和事實資料分開寫。每週自動檢查到、但還沒查證的新消息，會列在這裡的「待人工確認」。</p></details>
+<details class="fc" style="--c:var(--dash)"><summary><i data-ic="kpi"></i><b>關鍵指標</b><span>約 8 個數字，各附來源</span></summary><p>數字右上角的 [1] [2] 是來源編號，點了開原文。下方「金額口徑」一列把節點依口徑分開加總，不同口徑不相加。</p></details>
+<details class="fc" style="--c:var(--dash)"><summary><i data-ic="tree"></i><b>投資族譜圖</b><span>依類別排列的節點卡片</span></summary><p>可依類別、交易型態、可信度、風險、部位篩選，也可搜尋公司或代號。點卡片，右側顯示金額說明、現值與倍數、條款、風險與來源。</p></details>
+<details class="fc" style="--c:var(--dash)"><summary><i data-ic="cyc"></i><b>資金循環架構</b><span>3–6 條循環的流向圖</span></summary><p>上方一排是循環清單，點一條，下方畫出流向圖，右側是說明、回流金額與依存度。實線是循環主路徑，虛線是擔保、反向承購這類內部捷徑。</p></details>
+<details class="fc" style="--c:var(--dash)"><summary><i data-ic="table"></i><b>投資明細表</b><span>全部節點的表格</span></summary><p>點欄位標題可排序。適合要一次比較金額、日期或可信度的時候用。</p></details>
+<details class="fc" style="--c:var(--dash)"><summary><i data-ic="his"></i><b>時間軸</b><span>依年份排列的事件</span></summary><p>把這家公司的投資、公告與重大事件依時間排開，方便看前後順序。</p></details>
+<details class="fc" style="--c:var(--dash)"><summary><i data-ic="scen"></i><b>壓力測試</b><span>假設特定對象出問題</span></summary><p>列出若某個對象出問題，這家公司受影響最大的節點。跨公司的傳導要回總網路圖的「情境試算」看。</p></details>
+<details class="fc" style="--c:var(--dash)"><summary><i data-ic="val"></i><b>財務快照</b><span>這家公司自己的體質</span></summary><p>年營收（最近四季合計）、營收年增率、帳上現金、市值、資本支出占營收比、債務到期表、新債票息，以及地緣、匯率、通膨利率、接班四個面向的分數與計算依據。沒有資料的欄位會直接寫「未取得」。</p></details>
+<details class="fc" style="--c:var(--dash)"><summary><i data-ic="chk"></i><b>資料校驗紀錄與版本差異</b><span>頁面下方</span></summary><p>「資料校驗紀錄」列出已驗算、已修正、仍有分歧、未定案的項目；「與上一版相比」列出這次更新新增、移除、變動了哪些節點。</p></details>
 </div>
 
 <h2 id="tasks">我想知道… 去哪裡看</h2>
-<table>
-<thead><tr><th>問題</th><th>去哪一頁</th><th>怎麼操作</th></tr></thead>
+<div class="tfilter"><input type="search" id="tq" placeholder="輸入關鍵字篩選，例如：現金、財報、循環、持股…" aria-label="篩選問題"><span class="hint" id="tcount"></span></div>
+<table id="ttbl">
+<thead><tr><th>問題</th><th>去哪裡</th><th>怎麼操作</th></tr></thead>
 <tbody>
-<tr><td>某家公司出事，誰會受影響、影響多大？</td><td>總網路圖</td><td>點該公司的圓點，看右側「若它出事」；需要留存就按 Excel 或 PNG</td></tr>
-<tr><td>哪些對象是多家公司共同依賴的？</td><td>總網路圖</td><td>看右側「前 10 大樞紐」，或頁面下方「系統性樞紐排行」</td></tr>
-<tr><td>錢是不是在幾家公司之間繞圈？</td><td>總網路圖</td><td>看「跨實體資金閉環」表；單家內部的循環看該公司 Dashboard 的「資金循環架構」</td></tr>
-<tr><td>某家公司最大的幾筆投資是哪些？誰投資了它？</td><td>總網路圖</td><td>「投資簡覽」選擇公司，左欄看對外投資、右欄看被投資</td></tr>
-<tr><td>哪家公司的風險比較高？高在哪裡？</td><td>總網路圖</td><td>「風險總覽」看燈號與排名，雷達圖看是哪幾個面向偏高；滑鼠移到圓點可看計算依據</td></tr>
-<tr><td>現在整體狀況如何？一分鐘看完</td><td>總網路圖</td><td>最上方「本期結論」的幾句話，再看「預警指標」哪幾項是紅燈、哪幾項比上期惡化</td></tr>
-<tr><td>付款壓力最大的是哪一年？</td><td>總網路圖</td><td>「付款時程」圖；用選單切換「前低後高」看假設改變後高峰落在哪</td></tr>
-<tr><td>某家公司撐得住嗎？現金夠付幾年？</td><td>總網路圖＋該公司 Dashboard</td><td>「循環融資與現金缺口」表的「缺口靠誰補」欄；細節看該公司的「財務快照」分頁</td></tr>
-<tr><td>如果某件事發生，誰受傷最重？</td><td>總網路圖</td><td>「情境試算」選事件與幅度，看每家每年的曝險與往下游傳了幾層</td></tr>
-<tr><td>我手上的持股實際押在誰身上？</td><td>總網路圖</td><td>「我的曝險」輸入持有的公司與金額</td></tr>
-<tr><td>這家公司的現金、負債到期、票息是多少？</td><td>該公司 Dashboard</td><td>「財務快照」分頁</td></tr>
-<tr><td>風險是在升高還是降低？</td><td>總網路圖</td><td>「歷史走勢」選紅燈家數、平均總分，或選單一公司、單一預警指標</td></tr>
-<tr><td>哪家公司的營收在加速、哪家在減速？</td><td>總網路圖</td><td>「營收成長」表的「動能」欄；單一公司看其「財務快照」分頁的營收年增率</td></tr>
-<tr><td>哪一週有財報、該重查誰的數字？</td><td>總網路圖</td><td>「財報日曆」；最上面一行列出未來三週內要公布的公司</td></tr>
-<tr><td>承諾支出是營收的幾倍，這個數字有多敏感？</td><td>總網路圖</td><td>「預警指標」的承諾支出卡片同時列出最近四季與最新一季年化兩種算法；「循環融資與現金缺口」表的占營收欄下方也有</td></tr>
-<tr><td>這個數字是哪一天的？會不會太舊？</td><td>總網路圖</td><td>「資料新鮮度」表；紅字代表超過約兩季沒有更新</td></tr>
-<tr><td>這一期和上一期差在哪？</td><td>總網路圖</td><td>「變動紀錄」</td></tr>
-<tr><td>兩三家公司的投資規模怎麼比？</td><td>總網路圖</td><td>「多實體比較」勾選 2–3 家</td></tr>
+<tr><td>現在整體狀況如何？一分鐘看完</td><td><a href="Ecosystem_Network_Map.html#s-top">本期結論</a></td><td>讀最上方幾句話，再看「預警指標」哪幾項是紅燈、哪幾項比上期惡化</td></tr>
+<tr><td>某家公司出事，誰會受影響、影響多大？</td><td><a href="Ecosystem_Network_Map.html#s-net">關係網路圖</a></td><td>點該公司的圓點，看右側「若它出事」；需要留存就按 Excel 或 PNG</td></tr>
+<tr><td>哪些對象是多家公司共同依賴的？</td><td><a href="Ecosystem_Network_Map.html#s-hub">系統性樞紐排行</a></td><td>看網路圖右側「前 10 大樞紐」，或勾選「只看前 10 大樞紐」讓圖只剩這 10 家</td></tr>
+<tr><td>錢是不是在幾家公司之間繞圈？</td><td><a href="Ecosystem_Network_Map.html#s-cyc">跨實體資金閉環</a></td><td>看閉環表；單家內部的循環看該公司 Dashboard 的「資金循環架構」</td></tr>
+<tr><td>某家公司最大的幾筆投資是哪些？誰投資了它？</td><td><a href="Ecosystem_Network_Map.html#s-brief">投資簡覽</a></td><td>選擇公司，看對外投資前 5 大與被投資前 5 大</td></tr>
+<tr><td>哪家公司的風險比較高？高在哪裡？</td><td><a href="Ecosystem_Network_Map.html#s-risk">風險總覽</a></td><td>看燈號與排名，雷達圖看是哪幾個面向偏高；滑鼠移到圓點可看計算依據</td></tr>
+<tr><td>付款壓力最大的是哪一年？</td><td><a href="Ecosystem_Network_Map.html#s-wall">付款時程</a></td><td>看堆疊圖；用選單切換「前低後高」看假設改變後高峰落在哪</td></tr>
+<tr><td>某家公司撐得住嗎？現金夠付幾年？</td><td><a href="Ecosystem_Network_Map.html#s-cash">循環融資與現金缺口</a></td><td>看「缺口靠誰補」欄；細節看該公司的「財務快照」分頁</td></tr>
+<tr><td>承諾支出是營收的幾倍，這個數字有多敏感？</td><td><a href="Ecosystem_Network_Map.html#s-watch">預警指標</a></td><td>「承諾支出相對營收」卡片同時列出最近四季與最新一季年化兩種算法</td></tr>
+<tr><td>如果某件事發生，誰受傷最重？</td><td><a href="Ecosystem_Network_Map.html#s-scen">情境試算</a></td><td>選事件與幅度，看每家每年的曝險與往下游傳了幾層</td></tr>
+<tr><td>我手上的持股實際押在誰身上？</td><td><a href="Ecosystem_Network_Map.html#s-mine">我的曝險</a></td><td>輸入持有的公司與金額；資料只存在瀏覽器，不會上傳</td></tr>
+<tr><td>股價貴不貴，和風險對得上嗎？</td><td><a href="Ecosystem_Network_Map.html#s-val">估值與風險</a></td><td>看市值相對年營收的倍數落在四個位置中的哪一個</td></tr>
+<tr><td>這些公司的錢是借來的還是募來的？</td><td><a href="Ecosystem_Network_Map.html#s-fs">資金來源結構</a></td><td>看近 24 個月的募資與舉債依工具分成哪五類</td></tr>
+<tr><td>錢到位了，會不會卡在蓋不出來？</td><td><a href="Ecosystem_Network_Map.html#s-phy">實體瓶頸</a></td><td>看變壓器、併網、燃氣渦輪、先進封裝、高頻寬記憶體五張卡片</td></tr>
+<tr><td>出口管制、政府入股這類政策影響到誰？</td><td><a href="Ecosystem_Network_Map.html#s-pol">主權與政策層</a></td><td>依類別看各家的許可、補助、主權基金入股與國安審查</td></tr>
+<tr><td>現在和 2000 年電信泡沫像不像？</td><td><a href="Ecosystem_Network_Map.html#s-his">歷史對照</a></td><td>比較當年設備商與現在 AI 供應商的融資與擔保占營收比率</td></tr>
+<tr><td>風險是在升高還是降低？</td><td><a href="Ecosystem_Network_Map.html#s-hist">歷史走勢</a></td><td>選紅燈家數、平均總分，或選單一公司、單一預警指標</td></tr>
+<tr><td>哪家公司的營收在加速、哪家在減速？</td><td><a href="Ecosystem_Network_Map.html#s-grow">營收成長</a></td><td>看「動能」欄；單一公司看其「財務快照」分頁的營收年增率</td></tr>
+<tr><td>哪一週有財報、該重查誰的數字？</td><td><a href="Ecosystem_Network_Map.html#s-cal">財報日曆</a></td><td>最上面一行列出未來三週內要公布的公司</td></tr>
+<tr><td>這個數字是哪一天的？會不會太舊？</td><td><a href="Ecosystem_Network_Map.html#s-fresh">資料新鮮度</a></td><td>紅字代表超過約兩季沒有更新</td></tr>
+<tr><td>這一期和上一期差在哪？</td><td><a href="Ecosystem_Network_Map.html#s-chg">變動紀錄</a></td><td>逐筆看哪些數字改了、為什麼</td></tr>
+<tr><td>兩三家公司的投資規模怎麼比？</td><td><a href="Ecosystem_Network_Map.html#s-cmp">多實體比較</a></td><td>勾選 2–3 家並排</td></tr>
+<tr><td>兩份 Dashboard 對同一筆交易的說法一致嗎？</td><td><a href="Ecosystem_Network_Map.html#s-chk">跨實體一致性檢查</a></td><td>看檢查表的「結果」欄</td></tr>
 <tr><td>某家公司投了哪些對象、各多少？</td><td>該公司 Dashboard</td><td>「投資族譜圖」看卡片，或「投資明細表」排序</td></tr>
 <tr><td>某筆投資現在值多少、賺幾倍？</td><td>該公司 Dashboard</td><td>點節點卡片，看「成本 vs 現值」</td></tr>
+<tr><td>這家公司的現金、負債到期、票息是多少？</td><td>該公司 Dashboard</td><td>「財務快照」分頁</td></tr>
+<tr><td>最近有什麼新變化？</td><td>該公司 Dashboard</td><td>看重大動態橫幅、時間軸、「與上一版相比」</td></tr>
 <tr><td>這個數字哪裡來的、可不可信？</td><td>兩種頁面都有</td><td>看 A–D 徽章，點來源連結開原文</td></tr>
-<tr><td>最近有什麼新變化？</td><td>該公司 Dashboard</td><td>看重大動態橫幅、時間軸、「與上一版差異」</td></tr>
-<tr><td>兩份 Dashboard 對同一筆交易的說法一致嗎？</td><td>總網路圖</td><td>「跨實體一致性檢查」表</td></tr>
 </tbody>
 </table>
+<p class="hint" id="tnone" hidden>沒有符合的問題。換個關鍵字，或到上面的「網站功能地圖」找找看。</p>
 
 <h2 id="net">總網路圖怎麼操作</h2>
-<ul>
-<li><b>選取</b>：點任一圓點。圖上只保留它與直接相連的對象，被選者加上方形對焦框，右側顯示明細。</li>
-<li><b>取消</b>：再點一次同一個圓點，或點圖上空白處；「重設」會連篩選條件一起清掉。</li>
-<li><b>搜尋</b>：輸入公司名稱的一部分即可（不分大小寫）。有選取時以選取為準，搜尋字串不會把畫面過濾成空白。</li>
-<li><b>跳到某一段</b>：用頁面最上方的章節目錄。頁面很長，目錄會一直留在頂端。</li>
-<li><b>滑鼠停在線上</b>：顯示這條線代表哪些關係與金額。</li>
-<li><b>進入單家頁面</b>：右側面板的「已建 Dashboard」標籤、關係明細的「開啟 Dashboard」，或頁尾的公司連結。</li>
-</ul>
+<div class="ops">
+<div><b>滑鼠移到圓點</b><span>只亮出它的關係線與相連對象，其他變淡。移開就恢復。</span></div>
+<div><b>點圓點</b><span>選取：圖上只留它與直接相連的對象，被選者加方形對焦框，右側顯示明細。</span></div>
+<div><b>再點一次／點空白處</b><span>取消選取。「重設」會連篩選條件一起清掉。</span></div>
+<div><b>滑鼠停在線上</b><span>顯示這條線代表哪些關係與金額。</span></div>
+<div><b>搜尋公司</b><span>輸入名稱的一部分即可，不分大小寫。符合者加虛線外圈，相連對象一併顯示。</span></div>
+<div><b>顯示交易對手</b><span>預設只顯示出現在 2 家以上的對象；可改成 3 家以上，或全部。</span></div>
+<div><b>只看前 10 大樞紐</b><span>勾選後圖上只剩關係最多的 10 家，線條最清楚。</span></div>
+<div><b>方向</b><span>只看流出（出資、採購），或只看流入（別人投進來的錢）。</span></div>
+</div>
+<div class="note">選「全部」交易對手時圓點很多，只和一家有關的小圓點先不顯示名稱；滑鼠移上去、選取或搜尋時才會出現。</div>
 <h3>「若它出事」怎麼讀</h3>
 <ul>
 <li>每家受影響的公司一段，列出每筆關係的方向、金額、口徑、占比，以及可能的後果。</li>
 <li><b>影響程度</b>：該筆金額占該公司「同口徑、同方向」已揭露金額的比例。<span class="lvb lvb3">高</span> 30% 以上、<span class="lvb lvb2">中</span> 10–30%、<span class="lvb lvb1">低</span> 10% 以下、<span class="lvb lvb0">無法量化</span> 金額未揭露。一家有多筆時取最高。</li>
 <li>這是暴露範圍的估計，不代表實際損失，也沒有考慮找替代來源的難易。</li>
 </ul>
+<h3>進入單家頁面的三個入口</h3>
+<ul>
+<li>右側面板的「已建 Dashboard」標籤，或關係明細裡的「開啟 Dashboard」。</li>
+<li>「投資簡覽」公司名稱旁的 ↗，或簡介最後的「開啟完整 Dashboard」。</li>
+<li>頁尾的公司連結，或本頁最下方的<a href="#pages">全部頁面清單</a>。</li>
+</ul>
 
 <h2 id="dash">單家 Dashboard 怎麼操作</h2>
-<ul>
-<li><b>切換分頁</b>：點上方六個分頁標籤。</li>
-<li><b>看公司體質</b>：「財務快照」分頁列出營收、現金、市值、到期與票息，每個數字旁都有來源連結；沒有資料的欄位會直接寫「未取得」。</li>
-<li><b>看節點明細</b>：在「投資族譜圖」點卡片，右側顯示金額說明、最新狀態、回流機制、條款、風險與來源。</li>
-<li><b>篩選</b>：點類別色標可開關該類別；下拉選單可依交易型態、可信度、風險、部位篩選；搜尋框可找公司或代號。</li>
-<li><b>看循環</b>：在「資金循環架構」左側選一條循環，中間是流向圖，右側是說明、回流金額與依存度。</li>
-<li><b>調整外觀</b>：設定列可換背景主題、自訂背景色、放大或縮小字體；「還原預設」可復原。</li>
-</ul>
-<div class="note">卡片上的<b>虛線框</b>代表傳聞或未定案；<b>灰階</b>代表超過 90 天未重新查證；紅色「擔保」標籤代表這筆含擔保或背書。</div>
+<div class="ops">
+<div><b>切換分頁</b><span>點六個分頁標籤：族譜圖、資金循環、明細表、時間軸、壓力測試、財務快照。</span></div>
+<div><b>看節點明細</b><span>在「投資族譜圖」點卡片，右側顯示金額說明、最新狀態、回流機制、條款、風險與來源。</span></div>
+<div><b>篩選</b><span>點類別色標可開關該類別；下拉選單可依交易型態、可信度、風險、部位篩選；搜尋框可找公司或代號。</span></div>
+<div><b>看循環</b><span>在「資金循環架構」上方一排選一條循環，下方是流向圖，右側是說明、回流金額與依存度。</span></div>
+<div><b>看公司體質</b><span>「財務快照」分頁列出營收、現金、市值、到期與票息，每個數字旁都有來源連結。</span></div>
+<div><b>回總網路圖</b><span>設定列右側的「總網路圖」按鈕；旁邊是本頁「使用指引」。</span></div>
+</div>
+<div class="note">卡片上的<b>虛線框</b>代表傳聞或未定案；<b>灰階</b>與 🕒 代表超過 90 天未重新查證；紅色「擔保」標籤代表這筆含擔保或背書。</div>
+
+<h2 id="ui">顯示設定、收合、鍵盤與手機</h2>
+<div class="ops">
+<div><b>⚙ 顯示設定</b><span>每一頁右上（Dashboard 在左上）都有。可換 5 種背景、自訂背景色、放大或縮小字體。設定記在這台瀏覽器，三種頁面共用。</span></div>
+<div><b>區塊收合</b><span>總網路圖的區塊點標題或左邊的箭頭就能展開、收合；右上角可「全部展開／全部收合」。展開狀態會記住。</span></div>
+<div><b>導覽列</b><span>總網路圖最上方固定的一排。點了跳到該區並自動展開；兩側箭頭可左右捲，黃底是目前所在的區塊。</span></div>
+<div><b>頁首按鈕</b><span>往下捲之後出現在右側，會跟著滑鼠上下移動，點一下回到最上面。</span></div>
+<div><b>鍵盤</b><span>Tab 在按鈕、連結、公司卡片與外圈圓點之間移動，Enter 選取，Esc 關閉顯示設定。目前位置會有外框。</span></div>
+<div><b>手機與平板</b><span>表格可在自己的區塊內左右滑動；顯示設定從畫面下方彈出；頁首按鈕固定在右下角。網路圖沒有滑鼠移入效果，請直接點圓點。</span></div>
+<div><b>頁內搜尋</b><span>用 Ctrl+F 找字時，Chrome 與 Edge 會自動展開收合中的區塊；其他瀏覽器請先按「全部展開」。</span></div>
+<div><b>列印</b><span>列印總網路圖時，收合的區塊會全部印出來；導覽列與頁首按鈕不會印。</span></div>
+</div>
 
 <h2 id="export">資料輸出</h2>
 <table>
@@ -262,11 +354,41 @@ body #toTop{transform:translateY(max(64px,var(--ty,70vh)))}
 <tr><td>CSV</td><td>匯入其他程式</td><td>純文字，沒有欄寬與顏色</td></tr>
 <tr><td>JSON</td><td>接到自己的工具</td><td>含完整欄位與各口徑合計</td></tr>
 <tr><td>Markdown</td><td>貼到筆記</td><td>精簡表格加說明</td></tr>
-<tr><td>PNG</td><td>簡報、分享</td><td>沿用當下的深色或淺色主題</td></tr>
+<tr><td>PNG</td><td>簡報、分享</td><td>沿用當下的背景主題</td></tr>
 <tr><td>列印 PDF</td><td>存檔</td><td>僅單家 Dashboard 的區塊提供</td></tr>
 </tbody>
 </table>
-<p class="hint">總網路圖的輸出按鈕在「若它出事」區塊第一行、「投資簡覽」兩欄各自的第一行，以及工具列的「樞紐排行 CSV」。投資簡覽輸出的檔案包含全部排名（不只前 5 大），PNG 則是畫面上看到的前 5 大。單家 Dashboard 每個區塊右上角都有「⬇ 輸出」，設定列最右邊可輸出整頁全部資料。</p>
+<h3>輸出按鈕在哪</h3>
+<ul>
+<li><b>總網路圖</b>：區塊第一行標「資料輸出」的那一排（「若它出事」、投資簡覽、風險總覽等），以及網路圖工具列的「樞紐排行 CSV」。</li>
+<li><b>單家 Dashboard</b>：每個區塊右上角有一個淡色的 ⬇，滑鼠移到該區塊會變明顯；設定列最右邊的「⬇ 輸出」可輸出整頁全部資料。</li>
+<li>投資簡覽輸出的檔案包含全部排名（不只前 5 大），PNG 則是畫面上看到的前 5 大。</li>
+</ul>
+
+<h2 id="lights">燈號與風險分數</h2>
+<p class="hint">網站有兩種燈號：每家公司一個的「風險燈號」，和全站八個的「預警指標燈號」。顏色的意思相同，算法不同。</p>
+<div class="lights">
+<div class="lt" style="--c:#ef4444"><b>紅燈</b><span>高度風險，或指標已超過警戒線</span></div>
+<div class="lt" style="--c:#eab308"><b>黃燈</b><span>中度風險，或指標接近警戒線</span></div>
+<div class="lt" style="--c:#22c55e"><b>綠燈</b><span>低度風險，或指標在安全範圍</span></div>
+<div class="lt" style="--c:#64748b"><b>灰色</b><span>沒有資料，不計分</span></div>
+</div>
+<h3>每家公司的風險燈號</h3>
+<ul>
+<li><b>11 個面向各自 0–100 分</b>：地緣政治／出口管制、經營者與接班、對外投資集中度、循環融資依賴、擔保與或有負債、客戶與對手集中、通膨／物價／利率、監管與治理、匯率、執行／未定案、資訊可信度。分數越高風險越高。</li>
+<li><b>總分是加權平均</b>：權重不是固定的，每次更新依全部公司的分數重新計算，各面向的權重列在風險總覽右側「全部面向」。</li>
+<li><b>總分換燈號</b>：45 分以上紅燈、30 分以上黃燈、其餘綠燈。</li>
+<li><b>單項警示</b>：任何一個面向達 85 分，燈號往上升一級（綠變黃、黃變紅）。卡片上會寫明是哪一項觸發的。</li>
+<li><b>待補與不適用</b>：查不到公開數據的面向標「待補」，公式套不上的標「不適用」，兩者都不計入總分。</li>
+<li>滑鼠移到雷達圖的圓點，或看右側「風險主要來自」，可以看到每一分是怎麼算出來的。</li>
+</ul>
+<h3>八個預警指標的燈號</h3>
+<ul>
+<li>八個指標：承諾支出相對營收、循環收入占營收、距離付款高峰、新債票息、募資或承諾下修與展延、權證或擔保條件變動、紅燈家數、供應商融資與擔保總額。</li>
+<li><b>先看水位</b>：每張卡片有自己的門檻，點卡片上的「ⓘ 燈號規則」可以看到。</li>
+<li><b>再看方向</b>：和上一期比（變動在 3% 以內視為持平）。比上期惡化升一級；紅燈水位但持平，降為黃燈，表示「高檔但沒有再惡化」；比上期改善降一級。</li>
+<li>「承諾下修」與「擔保條件變動」只計人工確認過的事件；文字比對到但還沒確認的，另外列為「待確認」。</li>
+</ul>
 
 <h2 id="legend">符號與顏色對照</h2>
 <table>
@@ -280,7 +402,12 @@ body #toTop{transform:translateY(max(64px,var(--ty,70vh)))}
 <tr><td><span class="sw" style="--c:var(--in)"></span>綠色的線</td><td>流入：對方投入該公司的資金</td></tr>
 <tr><td><span class="sw" style="--c:#fbbf24"></span>黃色的線</td><td>雙向都有</td></tr>
 <tr><td><span class="sw dash" style="--c:#94a3b8"></span>虛線</td><td>傳聞或未定案</td></tr>
+<tr><td>線的粗細</td><td>已揭露金額越大越粗（對數尺度）</td></tr>
+<tr><td>外圈大圓／中間小圓</td><td>大圓是已建 Dashboard 的公司；小圓是共同的交易對手，括號內數字是涉及幾家公司</td></tr>
 <tr><td>↗ 與 ↙</td><td>↗ 流出、↙ 流入</td></tr>
+<tr><td>[1] [2]</td><td>來源編號，點了開原文</td></tr>
+<tr><td>🕒</td><td>超過 90 天沒有重新查證</td></tr>
+<tr><td>「估」「含推算」</td><td>數字是反推或外部估計，不是公司直接揭露的</td></tr>
 <tr><td>「—」</td><td>沒有這類交易</td></tr>
 <tr><td>「有，但未加總」</td><td>有節點，但金額未揭露、是年度金額，或為避免重複而不加總</td></tr>
 </tbody>
@@ -288,6 +415,7 @@ body #toTop{transform:translateY(max(64px,var(--ty,70vh)))}
 
 <h2 id="terms">金額口徑與名詞</h2>
 <p class="hint">金額依口徑分開統計，不同口徑不可相加。金額單位預設為美元，「億」指億美元。</p>
+<h3>金額口徑</h3>
 <table>
 <thead><tr><th>名詞</th><th>意思</th></tr></thead>
 <tbody>
@@ -298,28 +426,56 @@ body #toTop{transform:translateY(max(64px,var(--ty,70vh)))}
 <tr><td>流入資金</td><td>別人投進這家公司的錢</td></tr>
 <tr><td>處分回收、股東回饋</td><td>賣出持股收回的錢；配息與買回庫藏股</td></tr>
 <tr><td>現值與倍數</td><td>持股目前估值，以及相對成本的倍數；部分減持時以剩餘部位的成本計算</td></tr>
+</tbody>
+</table>
+<h3>營收與成長</h3>
+<table>
+<thead><tr><th>名詞</th><th>意思</th></tr></thead>
+<tbody>
+<tr><td>最近四季合計</td><td>最近四個已公布季度的營收相加，不做年化。全站的「年營收」都用這個算法</td></tr>
+<tr><td>最新一季年化</td><td>最新一季營收乘以 4。只拿來看敏感度，成長很快的公司這個數字會明顯高於最近四季合計</td></tr>
+<tr><td>加速／減速</td><td>最新一季年增率明顯高於或低於最近四季年增率</td></tr>
+<tr><td>含推算</td><td>未上市或沒有季報的公司，有一段營收是推算值</td></tr>
+</tbody>
+</table>
+<h3>循環與融資</h3>
+<table>
+<thead><tr><th>名詞</th><th>意思</th></tr></thead>
+<tbody>
 <tr><td>樞紐</td><td>被 2 家以上已建檔公司列為交易對手的對象</td></tr>
 <tr><td>資金循環／閉環</td><td>錢從 A 流到 B，再以採購或投資的形式流回 A</td></tr>
 <tr><td>循環對手方</td><td>不是持股對象，只是出現在資金循環中的公司</td></tr>
 <tr><td>依存度</td><td>循環對該公司的重要程度：高、中、低</td></tr>
+<tr><td>循環融資</td><td>供應商入股或借錢給客戶，客戶再拿這筆錢回頭買供應商的產品</td></tr>
+<tr><td>供應商融資</td><td>賣方借錢或提供額度給買方，讓買方有錢買自己的產品</td></tr>
+<tr><td>擔保、殘值擔保</td><td>替別人的借款或租約作保；殘值擔保是保證設備到期時還值一定金額。事情沒發生前不用付錢，但出事時要承擔</td></tr>
+<tr><td>表外</td><td>不列在公司資產負債表上的融資，例如透過專案公司舉債</td></tr>
+<tr><td>缺口</td><td>每年已承諾要付的錢，超過年營收的部分</td></tr>
+<tr><td>穿透</td><td>沿著營收依賴往上追：你持有的公司靠誰付錢，那個付款方又靠誰</td></tr>
+<tr><td>水位</td><td>預警指標當期的數值落在哪一級門檻，還沒考慮與上期相比的方向</td></tr>
 </tbody>
 </table>
 
 <h2 id="data">資料來源與更新</h2>
+<div class="upd">
+<div style="--c:#22c55e"><b>每週自動更新</b><ul><li>上市持股的現值（股數 × 最新收盤價）</li><li>各家的市值</li><li>歷史走勢多一筆紀錄</li></ul></div>
+<div style="--c:#eab308"><b>財報後人工更新</b><ul><li>營收、現金、資本支出、成長率</li><li>「財報日曆」提醒哪一週要重查</li><li>「資料新鮮度」會把放太久的數字轉紅</li></ul></div>
+<div style="--c:#38bdf8"><b>查證後才寫入</b><ul><li>新的投資、合約、擔保與人事異動</li><li>自動檢查到的新消息先列「待人工確認」</li><li>查證有來源後才併入正式資料</li></ul></div>
+</div>
 <ul>
 <li><b>資料截止日</b>：每頁標題下方都有標示；目前全站最新為 <b id="asOf"></b>。</li>
+<li><b>更新時間</b>：每週一早上重建全部頁面並做測試，通過才發布。</li>
 <li><b>來源</b>：每個節點、指標、事件、循環都附原始連結。沒有來源的數字不會放上來。</li>
-<li><b>每週自動更新</b>：每週一早上更新上市持股的現值（股數 × 最新收盤價）與各家的市值，重建全部頁面並做測試，通過才發布。</li>
-<li><b>營收與現金不會自動更新</b>：這兩項要人工查證財報後才會換新。「資料新鮮度」表會標出每個數字的基準日，放太久會自動轉紅。</li>
-<li><b>財報公布後要人工重查</b>：「財報日曆」會提醒哪一週有財報；公布後該公司的營收、現金、資本支出與成長率要人工更新。</li>
-<li><b>新動態不會自動寫入</b>：自動檢查到的新消息只會列在「待人工確認」，要人工查證後才併入正式資料。</li>
 <li><b>說法分歧時並列</b>：不同來源數字不同時，兩種都寫出來，並記在「資料校驗紀錄」。</li>
 </ul>
 
 <h2 id="limits">限制與注意事項</h2>
 <ul>
 <li>未上市公司的財務數字多來自媒體報導，不是經審計的財報。</li>
-<li>各家年營收一律採「最近四季合計」（最近四個已公布季度相加，不做年化），基準日是最近一季的季底，各家不完全同日。成長很快的公司（例如 Anthropic、OpenAI、SpaceX、CoreWeave），這個數字會明顯低於最新一季乘以 4，所以「承諾支出是營收的幾倍」會比年化算法高。未上市或沒有季報的公司（OpenAI、ByteDance）有一段是推算值，頁面會標「含推算」。通膨與負債分數裡的資本支出也改用最近四季實際數，與營收同期間；Broadcom、Samsung、SK hynix、ByteDance、CoreWeave 因缺少完整四季數字，仍用部分期間或年度預算，依據欄會寫明。Microsoft 的資本支出含融資租賃。</li>
+<li>各家年營收一律採「最近四季合計」，基準日是最近一季的季底，各家不完全同日。成長很快的公司（例如 Anthropic、OpenAI、SpaceX、CoreWeave），這個數字會明顯低於最新一季乘以 4，所以「承諾支出是營收的幾倍」會比年化算法高。</li>
+<li>未上市或沒有季報的公司（OpenAI、ByteDance）有一段營收是推算值，頁面會標「含推算」。</li>
+<li>通膨與負債分數裡的資本支出用最近四季實際數，與營收同期間；Broadcom、Samsung、SK hynix、ByteDance、CoreWeave 因缺少完整四季數字，仍用部分期間或年度預算，依據欄會寫明。Microsoft 的資本支出含融資租賃。</li>
+<li>OpenAI、Anthropic、SpaceX、Palantir 的地緣面向標為「不適用」，不計入總分。</li>
 <li>晶片商來自被投資公司的營收、沒有逐年表的合約付款分布、預警指標的門檻，都含有整理者的假設，頁面上會標明「估計」或「假設」。</li>
 <li>合約與承諾金額是多年期總額或上限，不等於已經付出的錢。</li>
 <li>同一交易對手是用名稱與代號自動合併的，可能仍有少數未合併或誤合併。</li>
@@ -328,9 +484,24 @@ body #toTop{transform:translateY(max(64px,var(--ty,70vh)))}
 </ul>
 <div class="note">本網站為公開資訊的整理，<b>不是投資建議</b>。做任何決定前，請以各公司的正式公告與申報文件為準。</div>
 
+<h2 id="faq">常見問題</h2>
+<div class="faq">
+<details><summary>網站說更新了，我看到的還是舊的</summary><p>網站有大約 10 分鐘的快取。電腦按 Ctrl+F5（Mac 按 Cmd+Shift+R）強制重新整理；手機請下拉重新整理，或關掉分頁再開。</p></details>
+<details><summary>以前看得到的區塊不見了</summary><p>總網路圖的區塊預設是收合的，只展開「本期結論、預警指標、關係網路圖」。點標題展開，或按右上角「全部展開」。你展開過的區塊下次會維持展開。</p></details>
+<details><summary>網路圖線太多，看不清楚</summary><p>三個做法：滑鼠移到一家公司上，只會亮出它的線；勾選「只看前 10 大樞紐」；或把「顯示交易對手」改成「≥3 個實體」。</p></details>
+<details><summary>為什麼這家公司是紅燈？</summary><p>到「風險總覽」選那家公司。總分 45 分以上是紅燈；如果總分不到 45 卻是紅燈，是因為有某個面向達 85 分觸發了「單項警示」，卡片上會寫是哪一項。</p></details>
+<details><summary>這裡的營收和新聞上看到的不一樣</summary><p>全站的年營收是「最近四季合計」，不是會計年度數字，也不是最新一季乘以 4。基準日寫在「資料新鮮度」表。未上市公司的數字來自媒體報導，會標「含推算」。</p></details>
+<details><summary>同一筆交易，兩家公司的 Dashboard 金額不同</summary><p>常見原因是口徑不同（一邊記承諾上限，一邊記已付金額）或基準日不同。「跨實體一致性檢查」列出每一組的比對結果，有差異的會附說明。</p></details>
+<details><summary>數字突然跳很多，是出事了嗎？</summary><p>先看「變動紀錄」。有時是補了資料或改了計算口徑，不是實際變化；紀錄裡會寫原因。</p></details>
+<details><summary>字太小，或背景看不習慣</summary><p>按「⚙ 顯示設定」放大字體或換背景。設定會記住，三種頁面一起套用。換了瀏覽器或裝置要重新設定一次。</p></details>
+<details><summary>我在「我的曝險」輸入的持股會被上傳嗎？</summary><p>不會。資料只存在你這台瀏覽器裡，換裝置或清除瀏覽資料後就沒有了。</p></details>
+<details><summary>可以引用或下載這些資料嗎？</summary><p>每個區塊都能輸出成 Excel、CSV、JSON、Markdown 或 PNG。引用時請附上資料截止日，並以來源連結的原文為準。</p></details>
+<details><summary>找不到我要的公司</summary><p>目前只有下方清單列出的公司有完整 Dashboard。其他公司如果是兩家以上的共同交易對手，會以小圓點出現在網路圖上，可用「搜尋公司」找；在「顯示交易對手」選「全部」可以看到只和一家有關的對象。</p></details>
+</div>
+
 <h2 id="pages">全部頁面清單</h2>
 <p class="hint">點任一家公司會在新分頁開啟它的 Dashboard，本頁保留不動。</p>
-<p><a class="btn" href="Ecosystem_Network_Map.html" target="_blank" rel="noopener">跨實體總網路圖 ↗</a></p>
+<div class="tfilter"><input type="search" id="eq" placeholder="輸入公司名稱或代號篩選…" aria-label="篩選公司"><a class="btn" href="Ecosystem_Network_Map.html" target="_blank" rel="noopener">跨實體總網路圖 ↗</a></div>
 <div class="ents" id="ents"></div>
 
 </main>
@@ -345,6 +516,58 @@ if(G){
  document.getElementById('asOf').textContent=G.asOf;
  document.getElementById('ents').innerHTML=G.ents.map(e=>`<a class="ent" style="--c:${esc(e.accent)}" href="${esc(e.file)}" target="_blank" rel="noopener" title="在新分頁開啟 ${esc(e.entity)} 的 Dashboard"><b>${esc(e.entity)}</b><small>${esc(e.ticker||'')}・${e.nodes} 個節點・截至 ${esc(e.asOf)} ↗</small></a>`).join('');
 }
+</script>
+<script id="guide-js">
+(function(){
+ const IC={'top': '<path d="M6 3h12v18l-6-4-6 4z"/>', 'watch': '<path d="M12 3 2 20h20z"/><path d="M12 10v5M12 17.5v.4"/>', 'hist': '<path d="M3 3v18h18"/><path d="m7 15 4-5 3 3 5-7"/>', 'net': '<circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="8" r="2.5"/><circle cx="11" cy="18" r="2.5"/><path d="m8.4 6.6 7.2 1M7 8.3l3 7.4M16.6 10l-4.2 6"/>', 'brief': '<path d="M6 3h9l4 4v14H6z"/><path d="M9 11h7M9 15h7"/>', 'risk': '<path d="M4 17a8 8 0 0 1 16 0"/><path d="m12 17 4-6"/>', 'cash': '<path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z"/>', 'wall': '<path d="M3 20h18M5 20V11h4v9M10 20V5h4v15M15 20v-7h4v7"/>', 'scen': '<path d="M9 3h6M10 3v6L5 19a1.5 1.5 0 0 0 1.4 2h11.2A1.5 1.5 0 0 0 19 19L14 9V3"/><path d="M7.5 15h9"/>', 'mine': '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/>', 'val': '<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/>', 'fs': '<path d="m3 10 9-6 9 6M5 10v8M10 10v8M14 10v8M19 10v8M3 20h18"/>', 'phy': '<path d="M3 20V10l6 4v-4l6 4V5h6v15z"/>', 'pol': '<path d="m12 3 8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/>', 'his': '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>', 'fresh': '<rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M8 3v4M16 3v4m-7 8 2 2 4-4"/>', 'grow': '<path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/>', 'cal': '<rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/>', 'chg': '<path d="M4 6h12M4 12h8M4 18h5"/><path d="m14 20 6-6-2-2-6 6v2z"/>', 'cmp': '<rect x="4" y="4" width="6" height="16" rx="1"/><rect x="14" y="4" width="6" height="16" rx="1"/>', 'chk': '<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5M8.5 11l2 2 3-3.5"/>', 'cyc': '<path d="M4 12a8 8 0 0 1 14-5M18 3v4h-4M20 12a8 8 0 0 1-14 5M6 21v-4h4"/>', 'hub': '<path d="M4 20v-6h5v6M9.5 20V8h5v12M15 20v-9h5v9M3 20h18"/>', 'tree': '<rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/><path d="M12 8v4M6 16v-4h12v4"/>', 'table': '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9.5h18M3 15h18M9 4v16"/>', 'kpi': '<path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/>', 'pin': '<path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>', 'ic': '<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/>'};
+ const ico=k=>IC[k]?`<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">${IC[k]}</svg>`:'';
+ const M='Ecosystem_Network_Map.html#s-';
+ // 功能地圖：五組，依「想做什麼」分
+ const F=[
+  ['先看結論','一分鐘掌握現況與方向',[
+   ['top','本期結論','三到五句話講完現況','目前循環的狀態、最脆弱的環節、與上一期相比的變化，由資料自動產生。'],
+   ['watch','預警指標','八個領先訊號的燈號','承諾支出相對營收、循環收入占營收、付款高峰、新債票息、承諾下修、擔保條件變動、紅燈家數、供應商融資總額。每張卡片有燈號、數值、與上期相比的方向，規則收在「ⓘ 燈號規則」。'],
+   ['hist','歷史走勢','風險往哪個方向走','每次更新留一筆紀錄，可選紅燈家數、平均風險總分、任一預警指標或任一公司的總分看走勢線。數字跳動可能是改了計算口徑或補了資料，要對照變動紀錄。']]],
+  ['看關係','誰和誰有金流、誰是共同的樞紐',[
+   ['net','關係網路圖','全部公司與交易對手的關係','外圈大圓是已建檔的公司，中間小圓是共同的交易對手。滑鼠移上去亮出關係線，點下去看明細與「若它出事」。可篩選方向、對手數量，或只看前 10 大樞紐。'],
+   ['brief','投資簡覽','一家公司投了誰、誰投了它','選一家公司，看簡介、對外投資前 5 大與被投資前 5 大（依金額排序）。只有一邊有資料時，另一邊會縮成一行提示。'],
+   ['hub','系統性樞紐排行','被最多公司共同依賴的對象','跨越 2 家以上的交易對手列表，可輸出 CSV。'],
+   ['cyc','跨實體資金閉環','錢有沒有在幾家之間繞圈','自動找出 2–4 個環節的資金循環，標出金額最小的一段。'],
+   ['cmp','多實體比較','兩三家並排比','勾選 2–3 家並排，金額只在同口徑內比較。'],
+   ['chk','跨實體一致性檢查','兩邊記的金額對不對得上','同一筆關係在不同 Dashboard 的金額是否一致；有差異的會附說明。']]],
+  ['看風險與錢','誰撐得住、錢從哪來、什麼時候要付',[
+   ['risk','風險總覽','每家公司的燈號與 11 個面向','左邊是總風險值、紅黃綠燈與排名，中間是雷達圖，右邊是主要風險來源與各面向權重，下方是全部公司的燈號一覽（點選可切換）。'],
+   ['cash','循環融資與現金缺口','每年要付多少、付不付得出來','把多年期合約換算成每年金額：被投資方每年回頭付多少、占營收多少、缺口多大、現金或近期募資可以支應幾年。晶片商來自被投資公司的營收若未揭露，以估計區間列出並附假設。'],
+   ['wall','付款時程','付款高峰在哪一年','2026–2036 各年度已承諾要付的金額，依付款方堆疊。沒有逐年表的合約可切換「平均攤提」或「前低後高（假設）」。下方另有未來 36 個月的到期事項。'],
+   ['val','估值與風險','貴不貴，和風險對不對得上','市值相對年營收的倍數對照風險分數，以中位數切成四個位置。'],
+   ['fs','資金來源結構','錢是借的還是募的','近 24 個月的募資與舉債，分成私募信貸與表外、其他借款、可轉債、公開債券、股權五類。']]],
+  ['做推演','如果某件事發生會怎樣',[
+   ['scen','情境試算','選事件與幅度看誰受傷','三種事件：某公司募資失敗、出口管制收緊、大型業者削減資本支出。看各家每年的曝險金額，以及損失如何一層一層傳到下游。'],
+   ['mine','我的曝險','我的持股實際押在誰身上','輸入持有的公司與金額，依營收依賴往上追三層。資料只存在瀏覽器，不會上傳。'],
+   ['his','歷史對照','和 2000 年電信泡沫比','當年電信設備商的供應商融資比率，與現在 AI 供應商的擔保與融資上限並列。'],
+   ['phy','實體瓶頸','錢到位了會不會蓋不出來','變壓器交期、併網排隊、燃氣渦輪、先進封裝、高頻寬記憶體五個環節的現況（人工維護），每張卡片列出受影響的公司。不計入風險分數。'],
+   ['pol','主權與政策層','政策與主權資金影響到誰','從各家資料自動歸類的出口許可、政府入股與補助、主權基金入股、國安審查事項。']]],
+  ['看資料品質','數字新不新、哪裡改過',[
+   ['fresh','資料新鮮度','每個數字是哪一天的','各家營收、現金、市值的基準日與距今天數；營收與現金超過約兩季標紅，市值超過 45 天標紅。'],
+   ['grow','營收成長','誰在加速、誰在減速','各家最近四季年增率與最新一季年增率並列。標「估」的是反推或外部估計。'],
+   ['cal','財報日曆','哪一週該重查誰','各家下次財報日與還有幾天，未來三週內要公布的列在最上面；日期分成公司已確認、市場預期、推估三種。'],
+   ['chg','變動紀錄','這一期改了什麼、為什麼','每次更新後自動與上一期比較，逐筆列出哪些數字改了、為什麼；保留最近數期。']]]];
+ const fm=document.getElementById('fmap');
+ if(fm)fm.innerHTML=F.map(([g,sub,items])=>`<div class="fgroup"><h3>${g}<small>${sub}</small></h3><div class="fgrid">${items.map(([k,n,q,d])=>`<details class="fc"><summary>${ico(k)}<b>${n}</b><span>${q}</span></summary><p>${d}</p><a class="go" href="${M+k}">前往「${n}」→</a></details>`).join('')}</div></div>`).join('');
+ document.querySelectorAll('i[data-ic]').forEach(e=>{e.outerHTML=ico(e.dataset.ic)});
+ // 問題表與公司清單的篩選
+ const tq=document.getElementById('tq'),rows=[...document.querySelectorAll('#ttbl tbody tr')],tc=document.getElementById('tcount'),tn=document.getElementById('tnone');
+ const ft=()=>{const q=tq.value.trim().toLowerCase();let n=0;rows.forEach(r=>{const ok=!q||r.textContent.toLowerCase().includes(q);r.hidden=!ok;if(ok)n++});tc.textContent=q?`符合 ${n}／${rows.length} 題`:`共 ${rows.length} 題`;tn.hidden=n>0};
+ if(tq){tq.addEventListener('input',ft);ft()}
+ const eq=document.getElementById('eq');
+ if(eq)eq.addEventListener('input',()=>{const q=eq.value.trim().toLowerCase();document.querySelectorAll('#ents .ent').forEach(a=>{a.hidden=!!q&&!a.textContent.toLowerCase().includes(q)})});
+ // 目錄：標示目前所在的章節
+ const links=[...document.querySelectorAll('#gtoc a')],secs=links.map(a=>document.getElementById(a.getAttribute('href').slice(1)));let cur=-1,tk=0;const nav=document.getElementById('gtoc');
+ const spy=()=>{tk=0;let k=0;for(let i=0;i<secs.length;i++){if(secs[i]&&secs[i].getBoundingClientRect().top<=110)k=i}
+  if(k===cur)return;cur=k;links.forEach((a,i)=>a.classList.toggle('on',i===k));
+  const a=links[k];if(nav.scrollWidth>nav.clientWidth)nav.scrollTo({left:a.offsetLeft-nav.clientWidth/2+a.offsetWidth/2});};
+ addEventListener('scroll',()=>{if(!tk)tk=requestAnimationFrame(spy)},{passive:true});spy();
+})();
 </script>
 <script>try{localStorage.setItem('ecomap_guide_seen','1')}catch(e){}</script>
 <script id="pref-js">

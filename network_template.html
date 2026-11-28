@@ -827,7 +827,8 @@ build(); side(null); table(); cmp();
  });
  const openId=id=>{const it=items.find(x=>x.s.id===id);if(it&&it.body.hasAttribute('hidden'))it.set(true,true)};
  document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#s-"]');if(a)openId(a.getAttribute('href').slice(1))},true);
- if(location.hash)openId(location.hash.slice(1));
+ const goHash=()=>{const id=location.hash.slice(1);if(!id)return;openId(id);const t=document.getElementById(id);if(t)requestAnimationFrame(()=>t.scrollIntoView())};   // 從說明頁或書籤帶著 #s-xxx 進來：展開該區並捲到定位
+ addEventListener('hashchange',goHash);goHash();
  if(all)all.onclick=()=>{const o=items.some(x=>x.body.hasAttribute('hidden'));items.forEach(x=>x.set(o,true))};
 })();
 </script>
