@@ -246,6 +246,14 @@
    "Yahoo Finance｜OpenAI 新一輪首批約 $110 億已於 2026-11-06 入帳（估值 $1.25 兆）",
    "https://finance.yahoo.com/technology/ai/articles/openai-just-raised-11-billion-133842228.html",
    "B"
+  ],
+  "ft_debt": [
+   "Irish Times／FT｜OpenAI 帳上幾乎沒有負債，$40 億信用額度尚未動用（2025-11-28）",
+   "https://www.irishtimes.com/business/2025/11/28/openai-partners-amass-100bn-debt-pile-to-fund-its-ambitions"
+  ],
+  "nbc_rcf": [
+   "NBC／CNBC｜OpenAI $40 億循環信用額度，利率為 SOFR＋1%",
+   "https://www.nbclosangeles.com/news/business/money-report/openai-gets-4-billion-revolving-credit-line-giving-it-more-than-10-billion-in-liquidity/3526785/"
   ]
  },
  "categories": [
@@ -357,7 +365,8 @@
     }
    ],
    "verified": "2026-11-26",
-   "annual": 24.1
+   "annual": 24.1,
+   "pw": true
   },
   {
    "id": "softbank",
@@ -553,7 +562,9 @@
    "term": {
     "s": 2026,
     "e": 2033
-   }
+   },
+   "pw": true,
+   "gw": 2.0
   },
   {
    "id": "oracle",
@@ -587,7 +598,9 @@
    "term": {
     "s": 2027,
     "e": 2031
-   }
+   },
+   "pw": true,
+   "gw": 4.5
   },
   {
    "id": "coreweave",
@@ -1521,5 +1534,29 @@
    "bd_11"
   ],
   "note": "未上市；最新一輪募資的估值"
- }
+ },
+ "debt": {
+  "total": 0,
+  "asOf": "2025-11-28",
+  "float": 0,
+  "after": null,
+  "afterY": null,
+  "note": "公司自己的帳上幾乎沒有負債：$40 億循環信用額度（SOFR＋1%）截至 2025/11 尚未動用，之後是否動用沒有公開資訊。債務壓力主要在替它蓋資料中心的夥伴身上",
+  "src": [
+   "ft_debt",
+   "nbc_rcf"
+  ]
+ },
+ "dues": [
+  {
+   "y": 2027,
+   "amt": null,
+   "kind": "融資額度",
+   "what": "$40 億循環信用額度（SOFR＋1%），2024/10 設立、可動用三年；截至 2025/11 尚未動用",
+   "src": [
+    "ft_debt",
+    "nbc_rcf"
+   ]
+  }
+ ]
 }

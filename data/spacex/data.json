@@ -242,6 +242,14 @@
    "Yahoo Finance｜SPCX 2026-11-27 收盤 133.59",
    "https://finance.yahoo.com/quote/SPCX",
    "B"
+  ],
+  "tnw_bridge": [
+   "The Next Web｜SpaceX S-1：$200 億過橋貸款，2027/9 到期，3/31 有效利率 4.58%",
+   "https://thenextweb.com/news/spacex-bridge-loan-musk-debt-refinancing-ipo"
+  ],
+  "fool_debt": [
+   "Motley Fool｜SpaceX 公開說明書：總債務 $291 億，過橋貸款須在 IPO 後六個月內償還",
+   "https://www.fool.com/research/spacex-stock-ipo-prospectus/"
   ]
  },
  "categories": [
@@ -433,7 +441,8 @@
    "term": {
     "s": 2026,
     "e": 2029
-   }
+   },
+   "pw": true
   },
   {
    "id": "nvidia",
@@ -1497,5 +1506,29 @@
   "fxRef": 1.0,
   "refDate": "2026-11-19",
   "refExact": true
+ },
+ "dues": [
+  {
+   "y": 2027,
+   "amt": 20.0,
+   "kind": "債務到期",
+   "what": "2026/3 的 $200 億過橋貸款，2027/9 到期（可延兩次、各三個月）；條款規定 IPO 後六個月內須償還，是否已用 IPO 資金還清尚未確認",
+   "src": [
+    "tnw_bridge",
+    "fool_debt"
+   ]
+  }
+ ],
+ "debt": {
+  "total": 29.1,
+  "asOf": "2026-03-31",
+  "float": null,
+  "after": null,
+  "afterY": 2027,
+  "note": "S-1 口徑的總債務 $291 億，其中 $200 億是過橋貸款；其餘債務的到期年份未取得",
+  "src": [
+   "tnw_bridge",
+   "fool_debt"
+  ]
  }
 }

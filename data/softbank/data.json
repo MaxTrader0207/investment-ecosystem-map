@@ -122,7 +122,7 @@
    "https://fortune.com/2016/07/18/softbank-arm-acquisition/"
   ],
   "cb_bridge": [
-   "Crypto Briefing｜$400 億過橋貸款已清償：定期貸款 $118.7 億、Intel 預付遠期約 $73.5 億",
+   "Crypto Briefing｜SoftBank 提前還清 $400 億過橋貸款，改以 Arm 股票擔保貸款、定期貸款與債券取代",
    "https://cryptobriefing.com/softbank-repays-openai-bridge-loan-intel-loss/"
   ],
   "mwl_bridge": [
@@ -214,6 +214,14 @@
   "gap_bond2": [
    "BigGo Finance｜SoftBank $110 億非投資級債各檔票息",
    "https://finance.biggo.com/news/34b9d132-142d-4aa5-a12c-fab62ce140bd"
+  ],
+  "tnw_ml": [
+   "The Next Web｜SoftBank 以 OpenAI 持股擔保的 $100 億貸款於 8 月完成",
+   "https://thenextweb.com/news/softbank-another-10bn-loan-openai-stake"
+  ],
+  "yh_ml": [
+   "Yahoo Finance｜OpenAI 持股擔保貸款的定價約為 SOFR 加 425 個基點",
+   "https://finance.yahoo.com/sectors/technology/articles/softbank-seeks-10-billion-loan-133558375.html"
   ]
  },
  "categories": [
@@ -1478,8 +1486,23 @@
    "kind": "債務到期",
    "what": "以 OpenAI 持股擔保的兩年期貸款（2026/8 起算）",
    "src": [
-    "edge_arm"
+    "edge_arm",
+    "tnw_ml",
+    "yh_ml"
    ]
   }
- ]
+ ],
+ "debt": {
+  "total": null,
+  "asOf": "2026-09-30",
+  "float": 35.0,
+  "after": null,
+  "afterY": null,
+  "note": "浮動利率部位以兩筆股票擔保貸款估計：Arm 股票擔保貸款額度 $250 億，加上 OpenAI 持股擔保貸款 $100 億（洽談時的定價約 SOFR＋4.25%）。實際動用金額與集團完整的債券到期表未建檔，所以是粗估",
+  "src": [
+   "cb_bridge",
+   "tnw_ml",
+   "yh_ml"
+  ]
+ }
 }

@@ -11,7 +11,13 @@
      "Core Insights Review｜Data Center Power Capacity 2026（引 Wood Mackenzie）",
      "https://www.coradvisors.net/2026/09/data-center-power-capacity-2026.html"
     ]
-   ]
+   ],
+   "q": {
+    "unit": "週",
+    "now": 128,
+    "base": 64,
+    "baseNote": "約為 2021 年的兩倍，由 128 週回推"
+   }
   },
   {
    "n": "併網排隊",
@@ -24,7 +30,14 @@
      "SEC 424B4｜ERock 公開說明書（引 IEA）",
      "https://www.sec.gov/Archives/edgar/data/0002110029/000119312526265898/d12401d424b4.htm"
     ]
-   ]
+   ],
+   "q": {
+    "unit": "年",
+    "now": 3,
+    "worst": 7,
+    "riskShare": 0.2,
+    "riskNote": "IEA 估計全球 20% 的新資料中心專案有延遲風險"
+   }
   },
   {
    "n": "燃氣渦輪積壓",
@@ -37,7 +50,13 @@
      "MMCG Invest｜The U.S. Data Center Census 2026",
      "https://www.mmcginvest.com/post/the-u-s-data-center-census-2026"
     ]
-   ]
+   ],
+   "q": {
+    "unit": "GW",
+    "backlog": 100,
+    "queue": 233,
+    "connected": 7.5
+   }
   },
   {
    "n": "先進封裝 CoWoS",
@@ -54,7 +73,15 @@
      "Supercomputing News｜CoWoS 供需缺口（引 TrendForce）",
      "https://www.supercomputing.news/emerging/advanced-packaging-cowos-emib-t-ai-accelerator-bottleneck"
     ]
-   ]
+   ],
+   "q": {
+    "unit": "萬片／月",
+    "low": 12,
+    "high": 14,
+    "gap": 0.1,
+    "gapPrev": 0.2,
+    "priceUp": 0.2
+   }
   },
   {
    "n": "高頻寬記憶體 HBM",
@@ -67,7 +94,11 @@
      "Investing.com｜Samsung Q3 簡報：2027 年 HBM 已售罄",
      "https://uk.investing.com/news/stock-market-news/samsung-q3-2026-slides-first-tech-firm-to-top-100t-won-profit-93CH-4939721"
     ]
-   ]
+   ],
+   "q": {
+    "unit": "",
+    "soldOutYear": 2027
+   }
   }
  ],
  "history": {

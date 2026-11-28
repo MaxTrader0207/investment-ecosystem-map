@@ -258,6 +258,10 @@
   "debt_sched": [
    "SEC 10-Q｜Meta 2026 Q3：票據逐年本金到期表（合計 $840 億）",
    "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066773/R32.htm"
+  ],
+  "fw_debt": [
+   "FourWeekMBA｜Meta 10-Q：票據餘額 $840 億，2030 年後到期 $737.5 億（2026/9/30）",
+   "https://fourweekmba.com/ai-metas-interest-costs-jump-330-as-credit-risk-hits-new-high/"
   ]
  },
  "categories": [
@@ -551,7 +555,8 @@
    "term": {
     "s": 2026,
     "e": 2032
-   }
+   },
+   "pw": true
   },
   {
    "id": "nebius",
@@ -575,7 +580,8 @@
    "term": {
     "s": 2026,
     "e": 2031
-   }
+   },
+   "pw": true
   },
   {
    "id": "gcp",
@@ -1694,7 +1700,8 @@
    "kind": "債務到期",
    "what": "2027/8 到期的票據",
    "src": [
-    "debt_sched"
+    "debt_sched",
+    "fw_debt"
    ]
   },
   {
@@ -1733,5 +1740,16 @@
     "debt_sched"
    ]
   }
- ]
+ ],
+ "debt": {
+  "total": 84.0,
+  "asOf": "2026-09-30",
+  "float": null,
+  "after": 73.75,
+  "afterY": 2030,
+  "note": "票據餘額 $840 億，其中 $737.5 億在 2030 年之後到期；2026/11 新發行的票據未計入",
+  "src": [
+   "fw_debt"
+  ]
+ }
 }
