@@ -227,7 +227,7 @@
    "https://www.etnet.com.hk/www/tc/ashares/quote.php?code=603993"
   ],
   "px_auto_VNET": [
-   "Yahoo Finance｜VNET 2026-11-25 收盤 2.06",
+   "Yahoo Finance｜VNET 2026-11-27 收盤 1.835",
    "https://finance.yahoo.com/quote/VNET",
    "B"
   ],
@@ -337,13 +337,13 @@
     "sec": "普通股",
     "auto": true
    },
-   "val": 0.2233,
-   "valDate": "2026-11-25",
+   "val": 0.1989,
+   "valDate": "2026-11-27",
    "valSrc": [
     "px_auto_VNET",
     "vnet_20f"
    ],
-   "valNote": "650,424,192 股 × 2026-11-25 收盤 2.06 USD × 0.166667 ≈ $2.2 億（自動計算）；每 ADS 代表 6 股 Class A 普通股（VNET 20-F 確認）",
+   "valNote": "650,424,192 股 × 2026-11-27 收盤 1.83 USD × 0.166667 ≈ $2.0 億（自動計算）；每 ADS 代表 6 股 Class A 普通股（VNET 20-F 確認）",
    "shares": 650424192,
    "pxTk": "VNET",
    "pxMult": 0.16666666666666666,

@@ -171,7 +171,7 @@
    "https://www.foreignpolicyjournal.com/2026/11/13/oracle-nyse-orcl-faces-china-chip-rule-at-the-worst-possible-moment-for-its-balance-sheet/"
   ],
   "px_auto_ORCL": [
-   "Yahoo Finance｜ORCL 2026-11-25 收盤 103.88",
+   "Yahoo Finance｜ORCL 2026-11-27 收盤 107.13",
    "https://finance.yahoo.com/quote/ORCL",
    "B"
   ],
@@ -1226,8 +1226,8 @@
   }
  ],
  "mkt": {
-  "cap": 327.0,
-  "date": "2026-11-25",
+  "cap": 337.2,
+  "date": "2026-11-27",
   "src": [
    "mktcap",
    "px_auto_ORCL"

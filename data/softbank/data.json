@@ -186,12 +186,12 @@
    "https://wantrich.chinatimes.com/news/20251111900613-420201"
   ],
   "px_auto_ARM": [
-   "Yahoo Finance｜ARM 2026-11-25 收盤 161.51",
+   "Yahoo Finance｜ARM 2026-11-27 收盤 171.55",
    "https://finance.yahoo.com/quote/ARM",
    "B"
   ],
   "px_auto_INTC": [
-   "Yahoo Finance｜INTC 2026-11-25 收盤 54.47",
+   "Yahoo Finance｜INTC 2026-11-27 收盤 57.4",
    "https://finance.yahoo.com/quote/INTC",
    "B"
   ],
@@ -340,15 +340,15 @@
    ],
    "amtType": "equity",
    "direction": "out",
-   "val": 149.0253,
-   "valDate": "2026-11-25",
+   "val": 158.2892,
+   "valDate": "2026-11-27",
    "since": "2016",
    "valSrc": [
     "px_auto_ARM",
     "ms_arm",
     "tikr_arm"
    ],
-   "valNote": "922,700,000 股 × 2026-11-25 收盤 161.51 USD ≈ $1,490 億（自動計算）；其中 7.69 億股質押於保證金貸款",
+   "valNote": "922,700,000 股 × 2026-11-27 收盤 171.55 USD ≈ $1,583 億（自動計算）；其中 7.69 億股質押於保證金貸款",
    "risks": [
     {
      "k": "fin",
@@ -408,7 +408,7 @@
    ],
    "amtType": "equity",
    "direction": "out",
-   "valNote": "86,956,522 股 × 2026-11-25 收盤 54.47 USD ≈ $47 億（自動計算）；這批股票已做 collar 避險，實際損益不等於市值變動",
+   "valNote": "86,956,522 股 × 2026-11-27 收盤 57.40 USD ≈ $50 億（自動計算）；這批股票已做 collar 避險，實際損益不等於市值變動",
    "valSrc": [
     "px_auto_INTC"
    ],
@@ -418,8 +418,8 @@
     "vesting": "collar 預付遠期，到期以股票或現金交割"
    },
    "verified": "2026-11-26",
-   "val": 4.7365,
-   "valDate": "2026-11-25",
+   "val": 4.9913,
+   "valDate": "2026-11-27",
    "shares": 86956522,
    "pxTk": "INTC",
    "pxNote": "這批股票已做 collar 避險，實際損益不等於市值變動"

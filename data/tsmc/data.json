@@ -155,7 +155,7 @@
    "https://www.axios.com/2026/11/24/anthropic-stock-ipo-banks"
   ],
   "px_auto_ANT": [
-   "Yahoo Finance｜ANT 2026-11-25 收盤 82.79",
+   "Yahoo Finance｜ANT 2026-11-27 收盤 91.88",
    "https://finance.yahoo.com/quote/ANT",
    "B"
   ],
@@ -461,15 +461,15 @@
     "sec": "普通股",
     "auto": true
    },
-   "val": 0.4987,
-   "valDate": "2026-11-25",
+   "val": 0.5535,
+   "valDate": "2026-11-27",
    "since": "2026-11",
    "valSrc": [
     "px_auto_ANT",
     "axios_ant",
     "ft_anth"
    ],
-   "valNote": "6,024,096 股 × 2026-11-25 收盤 82.79 USD ≈ $5.0 億（自動計算）",
+   "valNote": "6,024,096 股 × 2026-11-27 收盤 91.88 USD ≈ $5.5 億（自動計算）",
    "risks": [
     {
      "k": "acct",

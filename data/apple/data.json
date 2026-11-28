@@ -154,7 +154,7 @@
    "https://9to5mac.com/?p=1077006"
   ],
   "px_auto_AAPL": [
-   "Yahoo Finance｜AAPL 2026-11-25 收盤 355.58",
+   "Yahoo Finance｜AAPL 2026-11-27 收盤 358.54",
    "https://finance.yahoo.com/quote/AAPL",
    "B"
   ]
@@ -1193,8 +1193,8 @@
   }
  },
  "mkt": {
-  "cap": 5169.3,
-  "date": "2026-11-25",
+  "cap": 5212.3,
+  "date": "2026-11-27",
   "src": [
    "mktcap",
    "px_auto_AAPL"

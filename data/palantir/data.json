@@ -142,12 +142,12 @@
    "https://sec-api.io/insights/palantir-pltr-q3-2026-earnings-us-commercial-overtakes-us-government-sec-filing-analysis"
   ],
   "px_auto_SRFM": [
-   "Yahoo Finance｜SRFM 2026-11-25 收盤 0.3567",
+   "Yahoo Finance｜SRFM 2026-11-27 收盤 0.3782",
    "https://finance.yahoo.com/quote/SRFM",
    "B"
   ],
   "px_auto_PLTR": [
-   "Yahoo Finance｜PLTR 2026-11-25 收盤 163.59",
+   "Yahoo Finance｜PLTR 2026-11-27 收盤 172.17",
    "https://finance.yahoo.com/quote/PLTR",
    "B"
   ],
@@ -409,12 +409,12 @@
    "pxTk": "SRFM",
    "costUnknown": true,
    "pxNote": "部分股份為 Surf Air 以股票支付的服務費，取得成本未完整揭露",
-   "val": 0.0016,
-   "valDate": "2026-11-25",
+   "val": 0.0017,
+   "valDate": "2026-11-27",
    "valSrc": [
     "px_auto_SRFM"
    ],
-   "valNote": "4,460,000 股 × 2026-11-25 收盤 0.36 USD ≈ $0.0 億（自動計算）；部分股份為 Surf Air 以股票支付的服務費，取得成本未完整揭露"
+   "valNote": "4,460,000 股 × 2026-11-27 收盤 0.38 USD ≈ $0.0 億（自動計算）；部分股份為 Surf Air 以股票支付的服務費，取得成本未完整揭露"
   },
   {
    "id": "spac",
@@ -1220,8 +1220,8 @@
   }
  },
  "mkt": {
-  "cap": 394.2,
-  "date": "2026-11-25",
+  "cap": 414.9,
+  "date": "2026-11-27",
   "src": [
    "mktcap",
    "px_auto_PLTR"

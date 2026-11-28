@@ -171,7 +171,7 @@
    "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announce-fourth-quarter-and-fiscal-year-2026"
   ],
   "px_auto_AVGO": [
-   "Yahoo Finance｜AVGO 2026-11-25 收盤 300.86",
+   "Yahoo Finance｜AVGO 2026-11-27 收盤 312.34",
    "https://finance.yahoo.com/quote/AVGO",
    "B"
   ],
@@ -1010,8 +1010,8 @@
   }
  },
  "mkt": {
-  "cap": 1433.1,
-  "date": "2026-11-25",
+  "cap": 1487.8,
+  "date": "2026-11-27",
   "src": [
    "mktcap",
    "px_auto_AVGO"

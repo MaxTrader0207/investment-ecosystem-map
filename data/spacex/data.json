@@ -239,7 +239,7 @@
    "https://research.aardvarklabs.co/research/spcx/earnings/2026-s1/spcx-2026-s1-analysis"
   ],
   "px_auto_SPCX": [
-   "Yahoo Finance｜SPCX 2026-11-25 收盤 127.44",
+   "Yahoo Finance｜SPCX 2026-11-27 收盤 133.59",
    "https://finance.yahoo.com/quote/SPCX",
    "B"
   ]
@@ -1482,8 +1482,8 @@
   }
  },
  "mkt": {
-  "cap": 1730.7,
-  "date": "2026-11-25",
+  "cap": 1814.3,
+  "date": "2026-11-27",
   "src": [
    "mktcap",
    "mktcap2",

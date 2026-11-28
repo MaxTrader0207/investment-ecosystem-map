@@ -113,7 +113,7 @@
    "https://electrek.co/2025/11/03/tesla-tsla-reportedly-secures-massive-2-1-billion-battery-deal-with-samsung-sdi-but-not-for-its-cars/"
   ],
   "px_auto_SPCX": [
-   "Yahoo Finance｜SPCX 2026-11-25 收盤 127.44",
+   "Yahoo Finance｜SPCX 2026-11-27 收盤 133.59",
    "https://finance.yahoo.com/quote/SPCX",
    "B"
   ],
@@ -146,7 +146,7 @@
    "https://fourweekmba.com/ai-teslas-q3-explained-capex-up-110-as-revenue-stayed-flat/"
   ],
   "px_auto_TSLA": [
-   "Yahoo Finance｜TSLA 2026-11-25 收盤 380.14",
+   "Yahoo Finance｜TSLA 2026-11-27 收盤 400.0",
    "https://finance.yahoo.com/quote/TSLA",
    "B"
   ]
@@ -204,13 +204,13 @@
     }
    ],
    "verified": "2026-11-26",
-   "val": 2.4201,
-   "valDate": "2026-11-25",
+   "val": 2.5369,
+   "valDate": "2026-11-27",
    "valSrc": [
     "px_auto_SPCX",
     "ts_spx"
    ],
-   "valNote": "18,990,195 股 × 2026-11-25 收盤 127.44 USD ≈ $24 億（自動計算）；持股數為 5/1 揭露",
+   "valNote": "18,990,195 股 × 2026-11-27 收盤 133.59 USD ≈ $25 億（自動計算）；持股數為 5/1 揭露",
    "terms": {
     "sec": "SpaceX A 類普通股（原 xAI Series E 可贖回可轉換特別股轉換）"
    },
@@ -973,8 +973,8 @@
   }
  },
  "mkt": {
-  "cap": 1506.0,
-  "date": "2026-11-25",
+  "cap": 1584.6,
+  "date": "2026-11-27",
   "src": [
    "mktcap",
    "px_auto_TSLA"

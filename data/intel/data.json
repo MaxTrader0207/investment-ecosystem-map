@@ -231,8 +231,13 @@
    "https://sec-api.io/insights/intel-intc-q3-2026-earnings-sec-filing-analysis"
   ],
   "px_auto_JOBY": [
-   "Yahoo Finance｜JOBY 2026-11-25 收盤 3.9",
+   "Yahoo Finance｜JOBY 2026-11-27 收盤 4.05",
    "https://finance.yahoo.com/quote/JOBY",
+   "B"
+  ],
+  "px_auto_INTC": [
+   "Yahoo Finance｜INTC 2026-11-27 收盤 57.4",
+   "https://finance.yahoo.com/quote/INTC",
    "B"
   ]
  },
@@ -517,12 +522,12 @@
    "shares": 15300000,
    "pxTk": "JOBY",
    "costUnknown": true,
-   "val": 0.0597,
-   "valDate": "2026-11-25",
+   "val": 0.062,
+   "valDate": "2026-11-27",
    "valSrc": [
     "px_auto_JOBY"
    ],
-   "valNote": "15,300,000 股 × 2026-11-25 收盤 3.90 USD ≈ $0.6 億（自動計算）"
+   "valNote": "15,300,000 股 × 2026-11-27 收盤 4.05 USD ≈ $0.6 億（自動計算）"
   },
   {
    "id": "arm",
@@ -1451,16 +1456,18 @@
   }
  },
  "mkt": {
-  "cap": 332.2,
-  "date": "2026-11-26",
+  "cap": 350.1,
+  "date": "2026-11-27",
   "src": [
-   "mktcap"
+   "mktcap",
+   "px_auto_INTC"
   ],
   "pxTk": "INTC",
   "capRef": 332.2,
   "pxRef": 54.470001220703125,
   "fxRef": 1.0,
   "refDate": "2026-11-26",
-  "refExact": true
+  "refExact": true,
+  "note": "以 2026-11-26 的市值 $3,322 億 × 股價變動推算（自動，不反映股數變動）"
  }
 }

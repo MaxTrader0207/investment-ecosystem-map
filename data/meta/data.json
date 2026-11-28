@@ -251,7 +251,7 @@
    "https://www.trefis.com/stock/meta/articles/622625/can-metas-business-pay-for-its-spending/2026-11-04"
   ],
   "px_auto_META": [
-   "Yahoo Finance｜META 2026-11-25 收盤 609.89",
+   "Yahoo Finance｜META 2026-11-27 收盤 628.96",
    "https://finance.yahoo.com/quote/META",
    "B"
   ],
@@ -1673,8 +1673,8 @@
   }
  },
  "mkt": {
-  "cap": 1555.1,
-  "date": "2026-11-25",
+  "cap": 1603.7,
+  "date": "2026-11-27",
   "src": [
    "mktcap",
    "px_auto_META"

@@ -1,0 +1,16 @@
+[
+ {
+  "d": "2026-11-27",
+  "t": "更新：SpaceX（Colossus 算力）— S-1/A 揭露合約對象與條款",
+  "x": "報導整理 Anthropic 的 S-1/A 文件：算力合約對象為 SpaceX.AI LLC，承諾上限最高 1,205 億美元，滿載時每月約 31 億美元，預計 2026 年 12 月全數交付，2027 年設有分段取消窗口。這些條款是先前申報文件的內容，本篇是整理報導，不是新的申報。",
+  "url": "https://www.neoteo.com/en/anthropics-spacex-compute-agreements-sec-filed-terms",
+  "counterparty": "SpaceX"
+ },
+ {
+  "d": "2026-11-27",
+  "t": "Anthropic 與 Meta、Microsoft 等洽談與 JERA 在日本發電廠旁共建資料中心",
+  "x": "報導稱 Anthropic、Meta 等美國科技公司正與日本 JERA 洽談，在發電廠附近開發資料中心，計畫規模約 150 億美元。目前仍在洽談，尚未簽約。",
+  "url": "https://www.gurufocus.com/news/9228525/anthropic-meta-and-microsoft-join-ai-data-center-talks-in-japan",
+  "counterparty": ""
+ }
+]

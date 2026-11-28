@@ -156,7 +156,7 @@
    "https://www.nasdaq.com/articles/coreweaves-35-39b-capex-plan-can-ai-demand-justify-spend"
   ],
   "px_auto_CRWV": [
-   "Yahoo Finance｜CRWV 2026-11-25 收盤 42.57",
+   "Yahoo Finance｜CRWV 2026-11-27 收盤 44.15",
    "https://finance.yahoo.com/quote/CRWV",
    "B"
   ],
@@ -1116,8 +1116,8 @@
   }
  ],
  "mkt": {
-  "cap": 23.7,
-  "date": "2026-11-25",
+  "cap": 24.6,
+  "date": "2026-11-27",
   "src": [
    "mktcap",
    "px_auto_CRWV"
